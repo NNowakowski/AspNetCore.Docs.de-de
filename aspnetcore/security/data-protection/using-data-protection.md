@@ -5,6 +5,8 @@ description: Erfahren Sie, wie Sie die ASP.net Core-Datenschutz-APIs verwenden, 
 ms.author: riande
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/using-data-protection
-ms.openlocfilehash: 1b0dc6756de55d9ce35eb08ca037e4d4b1fede75
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0d088e0e974742e51d9ca39a5cec5b84b46f5d21
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405613"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022432"
 ---
 # <a name="get-started-with-the-data-protection-apis-in-aspnet-core"></a>Beginnen Sie mit den Datenschutz-APIs in ASP.net Core
 
@@ -41,4 +43,4 @@ Wenn Sie eine Schutzvorrichtung erstellen, müssen Sie eine oder mehrere [Zweck]
 >[!TIP]
 > Instanzen von `IDataProtectionProvider` und `IDataProtector` sind für mehrere Aufrufer Thread sicher. Wenn eine Komponente einen Verweis auf einen `IDataProtector` über einen Aufruf von erhält `CreateProtector` , wird dieser Verweis für mehrere Aufrufe von `Protect` und verwendet `Unprotect` .
 >
->Ein-Aufrufe von löst `Unprotect` CryptographicException aus, wenn die geschützte Nutzlast nicht überprüft oder nicht verschlüsselt werden kann. Einige Komponenten möchten möglicherweise Fehler beim Vorgang zum Aufheben des Schutzes ignorieren. eine Komponente, die Authentifizierungs Cookies liest, kann diesen Fehler behandeln und die Anforderung so behandeln, als ob Sie überhaupt kein Cookie hätte, anstatt die Anforderung vollständig zu übernehmen. Komponenten, für die dieses Verhalten gewünscht ist, sollten CryptographicException genau abfangen, anstatt alle Ausnahmen zu verschlucken.
+>Ein-Aufrufe von löst `Unprotect` CryptographicException aus, wenn die geschützte Nutzlast nicht überprüft oder nicht verschlüsselt werden kann. Einige Komponenten möchten möglicherweise Fehler beim Vorgang zum Aufheben des Schutzes ignorieren. eine Komponente, die Authentifizierungs-e liest, cookie kann diesen Fehler verarbeiten und die Anforderung so behandeln, als wäre sie überhaupt nicht voll cookie ständig. Komponenten, für die dieses Verhalten gewünscht ist, sollten CryptographicException genau abfangen, anstatt alle Ausnahmen zu verschlucken.

@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: 668c68bc328860ef17e1f2df09103fca07733ef7
-ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
+ms.openlocfilehash: 03d6e7fdc4ab4b5e4925508952bfd6c835d90486
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87160164"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021275"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Richtlinien basierte Autorisierung in ASP.net Core
 
@@ -119,13 +121,13 @@ Verwenden Sie <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> od
 
 Wenn Sie Seiten verwenden Razor , finden Sie weitere Informationen unter [Anwenden von Richtlinien auf Razor Seiten](#apply-policies-to-razor-pages) in diesem Dokument.
 
-Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Beispiel:
+Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
 ## <a name="apply-policies-to-no-locrazor-pages"></a>Anwenden von Richtlinien auf Razor Seiten
 
-Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Beispiel:
+Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
@@ -174,7 +176,7 @@ Der vorangehende Code durchsucht die " [pdingrequirequirements](/dotnet/api/micr
 
 ### <a name="handler-registration"></a>Handlerregistrierung
 
-Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Beispiel:
+Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Zum Beispiel:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=31-32,39-40,42-45, 53-55, 58)]
 
@@ -227,7 +229,7 @@ Die vorherige könnte z. b. `BadgeEntryHandler` wie folgt umgeschrieben werden:
 
 Die `HandleRequirementAsync` Methode, die Sie in einem Autorisierungs Handler implementieren, verfügt über zwei Parameter: einen `AuthorizationHandlerContext` und den, den `TRequirement` Sie behandeln. Frameworks wie MVC oder SignalR können jedes beliebige Objekt der- `Resource` Eigenschaft im hinzufügen `AuthorizationHandlerContext` , um zusätzliche Informationen zu übergeben.
 
-Wenn Sie das Endpunkt Routing verwenden, wird die Autorisierung in der Regel von der Autorisierungs Middleware verarbeitet. In diesem Fall ist die `Resource` Eigenschaft eine Instanz von <xref:Microsoft.AspNetCore.Http.Endpoint> . Der Endpunkt kann verwendet werden, um die zugrunde liegende Ressource zu überprüfen, an die Sie weiterleiten. Beispiel:
+Wenn Sie das Endpunkt Routing verwenden, wird die Autorisierung in der Regel von der Autorisierungs Middleware verarbeitet. In diesem Fall ist die `Resource` Eigenschaft eine Instanz von <xref:Microsoft.AspNetCore.Http.Endpoint> . Der Endpunkt kann verwendet werden, um die zugrunde liegende Ressource zu überprüfen, an die Sie weiterleiten. Zum Beispiel:
 
 ```csharp
 if (context.Resource is Endpoint endpoint)
@@ -355,13 +357,13 @@ Verwenden Sie <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> od
 
 Wenn Sie Seiten verwenden Razor , finden Sie weitere Informationen unter [Anwenden von Richtlinien auf Razor Seiten](#apply-policies-to-razor-pages) in diesem Dokument.
 
-Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Beispiel:
+Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
 ## <a name="apply-policies-to-no-locrazor-pages"></a>Anwenden von Richtlinien auf Razor Seiten
 
-Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Beispiel:
+Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
@@ -408,7 +410,7 @@ Der vorangehende Code durchsucht die " [pdingrequirequirements](/dotnet/api/micr
 
 ### <a name="handler-registration"></a>Handlerregistrierung
 
-Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Beispiel:
+Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,62-63,66)]
 

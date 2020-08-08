@@ -7,6 +7,8 @@ ms.author: anurse
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/security
-ms.openlocfilehash: 4e125fd6c4ad2cd4989d692dd28a63638218ee57
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e004899e334738f723cb98638cb31de8d314a830
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400413"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022471"
 ---
-# <a name="security-considerations-in-aspnet-core-signalr"></a>Sicherheitsüberlegungen in ASP.net CoreSignalR
+# <a name="security-considerations-in-aspnet-core-no-locsignalr"></a>Sicherheitsüberlegungen in ASP.net CoreSignalR
 
 Von [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
@@ -41,12 +43,12 @@ Weitere Informationen zum Konfigurieren von cors finden Sie unter [Aktivieren vo
 
 * Hiermit werden bestimmte erwartete Ursprünge zugelassen. Es ist möglich, einen beliebigen Ursprung zuzulassen, aber er ist **nicht** sicher oder wird empfohlen.
 * HTTP `GET` -Methoden und `POST` müssen zulässig sein.
-* Anmelde Informationen müssen zulässig sein, damit cookiebasierte persistente Sitzungen ordnungsgemäß funktionieren. Sie müssen auch dann aktiviert werden, wenn die Authentifizierung nicht verwendet wird.
+* Anmelde Informationen müssen zulässig sein, damit cookie -basierte persistente Sitzungen ordnungsgemäß funktionieren. Sie müssen auch dann aktiviert werden, wenn die Authentifizierung nicht verwendet wird.
 
 ::: moniker range=">= aspnetcore-5.0"
 
 In 5,0 haben wir jedoch eine Option im typescript-Client bereitgestellt, um keine Anmelde Informationen zu verwenden.
-Die Option, Anmelde Informationen nicht zu verwenden, sollte nur verwendet werden, wenn Sie 100% wissen, dass Anmelde Informationen wie Cookies nicht in Ihrer APP erforderlich sind (Cookies werden von Azure App Service verwendet, wenn mehrere Server für persistente Sitzungen verwendet werden).
+Die Option, Anmelde Informationen nicht zu verwenden, sollte nur verwendet werden, wenn Sie 100% wissen, dass Anmelde Informationen wie z Cookie . b. in Ihrer APP nicht benötigt werden ( cookie e werden von Azure App Service verwendet, wenn mehrere Server für persistente Sitzungen verwendet werden).
 
 ::: moniker-end
 

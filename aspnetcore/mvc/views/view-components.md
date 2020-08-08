@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-components
-ms.openlocfilehash: 272b5a89601a9e6ef24f3e60a3da7e2a40297c97
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 0c952502d58744bbbe06c92f51bd51bd547fb8ae
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86213111"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020950"
 ---
 # <a name="view-components-in-aspnet-core"></a>Ansichtskomponenten in ASP.NET Core
 
@@ -189,7 +191,7 @@ Bemerkungen zum Code:
 * `InvokeAsync` macht eine Methode verfügbar, die von einer Ansicht aus aufgerufen werden kann, und akzeptiert eine arbiträre Anzahl von Argumenten.
 * Die `InvokeAsync`-Methode gibt mehrere `ToDo`-Elemente zurück, die die Bedingungen der Parameter `isDone` und `maxPriority` erfüllen.
 
-### <a name="create-the-view-component-razor-view"></a>Erstellen der Ansichts Komponenten Razor Ansicht
+### <a name="create-the-view-component-no-locrazor-view"></a>Erstellen der Ansichts Komponenten Razor Ansicht
 
 * Erstellen Sie den Ordner *Views/Shared/Components*. Diese Ordner **muss** den Namen *Components* besitzen.
 
@@ -351,6 +353,6 @@ Jeder Parameter in einer Ansichtskomponente ist ein erforderliches Attribut. Wei
 * Das Markup des ViewComponent-Elements wird nicht gerendert.
 * Es werden keine Fehler ausgelöst.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [Dependency Injection in Ansichten](xref:mvc/views/dependency-injection)

@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,20 +17,20 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/authn-and-authz
-ms.openlocfilehash: 794465ceb69f47ee3d5cc8c100b321cb958d9cfe
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 1e022c510dda3e39dd02d607f1d9c493aecdeb5a
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407134"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021561"
 ---
-# <a name="authentication-and-authorization-in-aspnet-core-signalr"></a>Authentifizierung und Autorisierung in ASP.net CoreSignalR
+# <a name="authentication-and-authorization-in-aspnet-core-no-locsignalr"></a>Authentifizierung und Autorisierung in ASP.net CoreSignalR
 
 Von [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/authn-and-authz/sample/) [(Vorgehensweise zum Herunterladen)](xref:index#how-to-download-a-sample)
 
-## <a name="authenticate-users-connecting-to-a-signalr-hub"></a>Authentifizieren von Benutzern, die eine Verbindung mit einem SignalR Hub herstellen
+## <a name="authenticate-users-connecting-to-a-no-locsignalr-hub"></a>Authentifizieren von Benutzern, die eine Verbindung mit einem SignalR Hub herstellen
 
 SignalRkann mit ASP.net Core- [Authentifizierung](xref:security/authentication/identity) verwendet werden, um jedem Verbindung einen Benutzer zuzuordnen. In einem Hub kann über die [hubconnectioncontext. User](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) -Eigenschaft auf Authentifizierungsdaten zugegriffen werden. Die Authentifizierung ermöglicht dem Hub das Abrufen von Methoden für alle Verbindungen, die einem Benutzer zugeordnet sind. Weitere Informationen finden Sie unter [Verwalten von Benutzern und Gruppen SignalR in ](xref:signalr/groups). Mehrere Verbindungen können einem einzelnen Benutzer zugeordnet werden.
 
@@ -86,15 +88,15 @@ public void Configure(IApplicationBuilder app)
 
 ::: moniker-end
 
-### <a name="cookie-authentication"></a>Cookie-Authentifizierung
+### <a name="no-loccookie-authentication"></a>Authentifizierung per Cookie
 
-In einer browserbasierten App ermöglicht die Cookieauthentifizierung, dass Ihre vorhandenen Benutzer Anmelde Informationen automatisch an Verbindungen weitergeleitet werden SignalR . Wenn Sie den Browser Client verwenden, ist keine zusätzliche Konfiguration erforderlich. Wenn der Benutzer bei ihrer App angemeldet ist, SignalR erbt die Verbindung diese Authentifizierung automatisch.
+In einer browserbasierten APP cookie ermöglicht die Authentifizierung, dass Ihre vorhandenen Benutzer Anmelde Informationen automatisch an Verbindungen weitergeleitet werden SignalR . Wenn Sie den Browser Client verwenden, ist keine zusätzliche Konfiguration erforderlich. Wenn der Benutzer bei ihrer App angemeldet ist, SignalR erbt die Verbindung diese Authentifizierung automatisch.
 
-Cookies sind eine browserspezifische Methode zum Senden von Zugriffs Token, die von nicht-Browser Clients jedoch gesendet werden können. Wenn Sie den [.NET-Client](xref:signalr/dotnet-client)verwenden, kann die- `Cookies` Eigenschaft im-Befehl `.WithUrl` zur Bereitstellung eines Cookies konfiguriert werden. Die Verwendung der Cookie-Authentifizierung über den .NET-Client erfordert jedoch, dass die APP eine API zum Austauschen von Authentifizierungsdaten für ein Cookie bereitstellt.
+Cookies sind eine browserspezifische Methode zum Senden von Zugriffs Token, die von nicht-Browser Clients jedoch gesendet werden können. Wenn Sie den [.NET-Client](xref:signalr/dotnet-client)verwenden, kann die- `Cookies` Eigenschaft im-Befehl konfiguriert werden, `.WithUrl` um einen bereitzustellen cookie . Allerdings cookie erfordert die Verwendung der-Authentifizierung über den .NET-Client, dass die APP eine API zum Austauschen von Authentifizierungsdaten für einen bereitstellt cookie .
 
 ### <a name="bearer-token-authentication"></a>Bearertokenauthentifizierung
 
-Der Client kann ein Zugriffs Token bereitstellen, anstatt ein Cookie zu verwenden. Der Server überprüft das Token und verwendet es zum Identifizieren des Benutzers. Diese Überprüfung erfolgt nur, wenn die Verbindung hergestellt wird. Während der Lebensdauer der Verbindung wird der Server nicht automatisch neu validiert, um die tokensperrung zu überprüfen.
+Der Client kann ein Zugriffs Token bereitstellen, anstatt zu verwenden cookie . Der Server überprüft das Token und verwendet es zum Identifizieren des Benutzers. Diese Überprüfung erfolgt nur, wenn die Verbindung hergestellt wird. Während der Lebensdauer der Verbindung wird der Server nicht automatisch neu validiert, um die tokensperrung zu überprüfen.
 
 Auf dem Server wird die Bearertokenauthentifizierung unter Verwendung der [JWT Bearer-Middleware](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer) konfiguriert.
 
@@ -125,9 +127,9 @@ In Standard-Web-APIs werden bearertoken in einem HTTP-Header gesendet. SignalRKa
 > [!NOTE]
 > Die Abfrage Zeichenfolge wird in Browsern verwendet, wenn eine Verbindung mit websockets und Server gesendeten Ereignissen aufgrund von Einschränkungen der Browser-API hergestellt wird. Bei Verwendung von HTTPS werden Abfrage Zeichen folgen Werte durch die TLS-Verbindung gesichert. Viele Server protokollieren jedoch Abfrage Zeichen folgen Werte. Weitere Informationen finden Sie unter [Sicherheitsüberlegungen in SignalR ASP.net Core ](xref:signalr/security). SignalRverwendet Header zum Übertragen von Token in Umgebungen, die diese unterstützen (z. b. die .net-und Java-Clients).
 
-### <a name="cookies-vs-bearer-tokens"></a>Cookies im Vergleich zu bearertoken 
+### <a name="no-loccookies-vs-bearer-tokens"></a>Cookiee im Vergleich zu Träger Token 
 
-Cookies sind spezifisch für Browser. Das Senden von anderen Arten von Clients erhöht die Komplexität im Vergleich zum Senden von bearertoken. Folglich empfiehlt es sich nicht, die Cookie-Authentifizierung zu verwenden, es sei denn, die APP muss nur Benutzer vom Browser Client authentifizieren. Die bearertokenauthentifizierung ist die empfohlene Vorgehensweise, wenn andere Clients als der Browser Client verwendet werden.
+Cookiee sind für Browser spezifisch. Das Senden von anderen Arten von Clients erhöht die Komplexität im Vergleich zum Senden von bearertoken. Daher wird cookie die Authentifizierung nicht empfohlen, es sei denn, die APP muss nur Benutzer über den Browser Client authentifizieren. Die bearertokenauthentifizierung ist die empfohlene Vorgehensweise, wenn andere Clients als der Browser Client verwendet werden.
 
 ### <a name="windows-authentication"></a>Windows-Authentifizierung
 
@@ -296,7 +298,7 @@ Im vorherigen Beispiel `DomainRestrictedRequirement` ist die-Klasse ein und eine
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [Bearertokenauthentifizierung in ASP.net Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
 * [Ressourcenbasierte Autorisierung](xref:security/authorization/resourcebased)

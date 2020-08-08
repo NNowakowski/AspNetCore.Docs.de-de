@@ -5,6 +5,8 @@ description: Verwenden Sie dies Identity mit einer ASP.net Core-app. Erfahren Si
 ms.author: riande
 ms.date: 7/15/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 25070e90050db9dca8b003ae782662811096526a
-ms.sourcegitcommit: 5a36758cca2861aeb10840093e46d273a6e6e91d
+ms.openlocfilehash: 67bf24d8f871c4e80ed91f5f437895fe29e09087
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87160306"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021236"
 ---
 # <a name="introduction-to-no-locidentity-on-aspnet-core"></a>Einführung in Identity ASP.net Core
 
@@ -48,7 +50,7 @@ Die [Microsoft Identity-Plattform](/azure/active-directory/develop/) ist:
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
-[Anzeigen oder Herunterladen des Beispielcodes](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample) ([herunterladen)](xref:index#how-to-download-a-sample)
+[Anzeigen oder Herunterladen des Beispielcodes](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample) ([herunterladen](xref:index#how-to-download-a-sample)).
 
 <a name="adi"></a>
 
@@ -77,7 +79,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-Das generierte Projekt stellt [ASP.net Core Identity ](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Die Identity Razor Klassenbibliothek macht Endpunkte mit dem `Identity` Bereich verfügbar. Beispiel:
+Das generierte Projekt stellt [ASP.net Core Identity ](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Die Identity Razor Klassenbibliothek macht Endpunkte mit dem `Identity` Bereich verfügbar. Zum Beispiel:
 
 * /Identity/Account/Login
 * /Identity/Account/Logout
@@ -184,7 +186,7 @@ Der Link " **Abmelden** " Ruft die `LogoutModel.OnPost` Aktion auf.
 
 Im vorangehenden Code muss der Code `return RedirectToPage();` eine Umleitung sein, damit der Browser eine neue Anforderung ausführt und die Identität des Benutzers aktualisiert wird.
 
-[Signoutasync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) löscht die in einem Cookie gespeicherten Ansprüche des Benutzers.
+[Signoutasync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) löscht die in einer gespeicherten Ansprüche des Benutzers cookie .
 
 Post wird in der Datei *pages/Shared/_LoginPartial. cshtml*angegeben:
 
@@ -270,7 +272,7 @@ ASP.net Core Identity ist ein Mitgliedschaftssystem, das ASP.net Core-apps Anmel
 
 Identitykann mithilfe einer SQL Server-Datenbank zum Speichern von Benutzernamen, Kenn Wörtern und Profildaten konfiguriert werden. Alternativ können Sie auch einen weiteren permanenten Speicher verwenden, z. b. Azure Table Storage.
 
-[Anzeigen oder Herunterladen des Beispielcodes](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) ([herunterladen)](xref:index#how-to-download-a-sample)
+[Anzeigen oder Herunterladen des Beispielcodes](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) ([herunterladen](xref:index#how-to-download-a-sample)).
 
 In diesem Thema erfahren Sie, wie Sie Identity einen Benutzer mit registrieren, anmelden und abmelden. Ausführlichere Anweisungen zum Erstellen von apps, die verwenden Identity , finden Sie im Abschnitt nächste Schritte am Ende dieses Artikels.
 
@@ -305,7 +307,7 @@ dotnet new webapp --auth Individual -o WebApp1
 
 ---
 
-Das generierte Projekt stellt [ASP.net Core Identity ](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Die Identity Razor Klassenbibliothek macht Endpunkte mit dem `Identity` Bereich verfügbar. Beispiel:
+Das generierte Projekt stellt [ASP.net Core Identity ](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Die Identity Razor Klassenbibliothek macht Endpunkte mit dem `Identity` Bereich verfügbar. Zum Beispiel:
 
 * /Identity/Account/Login
 * /Identity/Account/Logout
@@ -403,7 +405,7 @@ Der Link " **Abmelden** " Ruft die `LogoutModel.OnPost` Aktion auf.
 
 [!code-csharp[](identity/sample/WebApp1/Areas/Identity/Pages/Account/Logout.cshtml.cs)]
 
-[Signoutasync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) löscht die in einem Cookie gespeicherten Ansprüche des Benutzers.
+[Signoutasync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) löscht die in einer gespeicherten Ansprüche des Benutzers cookie .
 
 Post wird in der Datei *pages/Shared/_LoginPartial. cshtml*angegeben:
 

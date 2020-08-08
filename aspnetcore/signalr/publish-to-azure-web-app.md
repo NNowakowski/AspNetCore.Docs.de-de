@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/publish-to-azure-web-app
-ms.openlocfilehash: d3f48b3171012b03fcaf7665c2089b27d37bbeca
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 3163a2743c544d0a07d92eb7547e77c3b200ac83
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408837"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022536"
 ---
-# <a name="publish-an-aspnet-core-signalr-app-to-azure-app-service"></a>Veröffentlichen einer ASP.net Core- SignalR app in Azure App Service
+# <a name="publish-an-aspnet-core-no-locsignalr-app-to-azure-app-service"></a>Veröffentlichen einer ASP.net Core- SignalR app in Azure App Service
 
 Von [Brady Gastern](https://twitter.com/bradygaster)
 
@@ -43,7 +45,7 @@ In diesem Artikel wird die Veröffentlichung mit den Tools in Visual Studio beha
 
    Geben Sie die in der folgenden Tabelle beschriebenen Informationen in das Dialogfeld **App Service erstellen** ein, und wählen Sie **Erstellen**aus.
 
-   | Element               | Beschreibung |
+   | Element               | BESCHREIBUNG |
    | ------------------ | ----------- |
    | **Name**           | Der eindeutige Name der app. |
    | **Abonnement**   | Azure-Abonnement, das von der APP verwendet wird. |
@@ -52,7 +54,7 @@ In diesem Artikel wird die Veröffentlichung mit den Tools in Visual Studio beha
 
 1. Wählen Sie in der Dropdown Liste **Abhängigkeiten**hinzufügen den **Azure- SignalR Dienst** aus  >  **Add** :
 
-   ![Bereich "Abhängigkeiten" mit der Auswahl des Azure SignalR -Dienstanbieter in der Dropdown Liste "hinzufügen"](publish-to-azure-web-app/_static/signalr-service-dependency.png)
+   ![Bereich Abhängigkeiten mit der Auswahl von Azure::: NO-LOC (signalr)::: Service in der Dropdown Liste hinzufügen](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 
 1. Wählen Sie im Dialogfeld **Azure- SignalR Dienst** die Option **neue Azure- SignalR Dienst Instanz erstellen**aus.
 
@@ -78,7 +80,7 @@ Wenn beim Bereitstellen einer APP, die auf eine Vorschauversion von .net Core au
 
 Aktivieren Sie für apps, die ohne Azure- SignalR Dienst gehostet werden, Folgendes:
 
-* [Arr-Affinität](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html) zum Weiterleiten von Anforderungen von einem Benutzer an dieselbe App Service Instanz. Die Standardeinstellung ist **on**.
+* [Arr-Affinität] ( https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity- cookie -(Arr- cookie ) -for-Azure-web-apps.html), um Anforderungen von einem Benutzer zurück an dieselbe App Service Instanz weiterzuleiten. Die Standardeinstellung ist **on**.
 * [Websockets](xref:fundamentals/websockets) , damit der websockets-Transport funktioniert. Die Standardeinstellung ist **Off**.
 
 1. Navigieren Sie in der Azure-Portal zu der Web-App in **App Services**.
@@ -90,7 +92,7 @@ Aktivieren Sie für apps, die ohne Azure- SignalR Dienst gehostet werden, Folgen
 
 Websockets und andere Transporte sind auf Grundlage des ausgewählten App Service Plans beschränkt. Weitere Informationen finden Sie in den Abschnitten *Azure-Cloud Services Limits* und *App Service Limits* im Artikel Einschränkungen für [Azure-Abonnements und Dienste, Kontingente und Einschränkungen](/azure/azure-subscription-service-limits#app-service-limits) .
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [Was ist der Azure- SignalR Dienst?](/azure/azure-signalr/signalr-overview)
 * <xref:signalr/introduction>

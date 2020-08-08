@@ -5,6 +5,8 @@ description: Erfahren Sie mehr über die Unterstützung für das Festlegen einer
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/configuration/machine-wide-policy
-ms.openlocfilehash: 1bde6d90a52ab8873777b5320540251170eaade6
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f4b8dc379c0219ff9fc363df55df1103ef40a5ce
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404885"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022406"
 ---
 # <a name="data-protection-machine-wide-policy-support-in-aspnet-core"></a>Unterstützung der Computer weiten Datenschutzrichtlinie in ASP.net Core
 
@@ -39,7 +41,7 @@ Wenn Sie ein 64-Bit-Betriebssystem verwenden und das Verhalten von 32-Bit-apps b
 
 Die unterstützten Werte sind unten dargestellt.
 
-| Wert              | Typ   | Beschreibung |
+| Wert              | Typ   | BESCHREIBUNG |
 | ------------------ | :----: | ----------- |
 | EncryptionType     | Zeichenfolge | Gibt an, welche Algorithmen für den Datenschutz verwendet werden sollen. Der Wert muss CNG-CBC, CNG-GCM oder Managed lauten und wird unten ausführlicher beschrieben. |
 | Defaultkeylifetime | DWORD  | Gibt die Lebensdauer für neu generierte Schlüssel an. Der Wert wird in Tagen angegeben und muss >= 7 sein. |
@@ -49,7 +51,7 @@ Die unterstützten Werte sind unten dargestellt.
 
 Wenn Verschlüsselungstyp CNG-CBC ist, wird das System für die Verwendung eines symmetrischen Blockchiffre im CBC-Modus für Vertraulichkeit und HMAC für die Authentizität mit den von Windows CNG bereitgestellten Diensten konfiguriert (Weitere Informationen finden Sie unter [Angeben von benutzerdefinierten Windows CNG-Algorithmen](xref:security/data-protection/configuration/overview#specifying-custom-windows-cng-algorithms) ). Die folgenden zusätzlichen Werte werden unterstützt, von denen jeder einer Eigenschaft im cngcbcauthenticatedencryptionsettings-Typ entspricht.
 
-| Wert                       | Typ   | Beschreibung |
+| Wert                       | Typ   | BESCHREIBUNG |
 | --------------------------- | :----: | ----------- |
 | EncryptionAlgorithm         | Zeichenfolge | Der Name eines symmetrischen Blockchiffre Algorithmus, der von CNG interpretiert wird. Dieser Algorithmus wird im CBC-Modus geöffnet. |
 | Verschlüsselungs algorithmuprovider | Zeichenfolge | Der Name der CNG-Anbieter Implementierung, die den Algorithmus "Verschlüsselungalgorithmus" bilden kann. |
@@ -59,7 +61,7 @@ Wenn Verschlüsselungstyp CNG-CBC ist, wird das System für die Verwendung eines
 
 Wenn der Verschlüsselungstyp CNG-GCM ist, wird das System so konfiguriert, dass er eine Verschlüsselung mit dem symmetrischen Block "Galois/Counter Mode" für Vertraulichkeit und Authentizität mit Diensten von Windows CNG verwendet (Weitere Informationen finden Sie unter [Angeben von benutzerdefinierten Windows CNG-Algorithmen](xref:security/data-protection/configuration/overview#specifying-custom-windows-cng-algorithms) ). Die folgenden zusätzlichen Werte werden unterstützt, von denen jeder einer Eigenschaft des cnggcmauthenticatedencryptionsettings-Typs entspricht.
 
-| Wert                       | Typ   | Beschreibung |
+| Wert                       | Typ   | BESCHREIBUNG |
 | --------------------------- | :----: | ----------- |
 | EncryptionAlgorithm         | Zeichenfolge | Der Name eines symmetrischen Blockchiffre Algorithmus, der von CNG interpretiert wird. Dieser Algorithmus wird im Modus "Galois/Counter" geöffnet. |
 | Verschlüsselungs algorithmuprovider | Zeichenfolge | Der Name der CNG-Anbieter Implementierung, die den Algorithmus "Verschlüsselungalgorithmus" bilden kann. |
@@ -67,7 +69,7 @@ Wenn der Verschlüsselungstyp CNG-GCM ist, wird das System so konfiguriert, dass
 
 Wenn verschlüsselungstype verwaltet wird, ist das System so konfiguriert, dass ein verwaltetes SymmetricAlgorithm für Vertraulichkeit und KeyedHashAlgorithm für die Authentizität verwendet wird (Weitere Informationen finden Sie unter [Angeben von benutzerdefinierten verwalteten Algorithmen](xref:security/data-protection/configuration/overview#specifying-custom-managed-algorithms) ). Die folgenden zusätzlichen Werte werden unterstützt, von denen jeder einer Eigenschaft im managedauthenticatedencryptionsettings-Typ entspricht.
 
-| Wert                      | Typ   | Beschreibung |
+| Wert                      | Typ   | BESCHREIBUNG |
 | -------------------------- | :----: | ----------- |
 | Verschlüsselungsalgorithmtype    | Zeichenfolge | Der durch die Assembly qualifizierte Name eines Typs, der SymmetricAlgorithm implementiert. |
 | Verschlüsselungsalgorithmkeysize | DWORD  | Die Länge des Schlüssels (in Bits), der für den symmetrischen Verschlüsselungsalgorithmus abgeleitet werden soll. |

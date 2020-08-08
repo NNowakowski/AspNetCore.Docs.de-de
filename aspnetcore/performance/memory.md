@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: d261a26de7b9ba77e5f9787ae2eb37293257a0fc
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 09df67657c9b6e4e59d6a1379bf801c289028819
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406393"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020937"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Speicherverwaltung und Garbage Collection (GC) in ASP.net Core
 
@@ -355,7 +357,7 @@ Im folgenden finden Sie eine bessere Möglichkeit zur Handhabung der Lebensdauer
 * [HttpClient und die Verwaltung der Lebensdauer](/aspnet/core/fundamentals/http-requests#httpclient-and-lifetime-management)
 * [HttpClient-Factory-Blog](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
  
-### <a name="object-pooling"></a>Objekt Pooling
+### <a name="object-pooling"></a>Objektpooling
 
 Im vorherigen Beispiel wurde gezeigt, wie die `HttpClient` -Instanz statisch gemacht und von allen Anforderungen wieder verwendet werden kann. Durch die Wiederverwendung wird verhindert, dass Ressourcen aussteht.
 
@@ -440,7 +442,7 @@ Das Anwenden derselben Last wie die nicht in einem Pool zusammengefasste Version
 
 Der Hauptunterschied besteht darin, dass Bytes zugeordnet werden, was zu einer wesentlich geringeren Auflistung der Generation 0 gehört.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [Garbage Collection](/dotnet/standard/garbage-collection/)
 * [Grundlegendes zu verschiedenen GC-Modi mit neben läufigkeits Schnellansicht](https://blogs.msdn.microsoft.com/seteplia/2017/01/05/understanding-different-gc-modes-with-concurrency-visualizer/)

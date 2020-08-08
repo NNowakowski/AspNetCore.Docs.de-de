@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/14/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-compilation
-ms.openlocfilehash: 71487ff2d5d7d7cf96835778f386e5f30fa32254
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: fc7924f8f8b321ae017b7acd729fe11c4e0e3c7e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405444"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021080"
 ---
-# <a name="razor-file-compilation-in-aspnet-core"></a>RazorDatei Kompilierung in ASP.net Core
+# <a name="no-locrazor-file-compilation-in-aspnet-core"></a>RazorDatei Kompilierung in ASP.net Core
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -29,7 +31,7 @@ Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 RazorDateien mit der Erweiterung *. cshtml* werden zum Zeitpunkt der Erstellung und Veröffentlichung mit dem [ Razor SDK](xref:razor-pages/sdk)kompiliert. Die Runtime-Kompilierung kann optional durch Konfigurieren des Projekts aktiviert werden.
 
-## <a name="razor-compilation"></a>RazorNeuauflage
+## <a name="no-locrazor-compilation"></a>RazorNeuauflage
 
 Kompilierzeit-und Veröffentlichungszeit Kompilierung von Razor Dateien wird vom SDK standardmäßig aktiviert Razor . Wenn diese Option aktiviert ist, ergänzt die Lauf Zeit Kompilierung die Kompilierungs Kompilierung, sodass Razor Dateien aktualisiert werden können, wenn Sie bearbeitet werden.
 
@@ -91,7 +93,7 @@ Im folgenden Beispiel ist die Lauf Zeit Kompilierung in der Entwicklungsumgebung
 
 In der-Klasse des Projekts sind keine Codeänderungen erforderlich `Startup` . Zur Laufzeit sucht ASP.net Core nach einem [hostingstartup-Attribut](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) auf Assemblyebene in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation` . Das- `HostingStartup` Attribut gibt den auszuführenden App-Startcode an. Dieser Startcode ermöglicht die Lauf Zeit Kompilierung.
 
-## <a name="enable-runtime-compilation-for-a-razor-class-library"></a>Aktivieren der Lauf Zeit Kompilierung für eine Razor Klassenbibliothek
+## <a name="enable-runtime-compilation-for-a-no-locrazor-class-library"></a>Aktivieren der Lauf Zeit Kompilierung für eine Razor Klassenbibliothek
 
 Stellen Sie sich ein Szenario vor, in dem ein Razor Seiten Projekt auf eine [ Razor Klassenbibliothek (RCL)](xref:razor-pages/ui-class) mit dem Namen *myclasslib*verweist. Die RCL enthält eine *_Layout. cshtml* -Datei, die von allen MVC-und Pages-Projekten Ihres Teams genutzt wird Razor . Sie möchten die Runtime-Kompilierung für die Datei *_Layout. cshtml* in dieser RCL aktivieren. Nehmen Sie die folgenden Änderungen im Razor pages-Projekt vor:
 
@@ -102,9 +104,9 @@ Stellen Sie sich ein Szenario vor, in dem ein Razor Seiten Projekt auf eine [ Ra
 
     Im vorangehenden Code wird ein absoluter Pfad zur *myclasslib* -RCL erstellt. Die [physicalfileprovider-API](xref:fundamentals/file-providers#physicalfileprovider) wird verwendet, um Verzeichnisse und Dateien in diesem absoluten Pfad zu suchen. Schließlich wird die `PhysicalFileProvider` Instanz einer Datei Anbieter Auflistung hinzugefügt, die den Zugriff auf die *cshtml* -Dateien der RCL ermöglicht.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
-* [Razorcompileonbuild-und razorcompileonpublish-](xref:razor-pages/sdk#properties) Eigenschaften.
+* [ Razor Compileonbuild-und Razor compileonpublish-](xref:razor-pages/sdk#properties) Eigenschaften.
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
@@ -115,7 +117,7 @@ Stellen Sie sich ein Szenario vor, in dem ein Razor Seiten Projekt auf eine [ Ra
 
 RazorDateien mit der Erweiterung *. cshtml* werden zum Zeitpunkt der Erstellung und Veröffentlichung mit dem [ Razor SDK](xref:razor-pages/sdk)kompiliert. Die Laufzeitkompilierung kann optional aktiviert werden, indem Ihre Anwendung konfiguriert wird.
 
-## <a name="razor-compilation"></a>RazorNeuauflage
+## <a name="no-locrazor-compilation"></a>RazorNeuauflage
 
 Kompilierzeit-und Veröffentlichungszeit Kompilierung von Razor Dateien wird vom SDK standardmäßig aktiviert Razor . Wenn diese Option aktiviert ist, ergänzt die Lauf Zeit Kompilierung die Kompilierungs Kompilierung, sodass Razor Dateien aktualisiert werden können, wenn Sie bearbeitet werden.
 
@@ -157,9 +159,9 @@ So aktivieren Sie die Laufzeitkompilierung basierend auf Umgebung und Konfigurat
 
     [!code-csharp[](~/mvc/views/view-compilation/samples/3.0/Startup.cs?name=snippet)]
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
-* [Razorcompileonbuild-und razorcompileonpublish-](xref:razor-pages/sdk#properties) Eigenschaften.
+* [ Razor Compileonbuild-und Razor compileonpublish-](xref:razor-pages/sdk#properties) Eigenschaften.
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
@@ -171,7 +173,7 @@ So aktivieren Sie die Laufzeitkompilierung basierend auf Umgebung und Konfigurat
 
 Eine Razor Datei wird zur Laufzeit kompiliert, wenn die zugehörige Razor Seite oder MVC-Ansicht aufgerufen wird. RazorDateien werden zum Zeitpunkt der Erstellung und Veröffentlichung mit dem [ Razor SDK](xref:razor-pages/sdk)kompiliert.
 
-## <a name="razor-compilation"></a>RazorNeuauflage
+## <a name="no-locrazor-compilation"></a>RazorNeuauflage
 
 Build-und Veröffentlichungszeit Kompilierung von Razor Dateien wird vom SDK standardmäßig aktiviert Razor . Das Bearbeiten Razor von Dateien nach ihrer Aktualisierung wird zur Buildzeit unterstützt. Standardmäßig werden nur die Dateien für kompilierte *Views.dll* und keine *cshtml* -Dateien oder Verweise, die zum Kompilieren von Razor Dateien erforderlich sind, mit Ihrer APP bereitgestellt.
 

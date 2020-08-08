@@ -7,6 +7,8 @@ ms.author: brecon
 ms.custom: mvc
 ms.date: 05/22/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hub-filters
-ms.openlocfilehash: c7ba0fff8bca53e2d6d12add693ee391ffa789ca
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: db6439ab4e61d0412148c5ea72b52d429367491b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408564"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022146"
 ---
-# <a name="use-hub-filters-in-aspnet-core-signalr"></a>Verwenden von Hub-Filtern in ASP.net CoreSignalR
+# <a name="use-hub-filters-in-aspnet-core-no-locsignalr"></a>Verwenden von Hub-Filtern in ASP.net CoreSignalR
 
 Hub-Filter:
 
@@ -193,7 +195,7 @@ Nehmen Sie für dieses Beispiel an, dass eine `LanguageFilterAttribute` Klasse d
 
 `HubInvocationContext`Enthält Informationen für den aktuellen hubmethoden Aufruf.
 
-| Eigenschaft | Beschreibung | Typ |
+| Eigenschaft | BESCHREIBUNG | Typ |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Enthält Informationen über die Verbindung. | `HubCallerContext` |
 | `Hub` | Die Instanz des Hubs, der für diesen hubmethoden Aufruf verwendet wird. | `Hub` |
@@ -206,7 +208,7 @@ Nehmen Sie für dieses Beispiel an, dass eine `LanguageFilterAttribute` Klasse d
 
 Der `HubLifetimeContext` enthält Informationen für die `OnConnectedAsync` `OnDisconnectedAsync` hubmethoden und.
 
-| Eigenschaft | Beschreibung | Typ |
+| Eigenschaft | BESCHREIBUNG | Typ |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Enthält Informationen über die Verbindung. | `HubCallerContext` |
 | `Hub` | Die Instanz des Hubs, der für diesen hubmethoden Aufruf verwendet wird. | `Hub` |

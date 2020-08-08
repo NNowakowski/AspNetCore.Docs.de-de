@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/02/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/jsonpatch
-ms.openlocfilehash: 08ae366859c4466e6957592f78dda813d6670bb4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 09da557d678889ba16abe6f9af40ae1b33583d8b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405028"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022367"
 ---
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JsonPatch in ASP.NET Core-Web-API
 
@@ -114,7 +116,7 @@ Die [path](https://tools.ietf.org/html/rfc6901)-Eigenschaft eines Vorgangsobjekt
 
 Nullbasierte Indizes werden verwendet, um Arrayelemente anzugeben. Das erste Element des `addresses`-Arrays wäre bei `/addresses/0`. Bis `add` zum Ende eines Arrays verwenden Sie einen Bindestrich ( `-` ) anstelle einer Indexnummer: `/addresses/-` .
 
-### <a name="operations"></a>Operations
+### <a name="operations"></a>Operationen (Operations)
 
 Die folgende Tabelle zeigt unterstützt Vorgänge gemäß der [JSON Patch-Spezifikation](https://tools.ietf.org/html/rfc6902):
 
@@ -139,7 +141,7 @@ Eine Aktionsmethode für JSON Patch in einem API-Controller:
 * Akzeptiert eine `JsonPatchDocument<T>`-Klasse, in der Regel mit `[FromBody]`.
 * Ruft `ApplyTo` für das Patch-Dokument auf, um die Änderungen anzuwenden.
 
-Im Folgenden ein Beispiel:
+Hier sehen Sie ein Beispiel:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -256,7 +258,7 @@ Um das Beispiel zu testen, führen Sie die App aus, und senden Sie HTTP-Anforder
 * Header: `Content-Type: application/json-patch+json`
 * Text: Kopieren Sie eine der JSON-patchdokumentbeispiele, und fügen Sie Sie aus dem *JSON* -Projektordner ein.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [IETF RFC 5789 PATCH-Methodenspezifikation](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON Patch-Spezifikation](https://tools.ietf.org/html/rfc6902)
@@ -326,7 +328,7 @@ Die [path](https://tools.ietf.org/html/rfc6901)-Eigenschaft eines Vorgangsobjekt
 
 Nullbasierte Indizes werden verwendet, um Arrayelemente anzugeben. Das erste Element des `addresses`-Arrays wäre bei `/addresses/0`. Zum `add` ans Ende eines Arrays verwenden Sie einen Bindestrich (-) anstelle einer Indexnummer: `/addresses/-`.
 
-### <a name="operations"></a>Operations
+### <a name="operations"></a>Operationen (Operations)
 
 Die folgende Tabelle zeigt unterstützt Vorgänge gemäß der [JSON Patch-Spezifikation](https://tools.ietf.org/html/rfc6902):
 
@@ -351,7 +353,7 @@ Eine Aktionsmethode für JSON Patch in einem API-Controller:
 * Akzeptiert eine `JsonPatchDocument<T>`-Klasse, in der Regel mit `[FromBody]`.
 * Ruft `ApplyTo` für das Patch-Dokument auf, um die Änderungen anzuwenden.
 
-Im Folgenden ein Beispiel:
+Hier sehen Sie ein Beispiel:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -468,7 +470,7 @@ Um das Beispiel zu testen, führen Sie die App aus, und senden Sie HTTP-Anforder
 * Header: `Content-Type: application/json-patch+json`
 * Text: Kopieren Sie eine der JSON-patchdokumentbeispiele, und fügen Sie Sie aus dem *JSON* -Projektordner ein.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [IETF RFC 5789 PATCH-Methodenspezifikation](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON Patch-Spezifikation](https://tools.ietf.org/html/rfc6902)

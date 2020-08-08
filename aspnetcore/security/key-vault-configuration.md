@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 47172339f1c82a572a8a2c5d4ba49e4906e30b29
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 20561b2608b343d0c0bcf545cc9c48d1886b7cb9
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406874"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022016"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Azure Key Vault Konfigurations Anbieters in ASP.net Core
 
@@ -85,7 +87,7 @@ Die Anweisungen im [Schnellstart: festlegen und Abrufen eines Geheimnisses aus A
 
    * Klicken Sie in der rechten oberen Ecke eines Codeblocks auf **Ausprobieren**. Verwenden Sie die Such Zeichenfolge "Azure CLI" im Textfeld.
    * Öffnen Sie Cloud Shell in Ihrem Browser mit der Schaltfläche **Start Cloud Shell** .
-   * Wählen Sie im Azure-Portal rechts oben im Menü die Schaltfläche **Cloud Shell** aus.
+   * Wählen Sie im Menü in der oberen rechten Ecke des Azure-Portal die Schaltfläche **Cloud Shell** aus.
 
    Weitere Informationen finden Sie unter [Azure CLI](/cli/azure/) und [Übersicht über Azure Cloud Shell](/azure/cloud-shell/overview).
 
@@ -221,7 +223,7 @@ config.AddAzureKeyVault(
     });
 ```
 
-| Eigenschaft         | Beschreibung |
+| Eigenschaft         | BESCHREIBUNG |
 | ---------------- | ----------- |
 | `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient>, der zum Abrufen von Werten verwendet werden soll. |
 | `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>zum Steuern des geheimen Schlüssels verwendete Instanz. |
@@ -326,7 +328,7 @@ Azure Key Vault Schlüssel können keinen Doppelpunkt als Trennzeichen verwenden
 
 Die in der vorangehenden JSON-Datei angezeigte Konfiguration wird in Azure Key Vault mithilfe von Double Dash ( `--` )-Notation und numerischen Segmenten gespeichert:
 
-| Key | Wert |
+| Schlüssel | Wert |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -360,7 +362,7 @@ Wenn die APP die Konfiguration mit dem Anbieter nicht laden kann, wird eine Fehl
 * Der Konfigurationsschlüssel (Name) ist in der APP falsch für den Wert, den Sie laden möchten.
 * Beim Hinzufügen der Zugriffs Richtlinie für die APP zum Schlüssel Tresor wurde die Richtlinie erstellt, aber die Schaltfläche **Speichern** wurde nicht in der Benutzeroberfläche für **Zugriffsrichtlinien** ausgewählt.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)
@@ -431,7 +433,7 @@ Die Anweisungen im [Schnellstart: festlegen und Abrufen eines Geheimnisses aus A
 
    * Klicken Sie in der rechten oberen Ecke eines Codeblocks auf **Ausprobieren**. Verwenden Sie die Such Zeichenfolge "Azure CLI" im Textfeld.
    * Öffnen Sie Cloud Shell in Ihrem Browser mit der Schaltfläche **Start Cloud Shell** .
-   * Wählen Sie im Azure-Portal rechts oben im Menü die Schaltfläche **Cloud Shell** aus.
+   * Wählen Sie im Menü in der oberen rechten Ecke des Azure-Portal die Schaltfläche **Cloud Shell** aus.
 
    Weitere Informationen finden Sie unter [Azure CLI](/cli/azure/) und [Übersicht über Azure Cloud Shell](/azure/cloud-shell/overview).
 
@@ -653,7 +655,7 @@ Azure Key Vault Schlüssel können keinen Doppelpunkt als Trennzeichen verwenden
 
 Die in der vorangehenden JSON-Datei angezeigte Konfiguration wird in Azure Key Vault mithilfe von Double Dash ( `--` )-Notation und numerischen Segmenten gespeichert:
 
-| Key | Wert |
+| Schlüssel | Wert |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -687,7 +689,7 @@ Wenn die APP die Konfiguration mit dem Anbieter nicht laden kann, wird eine Fehl
 * Der Konfigurationsschlüssel (Name) ist in der APP falsch für den Wert, den Sie laden möchten.
 * Beim Hinzufügen der Zugriffs Richtlinie für die APP zum Schlüssel Tresor wurde die Richtlinie erstellt, aber die Schaltfläche **Speichern** wurde nicht in der Benutzeroberfläche für **Zugriffsrichtlinien** ausgewählt.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)

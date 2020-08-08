@@ -5,6 +5,8 @@ description: Erfahren Sie mehr über die wichtigsten Speicher Anbieter in ASP.ne
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: 1bbea6f16d57d5cc107c95293e2788271bfce601
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d54e8078180ce978b550963a03c0d4fdc6e9b12e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408044"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021457"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Schlüsselspeicher Anbieter in ASP.net Core
 
@@ -43,7 +45,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="azure-storage"></a>Azure Storage
 
-Das Paket [Microsoft. aspnetcore. dataprotection. azurestorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) ermöglicht die Speicherung von Datenschutz Schlüsseln in Azure BLOB Storage. Schlüssel können für mehrere Instanzen einer Web-App freigegeben werden. Apps können Authentifizierungs Cookies oder den CSRF-Schutz über mehrere Server hinweg freigeben.
+Das Paket [Microsoft. aspnetcore. dataprotection. azurestorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) ermöglicht die Speicherung von Datenschutz Schlüsseln in Azure BLOB Storage. Schlüssel können für mehrere Instanzen einer Web-App freigegeben werden. Apps können Authentifizierungs- cookie oder CSRF-Schutz auf mehreren Servern freigeben.
 
 Zum Konfigurieren des Azure BLOB Storage Anbieters müssen Sie eine der [persistkeystoazureblobstorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage) -über Ladungen abrufen.
 
@@ -78,13 +80,13 @@ services.AddDataProtection()
 
 ::: moniker range=">= aspnetcore-2.2"
 
-Das [Microsoft. aspnetcore. dataprotection. stackexchangeredis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.StackExchangeRedis/) -Paket ermöglicht das Speichern von Datenschutz Schlüsseln in einem redis-Cache. Schlüssel können für mehrere Instanzen einer Web-App freigegeben werden. Apps können Authentifizierungs Cookies oder den CSRF-Schutz über mehrere Server hinweg freigeben.
+Das [Microsoft. aspnetcore. dataprotection. stackexchangeredis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.StackExchangeRedis/) -Paket ermöglicht das Speichern von Datenschutz Schlüsseln in einem redis-Cache. Schlüssel können für mehrere Instanzen einer Web-App freigegeben werden. Apps können Authentifizierungs- cookie oder CSRF-Schutz auf mehreren Servern freigeben.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-Das [Microsoft. aspnetcore. dataprotection. redis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Redis/) -Paket ermöglicht das Speichern von Datenschutz Schlüsseln in einem redis-Cache. Schlüssel können für mehrere Instanzen einer Web-App freigegeben werden. Apps können Authentifizierungs Cookies oder den CSRF-Schutz über mehrere Server hinweg freigeben.
+Das [Microsoft. aspnetcore. dataprotection. redis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Redis/) -Paket ermöglicht das Speichern von Datenschutz Schlüsseln in einem redis-Cache. Schlüssel können für mehrere Instanzen einer Web-App freigegeben werden. Apps können Authentifizierungs- cookie oder CSRF-Schutz auf mehreren Servern freigeben.
 
 ::: moniker-end
 

@@ -5,6 +5,8 @@ description: Erfahren Sie, wie Sie eine ASP.net Core-App mit e-Mail-Bestätigung
 ms.author: riande
 ms.date: 03/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 1156ddd2921afbfeccaf077ca29d267f8b1e844a
-ms.sourcegitcommit: 3544941682869734ea0113e24e02ed0ec9e1a9ec
+ms.openlocfilehash: 7016c2c1997d961f4b3d3cf513fc1769bd65247b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/18/2020
-ms.locfileid: "86464552"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021613"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Account confirmation and password recovery in ASP.NET Core (Kontobestätigung und Kennwortwiederherstellung in ASP.NET Core)
 
@@ -235,7 +237,7 @@ Das Aktivieren der Konto Bestätigung auf einem Standort mit Benutzern sperrt al
 
 [.Net Core 2,2 SDK oder höher](https://dotnet.microsoft.com/download/dotnet-core)
 
-## <a name="create-a-web--app-and-scaffold-identity"></a>Erstellen einer Web-App und eines GerüstsIdentity
+## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>Erstellen einer Web-App und eines GerüstsIdentity
 
 Führen Sie die folgenden Befehle aus, um eine Web-App mit Authentifizierung zu erstellen.
 

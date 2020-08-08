@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/08/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 8c7acad42f3a49ccf1bc60f8ae5b4f68a602d97b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 04200ced41113eb9a68cefc2f485f2d3798476c6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406926"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022341"
 ---
-# <a name="aspnet-core-signalr-javascript-client"></a>ASP.net Core SignalR JavaScript-Client
+# <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.net Core SignalR JavaScript-Client
 
 Von [Rachel Appel](https://twitter.com/rachelappel)
 
@@ -30,7 +32,7 @@ Die ASP.net Core SignalR JavaScript-Client Bibliothek ermöglicht es Entwicklern
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-## <a name="install-the-signalr-client-package"></a>Installieren des SignalR Client Pakets
+## <a name="install-the-no-locsignalr-client-package"></a>Installieren des SignalR Client Pakets
 
 Die SignalR JavaScript-Client Bibliothek wird als [NPM](https://www.npmjs.com/) -Paket bereitgestellt. In den folgenden Abschnitten werden verschiedene Möglichkeiten zum Installieren der-Client Bibliothek erläutert.
 
@@ -309,12 +311,12 @@ Der folgende Code veranschaulicht einen typischen manuellen Verbindungs Ansatz:
 
 Eine reale Implementierung würde einen exponentiellen Backoff verwenden oder eine angegebene Anzahl von Wiederholungen wiederholen, bevor Sie zurückgegeben wird.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [JavaScript-API-Referenz](/javascript/api/?view=signalr-js-latest)
 * [JavaScript-Tutorial](xref:tutorials/signalr)
 * [WebPack und typescript-Tutorial](xref:tutorials/signalr-typescript-webpack)
-* [Hubs](xref:signalr/hubs)
+* [Hub](xref:signalr/hubs)
 * [.NET-Client](xref:signalr/dotnet-client)
 * [Veröffentlichen in Azure](xref:signalr/publish-to-azure-web-app)
 * [Cross-Origin-Anforderungen (cors)](xref:security/cors)

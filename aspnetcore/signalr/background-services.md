@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/background-services
-ms.openlocfilehash: bf5fff213b2cd7db0b3227922a8c5babba2fc904
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 409ace5e3eaa4ab1de0b9d5f0cbd0e10d9243ea9
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85409084"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022380"
 ---
-# <a name="host-aspnet-core-signalr-in-background-services"></a>Host ASP.net Core SignalR in Hintergrund Diensten
+# <a name="host-aspnet-core-no-locsignalr-in-background-services"></a>Host ASP.net Core SignalR in Hintergrund Diensten
 
 Von [Brady Gastern](https://twitter.com/bradygaster)
 
@@ -42,7 +44,7 @@ Dieser Artikel enthält Anleitungen für:
 
 ::: moniker-end
 
-## <a name="enable-signalr-in-startup"></a>SignalRBeim Start aktivieren
+## <a name="enable-no-locsignalr-in-startup"></a>SignalRBeim Start aktivieren
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -90,7 +92,7 @@ Die vom stark typisierten verwendete Schnittstelle `ClockHub` ist die- `IClock` 
 
 ::: moniker-end
 
-## <a name="call-a-signalr-hub-from-a-background-service"></a>Einen SignalR Hub über einen Hintergrunddienst aufzurufen
+## <a name="call-a-no-locsignalr-hub-from-a-background-service"></a>Einen SignalR Hub über einen Hintergrunddienst aufzurufen
 
 Während des Starts `Worker` wird die Klasse, a `BackgroundService` , mithilfe von aktiviert `AddHostedService` .
 
@@ -113,7 +115,7 @@ Da SignalR auch in der Phase aktiviert ist `Startup` , in der jeder Hub an einen
 
 Wenn die `ExecuteAsync` -Methode im Hintergrunddienst iterativ aufgerufen wird, werden das aktuelle Datum und die aktuelle Uhrzeit des Servers über das an die verbundenen Clients gesendet `ClockHub` .
 
-## <a name="react-to-signalr-events-with-background-services"></a>Reagieren auf SignalR Ereignisse mit Hintergrund Diensten
+## <a name="react-to-no-locsignalr-events-with-background-services"></a>Reagieren auf SignalR Ereignisse mit Hintergrund Diensten
 
 Wie eine Einzelseiten-APP, die den JavaScript SignalR -Client für oder eine .net-Desktop-App mithilfe von verwenden kann <xref:signalr/dotnet-client> , kann eine- `BackgroundService` oder- `IHostedService` Implementierung auch verwendet werden, um eine Verbindung mit SignalR Hubs herzustellen und auf Ereignisse zu reagieren.
 
@@ -154,9 +156,9 @@ Während der- `IHostedService.StopAsync` Methode `HubConnection` wird der asynch
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [Erste Schritte](xref:tutorials/signalr)
-* [Hubs](xref:signalr/hubs)
+* [Hub](xref:signalr/hubs)
 * [Veröffentlichen in Azure](xref:signalr/publish-to-azure-web-app)
 * [Stark typisierte Hubs](xref:signalr/hubs#strongly-typed-hubs)

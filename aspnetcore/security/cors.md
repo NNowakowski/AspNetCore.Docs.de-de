@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/17/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cors
-ms.openlocfilehash: dc8e68ef482025443147eeb27bd3f245c1a1a5ed
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: ee640ded37f40175e3e150f713fa970e9705b62c
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212885"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021106"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Aktivieren von Cross-Origin-Anforderungen (cors) in ASP.net Core
 
@@ -79,7 +81,7 @@ Cors-Middleware verarbeitet Ursprungs übergreifende Anforderungen. Mit dem folg
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=3,9,32)]
 
-Der obige Code:
+Der vorangehende Code:
 
 * Legt den Richtlinien Namen auf fest `_myAllowSpecificOrigins` . Der Richtlinien Name ist willkürlich.
 * Ruft die <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> Erweiterungsmethode auf und gibt die `_myAllowSpecificOrigins` cors-Richtlinie an. `UseCors`Fügt die cors-Middleware hinzu. Der-Anruf `UseCors` muss nach, jedoch `UseRouting` vor eingefügt werden `UseAuthorization` . Weitere Informationen finden Sie unter [Middleware Order](xref:fundamentals/middleware/index#middleware-order).
@@ -123,7 +125,7 @@ Mit dem Endpunkt Routing kann cors pro Endpunkt mit dem <xref:Microsoft.AspNetCo
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet2&highlight=3,7-15,32,40,43)]
 
-Im obigen Code:
+Für den Code oben gilt:
 
 * `app.UseCors`aktiviert die cors-Middleware. Da eine Standard Richtlinie nicht konfiguriert wurde, werden `app.UseCors()` cors von alleine nicht aktiviert.
 * Die `/echo` -und-Controller Endpunkte lassen Ursprungs übergreifende Anforderungen zu, die die angegebene Richtlinie verwenden.
@@ -184,7 +186,7 @@ Der folgende Code deaktiviert cors für die `GetValues2` Aktion:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet&highlight=1,23)]
 
-Der obige Code:
+Der vorangehende Code:
 
 * Aktivieren von cors mit dem [Endpunkt Routing](#ecors)nicht.
 * Definiert keine [cors-Standard Richtlinie](#dp).
@@ -272,7 +274,7 @@ Mit der cors-Spezifikation werden die Header für *einfache Antworten*aufgerufen
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet5)]
 ### <a name="credentials-in-cross-origin-requests"></a>Anmelde Informationen in Ursprungs übergreifenden Anforderungen
 
-Anmelde Informationen erfordern eine spezielle Behandlung in einer cors-Anforderung. Standardmäßig sendet der Browser keine Anmelde Informationen mit einer Ursprungs übergreifenden Anforderung. Anmelde Informationen umfassen Cookies und http-Authentifizierungs Schemas. Um Anmelde Informationen mit einer Ursprungs übergreifenden Anforderung zu senden, muss der Client `XMLHttpRequest.withCredentials` auf festlegen `true` .
+Anmelde Informationen erfordern eine spezielle Behandlung in einer cors-Anforderung. Standardmäßig sendet der Browser keine Anmelde Informationen mit einer Ursprungs übergreifenden Anforderung. Anmelde Informationen umfassen cookie e-und http-Authentifizierungs Schemas. Um Anmelde Informationen mit einer Ursprungs übergreifenden Anforderung zu senden, muss der Client `XMLHttpRequest.withCredentials` auf festlegen `true` .
 
 `XMLHttpRequest`Direkt verwenden:
 
@@ -617,7 +619,7 @@ Im folgenden `TodoItems2Controller` werden ähnliche Endpunkte bereitgestellt, a
 
 Testen Sie den vorangehenden Code auf der [Seite "Test](https://cors1.azurewebsites.net/test?number=2) " des bereitgestellten Beispiels. Wählen Sie in der Dropdown Liste **Controller** den Wert **Preflight** aus, und legen Sie dann **Controller fest**. Alle cors-Aufrufe an die `TodoItems2Controller` Endpunkte sind erfolgreich.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [Cross-Origin Resource Sharing (cors)](https://developer.mozilla.org/docs/Web/HTTP/CORS)
 * [Einführung in das IIS cors-Modul](https://blogs.iis.net/iisteam/getting-started-with-the-iis-cors-module)
@@ -665,7 +667,7 @@ Cors-Middleware verarbeitet Ursprungs übergreifende Anforderungen. Der folgende
 
 [!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-23,38)]
 
-Der obige Code:
+Der vorangehende Code:
 
 * Legt den Richtlinien Namen auf " \_ myallowspecificorigins" fest. Der Richtlinien Name ist willkürlich.
 * Ruft die <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> Erweiterungsmethode auf, die cors aktiviert.
@@ -819,7 +821,7 @@ Mit der cors-Spezifikation werden die Header für *einfache Antworten*aufgerufen
 
 ### <a name="credentials-in-cross-origin-requests"></a>Anmelde Informationen in Ursprungs übergreifenden Anforderungen
 
-Anmelde Informationen erfordern eine spezielle Behandlung in einer cors-Anforderung. Standardmäßig sendet der Browser keine Anmelde Informationen mit einer Ursprungs übergreifenden Anforderung. Anmelde Informationen umfassen Cookies und http-Authentifizierungs Schemas. Um Anmelde Informationen mit einer Ursprungs übergreifenden Anforderung zu senden, muss der Client `XMLHttpRequest.withCredentials` auf festlegen `true` .
+Anmelde Informationen erfordern eine spezielle Behandlung in einer cors-Anforderung. Standardmäßig sendet der Browser keine Anmelde Informationen mit einer Ursprungs übergreifenden Anforderung. Anmelde Informationen umfassen cookie e-und http-Authentifizierungs Schemas. Um Anmelde Informationen mit einer Ursprungs übergreifenden Anforderung zu senden, muss der Client `XMLHttpRequest.withCredentials` auf festlegen `true` .
 
 `XMLHttpRequest`Direkt verwenden:
 
@@ -988,7 +990,7 @@ Wenn die Antwort den Header nicht enthält `Access-Control-Allow-Origin` , schl�
 So testen Sie cors:
 
 1. [Erstellen Sie ein API-Projekt](xref:tutorials/first-web-api). Alternativ können Sie [das Beispiel herunterladen](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/sample/Cors).
-1. Aktivieren Sie cors mithilfe eines der Vorgehensweisen in diesem Dokument. Beispiel:
+1. Aktivieren Sie cors mithilfe eines der Vorgehensweisen in diesem Dokument. Zum Beispiel:
 
   [!code-csharp[](cors/sample/Cors/WebAPI/StartupTest.cs?name=snippet2&highlight=13-18)]
 
@@ -1023,7 +1025,7 @@ Cors-aktivierte Endpunkte können mit einem Tool wie z. b. " [fddler](https://ww
 
 Beim Bereitstellen in IIS muss cors vor der Windows-Authentifizierung ausgeführt werden, wenn der Server nicht für den anonymen Zugriff konfiguriert ist. Zur Unterstützung dieses Szenarios muss das [IIS cors-Modul](https://www.iis.net/downloads/microsoft/iis-cors-module) für die APP installiert und konfiguriert werden.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [Cross-Origin Resource Sharing (cors)](https://developer.mozilla.org/docs/Web/HTTP/CORS)
 * [Einführung in das IIS cors-Modul](https://blogs.iis.net/iisteam/getting-started-with-the-iis-cors-module)

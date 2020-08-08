@@ -6,6 +6,8 @@ ms.author: riande
 ms.date: 03/26/2020
 ms.custom: mvc, seodec18
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: e5c23cc49a52b8772a43853e9e953dd416d69f69
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d65974e9ff8e2f5be52ab79b063ed9d2dca557ea
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408733"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020859"
 ---
-# <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>Hinzufügen, herunterladen und Löschen von benutzerdefinierten Benutzerdaten Identity in einem ASP.net Core Projekt
+# <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a>Hinzufügen, herunterladen und Löschen von benutzerdefinierten Benutzerdaten Identity in einem ASP.net Core Projekt
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -48,7 +50,7 @@ Das Projektbeispiel wird aus einer Razor pages-Web-App erstellt, die Anweisungen
 
 ::: moniker-end
 
-## <a name="create-a-razor-web-app"></a>Erstellen einer Razor Web-App
+## <a name="create-a-no-locrazor-web-app"></a>Erstellen einer Razor Web-App
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -81,7 +83,7 @@ dotnet new webapp -o WebApp1
 
 ---
 
-## <a name="run-the-identity-scaffolder"></a>Das Identity Gerüst ausführen
+## <a name="run-the-no-locidentity-scaffolder"></a>Das Identity Gerüst ausführen
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -94,7 +96,7 @@ dotnet new webapp -o WebApp1
     * **Konto/Verwaltung/Index**
   * Wählen Sie die **+** Schaltfläche aus, um eine neue **Datenkontext Klasse**zu erstellen. Akzeptieren Sie den Typ (**"WebApp1". Models. WebApp1Context** , wenn das Projekt den Namen **"WebApp1"** hat).
   * Wählen Sie die **+** Schaltfläche aus, um eine neue **Benutzerklasse**zu erstellen. Akzeptieren Sie den Typ (**WebApp1User** , wenn das Projekt den Namen **"WebApp1"** hat), > **Hinzufügen**.
-* Wählen Sie **Hinzufügen** aus.
+* Wählen Sie **Hinzufügen**.
 
 # <a name="net-core-cli"></a>[.NET Core-CLI](#tab/netcore-cli)
 
@@ -137,7 +139,7 @@ Befolgen Sie die Anweisungen in [Migrationen, UseAuthentication und Layout](xref
   * Wählen Sie die Schaltfläche **herunterladen** aus, und untersuchen Sie die Datei *PersonalData.js*
   * Testen Sie die Schaltfläche **Löschen** , mit der der angemeldete Benutzer gelöscht wird.
 
-## <a name="add-custom-user-data-to-the-identity-db"></a>Hinzufügen von benutzerdefinierten Benutzer Identity Daten zur Datenbank
+## <a name="add-custom-user-data-to-the-no-locidentity-db"></a>Hinzufügen von benutzerdefinierten Benutzer Identity Daten zur Datenbank
 
 Aktualisieren Sie die `IdentityUser` abgeleitete Klasse mit benutzerdefinierten Eigenschaften. Wenn Sie das Projekt "WebApp1" benannt haben, heißt die Datei " *Areas/ Identity /Data/WebApp1User.cs*". Aktualisieren Sie die Datei mit dem folgenden Code:
 
@@ -237,7 +239,7 @@ Testen der App:
 * Zeigen Sie die benutzerdefinierten Benutzerdaten auf der `/Identity/Account/Manage` Seite an.
 * Herunterladen und Anzeigen der persönlichen Daten der Benutzer auf der `/Identity/Account/Manage/PersonalData` Seite.
 
-## <a name="add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser"></a>Hinzufügen von Ansprüchen zu Identity mithilfe von iuserclaimsprincipalfactory<ApplicationUser>
+## <a name="add-claims-to-no-locidentity-using-iuserclaimsprincipalfactoryapplicationuser"></a>Hinzufügen von Ansprüchen zu Identity mithilfe von iuserclaimsprincipalfactory<ApplicationUser>
 
 > [!NOTE]
 > Dieser Abschnitt ist keine Erweiterung des vorherigen Tutorials. Informationen zum Anwenden der folgenden Schritte auf die APP, die mit dem Tutorial erstellt wurde, finden Sie in [diesem GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/18797).

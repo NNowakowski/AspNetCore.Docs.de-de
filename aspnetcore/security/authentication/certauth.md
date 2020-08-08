@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
 ms.date: 07/16/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 06803ee57824bbfac5725763938abbb9db0e360a
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: 7a23f2b17cc8fb3a4989b9fddd5c128add13db5b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86568846"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021951"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Konfigurieren der Zertifikat Authentifizierung in ASP.net Core
 
@@ -44,7 +46,7 @@ Fügen Sie in Ihrer Web-App einen Verweis auf das Paket [Microsoft. aspnetcore. 
 
 Wenn die Authentifizierung fehlschlägt, gibt dieser Handler `403 (Forbidden)` wie erwartet eine Antwort zurück `401 (Unauthorized)` . Der Grund dafür ist, dass die Authentifizierung während der anfänglichen TLS-Verbindung stattfinden soll. Bis zum Zeitpunkt, an dem der Handler erreicht wird, ist es zu spät. Es gibt keine Möglichkeit, die Verbindung von einer anonymen Verbindung mit einem Zertifikat zu aktualisieren.
 
-Fügen Sie außerdem `app.UseAuthentication();` die- `Startup.Configure` Methode hinzu. Andernfalls `HttpContext.User` wird nicht auf `ClaimsPrincipal` aus dem Zertifikat erstellt festgelegt. Beispiel:
+Fügen Sie außerdem `app.UseAuthentication();` die- `Startup.Configure` Methode hinzu. Andernfalls `HttpContext.User` wird nicht auf `ClaimsPrincipal` aus dem Zertifikat erstellt festgelegt. Zum Beispiel:
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -614,7 +616,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Die standardmäßige Cache Implementierung speichert die Ergebnisse im Arbeitsspeicher. Sie können Ihren eigenen Cache bereitstellen, indem `ICertificateValidationCache` Sie ihn mit Abhängigkeitsinjektion implementieren und registrieren. Beispiel: `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
+Die standardmäßige Cache Implementierung speichert die Ergebnisse im Arbeitsspeicher. Sie können Ihren eigenen Cache bereitstellen, indem `ICertificateValidationCache` Sie ihn mit Abhängigkeitsinjektion implementieren und registrieren. Beispielsweise `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
 
 ::: moniker-end
 
@@ -636,7 +638,7 @@ Der folgende Ansatz unterstützt optionale Client Zertifikate:
 
 * Richten Sie eine Bindung für die Domäne und die Unterdomäne ein:
   * Richten Sie z. b. Bindungen für `contoso.com` und ein `myClient.contoso.com` . Für den `contoso.com` Host ist kein Client Zertifikat erforderlich `myClient.contoso.com` .
-  * Weitere Informationen finden Sie unter
+  * Weitere Informationen finden Sie unter:
     * [Kestrel](/fundamentals/servers/kestrel):
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>

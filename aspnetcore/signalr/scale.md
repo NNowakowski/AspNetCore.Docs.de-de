@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/17/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: cfa1a4c67649e1816f510a33cc53e559c4a59153
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2d128d54dc9b1189124563e45d72d74b19704ab1
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408681"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022523"
 ---
-# <a name="aspnet-core-signalr-hosting-and-scaling"></a>ASP.net Core SignalR Hosting und Skalierung
+# <a name="aspnet-core-no-locsignalr-hosting-and-scaling"></a>ASP.net Core SignalR Hosting und Skalierung
 
 Von [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaester](https://twitter.com/bradygaster)und [Tom Dykstra](https://github.com/tdykstra)
 
@@ -62,15 +64,15 @@ Um zu verhindern SignalR , dass die Ressourcenverwendung in einer APP zu Fehlern
 
 Eine APP, die verwendet SignalR , muss alle zugehörigen Verbindungen nachverfolgen, wodurch Probleme für eine Serverfarm verursacht werden. Fügen Sie einen Server hinzu, der neue Verbindungen erhält, die von den anderen Servern nicht bekannt sind. SignalRAuf jedem Server im folgenden Diagramm sind z. b. die Verbindungen auf den anderen Servern nicht bekannt. Wenn SignalR auf einem der Server eine Nachricht an alle Clients senden soll, wird die Nachricht nur an die Clients gesendet, die mit diesem Server verbunden sind.
 
-![Skalieren SignalR ohne Rückwand](scale/_static/scale-no-backplane.png)
+![Skalierung:: NO-LOC (signalr)::: ohne Rückwand](scale/_static/scale-no-backplane.png)
 
 Die Optionen für die Lösung dieses Problems sind der [Azure- SignalR Dienst](#azure-signalr-service) und die [redis-Rückwand](#redis-backplane).
 
-## <a name="azure-signalr-service"></a>Azure SignalR Service
+## <a name="azure-no-locsignalr-service"></a>Azure SignalR Service
 
 Beim Azure- SignalR Dienst handelt es sich um einen Proxy und nicht um eine Backplane. Jedes Mal, wenn ein Client eine Verbindung mit dem Server initiiert, wird der Client umgeleitet, um eine Verbindung mit dem Dienst herzustellen. Dieser Prozess wird in der folgenden Abbildung veranschaulicht:
 
-![Herstellen einer Verbindung mit dem Azure- SignalR Dienst](scale/_static/azure-signalr-service-one-connection.png)
+![Herstellen einer Verbindung mit Azure::: NO-LOC (signalr)::: Service](scale/_static/azure-signalr-service-one-connection.png)
 
 Das Ergebnis ist, dass der Dienst alle Clientverbindungen verwaltet, während jeder Server nur eine kleine Konstante Anzahl von Verbindungen mit dem Dienst benötigt, wie im folgenden Diagramm dargestellt:
 
@@ -126,7 +128,7 @@ proxy_set_header Connection $connection_upgrade;
 
 Weitere Informationen finden Sie unter [NGINX as a WebSocket Proxy (NGINX als Websocket-Proxy)](https://www.nginx.com/blog/websocket-nginx/).
 
-## <a name="third-party-signalr-backplane-providers"></a>Drittanbieter- SignalR Rückwand-Anbieter
+## <a name="third-party-no-locsignalr-backplane-providers"></a>Drittanbieter- SignalR Rückwand-Anbieter
 
 * [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
 * [Tro](https://github.com/OrleansContrib/SignalR.Orleans)

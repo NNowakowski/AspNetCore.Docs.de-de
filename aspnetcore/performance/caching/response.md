@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 5c3314991d05ea868fe9190bb3a0206b27fd920f
-ms.sourcegitcommit: b06511252f165dd4590ba9b5beca4153fa220779
+ms.openlocfilehash: 7d2d563eef60cb8eead95c6792bcac2cda16a859
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/27/2020
-ms.locfileid: "85459765"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021340"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Zwischenspeichern von Antworten in ASP.net Core
 
@@ -51,7 +53,7 @@ Andere Cache Header, die eine Rolle beim Caching spielen, sind in der folgenden 
 
 | Header                                                     | Funktion |
 | ---------------------------------------------------------- | -------- |
-| [Age](https://tools.ietf.org/html/rfc7234#section-5.1)     | Eine Schätzung der Zeitspanne (in Sekunden), seit die die Antwort auf dem Ursprungsserver generiert oder erfolgreich überprüft wurde. |
+| [Eder](https://tools.ietf.org/html/rfc7234#section-5.1)     | Eine Schätzung der Zeitspanne (in Sekunden), seit die die Antwort auf dem Ursprungsserver generiert oder erfolgreich überprüft wurde. |
 | [Laufzeit](https://tools.ietf.org/html/rfc7234#section-5.3) | Die Zeit, nach der die Antwort als veraltet eingestuft wird. |
 | [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)  | Besteht aus Gründen der Abwärtskompatibilität mit HTTP/1.0-Caches zum Festlegen des `no-cache` Verhaltens. Wenn der `Cache-Control` Header vorhanden ist, `Pragma` wird der Header ignoriert. |
 | [Abweichen](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Gibt an, dass eine zwischengespeicherte Antwort nicht gesendet werden darf, es sei denn, alle `Vary` Header Felder stimmen mit der ursprünglichen Anforderung der zwischengespeicherten Antwort und der neuen Anforderung gleich. |
@@ -66,7 +68,7 @@ Es gibt keine Entwickler Kontrolle über dieses zwischen Speicherungs Verhalten,
 
 ## <a name="other-caching-technology-in-aspnet-core"></a>Andere cachingtechnologie in ASP.net Core
 
-### <a name="in-memory-caching"></a>Zwischenspeicherung im Speicher
+### <a name="in-memory-caching"></a>In-Memory-Caching
 
 In-Memory-Caching verwendet Server Arbeitsspeicher zum Speichern von zwischengespeicherten Daten. Diese Art der Zwischenspeicherung eignet sich für einen einzelnen Server oder mehrere Server, die persistente *Sitzungen*verwenden. Mit "persistente Sitzungen" können die Anforderungen von einem Client für die Verarbeitung immer an denselben Server weitergeleitet werden.
 
@@ -132,8 +134,8 @@ Vary: User-Agent
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>überschreibt die meisten anderen Eigenschaften. Wenn diese Eigenschaft auf festgelegt ist `true` , `Cache-Control` wird der-Header auf festgelegt `no-store` . Wenn <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> auf festgelegt ist `None` :
 
-* `Cache-Control` ist auf `no-store,no-cache` festgelegt.
-* `Pragma` ist auf `no-cache` festgelegt.
+* Für `Cache-Control` ist `no-store,no-cache` festgelegt.
+* Für `Pragma` ist `no-cache` festgelegt.
 
 Wenn <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> `false` den Wert <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> hat und den Wert `None` , `Cache-Control` und `Pragma` auf festgelegt ist `no-cache` .
 
@@ -204,7 +206,7 @@ Der resultierende Header, der für die Antwort auf die Cache4-Seite vom `Default
 Cache-Control: public,max-age=30
 ```
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [Speichern von Antworten in Caches](https://tools.ietf.org/html/rfc7234#section-3)
 * [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)

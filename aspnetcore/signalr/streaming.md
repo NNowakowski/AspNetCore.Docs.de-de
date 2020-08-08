@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/streaming
-ms.openlocfilehash: c7a3c7bb88230d84025bdf02deb98b51a2d1f92a
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e0eabe711fd69e42bd9bfa5e03a92e1df780e4db
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406172"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022510"
 ---
-# <a name="use-streaming-in-aspnet-core-signalr"></a>Streaming in ASP.net Core verwendenSignalR
+# <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>Streaming in ASP.net Core verwendenSignalR
 
 Von [Brennan](https://github.com/BrennanConroy) "a"
 
@@ -319,9 +321,9 @@ Die- `stream` Methode für `HubConnection` gibt einen Observable-Wert des Datens
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
-* [Hubs](xref:signalr/hubs)
+* [Hub](xref:signalr/hubs)
 * [.NET-Client](xref:signalr/dotnet-client)
 * [JavaScript-Client](xref:signalr/javascript-client)
 * [Veröffentlichen in Azure](xref:signalr/publish-to-azure-web-app)

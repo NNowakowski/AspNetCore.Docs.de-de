@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,24 +17,24 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hubs
-ms.openlocfilehash: 1757d205b583c8b3f3bbf845594d7228f8d45175
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: bd7432fc29d0cda003abed1f0e522bdddf2e4efc
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408551"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022211"
 ---
-# <a name="use-hubs-in-signalr-for-aspnet-core"></a>Verwenden von Hubs in SignalR für ASP.net Core
+# <a name="use-hubs-in-no-locsignalr-for-aspnet-core"></a>Verwenden von Hubs in SignalR für ASP.net Core
 
 Von [Rachel Appel](https://twitter.com/rachelappel) und [Kevin Griffin](https://twitter.com/1kevgriff)
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) [(Vorgehensweise zum Herunterladen)](xref:index#how-to-download-a-sample)
 
-## <a name="what-is-a-signalr-hub"></a>Was ist ein SignalR Hub?
+## <a name="what-is-a-no-locsignalr-hub"></a>Was ist ein SignalR Hub?
 
 Die SignalR Hubs-API ermöglicht es Ihnen, Methoden auf verbundenen Clients vom Server aus aufzurufen. Im Servercode definieren Sie Methoden, die vom Client aufgerufen werden. Im Client Code definieren Sie Methoden, die vom Server aufgerufen werden. SignalRkümmert sich um alles hinter den Kulissen, das die Kommunikation zwischen Client und Server und Server-zu-Client-Kommunikation in Echtzeit ermöglicht.
 
-## <a name="configure-signalr-hubs"></a>SignalRHubs konfigurieren
+## <a name="configure-no-locsignalr-hubs"></a>SignalRHubs konfigurieren
 
 Die SignalR Middleware erfordert einige Dienste, die durch den Aufruf von konfiguriert werden `services.AddSignalR` .
 
@@ -86,7 +88,7 @@ Sie können einen Rückgabetyp und Parameter, einschließlich komplexer Typen un
 
 Die- `Hub` Klasse verfügt über eine- `Context` Eigenschaft, die die folgenden Eigenschaften mit Informationen über die Verbindung enthält:
 
-| Eigenschaft | Beschreibung |
+| Eigenschaft | BESCHREIBUNG |
 | ------ | ----------- |
 | `ConnectionId` | Ruft die eindeutige ID für die Verbindung ab, die von zugewiesen wird SignalR . Es gibt eine Verbindungs-ID für jede Verbindung.|
 | `UserIdentifier` | Ruft den [Benutzer Bezeichner](xref:signalr/groups)ab. Standardmäßig SignalR verwendet die `ClaimTypes.NameIdentifier` aus der, die `ClaimsPrincipal` der Verbindung zugeordnet ist, als Benutzer Bezeichner. |
@@ -97,7 +99,7 @@ Die- `Hub` Klasse verfügt über eine- `Context` Eigenschaft, die die folgenden 
 
 `Hub.Context`enthält auch die folgenden Methoden:
 
-| Methode | Beschreibung |
+| Methode | BESCHREIBUNG |
 | ------ | ----------- |
 | `GetHttpContext` | Gibt den `HttpContext` für die Verbindung zurück, oder, `null` Wenn die Verbindung nicht mit einer HTTP-Anforderung verknüpft ist. Für http-Verbindungen können Sie diese Methode verwenden, um Informationen wie HTTP-Header und Abfrage Zeichenfolgen zu erhalten. |
 | `Abort` | Bricht die Verbindung ab. |
@@ -106,7 +108,7 @@ Die- `Hub` Klasse verfügt über eine- `Context` Eigenschaft, die die folgenden 
 
 Die- `Hub` Klasse verfügt über eine- `Clients` Eigenschaft, die die folgenden Eigenschaften für die Kommunikation zwischen Server und Client enthält:
 
-| Eigenschaft | Beschreibung |
+| Eigenschaft | BESCHREIBUNG |
 | ------ | ----------- |
 | `All` | Ruft eine Methode auf allen verbundenen Clients auf. |
 | `Caller` | Ruft eine Methode auf dem Client auf, der die Hub-Methode aufgerufen hat. |
@@ -114,7 +116,7 @@ Die- `Hub` Klasse verfügt über eine- `Clients` Eigenschaft, die die folgenden 
 
 `Hub.Clients`enthält auch die folgenden Methoden:
 
-| Methode | Beschreibung |
+| Methode | BESCHREIBUNG |
 | ------ | ----------- |
 | `AllExcept` | Ruft eine Methode auf allen verbundenen Clients mit Ausnahme der angegebenen Verbindungen auf. |
 | `Client` | Ruft eine Methode auf einem bestimmten verbundenen Client auf. |

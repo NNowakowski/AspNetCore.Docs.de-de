@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/razor-pages-authorization
-ms.openlocfilehash: 0f4022e46993c6a957d3d0c133b3db56fa650edc
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: 5e0c76ea6c6b4af8e24693b1bfe8ac28bf2ce3a9
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86568820"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022276"
 ---
-# <a name="razor-pages-authorization-conventions-in-aspnet-core"></a>RazorSeiten Autorisierungs Konventionen in ASP.net Core
+# <a name="no-locrazor-pages-authorization-conventions-in-aspnet-core"></a>RazorSeiten Autorisierungs Konventionen in ASP.net Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -30,7 +32,7 @@ Eine Möglichkeit, den Zugriff in ihrer Pages-APP zu steuern, Razor besteht dari
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-Die Beispiel-App verwendet die [Cookie- Identity Authentifizierung ohne ASP.net Core ](xref:security/authentication/cookie). Die Konzepte und Beispiele in diesem Thema gelten auch für apps, die ASP.net Core verwenden Identity . Um ASP.net Core zu verwenden Identity , befolgen Sie die Anweisungen unter <xref:security/authentication/identity> .
+Die Beispiel-App verwendet die [ cookie Authentifizierung Identity ohne ASP.net Core ](xref:security/authentication/cookie). Die Konzepte und Beispiele in diesem Thema gelten auch für apps, die ASP.net Core verwenden Identity . Um ASP.net Core zu verwenden Identity , befolgen Sie die Anweisungen unter <xref:security/authentication/identity> .
 
 ## <a name="require-authorization-to-access-a-page"></a>Autorisierung für den Zugriff auf eine Seite erforderlich
 
@@ -129,7 +131,7 @@ Das Gegenteil ist jedoch nicht gültig. Sie können keinen Ordner von Seiten fü
 
 Das Verlangen der Autorisierung auf der privaten Seite schlägt fehl. Wenn sowohl als <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> auch <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> auf die Seite angewendet werden, hat <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> Vorrang und steuert den Zugriff.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * <xref:razor-pages/razor-pages-conventions>
 * <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection>
@@ -142,7 +144,7 @@ Eine Möglichkeit, den Zugriff in ihrer Pages-APP zu steuern, Razor besteht dari
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-Die Beispiel-App verwendet die [Cookie- Identity Authentifizierung ohne ASP.net Core ](xref:security/authentication/cookie). Die Konzepte und Beispiele in diesem Thema gelten auch für apps, die ASP.net Core verwenden Identity . Um ASP.net Core zu verwenden Identity , befolgen Sie die Anweisungen unter <xref:security/authentication/identity> .
+Die Beispiel-App verwendet die [ cookie Authentifizierung Identity ohne ASP.net Core ](xref:security/authentication/cookie). Die Konzepte und Beispiele in diesem Thema gelten auch für apps, die ASP.net Core verwenden Identity . Um ASP.net Core zu verwenden Identity , befolgen Sie die Anweisungen unter <xref:security/authentication/identity> .
 
 ## <a name="require-authorization-to-access-a-page"></a>Autorisierung für den Zugriff auf eine Seite erforderlich
 

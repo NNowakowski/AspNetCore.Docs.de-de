@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/27/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,16 +17,16 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/introduction
-ms.openlocfilehash: 816ecfc5d23e8e1d2901a8c35c657cc968fa95df
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6f3cec83c9af5ec6e820db4a15061eddac613f36
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404950"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022172"
 ---
-# <a name="introduction-to-aspnet-core-signalr"></a>Einführung in ASP.NET Core SignalR
+# <a name="introduction-to-aspnet-core-no-locsignalr"></a>Einführung in ASP.NET Core SignalR
 
-## <a name="what-is-signalr"></a>Was ist SignalR?
+## <a name="what-is-no-locsignalr"></a>Was ist SignalR?
 
 ASP.net Core SignalR ist eine Open-Source-Bibliothek, die das Hinzufügen von Echt Zeit Webfunktionen zu apps vereinfacht. Die Echt Zeit webolle ermöglicht es dem serverseitigen Code, Inhalte sofort per Push an Clients zu übersetzen.
 
@@ -64,9 +66,9 @@ Ein Hub ist eine Pipeline auf hoher Ebene, die es einem Client und einem Server 
 
 Hubs wenden Client seitigen Code an, indem Sie Nachrichten senden, die den Namen und die Parameter der Client seitigen Methode enthalten. Objekte, die als Methoden Parameter gesendet werden, werden mithilfe des konfigurierten Protokolls deserialisiert. Der Client versucht, den Namen einer Methode im Client seitigen Code zuzuordnen. Wenn der Client eine Entsprechung findet, ruft er die-Methode auf und übergibt die deserialisierten Parameterdaten an ihn.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [Beginnen Sie mit der SignalR ASP.net Core](xref:tutorials/signalr)
 * [Unterstützte Plattformen](xref:signalr/supported-platforms)
-* [Hubs](xref:signalr/hubs)
+* [Hub](xref:signalr/hubs)
 * [JavaScript-Client](xref:signalr/javascript-client)

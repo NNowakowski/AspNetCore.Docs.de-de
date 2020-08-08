@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/08/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,16 +16,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/limitingidentitybyscheme
-ms.openlocfilehash: 042b22a220d961773437e9d85d5f0c5782e29bea
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 66b307a3629e18e49b5bb6e65a156054c0002ba8
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406016"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022107"
 ---
 # <a name="authorize-with-a-specific-scheme-in-aspnet-core"></a>Autorisieren mit einem bestimmten Schema in ASP.net Core
 
-In einigen Szenarien, z. b. Single-Page-Anwendungen (Spas), ist es üblich, mehrere Authentifizierungsmethoden zu verwenden. Die APP kann z. b. die cookiebasierte Authentifizierung für die Anmeldung und die JWT-Träger Authentifizierung für JavaScript-Anforderungen verwenden. In einigen Fällen verfügt die APP möglicherweise über mehrere Instanzen eines Authentifizierungs Handlers. Beispielsweise zwei Cookie-Handler, bei denen eine eine grundlegende Identität enthält und eine erstellt wird, wenn eine mehrstufige Authentifizierung (Multi-Factor Authentication, MFA) ausgelöst wurde. MFA kann ausgelöst werden, da der Benutzer einen Vorgang angefordert hat, der zusätzliche Sicherheit erfordert. Weitere Informationen zum Erzwingen von MFA, wenn ein Benutzer eine Ressource anfordert, für die MFA erforderlich ist, finden Sie im Abschnitt "GitHub-Problem [Schutz" mit MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).
+In einigen Szenarien, z. b. Single-Page-Anwendungen (Spas), ist es üblich, mehrere Authentifizierungsmethoden zu verwenden. Beispielsweise kann die APP die cookie -basierte Authentifizierung für die Anmeldung und die JWT-Träger Authentifizierung für JavaScript-Anforderungen verwenden. In einigen Fällen verfügt die APP möglicherweise über mehrere Instanzen eines Authentifizierungs Handlers. Beispielsweise zwei cookie Handler, bei denen eine eine grundlegende Identität enthält und eine erstellt wird, wenn eine Multi-Factor Authentication (MFA) ausgelöst wurde. MFA kann ausgelöst werden, da der Benutzer einen Vorgang angefordert hat, der zusätzliche Sicherheit erfordert. Weitere Informationen zum Erzwingen von MFA, wenn ein Benutzer eine Ressource anfordert, für die MFA erforderlich ist, finden Sie im Abschnitt "GitHub-Problem [Schutz" mit MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).
 
 Ein Authentifizierungsschema wird benannt, wenn der Authentifizierungsdienst während der Authentifizierung konfiguriert wird. Zum Beispiel:
 
@@ -43,7 +45,7 @@ public void ConfigureServices(IServiceCollection services)
         });
 ```
 
-Im vorangehenden Code wurden zwei Authentifizierungs Handler hinzugefügt: eine für Cookies und eine für Bearer.
+Im vorangehenden Code wurden zwei Authentifizierungs Handler hinzugefügt: eine für cookie s und eine für Bearer.
 
 >[!NOTE]
 >Wenn Sie das Standardschema angeben, `HttpContext.User` wird die-Eigenschaft auf diese Identität festgelegt. Wenn dieses Verhalten nicht erwünscht ist, deaktivieren Sie es durch Aufrufen der Parameter losen Form von `AddAuthentication` .
@@ -63,7 +65,7 @@ public class MixedController : Controller
         JwtBearerDefaults.AuthenticationScheme;
 ```
 
-Im vorherigen Beispiel werden sowohl der Cookie-als auch der bearerhandler ausgeführt, und Sie haben die Möglichkeit, eine Identität für den aktuellen Benutzer zu erstellen und anzufügen. Wenn Sie nur ein einzelnes Schema angeben, wird der entsprechende Handler ausgeführt.
+Im vorherigen Beispiel werden sowohl der cookie -als auch der bearerhandler ausgeführt, und Sie haben die Möglichkeit, eine Identität für den aktuellen Benutzer zu erstellen und anzufügen. Wenn Sie nur ein einzelnes Schema angeben, wird der entsprechende Handler ausgeführt.
 
 ```csharp
 [Authorize(AuthenticationSchemes = 
@@ -71,7 +73,7 @@ Im vorherigen Beispiel werden sowohl der Cookie-als auch der bearerhandler ausge
 public class MixedController : Controller
 ```
 
-Im vorangehenden Code wird nur der Handler mit dem Schema "Träger" ausgeführt. Cookiebasierte Identitäten werden ignoriert.
+Im vorangehenden Code wird nur der Handler mit dem Schema "Träger" ausgeführt. Alle cookie -basierten Identitäten werden ignoriert.
 
 ## <a name="selecting-the-scheme-with-policies"></a>Auswählen des Schemas mit Richtlinien
 

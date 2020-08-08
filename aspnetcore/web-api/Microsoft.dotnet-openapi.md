@@ -6,6 +6,8 @@ ms.author: rybrande
 ms.date: 09/26/2019
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/Microsoft.dotnet-openapi
-ms.openlocfilehash: eb8d6a1dc70b2aabf495bdb359e243c91e94289f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6a9b80e868a54bd76503a6421c34ae159421699b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404794"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022237"
 ---
 # <a name="develop-aspnet-core-apps-using-openapi-tools"></a>Entwickeln von ASP.NET Core-Apps mit OpenAPI-Tools
 
@@ -35,7 +37,7 @@ Führen Sie den folgenden Befehl aus, um `Microsoft.dotnet-openapi` zu installie
 dotnet tool install -g Microsoft.dotnet-openapi
 ```
 
-## <a name="add"></a>Add
+## <a name="add"></a>Hinzufügen
 
 Wenn Sie mit einem der Befehle auf dieser Seite einen OpenAPI-Verweis hinzufügen, wird ein `<OpenApiReference />`-Element ähnlich dem folgenden zur *CSPROJ*-Datei hinzugefügt:
 
@@ -123,6 +125,6 @@ Aktualisiert die lokale Version einer Datei, die unter Verwendung der neuesten D
 
 ### <a name="arguments"></a>Argumente
 
-|  Argument  | Beschreibung | Beispiel |
+|  Argument  | BESCHREIBUNG | Beispiel |
 | ------------|-------------|---------|
 | source-URL | Die URL, aus der der Verweis aktualisiert werden soll. | dotnet openapi refresh `https://contoso.com/openapi.json` |

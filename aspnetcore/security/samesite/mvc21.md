@@ -1,12 +1,14 @@
 ---
-title: ASP.net Core 2,1 MVC SameSite-Cookie-Beispiel
+title: ASP.net Core 2,1 MVC SameSite- cookie Beispiel
 author: rick-anderson
-description: ASP.net Core 2,1 MVC SameSite-Cookie-Beispiel
+description: ASP.net Core 2,1 MVC SameSite- cookie Beispiel
 monikerRange: '>= aspnetcore-2.1 < aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/03/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,22 +17,22 @@ no-loc:
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: ce301cd7e2cbfbfc724d78bd5734dff231d0ab93
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 4285432d48ba11b5069d109c5667192a99fe115e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944735"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021782"
 ---
-# <a name="aspnet-core-21-mvc-samesite-cookie-sample"></a>ASP.net Core 2,1 MVC SameSite-Cookie-Beispiel
+# <a name="aspnet-core-21-mvc-samesite-no-loccookie-sample"></a>ASP.net Core 2,1 MVC SameSite- cookie Beispiel
 
-ASP.net Core 2,1 verfügt über eine integrierte Unterstützung für das [SameSite](https://www.owasp.org/index.php/SameSite) -Attribut, wurde aber in den ursprünglichen Standard geschrieben. Das [gepatchte Verhalten](https://github.com/dotnet/aspnetcore/issues/8212) hat die Bedeutung von so geändert, dass `SameSite.None` das SameSite-Attribut mit dem Wert ausgegeben `None` wird, anstatt den Wert überhaupt auszugeben. Wenn Sie den Wert nicht ausgeben möchten, können Sie die `SameSite` -Eigenschaft für ein Cookie auf-1 festlegen.
+ASP.net Core 2,1 verfügt über eine integrierte Unterstützung für das [SameSite](https://www.owasp.org/index.php/SameSite) -Attribut, wurde aber in den ursprünglichen Standard geschrieben. Das [gepatchte Verhalten](https://github.com/dotnet/aspnetcore/issues/8212) hat die Bedeutung von so geändert, dass `SameSite.None` das SameSite-Attribut mit dem Wert ausgegeben `None` wird, anstatt den Wert überhaupt auszugeben. Wenn Sie den Wert nicht ausgeben möchten, können Sie die `SameSite` -Eigenschaft auf cookie -1 festlegen.
 
 [!INCLUDE[](~/includes/SameSiteIdentity.md)]
 
 ## <a name="writing-the-samesite-attribute"></a><a name="sampleCode"></a>Schreiben des SameSite-Attributs
 
-Im folgenden finden Sie ein Beispiel für das Schreiben eines SameSite-Attributs für ein Cookie:
+Im folgenden finden Sie ein Beispiel für das Schreiben eines SameSite-Attributs für einen cookie :
 
 ```c#
 var cookieOptions = new CookieOptions
@@ -52,9 +54,9 @@ var cookieOptions = new CookieOptions
 Response.Cookies.Append(CookieName, "cookieValue", cookieOptions);
 ```
 
-## <a name="setting-cookie-authentication-and-session-state-cookies"></a>Festlegen von Cookieauthentifizierung und Sitzungs Zustands Cookies
+## <a name="setting-no-loccookie-authentication-and-session-state-no-loccookies"></a>Festlegen der Cookie Authentifizierung und des Sitzungs Zustands cookie
 
-Cookie-Authentifizierung, Sitzungs Status und [verschiedene andere Komponenten](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) legen ihre SameSite-Optionen über Cookie-Optionen fest, z. b.
+CookieAuthentifizierung, Sitzungs Status und [verschiedene andere Komponenten](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) legen ihre SameSite-Optionen über Cookie Optionen fest, z. b.
 
 ```c#
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -73,21 +75,21 @@ services.AddSession(options =>
 });
 ```
 
-Im vorangehenden Code legen sowohl die Cookie-als auch der Sitzungs Status Ihr SameSite-Attribut auf fest `None` , wobei das Attribut mit einem `None` Wert ausgegeben wird, und legen auch das Secure-Attribut auf "true" fest.
+Im vorangehenden Code legen sowohl die cookie Authentifizierung als auch der Sitzungs Status Ihr SameSite-Attribut auf fest `None` , wobei das Attribut mit einem `None` Wert ausgegeben wird, und legen auch das Secure-Attribut auf "true" fest.
 
 ### <a name="run-the-sample"></a>Ausführen des Beispiels
 
-Wenn Sie das [Beispiel Projekt](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)ausführen, laden Sie den Browser Debugger auf der Anfangs Seite, und verwenden Sie ihn, um die Cookie-Sammlung für die Website anzuzeigen. Wenn Sie dies in Edge und Chrome tun möchten, `F12` Wählen Sie die `Application` Registerkarte aus, und klicken Sie unter der `Cookies` Option im Abschnitt auf die URL der Website `Storage` .
+Wenn Sie das [Beispiel Projekt](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)ausführen, laden Sie den Browser Debugger auf der Startseite, und verwenden Sie ihn, um die cookie Sammlung für den Standort anzuzeigen. Wenn Sie dies in Edge und Chrome tun möchten, `F12` Wählen Sie die `Application` Registerkarte aus, und klicken Sie unter der `Cookies` Option im Abschnitt auf die URL der Website `Storage` .
 
-![Liste der Browser Debugger-Cookies](BrowserDebugger.png)
+![Browser Debugger::: NO-LOC (Cookie)::: List](BrowserDebugger.png)
 
-In der obigen Abbildung sehen Sie, dass das Cookie, das durch das Beispiel erstellt wird, wenn Sie auf die Schaltfläche "SameSite Cookie erstellen" klicken, über einen SameSite-Attribut Wert von verfügt, der mit `Lax` dem im [Beispielcode](#sampleCode)festgelegten Wert übereinstimmt.
+Sie können in der obigen Abbildung sehen, dass das cookie , das durch das Beispiel erstellt wird, wenn Sie auf die Schaltfläche "Create SameSite Cookie " klicken, über einen SameSite-Attribut Wert verfügt, der mit `Lax` dem im [Beispielcode](#sampleCode)festgelegten Wert übereinstimmt.
 
-## <a name="intercepting-cookies"></a><a name="interception"></a>Abfangen von Cookies
+## <a name="intercepting-no-loccookies"></a><a name="interception"></a>Abfangen von cookie s
 
-Zum Abfangen von Cookies müssen Sie die Middleware verwenden, um den Wert None gemäß der Unterstützung im Browser-Agent des Benutzers anzupassen `CookiePolicy` . Dies muss **vor** allen Komponenten, die Cookies schreiben und innerhalb von konfiguriert werden, in der HTTP-Anforderungs Pipeline abgelegt werden `ConfigureServices()` .
+Um s abzufangen cookie , muss die Middleware verwendet werden, um den Wert None gemäß der Unterstützung im Browser-Agent des Benutzers anzupassen `CookiePolicy` . Diese muss in der HTTP-Anforderungs Pipeline **vor** allen Komponenten platziert werden, die cookie in schreiben und in konfiguriert sind `ConfigureServices()` .
 
-Um Sie in die Pipeline einzufügen, verwenden Sie in `app.UseCookiePolicy()` der- `Configure(IApplicationBuilder, IHostingEnvironment)` Methode in [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Beispiel:
+Um Sie in die Pipeline einzufügen, verwenden Sie in `app.UseCookiePolicy()` der- `Configure(IApplicationBuilder, IHostingEnvironment)` Methode in [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Zum Beispiel:
 
 ```c#
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -117,7 +119,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-Wählen Sie dann in der `ConfigureServices(IServiceCollection services)` cookierichtlinie konfigurieren aus, um eine Hilfsklasse aufzurufen, wenn Cookies angehängt oder gelöscht werden. Beispiel:
+Anschließend können Sie in der `ConfigureServices(IServiceCollection services)` cookie Richtlinie konfigurieren, um eine Hilfsklasse aufzurufen, wenn e angefügt cookie oder gelöscht werden. Zum Beispiel:
 
 ```c#
 public void ConfigureServices(IServiceCollection services)
@@ -148,7 +150,7 @@ private void CheckSameSite(HttpContext httpContext, CookieOptions options)
 
 Die Hilfsfunktion `CheckSameSite(HttpContext, CookieOptions)` :
 
-* Wird aufgerufen, wenn Cookies an die Anforderung angefügt oder aus der Anforderung gelöscht werden.
+* Wird aufgerufen cookie , wenn e an die Anforderung angefügt oder aus der Anforderung gelöscht werden.
 * Prüft, ob die- `SameSite` Eigenschaft auf festgelegt ist `None` .
 * Wenn `SameSite` auf festgelegt ist `None` und der aktuelle Benutzer-Agent bekanntermaßen den None-Attribut Wert nicht unterstützt. Die Überprüfung erfolgt mithilfe der [samesitesupport](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/samesite/sample/snippets/SameSiteSupport.cs) -Klasse:
   * Legt `SameSite` fest, dass der Wert nicht durch Festlegen der-Eigenschaft auf ausgegeben wird.`(SameSiteMode)(-1)`

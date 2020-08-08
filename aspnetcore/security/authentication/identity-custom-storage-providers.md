@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/23/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-custom-storage-providers
-ms.openlocfilehash: 137b73529a6c3d2a1dece201ebd8a7a5a96da349
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 27f6130742e25e07d4b908973e1ebf26288fdbfd
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404742"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021535"
 ---
-# <a name="custom-storage-providers-for-aspnet-core-identity"></a>Benutzerdefinierte Speicher Anbieter für ASP.net CoreIdentity
+# <a name="custom-storage-providers-for-aspnet-core-no-locidentity"></a>Benutzerdefinierte Speicher Anbieter für ASP.net CoreIdentity
 
 Von [Steve Smith](https://ardalis.com/)
 
@@ -47,7 +49,7 @@ Wenn Sie die .net Core-CLI verwenden, fügen Sie Folgendes hinzu `-au Individual
 dotnet new mvc -au Individual
 ```
 
-## <a name="the-aspnet-core-identity-architecture"></a>Die ASP.net Core- Identity Architektur
+## <a name="the-aspnet-core-no-locidentity-architecture"></a>Die ASP.net Core- Identity Architektur
 
 ASP.net Core Identity besteht aus Klassen, die als Manager und Stores bezeichnet werden. *Manager* sind Klassen, die von einem App-Entwickler zum Ausführen von Vorgängen verwendet werden, z. b. das Erstellen eines Identity Benutzers. *Stores* sind Klassen auf niedrigerer Ebene, die angeben, wie Entitäten, z. b. Benutzer und Rollen, beibehalten werden. Filialen befolgen das Repository-Muster und sind eng mit dem Persistenzmechanismus verknüpft. Manager sind von Geschäften entkoppelt, d. h. Sie können den Persistenzmechanismus ersetzen, ohne den Anwendungscode zu ändern (mit Ausnahme der Konfiguration).
 
@@ -61,13 +63,13 @@ Beim Erstellen einer neuen Instanz von `UserManager` oder `RoleManager` Geben Si
 
 [Neukonfigurieren der App zur Verwendung des neuen Speicher Anbieters](#reconfigure-app-to-use-a-new-storage-provider) zeigt, wie Sie `UserManager` und `RoleManager` mit einem angepassten Speicher instanziieren.
 
-## <a name="aspnet-core-identity-stores-data-types"></a>ASP.net Core Identity speichert Datentypen
+## <a name="aspnet-core-no-locidentity-stores-data-types"></a>ASP.net Core Identity speichert Datentypen
 
 [ASP.net Core Identity ](https://github.com/aspnet/identity) Datentypen werden in den folgenden Abschnitten ausführlich beschrieben:
 
 ### <a name="users"></a>Benutzer
 
-Registrierte Benutzer Ihrer Website. Der [identityuser](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuser) -Typ kann erweitert oder als Beispiel für Ihren eigenen benutzerdefinierten Typ verwendet werden. Sie müssen nicht von einem bestimmten Typ erben, um eine eigene benutzerdefinierte Identitäts Speicherlösung zu implementieren.
+Registrierte Benutzer Ihrer Website. Der [ Identity Benutzertyp](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuser) kann erweitert oder als Beispiel für Ihren eigenen benutzerdefinierten Typ verwendet werden. Sie müssen nicht von einem bestimmten Typ erben, um eine eigene benutzerdefinierte Identitäts Speicherlösung zu implementieren.
 
 ### <a name="user-claims"></a>Benutzeransprüche
 
@@ -123,7 +125,7 @@ Die Implementierungs Logik zum Erstellen des Benutzers ist in der- `_usersTable.
 
 ## <a name="customize-the-user-class"></a>Benutzerklasse anpassen
 
-Wenn Sie einen Speicher Anbieter implementieren, erstellen Sie eine Benutzerklasse, die der [identityuser-Klasse](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuser)entspricht.
+Wenn Sie einen Speicher Anbieter implementieren, erstellen Sie eine Benutzerklasse, die der [ Identity User-Klasse](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuser)entspricht.
 
 Die Benutzerklasse muss mindestens eine `Id` -Eigenschaft und eine- `UserName` Eigenschaft enthalten.
 
@@ -191,9 +193,9 @@ public class UserStore : IUserStore<IdentityUser>,
 }
 ```
 
-### <a name="identityuserclaim-identityuserlogin-and-identityuserrole"></a>Identityuserclaim, identityuserlogin und identityuserrole
+### <a name="no-locidentityuserclaim-no-locidentityuserlogin-and-no-locidentityuserrole"></a>IdentityUserclaim, Identity userlogin und Identity userrole
 
-Der- `Microsoft.AspNet.Identity.EntityFramework` Namespace enthält Implementierungen der Klassen [identityuserclaim](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserclaim-1), [identityuserlogin](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuserlogin)und [identityuserrole](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserrole-1) . Wenn Sie diese Features verwenden, möchten Sie möglicherweise Ihre eigenen Versionen dieser Klassen erstellen und die Eigenschaften für Ihre APP definieren. Manchmal ist es jedoch effizienter, diese Entitäten beim Ausführen von grundlegenden Vorgängen (z. b. hinzufügen oder Entfernen eines Benutzer Anspruchs) nicht in den Arbeitsspeicher zu laden. Die Back-End-Speicher Klassen können diese Vorgänge stattdessen direkt für die Datenquelle ausführen. Beispielsweise kann die- `UserStore.GetClaimsAsync` Methode die `userClaimTable.FindByUserId(user.Id)` -Methode aufrufen, um eine Abfrage für diese Tabelle direkt auszuführen und eine Liste von Ansprüchen zurückzugeben.
+Der `Microsoft.AspNet.Identity.EntityFramework` -Namespace enthält Implementierungen der Klassen " [ Identity userclaim](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserclaim-1)", " [ Identity userlogin](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuserlogin)" und " [ Identity userrole](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserrole-1) ". Wenn Sie diese Features verwenden, möchten Sie möglicherweise Ihre eigenen Versionen dieser Klassen erstellen und die Eigenschaften für Ihre APP definieren. Manchmal ist es jedoch effizienter, diese Entitäten beim Ausführen von grundlegenden Vorgängen (z. b. hinzufügen oder Entfernen eines Benutzer Anspruchs) nicht in den Arbeitsspeicher zu laden. Die Back-End-Speicher Klassen können diese Vorgänge stattdessen direkt für die Datenquelle ausführen. Beispielsweise kann die- `UserStore.GetClaimsAsync` Methode die `userClaimTable.FindByUserId(user.Id)` -Methode aufrufen, um eine Abfrage für diese Tabelle direkt auszuführen und eine Liste von Ansprüchen zurückzugeben.
 
 ## <a name="customize-the-role-class"></a>Anpassen der Rollen Klasse
 
@@ -219,7 +221,7 @@ Nachdem Sie einen Speicher Anbieter implementiert haben, konfigurieren Sie Ihre 
 1. Entfernen Sie das `Microsoft.AspNetCore.EntityFramework.Identity` nuget-Paket.
 1. Wenn sich der Speicher Anbieter in einem separaten Projekt oder Paket befindet, fügen Sie einen Verweis darauf hinzu.
 1. Ersetzen Sie alle Verweise auf `Microsoft.AspNetCore.EntityFramework.Identity` durch eine using-Anweisung für den Namespace Ihres Speicher Anbieters.
-1. Ändern Sie in der- `ConfigureServices` Methode die- `AddIdentity` Methode, um Ihre benutzerdefinierten Typen zu verwenden. Zu diesem Zweck können Sie eigene Erweiterungs Methoden erstellen. Ein Beispiel finden Sie unter [identityservicecollectionextensions](https://github.com/aspnet/Identity/blob/rel/1.1.0/src/Microsoft.AspNetCore.Identity/IdentityServiceCollectionExtensions.cs) .
+1. Ändern Sie in der- `ConfigureServices` Methode die- `AddIdentity` Methode, um Ihre benutzerdefinierten Typen zu verwenden. Zu diesem Zweck können Sie eigene Erweiterungs Methoden erstellen. Ein Beispiel finden Sie unter [ Identity servicecollectionextensions](https://github.com/aspnet/Identity/blob/rel/1.1.0/src/Microsoft.AspNetCore.Identity/IdentityServiceCollectionExtensions.cs) .
 1. Wenn Sie Rollen verwenden, aktualisieren Sie den `RoleManager` , um die-Klasse zu verwenden `RoleStore` .
 1. Aktualisieren Sie die Verbindungs Zeichenfolge und die Anmelde Informationen in die Konfiguration Ihrer APP.
 
@@ -243,7 +245,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-## <a name="references"></a>Referenzen
+## <a name="references"></a>References
 
 * [Benutzerdefinierte Speicher Anbieter für ASP.NET 4. xIdentity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
 * [ASP.net Core Identity ](https://github.com/dotnet/AspNetCore/tree/master/src/Identity): dieses Repository enthält Links zu von der Community verwalteten Speicheranbietern.

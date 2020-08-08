@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/03/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 720da8a8fe22f0e1911fd554c094661b4465a335
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: a11e6325143b9db57d6fbd1cd67478dc1dd6122d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86568833"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021249"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Hochladen von Dateien in ASP.NET Core
 
@@ -191,7 +193,7 @@ Das folgende Beispiel ist analog zum vorherigen Beispiel, mit der Ausnahme, dass
 Um den POST-Befehl für das Formular in JavaScript für Clients auszuführen, die [die Fetch-API nicht unterstützen](https://caniuse.com/#feat=fetch), wählen Sie einen der folgenden Ansätze:
 
 * Verwenden Sie Fetch Polyfill (Beispiel: [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Verwenden Sie `XMLHttpRequest`. Beispiel:
+* Verwenden Sie `XMLHttpRequest`. Zum Beispiel:
 
   ```javascript
   <script>
@@ -414,7 +416,7 @@ Das vorherige Beispiel ähnelt einem Szenario, das in der Beispiel-App veranscha
 
 Das folgende Beispiel zeigt, wie JavaScript verwendet wird, um eine Datei an eine Controlleraktion zu streamen. Das Fälschungssicherheitstoken einer Datei wird mithilfe eines benutzerdefinierten Filterattributs generiert und an die HTTP-Header des Clients anstelle des Anforderungstexts übergeben. Da die Aktionsmethode die hochgeladenen Daten direkt verarbeitet, wird die Modellbindung des Formulars von einem anderen benutzerdefinierten Filter deaktiviert. Innerhalb der Aktion werden die Inhalte des Formulars über `MultipartReader` gelesen. Dieses Element liest jede einzelne `MultipartSection`-Klasse, wodurch die Datei verarbeitet wird oder die Inhalte angemessen gespeichert werden. Nachdem alle mehrteiligen Abschnitte gelesen wurden, führt die Aktion ihre eigene Modellbindung aus.
 
-Die Reaktion auf der ersten Seite lädt das Formular und speichert das Fälschungssicherheitstoken (über das `GenerateAntiforgeryTokenCookieAttribute`-Attribut) in einem Cookie. Das Attribut nutzt die in ASP.NET Core integrierte [Unterstützung der Fälschungssicherheit](xref:security/anti-request-forgery), um ein Cookie mit einem Anforderungstoken festzulegen:
+Die erste Seiten Antwort lädt das Formular und speichert ein antifälschungstoken in einem cookie (über das- `GenerateAntiforgeryTokenCookieAttribute` Attribut). Das-Attribut verwendet die integrierte [antifälschungs Unterstützung](xref:security/anti-request-forgery) von ASP.net Core, um eine cookie mit einem Anforderungs Token festzulegen:
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/Antiforgery.cs?name=snippet_GenerateAntiforgeryTokenCookieAttribute)]
 
@@ -442,7 +444,7 @@ Die vollständige `StreamingController.UploadPhysical`-Methode für das Streamin
 
 In der Beispiel-App werden Validierungsprüfungen von `FileHelpers.ProcessStreamedFile` übernommen.
 
-## <a name="validation"></a>Überprüfen
+## <a name="validation"></a>Überprüfung
 
 Die `FileHelpers`-Klasse der Beispiel-App veranschaulicht eine Reihe von Prüfungen für gepufferte <xref:Microsoft.AspNetCore.Http.IFormFile>- und gestreamte Dateiuploads. Informationen zum Verarbeiten mit <xref:Microsoft.AspNetCore.Http.IFormFile> gepufferter Dateiuploads in der Beispiel-App finden Sie in der Datei *Utilities/FileHelpers.cs* in der `ProcessFormFile`-Methode. Informationen zum Verarbeiten gestreamter Dateien finden Sie in der `ProcessStreamedFile`-Methode in der gleichen Datei.
 
@@ -464,7 +466,7 @@ Das Scannen von Dateien stellt in Szenarien mit hohem Verarbeitungsvolumen hohe 
 
 ### <a name="file-extension-validation"></a>Validierung von Dateierweiterungen
 
-Die Erweiterung der hochgeladenen Datei muss mit einer Liste zulässiger Erweiterungen abgeglichen werden. Beispiel:
+Die Erweiterung der hochgeladenen Datei muss mit einer Liste zulässiger Erweiterungen abgeglichen werden. Zum Beispiel:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -918,7 +920,7 @@ Das folgende Beispiel ist analog zum vorherigen Beispiel, mit der Ausnahme, dass
 Um den POST-Befehl für das Formular in JavaScript für Clients auszuführen, die [die Fetch-API nicht unterstützen](https://caniuse.com/#feat=fetch), wählen Sie einen der folgenden Ansätze:
 
 * Verwenden Sie Fetch Polyfill (Beispiel: [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Verwenden Sie `XMLHttpRequest`. Beispiel:
+* Verwenden Sie `XMLHttpRequest`. Zum Beispiel:
 
   ```javascript
   <script>
@@ -1141,7 +1143,7 @@ Das vorherige Beispiel ähnelt einem Szenario, das in der Beispiel-App veranscha
 
 Das folgende Beispiel zeigt, wie JavaScript verwendet wird, um eine Datei an eine Controlleraktion zu streamen. Das Fälschungssicherheitstoken einer Datei wird mithilfe eines benutzerdefinierten Filterattributs generiert und an die HTTP-Header des Clients anstelle des Anforderungstexts übergeben. Da die Aktionsmethode die hochgeladenen Daten direkt verarbeitet, wird die Modellbindung des Formulars von einem anderen benutzerdefinierten Filter deaktiviert. Innerhalb der Aktion werden die Inhalte des Formulars über `MultipartReader` gelesen. Dieses Element liest jede einzelne `MultipartSection`-Klasse, wodurch die Datei verarbeitet wird oder die Inhalte angemessen gespeichert werden. Nachdem alle mehrteiligen Abschnitte gelesen wurden, führt die Aktion ihre eigene Modellbindung aus.
 
-Die Reaktion auf der ersten Seite lädt das Formular und speichert das Fälschungssicherheitstoken (über das `GenerateAntiforgeryTokenCookieAttribute`-Attribut) in einem Cookie. Das Attribut nutzt die in ASP.NET Core integrierte [Unterstützung der Fälschungssicherheit](xref:security/anti-request-forgery), um ein Cookie mit einem Anforderungstoken festzulegen:
+Die erste Seiten Antwort lädt das Formular und speichert ein antifälschungstoken in einem cookie (über das- `GenerateAntiforgeryTokenCookieAttribute` Attribut). Das-Attribut verwendet die integrierte [antifälschungs Unterstützung](xref:security/anti-request-forgery) von ASP.net Core, um eine cookie mit einem Anforderungs Token festzulegen:
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Filters/Antiforgery.cs?name=snippet_GenerateAntiforgeryTokenCookieAttribute)]
 
@@ -1169,7 +1171,7 @@ Die vollständige `StreamingController.UploadPhysical`-Methode für das Streamin
 
 In der Beispiel-App werden Validierungsprüfungen von `FileHelpers.ProcessStreamedFile` übernommen.
 
-## <a name="validation"></a>Überprüfen
+## <a name="validation"></a>Überprüfung
 
 Die `FileHelpers`-Klasse der Beispiel-App veranschaulicht eine Reihe von Prüfungen für gepufferte <xref:Microsoft.AspNetCore.Http.IFormFile>- und gestreamte Dateiuploads. Informationen zum Verarbeiten mit <xref:Microsoft.AspNetCore.Http.IFormFile> gepufferter Dateiuploads in der Beispiel-App finden Sie in der Datei *Utilities/FileHelpers.cs* in der `ProcessFormFile`-Methode. Informationen zum Verarbeiten gestreamter Dateien finden Sie in der `ProcessStreamedFile`-Methode in der gleichen Datei.
 
@@ -1191,7 +1193,7 @@ Das Scannen von Dateien stellt in Szenarien mit hohem Verarbeitungsvolumen hohe 
 
 ### <a name="file-extension-validation"></a>Validierung von Dateierweiterungen
 
-Die Erweiterung der hochgeladenen Datei muss mit einer Liste zulässiger Erweiterungen abgeglichen werden. Beispiel:
+Die Erweiterung der hochgeladenen Datei muss mit einer Liste zulässiger Erweiterungen abgeglichen werden. Zum Beispiel:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -1476,7 +1478,7 @@ Bei den Beispielen in diesem Thema wird davon ausgegangen, dass <xref:System.IO.
 ::: moniker-end
 
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [HTTP-Verbindungs Anforderungs Ableitung](xref:fundamentals/servers/kestrel#http11-request-draining)
 * [Unrestricted File Upload (Uneingeschränkter Dateiupload)](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)

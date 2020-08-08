@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: 833939417c4973c61eca4d41aaeabe7856680190
-ms.sourcegitcommit: b0fa7ff0cb158277df61bcd08058a81222c3fe10
+ms.openlocfilehash: 3f5b0287a4f9c6c6c05a47297e3e602b80bf6015
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87913856"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021483"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Taghilfsprogramme in Formularen in ASP.NET Core
 
@@ -81,7 +83,7 @@ Das Hilfsprogramm für Formularaktionen generiert das `formaction`-Attribut auf 
 
 Folgende [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)-Attribute werden zum Steuern des Werts von `formaction` unterstützt:
 
-|attribute|BESCHREIBUNG|
+|Attribut|BESCHREIBUNG|
 |---|---|
 |[asp-controller](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-controller)|Der Name des Controllers.|
 |[asp-action](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-action)|Der Name der Aktionsmethode.|
@@ -215,7 +217,7 @@ Das `Input`-Taghilfsprogramm legt das HTML-Attribut `type` basierend auf dem .NE
 
 In der folgenden Tabelle werden einige allgemeine Attribute für die [Datenanmerkung](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) aufgeführt, die das Taghilfsprogramm für die Eingabe bestimmten Eingabetypen zuordnet (nicht jedes Validierungsattribut wird aufgeführt):
 
-|attribute|Eingabetyp|
+|Attribut|Eingabetyp|
 |---|---|
 |[EmailAddress]|type="email"|
 |[Url]|type="url"|
@@ -499,7 +501,7 @@ Der generierte HTML-Code (wenn das Modell gültig ist):
 
 * Verfügt über die alternativen HTML-Hilfsprogramme `Html.DropDownListFor` und `Html.ListBoxFor`
 
-Das `Select Tag Helper` `asp-for` gibt den Namen der Modelleigenschaft für das [select](https://www.w3.org/wiki/HTML/Elements/select)-Element an, und `asp-items` legt die [option](https://www.w3.org/wiki/HTML/Elements/option)-Elemente fest.  Beispiel:
+Das `Select Tag Helper` `asp-for` gibt den Namen der Modelleigenschaft für das [select](https://www.w3.org/wiki/HTML/Elements/select)-Element an, und `asp-items` legt die [option](https://www.w3.org/wiki/HTML/Elements/option)-Elemente fest.  Zum Beispiel:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
@@ -670,7 +672,7 @@ Das richtige `<option>`-Element (enthält das `selected="selected"`-Attribut) wi
  </form>
  ```
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * <xref:mvc/views/tag-helpers/intro>
 * [HTML-Formularelement](https://www.w3.org/TR/html401/interact/forms.html)

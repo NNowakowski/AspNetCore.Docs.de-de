@@ -5,6 +5,8 @@ description: Entdecken Sie Artikel, die auf ASP.net Core Projekte basieren, die 
 ms.author: riande
 ms.date: 12/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/individual
-ms.openlocfilehash: 6d3743fc31c29bed5075ac29381aea51a64a908c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6b72612c12d52cfc1736c141bdad95ace6c84546
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406250"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022289"
 ---
 # <a name="articles-based-on-aspnet-core-projects-created-with-individual-user-accounts"></a>Artikel, die auf ASP.net Core Projekten basieren, die mit einzelnen Benutzerkonten erstellt wurden
 
@@ -91,7 +93,7 @@ In der folgenden Tabelle sind die Authentifizierungs Optionen aufgeführt, die b
 | Geschäfts-, Schul-oder Uni-Cloud/Multiple org |  Organisationsauthentifizierung für mehrere Mandanten | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
 | Windows         |  Windows-Authentifizierung | [Windows-Authentifizierung](xref:security/authentication/windowsauth)
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 In den folgenden Artikeln wird gezeigt, wie Sie den in ASP.net Core Vorlagen generierten Code verwenden, der einzelne Benutzerkonten verwendet:
 

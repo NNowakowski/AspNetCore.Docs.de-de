@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/14/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/iauthorizationpolicyprovider
-ms.openlocfilehash: bb9b52da08639680b05a102dd4df71ff1af00971
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 724b1f065e83302137d920fe4e0e2b381be505b7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399555"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022133"
 ---
 # <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>Benutzerdefinierte Autorisierungs Richtlinien Anbieter, die iauthorizationpolicyprovider in ASP.net Core verwenden 
 
@@ -100,7 +102,7 @@ Bei Verwendung `MinimumAgeAuthorizationAttribute` von folgen die Namen der Autor
 
 * Das Alter wird anhand des Richtlinien namens verarbeitet.
 * Verwenden `AuthorizationPolicyBuilder` von zum Erstellen eines neuen`AuthorizationPolicy`
-* In diesem und den folgenden Beispielen wird davon ausgegangen, dass der Benutzer über ein Cookie authentifiziert wird. `AuthorizationPolicyBuilder`Muss entweder mit mindestens einem Autorisierungs Schema Namen erstellt werden oder immer erfolgreich sein. Andernfalls gibt es keine Informationen zum Bereitstellen einer Herausforderung für den Benutzer, und es wird eine Ausnahme ausgelöst.
+* In diesem und den folgenden Beispielen wird davon ausgegangen, dass der Benutzer über eine authentifiziert wird cookie . `AuthorizationPolicyBuilder`Muss entweder mit mindestens einem Autorisierungs Schema Namen erstellt werden oder immer erfolgreich sein. Andernfalls gibt es keine Informationen zum Bereitstellen einer Herausforderung für den Benutzer, und es wird eine Ausnahme ausgelöst.
 * Hinzufügen von Anforderungen zur Richtlinie basierend auf dem Alter mit `AuthorizationPolicyBuilder.AddRequirements` . In anderen Szenarien können Sie `RequireClaim` `RequireRole` stattdessen, oder verwenden `RequireUserName` .
 
 ```csharp

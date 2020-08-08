@@ -5,6 +5,8 @@ description: Informationen zu ASP.NET Core MVC als umfangreiches Framework zum E
 ms.author: riande
 ms.date: 02/12/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/overview
-ms.openlocfilehash: 68a0b14eb0897f6ff6e24e74b1fe5536bee1adfe
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 64bee1966eff40e9057166adfafbf78d0cc5b6aa
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405847"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021444"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Übersicht über ASP.NET Core MVC
 
@@ -194,7 +196,7 @@ Außerdem können Sie mit der Linkgenerierung Unterstützung für Hypermedia akt
 
 Durch die Verwendung von Schnittstellen und der Abhängigkeitsinjektion eignet sich das Framework besonders gut für Komponententests. Es enthält Features (wie etwa einen TestHost- und InMemory-Anbieter für Entity Framework), mit denen auch [Integrationstests](xref:test/integration-tests) schnell und einfach durchgeführt werden können. Weitere Informationen hierzu finden Sie unter [Testen der Controllerlogik](controllers/testing.md).
 
-### <a name="razor-view-engine"></a>RazorAnzeige-Engine
+### <a name="no-locrazor-view-engine"></a>RazorAnzeige-Engine
 
 [ASP.net Core MVC-Ansichten](views/overview.md) verwenden Sie die [ Razor Ansichts-Engine](views/razor.md) zum renderingansichten. Razorist eine kompakte, ausdrucksstarke und fließende Vorlagen Markup Sprache zum Definieren von Sichten mithilfe von eingebettetem c#-Code. Razorwird verwendet, um Webinhalte auf dem Server dynamisch zu generieren. Sie können Servercode sauber mit Inhalt und Code der Clientseite kombinieren.
 
@@ -265,5 +267,5 @@ Weitere Informationen finden Sie unter <xref:mvc/compatibility-version>.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
-* [Mytesting. aspnetcore. MVC-fließende Test Bibliothek für ASP.net Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): stark typisierte unittestbibliothek, die eine fließende Oberfläche zum Testen von MVC-und Web-API-apps bereitstellt. (*Wird von Microsoft nicht verwaltet oder unterstützt.*)
+* [Mytesting. aspnetcore. MVC-fließende Test Bibliothek für ASP.net Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): stark typisierte unittestbibliothek, die eine fließende Oberfläche zum Testen von MVC-und Web-API-apps bereitstellt. (*Wird von Microsoft nicht verwaltet oder unterstützt.* )
 * <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>

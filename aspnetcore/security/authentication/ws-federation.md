@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/16/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/ws-federation
-ms.openlocfilehash: 91dab7764e6915ccacacf73f74861faaee532777
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e303679190a7d7f42d8525541cec031ba090fd7a
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406224"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022302"
 ---
 # <a name="authenticate-users-with-ws-federation-in-aspnet-core"></a>Authentifizieren von Benutzern mit dem WS-Verbund in ASP.net Core
 
@@ -88,7 +90,7 @@ Standardmäßig wird die neue Middleware:
 
 ![Azure Active Directory: Eigenschaften der APP-Registrierung](ws-federation/_static/AadAppIdUri.png)
 
-## <a name="use-ws-federation-without-aspnet-core-identity"></a>Verwenden von WS-Federation ohne ASP.net CoreIdentity
+## <a name="use-ws-federation-without-aspnet-core-no-locidentity"></a>Verwenden von WS-Federation ohne ASP.net CoreIdentity
 
 Die WS-Verbund-Middleware kann ohne verwendet werden Identity . Zum Beispiel:
 ::: moniker range=">= aspnetcore-3.0"
@@ -99,7 +101,7 @@ Die WS-Verbund-Middleware kann ohne verwendet werden Identity . Zum Beispiel:
 [!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
 ::: moniker-end
 
-## <a name="add-ws-federation-as-an-external-login-provider-for-aspnet-core-identity"></a>Fügen Sie den WS-Verbund als externen Anmelde Anbieter für ASP.net CoreIdentity
+## <a name="add-ws-federation-as-an-external-login-provider-for-aspnet-core-no-locidentity"></a>Fügen Sie den WS-Verbund als externen Anmelde Anbieter für ASP.net CoreIdentity
 
 * Fügen Sie eine Abhängigkeit von [Microsoft. aspnetcore. Authentication. wsfederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) zum Projekt hinzu.
 * WS-Verbund hinzufügen zu `Startup.ConfigureServices` :

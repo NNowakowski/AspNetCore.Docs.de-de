@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/response-compression
-ms.openlocfilehash: 83f5b2da8fdba784131e8d159171b8433b13a091
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 1dd931d0ee654b888814df8a0d0675d32b5c3a20
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406471"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020963"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Antwort Komprimierung in ASP.net Core
 
@@ -50,7 +52,7 @@ Normalerweise kann jede nicht System intern komprimierte Antwort von der Antwort
 
 Wenn ein Client komprimierte Inhalte verarbeiten kann, muss der Client den Server über seine Funktionen informieren, indem er die- `Accept-Encoding` Kopfzeile mit der Anforderung sendet. Wenn ein Server komprimierten Inhalt sendet, muss er Informationen in der Kopfzeile enthalten, in der `Content-Encoding` die komprimierte Antwort codiert wird. In der folgenden Tabelle sind die von der Middleware unterstützten Inhalts Codierungs Bezeichnungen aufgeführt.
 
-| `Accept-Encoding`Header Werte | Unterstützte Middleware | Beschreibung |
+| `Accept-Encoding`Header Werte | Unterstützte Middleware | BESCHREIBUNG |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Ja (Standard)        | [Brotli-komprimiertes Datenformat](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | Nein                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
@@ -144,7 +146,7 @@ Der brotli-Komprimierungs Anbieter muss hinzugefügt werden, wenn Komprimierungs
 
 Legen Sie die Komprimierungs Ebene mit fest <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> . Der brotli-Komprimierungs Anbieter verwendet standardmäßig den schnellsten Komprimierungs Grad ([CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel)), der möglicherweise nicht die effizienteste Komprimierung erzeugt. Wenn die effizienteste Komprimierung erwünscht ist, konfigurieren Sie die Middleware für die optimale Komprimierung.
 
-| Compression Level | Beschreibung |
+| Compression Level | BESCHREIBUNG |
 | ----------------- | ----------- |
 | [CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel) | Die Komprimierung sollte so schnell wie möglich durchgeführt werden, auch wenn die resultierende Ausgabe nicht optimal komprimiert ist. |
 | [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Es sollte keine Komprimierung durchgeführt werden. |
@@ -184,7 +186,7 @@ Der GZip-Komprimierungs Anbieter muss hinzugefügt werden, wenn Komprimierungs A
 
 Legen Sie die Komprimierungs Ebene mit fest <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> . Der GZip-Komprimierungs Anbieter verwendet standardmäßig den schnellsten Komprimierungs Grad ([CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel)), der möglicherweise nicht die effizienteste Komprimierung erzeugt. Wenn die effizienteste Komprimierung erwünscht ist, konfigurieren Sie die Middleware für die optimale Komprimierung.
 
-| Compression Level | Beschreibung |
+| Compression Level | BESCHREIBUNG |
 | ----------------- | ----------- |
 | [CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel) | Die Komprimierung sollte so schnell wie möglich durchgeführt werden, auch wenn die resultierende Ausgabe nicht optimal komprimiert ist. |
 | [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Es sollte keine Komprimierung durchgeführt werden. |
@@ -259,7 +261,7 @@ Verwenden Sie ein Tool wie z. b. " [fddler](https://www.telerik.com/fiddler)", "
 * Die Anforderung darf den-Header nicht enthalten `Content-Range` .
 * Die Anforderung muss das unsichere Protokoll (http) verwenden, es sei denn, das sichere Protokoll (HTTPS) ist in den Optionen der Middleware für die Antwort Komprimierung konfiguriert. *Beachten Sie die [oben beschriebene](#compression-with-secure-protocol) Gefahr beim Aktivieren der Komprimierung von sicherem Inhalt.*
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
@@ -296,7 +298,7 @@ Normalerweise kann jede nicht System intern komprimierte Antwort von der Antwort
 
 Wenn ein Client komprimierte Inhalte verarbeiten kann, muss der Client den Server über seine Funktionen informieren, indem er die- `Accept-Encoding` Kopfzeile mit der Anforderung sendet. Wenn ein Server komprimierten Inhalt sendet, muss er Informationen in der Kopfzeile enthalten, in der `Content-Encoding` die komprimierte Antwort codiert wird. In der folgenden Tabelle sind die von der Middleware unterstützten Inhalts Codierungs Bezeichnungen aufgeführt.
 
-| `Accept-Encoding`Header Werte | Unterstützte Middleware | Beschreibung |
+| `Accept-Encoding`Header Werte | Unterstützte Middleware | BESCHREIBUNG |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Ja (Standard)        | [Brotli-komprimiertes Datenformat](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | Nein                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
@@ -390,7 +392,7 @@ Der brotli-Komprimierungs Anbieter muss hinzugefügt werden, wenn Komprimierungs
 
 Legen Sie die Komprimierungs Ebene mit fest <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> . Der brotli-Komprimierungs Anbieter verwendet standardmäßig den schnellsten Komprimierungs Grad ([CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel)), der möglicherweise nicht die effizienteste Komprimierung erzeugt. Wenn die effizienteste Komprimierung erwünscht ist, konfigurieren Sie die Middleware für die optimale Komprimierung.
 
-| Compression Level | Beschreibung |
+| Compression Level | BESCHREIBUNG |
 | ----------------- | ----------- |
 | [CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel) | Die Komprimierung sollte so schnell wie möglich durchgeführt werden, auch wenn die resultierende Ausgabe nicht optimal komprimiert ist. |
 | [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Es sollte keine Komprimierung durchgeführt werden. |
@@ -430,7 +432,7 @@ Der GZip-Komprimierungs Anbieter muss hinzugefügt werden, wenn Komprimierungs A
 
 Legen Sie die Komprimierungs Ebene mit fest <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> . Der GZip-Komprimierungs Anbieter verwendet standardmäßig den schnellsten Komprimierungs Grad ([CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel)), der möglicherweise nicht die effizienteste Komprimierung erzeugt. Wenn die effizienteste Komprimierung erwünscht ist, konfigurieren Sie die Middleware für die optimale Komprimierung.
 
-| Compression Level | Beschreibung |
+| Compression Level | BESCHREIBUNG |
 | ----------------- | ----------- |
 | [CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel) | Die Komprimierung sollte so schnell wie möglich durchgeführt werden, auch wenn die resultierende Ausgabe nicht optimal komprimiert ist. |
 | [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Es sollte keine Komprimierung durchgeführt werden. |
@@ -504,7 +506,7 @@ Verwenden Sie ein Tool wie z. b. " [fddler](https://www.telerik.com/fiddler)", "
 * Die Anforderung darf den-Header nicht enthalten `Content-Range` .
 * Die Anforderung muss das unsichere Protokoll (http) verwenden, es sei denn, das sichere Protokoll (HTTPS) ist in den Optionen der Middleware für die Antwort Komprimierung konfiguriert. *Beachten Sie die [oben beschriebene](#compression-with-secure-protocol) Gefahr beim Aktivieren der Komprimierung von sicherem Inhalt.*
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
@@ -541,7 +543,7 @@ Normalerweise kann jede nicht System intern komprimierte Antwort von der Antwort
 
 Wenn ein Client komprimierte Inhalte verarbeiten kann, muss der Client den Server über seine Funktionen informieren, indem er die- `Accept-Encoding` Kopfzeile mit der Anforderung sendet. Wenn ein Server komprimierten Inhalt sendet, muss er Informationen in der Kopfzeile enthalten, in der `Content-Encoding` die komprimierte Antwort codiert wird. In der folgenden Tabelle sind die von der Middleware unterstützten Inhalts Codierungs Bezeichnungen aufgeführt.
 
-| `Accept-Encoding`Header Werte | Unterstützte Middleware | Beschreibung |
+| `Accept-Encoding`Header Werte | Unterstützte Middleware | BESCHREIBUNG |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Nein                   | [Brotli-komprimiertes Datenformat](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | Nein                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
@@ -635,7 +637,7 @@ Der GZip-Komprimierungs Anbieter muss hinzugefügt werden, wenn Komprimierungs A
 
 Legen Sie die Komprimierungs Ebene mit fest <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> . Der GZip-Komprimierungs Anbieter verwendet standardmäßig den schnellsten Komprimierungs Grad ([CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel)), der möglicherweise nicht die effizienteste Komprimierung erzeugt. Wenn die effizienteste Komprimierung erwünscht ist, konfigurieren Sie die Middleware für die optimale Komprimierung.
 
-| Compression Level | Beschreibung |
+| Compression Level | BESCHREIBUNG |
 | ----------------- | ----------- |
 | [CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel) | Die Komprimierung sollte so schnell wie möglich durchgeführt werden, auch wenn die resultierende Ausgabe nicht optimal komprimiert ist. |
 | [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Es sollte keine Komprimierung durchgeführt werden. |
@@ -709,7 +711,7 @@ Verwenden Sie ein Tool wie z. b. " [fddler](https://www.telerik.com/fiddler)", "
 * Die Anforderung darf den-Header nicht enthalten `Content-Range` .
 * Die Anforderung muss das unsichere Protokoll (http) verwenden, es sei denn, das sichere Protokoll (HTTPS) ist in den Optionen der Middleware für die Antwort Komprimierung konfiguriert. *Beachten Sie die [oben beschriebene](#compression-with-secure-protocol) Gefahr beim Aktivieren der Komprimierung von sicherem Inhalt.*
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>

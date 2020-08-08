@@ -7,6 +7,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 05/20/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: ead745ae8843173bb25b94672005cc6ce295db2e
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0fb19aa19703e68812b83f0631f029dd66a3d64e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403377"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021327"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testen von Web-APIs mit HTTP REPL
 
@@ -38,7 +40,7 @@ Folgende [HTTP-Verben](https://github.com/microsoft/api-guidelines/blob/vNext/Gu
 * [GET](#test-http-get-requests)
 * [Stadt](#test-http-head-requests)
 * [Optionen](#test-http-options-requests)
-* [PATCH](#test-http-patch-requests)
+* [Patch](#test-http-patch-requests)
 * [POST](#test-http-post-requests)
 * [PUT](#test-http-put-requests)
 
@@ -824,7 +826,7 @@ Verwenden Sie einen der folgenden Ansätze, um einen HTTP-Anforderungsheader fes
 
 Die http-repl unterstützt das Testen von gesicherten Endpunkten auf zwei Arten: über die Standard Anmelde Informationen des angemeldeten Benutzers oder durch Verwendung von HTTP-Anforderungs Headern. 
 
-### <a name="default-credentials"></a>Standard Anmelde Informationen
+### <a name="default-credentials"></a>Standardanmeldeinformationen
 
 Stellen Sie sich ein Szenario vor, in dem die zu testenden Web-API in IIS gehostet wird und mit der Windows-Authentifizierung geschützt ist. Sie möchten, dass die Anmelde Informationen des Benutzers, der das Tool ausführen soll, über die zu testenden HTTP-Endpunkte fließen. So übergeben Sie die Standard Anmelde Informationen des angemeldeten Benutzers:
 
@@ -1060,7 +1062,7 @@ Nachdem der vorherige Befehl ausgeführt wurde, enthält die Befehlsshell nur di
 https://localhost:5001/~
 ```
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [REST-API-Anforderungen](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
 * [GitHub-Repository für HTTP REPL](https://github.com/dotnet/HttpRepl)

@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/22/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/testing
-ms.openlocfilehash: e75c3a382904011e30ed50dfd465a15210c64368
-ms.sourcegitcommit: c86b4e2955dc1724f2eaa7c97894ad8b3bf763fb
+ms.openlocfilehash: 311f1ce9eb2b0e358ddc01a1982dc39379f53b8f
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86949081"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020911"
 ---
 # <a name="unit-test-controller-logic-in-aspnet-core"></a>Komponententests für die Controllerlogik in ASP.NET Core
 
@@ -352,10 +354,10 @@ Für eine gültige Sitzungs-`id` bestätigt der letzte Test Folgendes:
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * <xref:test/integration-tests>
 * [Erstellen und Ausführen von Komponententests mit Visual Studio](/visualstudio/test/unit-test-your-code)
-* [Mytesting. aspnetcore. MVC-fließende Test Bibliothek für ASP.net Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): stark typisierte unittestbibliothek, die eine fließende Oberfläche zum Testen von MVC-und Web-API-apps bereitstellt. (*Wird von Microsoft nicht verwaltet oder unterstützt.*)
-* [Justmocklite](https://github.com/telerik/JustMockLite): ein Framework für .NET-Entwickler. (*Wird von Microsoft nicht verwaltet oder unterstützt.*)
+* [Mytesting. aspnetcore. MVC-fließende Test Bibliothek für ASP.net Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): stark typisierte unittestbibliothek, die eine fließende Oberfläche zum Testen von MVC-und Web-API-apps bereitstellt. (*Wird von Microsoft nicht verwaltet oder unterstützt.* )
+* [JustMockLite:](https://github.com/telerik/JustMockLite) Dies ist ein Beispielframework für .NET-Entwickler. (*Wird von Microsoft nicht verwaltet oder unterstützt.* )
 

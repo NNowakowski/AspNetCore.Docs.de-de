@@ -5,6 +5,8 @@ description: Informationen zur Verarbeitung der Darstellung von App-Daten und zu
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/overview
-ms.openlocfilehash: b646908c070a51aac2e376c2acaa8e0e091790b0
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8630df0ad8ea556c6edf0ab251b3c86493f751e2
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400465"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020872"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Ansichten in ASP.NET Core MVC
 
@@ -371,11 +373,11 @@ Sie können `ViewData` und `ViewBag` gleichzeitig verwenden und zwischen dem Les
 
 * `ViewData`
   * Wird von [viewdatadictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary)abgeleitet und verfügt daher über Wörterbuch Eigenschaften, die nützlich sein können, z `ContainsKey` `Add` . b.,, `Remove` und `Clear` .
-  * Schlüssel sind Zeichenfolgen im Wörterbuch. Daher sind Leerzeichen erlaubt. Ein Beispiel: `ViewData["Some Key With Whitespace"]`
+  * Schlüssel sind Zeichenfolgen im Wörterbuch. Daher sind Leerzeichen erlaubt. Beispiel: `ViewData["Some Key With Whitespace"]`
   * Jeder Typ, der von `string` abweicht, muss in der Ansicht umgewandelt werden, sodass `ViewData` verwendet werden kann.
 * `ViewBag`
   * Wird von [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) abgeleitet. Daher können dynamische Eigenschaften über die Punktnotation (`@ViewBag.SomeKey = <value or object>`) erstellt werden, und es ist keine Umwandlung erforderlich. Über die Syntax von `ViewBag` können Controller und Ansichten schneller hinzugefügt werden.
-  * Es ist einfacher, nach NULL-Werten zu suchen. Ein Beispiel: `@ViewBag.Person?.Name`
+  * Es ist einfacher, nach NULL-Werten zu suchen. Beispiel: `@ViewBag.Person?.Name`
 
 **Empfohlene Verwendung von „ViewData“ und „ViewBag“**
 

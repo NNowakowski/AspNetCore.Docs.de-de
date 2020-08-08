@@ -5,6 +5,8 @@ description: Erhalten Sie einen kurzen Überblick über die verschiedenen Consum
 ms.author: riande
 ms.date: 06/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/overview
-ms.openlocfilehash: 0bb163b677062c46a077731c014a40c602764594
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 985c8cdc3518a51b9ec764407f4e2e3e5ff07e12
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406718"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021132"
 ---
 # <a name="consumer-apis-overview-for-aspnet-core"></a>Übersicht über Consumer-APIs für ASP.net Core
 
@@ -60,4 +62,4 @@ Das Paket Microsoft. aspnetcore. dataprotection. Abstractions enthält eine Erwe
 [!code-csharp[](./overview/samples/getdataprotector.cs?highlight=15)]
 
 >[!TIP]
-> Instanzen von `IDataProtectionProvider` und `IDataProtector` sind für mehrere Aufrufer Thread sicher. Wenn eine Komponente einen Verweis auf einen `IDataProtector` über einen Aufruf von erhält `CreateProtector` , wird dieser Verweis für mehrere Aufrufe von `Protect` und verwendet `Unprotect` . Ein-Aufrufe von löst `Unprotect` CryptographicException aus, wenn die geschützte Nutzlast nicht überprüft oder nicht verschlüsselt werden kann. Einige Komponenten möchten möglicherweise Fehler beim Vorgang zum Aufheben des Schutzes ignorieren. eine Komponente, die Authentifizierungs Cookies liest, kann diesen Fehler behandeln und die Anforderung so behandeln, als ob Sie überhaupt kein Cookie hätte, anstatt die Anforderung vollständig zu übernehmen. Komponenten, für die dieses Verhalten gewünscht ist, sollten CryptographicException genau abfangen, anstatt alle Ausnahmen zu verschlucken.
+> Instanzen von `IDataProtectionProvider` und `IDataProtector` sind für mehrere Aufrufer Thread sicher. Wenn eine Komponente einen Verweis auf einen `IDataProtector` über einen Aufruf von erhält `CreateProtector` , wird dieser Verweis für mehrere Aufrufe von `Protect` und verwendet `Unprotect` . Ein-Aufrufe von löst `Unprotect` CryptographicException aus, wenn die geschützte Nutzlast nicht überprüft oder nicht verschlüsselt werden kann. Einige Komponenten möchten möglicherweise Fehler beim Vorgang zum Aufheben des Schutzes ignorieren. eine Komponente, die Authentifizierungs-e liest, cookie kann diesen Fehler verarbeiten und die Anforderung so behandeln, als wäre sie überhaupt nicht voll cookie ständig. Komponenten, für die dieses Verhalten gewünscht ist, sollten CryptographicException genau abfangen, anstatt alle Ausnahmen zu verschlucken.

@@ -5,6 +5,8 @@ description: Erfahren Sie mehr über die Verwaltung von Daten und die Lebensdaue
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/configuration/default-settings
-ms.openlocfilehash: f758c814280ee09a240d99cc59cdab2dc4590df6
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b39187d93247dc83c34bbbe6ec6accfd77108794
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407095"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021379"
 ---
 # <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>(Data Protection key management and lifetime in ASP.NET Core) Gültigkeitsdauer und Verwaltung von Schlüsseln für den Schutz von Daten in ASP.NET Core
 
@@ -31,7 +33,7 @@ Die APP versucht, ihre Betriebsumgebung zu erkennen und die Schlüssel Konfigura
 1. Wenn die app in Azure- [apps](https://azure.microsoft.com/services/app-service/)gehostet wird, werden Schlüssel im Ordner *%Home%\ASP.net\dataschutz-Keys* persistent gespeichert. Dieser Ordner wird von einem Netzwerkspeicher unterstützt und mit allen Computern, auf denen die App gehostet wird, synchronisiert.
    * Ruhende Schlüssel werden nicht geschützt.
    * Der Ordner " *DataProtection-Keys* " stellt den Schlüsselring für alle Instanzen einer APP in einem einzelnen Bereitstellungs Slot bereit.
-   * Separate Bereitstellungsslots, wie Staging und Produktion, verwenden keinen gemeinsamen Schlüsselbund. Beim Austauschen zwischen Bereitstellungs Slots, z. B. Austauschen der Staging-in die Produktionsumgebung oder Verwenden von A/B-Tests, kann jede APP, die den Datenschutz verwendet, gespeicherte Daten nicht mithilfe des Schlüsselrings im vorherigen Slot entschlüsseln. Dies führt dazu, dass Benutzer von einer App abgemeldet werden, die die Standard-ASP.net Core Cookieauthentifizierung verwendet, da Sie Datenschutz zum Schutz Ihrer Cookies verwendet. Wenn Sie Slot-unabhängige Schlüssel Ringe wünschen, verwenden Sie einen externen Schlüsselring Anbieter, wie z. b. Azure BLOB Storage, Azure Key Vault, einen SQL-Speicher oder redis Cache.
+   * Separate Bereitstellungsslots, wie Staging und Produktion, verwenden keinen gemeinsamen Schlüsselbund. Beim Austauschen zwischen Bereitstellungs Slots, z. B. Austauschen der Staging-in die Produktionsumgebung oder Verwenden von A/B-Tests, kann jede APP, die den Datenschutz verwendet, gespeicherte Daten nicht mithilfe des Schlüsselrings im vorherigen Slot entschlüsseln. Dies führt dazu, dass Benutzer von einer App abgemeldet werden, die die Standard-ASP.net Core cookie Authentifizierung verwendet, da Sie zum Schutz Ihrer e den Schutz von Daten verwendet cookie . Wenn Sie Slot-unabhängige Schlüssel Ringe wünschen, verwenden Sie einen externen Schlüsselring Anbieter, wie z. b. Azure BLOB Storage, Azure Key Vault, einen SQL-Speicher oder redis Cache.
 
 1. Wenn das Benutzerprofil verfügbar ist, werden Schlüssel im Ordner " *%LocalAppData%\ASP.net\dataschutz-Keys* " beibehalten. Wenn das Betriebssystem Windows ist, werden die Schlüssel im Ruhezustand mithilfe von DPAPI verschlüsselt.
 

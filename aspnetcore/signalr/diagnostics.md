@@ -7,6 +7,8 @@ ms.author: anurse
 ms.custom: signalr
 ms.date: 06/12/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: f2b864d47c98a031872be676a68143bd79f49829
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 61733fe4fbcd7b94662404a39a288ff2ce75ec53
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85409097"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021834"
 ---
-# <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Protokollierung und Diagnose in ASP.net CoreSignalR
+# <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Protokollierung und Diagnose in ASP.net CoreSignalR
 
 Von [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
@@ -106,7 +108,7 @@ Wenn Sie Protokolle an ein benutzerdefiniertes Protokollierungs System senden m�
 
 [!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
 
-## <a name="net-client-logging"></a>.NET-Client Protokollierung
+## <a name="net-client-logging"></a> .NET-Clientprotokollierung
 
 > [!WARNING]
 > Clientseitige Protokolle enthalten möglicherweise vertrauliche Daten aus Ihrer App. Veröffentlichten Sie deshalb **niemals** Protokolle von Produktions-Apps auf öffentlichen Foren wie GitHub.
@@ -218,11 +220,11 @@ Sie können Diagnose Dateien an GitHub-Probleme anfügen, indem Sie Sie so umben
 
 Metriken sind eine Darstellung von Daten Messungen in Zeitintervallen. Beispielsweise Anforderungen pro Sekunde. Metrikdaten ermöglichen eine Überwachung des Zustands einer APP auf hoher Ebene. .NET-gRPC-Metriken werden mithilfe von <xref:System.Diagnostics.Tracing.EventCounter> ausgegeben.
 
-### <a name="signalr-server-metrics"></a>SignalRservermetriken
+### <a name="no-locsignalr-server-metrics"></a>SignalRservermetriken
 
 SignalRservermetriken werden auf der <xref:Microsoft.AspNetCore.Http.Connections> Ereignis Quelle gemeldet.
 
-| Name                    | Beschreibung                 |
+| Name                    | BESCHREIBUNG                 |
 |-------------------------|-----------------------------|
 | `connections-started`   | Gestartete Verbindungen gesamt   |
 | `connections-stopped`   | Beendete Verbindungen insgesamt   |
