@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/14/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 1312ae531b0acb0ce09137cc2bae6299ddda5c32
-ms.sourcegitcommit: e6b3dd344521ce320d5c2121bbc27c211df87e57
+ms.openlocfilehash: a145cfd551650445f9ff35259cbedf71ebb686f0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/19/2020
-ms.locfileid: "86468846"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014593"
 ---
-# <a name="create-and-use-aspnet-core-razor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
+# <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
 Von [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27) und [Tobias Bartsch](https://www.aveo-solutions.com/)
 
@@ -34,7 +36,7 @@ Blazor-Apps werden mithilfe von *Komponenten* erstellt. Eine Komponente ist ein 
 
 Komponenten werden mithilfe einer Kombination aus C# und HTML-Markup in [Razor](xref:mvc/views/razor)-Komponentendateien (`.razor`) implementiert. Eine Komponente in Blazor wird formal als *Razor-Komponente* bezeichnet.
 
-### <a name="razor-syntax"></a>Razor-Syntax
+### <a name="no-locrazor-syntax"></a>Razor-Syntax
 
 Razor-Komponenten in Blazor-Apps verwenden Razor-Syntax ausführlich. Wenn Sie mit der Razor-Markupsprache nicht vertraut sind, sollten Sie <xref:mvc/views/razor> lesen, bevor Sie fortfahren.
 
@@ -796,7 +798,7 @@ Im folgenden Beispiel wird veranschaulicht, wie der `MarkupString`-Typ verwendet
 }
 ```
 
-## <a name="razor-templates"></a>Razor-Vorlagen
+## <a name="no-locrazor-templates"></a>Razor-Vorlagen
 
 Renderingfragmente können mithilfe der Razor-Vorlagensyntax definiert werden. Mit Razor-Vorlagen können Sie einen Benutzeroberflächencodeausschnitt festlegen und das folgende Format voraussetzen:
 

@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/1x-to-2x/index
-ms.openlocfilehash: 97fe2f36aed4a2ac60a7ffc30ede5e682a838e5e
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: cad1cd868ef8c972d7e0fbfec79cd1d8b49c3b6e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408694"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015334"
 ---
 # <a name="migrate-from-aspnet-core-1x-to-20"></a>Migrieren von ASP.NET Core 1.x zu 2.0
 
@@ -164,7 +166,7 @@ Ab 2.0 ist es keine gute Idee, etwas in `BuildWebHost` zu tun, außer den Webhos
 
 <a name="view-compilation"></a>
 
-## <a name="review-razor-view-compilation-setting"></a>Überprüfen der Einstellungen für die Kompilierung der Razor-Ansicht
+## <a name="review-no-locrazor-view-compilation-setting"></a>Überprüfen der Einstellungen für die Kompilierung der Razor-Ansicht
 
 Eine schnellere Anwendungsstartzeit und kleinere veröffentlichte Pakete sind für Sie von höchster Wichtigkeit. Aus diesen Gründen ist [Razor-Ansichtskompilierung](xref:mvc/views/view-compilation) in ASP.NET Core 2.0 standardmäßig aktiviert.
 
@@ -198,7 +200,7 @@ Sie können das Application Insights SDK weiterhin direkt verwenden. [metapackag
 
 <a name="auth-and-identity"></a>
 
-## <a name="adopt-authenticationidentity-improvements"></a>Übernehmen der Authentifizierung bzw. Verbesserungen an Identity
+## <a name="adopt-authenticationno-locidentity-improvements"></a>Übernehmen der Authentifizierung bzw. Verbesserungen an Identity
 
 ASP.NET Core 2.0 verfügt über ein neues Authentifizierungsmodell und bietet verschiedene Änderungen an ASP.NET Core Identity. Wenn Sie Ihr Projekt mit aktivierter Option „Einzelne Benutzerkonten“ erstellt oder Authentifizierungs- oder Identitätsfunktionen manuell hinzugefügt haben, finden Sie unter [Migrieren von Authentifizierungs- und Identitätseinstellungen nach ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x) weitere Informationen.
 

@@ -5,6 +5,8 @@ description: Erfahren Sie, wie Sie mit dem Migrieren eines ASP.NET MVC-Projekts 
 ms.author: wpickett
 ms.date: 06/18/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/mvc
-ms.openlocfilehash: 6a645d0e5959b4301ee7d2bcfc692f7499574dc4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 17f2a2532c58c3796835328260231d63f8fb2e40
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407322"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015048"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Migrating from ASP.NET MVC to ASP.NET Core MVC (Migrieren von ASP.NET MVC zu ASP.NET Core MVC)
 
@@ -296,7 +298,7 @@ Die folgende Funktionalität erfordert eine Migration von dem Beispiel ASP.NET M
 
 Die Layoutdatei und-Stile wurden noch nicht migriert, sodass die gerenderten Sichten nur den Inhalt der Ansichts Dateien enthalten. Die von der Layoutdatei generierten `About` `Contact` Verknüpfungen für die Ansichten und sind noch nicht verfügbar.
 
-Rufen Sie die gerenderten Sichten aus dem Browser auf der laufenden ASP.net Core-App auf, indem Sie die aktuelle Portnummer durch die im ASP.net Core-Projekt verwendete Portnummer ersetzen. Beispiel: `https://localhost:44375/home/about`.
+Rufen Sie die gerenderten Sichten aus dem Browser auf der laufenden ASP.net Core-App auf, indem Sie die aktuelle Portnummer durch die im ASP.net Core-Projekt verwendete Portnummer ersetzen. Beispiel: `https://localhost:44375/home/about`
 
 ![Kontaktseite](mvc/_static/contact-page.png)
 
@@ -369,7 +371,7 @@ Es gibt viele Probleme, die eine HTTP 500-Fehlermeldung verursachen können, die
 
 ASP.net Core konvertiert nicht behandelte Ausnahmen in HTTP 500-Fehler Antworten. Normalerweise werden Fehlerdetails nicht in diese Antworten eingeschlossen, um das Offenlegen von potenziell sensiblen Informationen über den Server zu verhindern. Weitere Informationen finden Sie auf der [Seite Entwickler Ausnahme](xref:fundamentals/error-handling#developer-exception-page).
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * <xref:blazor/index>
 * <xref:mvc/views/tag-helpers/intro>
@@ -482,7 +484,7 @@ Die folgende Funktionalität erfordert eine Migration von dem Beispiel ASP.NET M
 
 Die Layoutdatei und-Stile wurden noch nicht migriert, sodass die gerenderten Sichten nur den Inhalt der Ansichts Dateien enthalten. Die von der Layoutdatei generierten `About` `Contact` Verknüpfungen für die Ansichten und sind noch nicht verfügbar.
 
-* Rufen Sie die gerenderten Sichten aus dem Browser auf der laufenden ASP.net Core-App auf, indem Sie die aktuelle Portnummer durch die im ASP.net Core-Projekt verwendete Portnummer ersetzen. Beispiel: `https://localhost:44375/home/about`.
+* Rufen Sie die gerenderten Sichten aus dem Browser auf der laufenden ASP.net Core-App auf, indem Sie die aktuelle Portnummer durch die im ASP.net Core-Projekt verwendete Portnummer ersetzen. Beispiel: `https://localhost:44375/home/about`
 
 ![Kontaktseite](mvc/_static/contact-page.png)
 

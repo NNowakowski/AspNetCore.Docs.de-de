@@ -5,6 +5,8 @@ description: ''
 ms.author: riande
 ms.date: 12/07/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 362dd16db358f7ceb6730bde908fff9854c73a84
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 92672b2d05ee6bbdfcf0255ae14529a5c28c41b7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403650"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014983"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Migrieren von HTTP-Handlern und Modulen zu ASP.net Core Middleware
 
@@ -291,7 +293,7 @@ Gibt Ihnen eine eindeutige ID für jede Anforderung. Sehr nützlich, um in Ihre 
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
 
-**HttpContext. Request. Cookies** übersetzt in:
+**HttpContext. Request. Cookie s** übersetzt in:
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
 
@@ -374,9 +376,9 @@ Die `SetHeaders` Rückruf Methode würde wie folgt aussehen:
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetHeaders)]
 
-**HttpContext. Response. Cookies**
+**HttpContext. Response. Cookie Hymnen**
 
-Cookies gelangen zum Browser in einem *Set-Cookie-* Antwortheader. Das Senden von Cookies erfordert daher denselben Rückruf wie zum Senden von Antwort Headern:
+Cookies wechseln zum Browser in einem *Set-Response Cookie -* Header. Daher cookie erfordert das Senden von s denselben Rückruf wie zum Senden von Antwort Headern:
 
 ```csharp
 public async Task Invoke(HttpContext httpContext)
@@ -390,9 +392,9 @@ Die `SetCookies` Rückruf Methode würde wie folgt aussehen:
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [Übersicht über HTTP-Handler und HTTP-Module](/iis/configuration/system.webserver/)
-* [Configuration](xref:fundamentals/configuration/index)
+* [Konfiguration](xref:fundamentals/configuration/index)
 * [Anwendungsstart](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware/index)

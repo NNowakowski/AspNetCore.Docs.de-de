@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/10/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/membership-to-core-identity
-ms.openlocfilehash: afad542a18a357a77f4542511a3d2c3108dbfb31
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 97039ac1c7bcd6a1ff7b53e1579c623b26564d26
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86059772"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014892"
 ---
-# <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-identity"></a>Migrieren von der ASP.net-Mitgliedschafts Authentifizierung zu ASP.net Core 2,0Identity
+# <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-no-locidentity"></a>Migrieren von der ASP.net-Mitgliedschafts Authentifizierung zu ASP.net Core 2,0Identity
 
 Von [Isaac Levin](https://isaaclevin.com)
 
@@ -38,14 +40,14 @@ Vor ASP.NET 2,0 waren die Entwickler dafür zuständig, den gesamten Authentifiz
 
 Zum Migrieren vorhandener apps zu ASP.net Core 2,0 müssen Identity die Daten in diesen Tabellen zu den vom neuen Schema verwendeten Tabellen migriert werden Identity .
 
-## <a name="aspnet-core-identity-20-schema"></a>IdentitySchema ASP.net Core 2,0
+## <a name="aspnet-core-no-locidentity-20-schema"></a>IdentitySchema ASP.net Core 2,0
 
 ASP.net Core 2,0 befolgt das [Identity](/aspnet/identity/index) in ASP.NET 4,5 eingeführte Prinzip. Obwohl das Prinzip freigegeben ist, ist die Implementierung zwischen den Frameworks anders, auch bei ASP.net Core Versionen (siehe [Migrieren der Authentifizierung und Identity ASP.net Core 2,0](xref:migration/1x-to-2x/index)).
 
 Die schnellste Möglichkeit, das Schema für ASP.net Core 2,0 anzuzeigen Identity , besteht darin, eine neue ASP.net Core 2,0-App zu erstellen. Führen Sie diese Schritte in Visual Studio 2017 aus:
 
-1. Wählen Sie **Datei** > **Neu** > **Projekt** aus.
-1. Erstellen Sie ein neues **ASP.net Core Webanwendungs** Projekt mit dem Namen *coreidentitysample*.
+1. Klicken Sie auf **Datei** > **Neu** > **Projekt**.
+1. Erstellen Sie ein neues **ASP.net Core Webanwendungs** Projekt mit dem Namen *Core Identity Sample*.
 1. Wählen Sie in der Dropdown Liste **ASP.net Core 2,0** aus, und wählen Sie dann **Webanwendung**. Diese Vorlage erzeugt eine [ Razor pages](xref:razor-pages/index) -app. Bevor Sie auf **OK**klicken, klicken Sie auf **Authentifizierung ändern**.
 1. Wählen Sie **einzelne Benutzerkonten** für die Identity Vorlagen aus. Klicken Sie abschließend auf **OK**und dann auf **OK**. Visual Studio erstellt mithilfe der ASP.net Core Vorlage ein Projekt Identity .
 1. Klicken **Sie**  >  auf Extras**nuget-Paket-Manager**  >  **Paket-Manager-Konsole** , um das Fenster der Paket-Manager- **Konsole** (PMC)
@@ -67,7 +69,7 @@ Die schnellste Möglichkeit, das Schema für ASP.net Core 2,0 anzuzeigen Identit
 
     Der `Update-Database` Befehl hat die mit dem Schema angegebene Datenbank und alle Daten, die für die APP-Initialisierung erforderlich sind, erstellt. Die folgende Abbildung zeigt die Tabellenstruktur, die mit den vorherigen Schritten erstellt wurde.
 
-    ![IdentitySpielern](identity/_static/identity-tables.png)
+    ![::: NO-LOC (Identität)::: Tables](identity/_static/identity-tables.png)
 
 ## <a name="migrate-the-schema"></a>Migrieren des Schemas
 
@@ -75,7 +77,7 @@ Es gibt feine Unterschiede in den Tabellenstrukturen und-Feldern sowohl für Mit
 
 ### <a name="users"></a>Benutzer
 
-|Identity<br>( `dbo.AspNetUsers` )-Spalte  |Typ     |Membership<br>( `dbo.aspnet_Users`  /  `dbo.aspnet_Membership` )-Spalte|Typ      |
+|Identity<br>( `dbo.AspNetUsers` )-Spalte  |Typ     |Mitgliedschaft<br>( `dbo.aspnet_Users`  /  `dbo.aspnet_Membership` )-Spalte|Typ      |
 |-------------------------------------------|-----------------------------------------------------------------------|
 | `Id`                            | `string`| `aspnet_Users.UserId`                                      | `string` |
 | `UserName`                      | `string`| `aspnet_Users.UserName`                                    | `string` |
@@ -90,7 +92,7 @@ Es gibt feine Unterschiede in den Tabellenstrukturen und-Feldern sowohl für Mit
 
 ### <a name="roles"></a>Rollen
 
-|Identity<br>( `dbo.AspNetRoles` )-Spalte|Typ|Membership<br>( `dbo.aspnet_Roles` )-Spalte|Typ|
+|Identity<br>( `dbo.AspNetRoles` )-Spalte|Typ|Mitgliedschaft<br>( `dbo.aspnet_Roles` )-Spalte|Typ|
 |----------------------------------------|-----------------------------------|
 |`Id`                           |`string`|`RoleId`         | `string`        |
 |`Name`                         |`string`|`RoleName`       | `string`        |
@@ -98,12 +100,12 @@ Es gibt feine Unterschiede in den Tabellenstrukturen und-Feldern sowohl für Mit
 
 ### <a name="user-roles"></a>Benutzerrollen
 
-|Identity<br>( `dbo.AspNetUserRoles` )-Spalte|Typ|Membership<br>( `dbo.aspnet_UsersInRoles` )-Spalte|Typ|
+|Identity<br>( `dbo.AspNetUserRoles` )-Spalte|Typ|Mitgliedschaft<br>( `dbo.aspnet_UsersInRoles` )-Spalte|Typ|
 |-------------------------|----------|--------------|---------------------------|
 |`RoleId`                 |`string`  |`RoleId`      |`string`                   |
 |`UserId`                 |`string`  |`UserId`      |`string`                   |
 
-Verweisen Sie auf die vorangehenden Mapping-Tabellen, wenn Sie ein Migrations Skript für *Benutzer* und *Rollen*erstellen. Im folgenden Beispiel wird davon ausgegangen, dass Sie zwei Datenbanken auf einem Datenbankserver haben. Eine Datenbank enthält das vorhandene ASP.net-Mitgliedschafts Schema und die Daten. Die andere *coreidentitysample* -Datenbank wurde mithilfe der zuvor beschriebenen Schritte erstellt. Kommentare sind Inline enthalten, um weitere Informationen zu erhalten.
+Verweisen Sie auf die vorangehenden Mapping-Tabellen, wenn Sie ein Migrations Skript für *Benutzer* und *Rollen*erstellen. Im folgenden Beispiel wird davon ausgegangen, dass Sie zwei Datenbanken auf einem Datenbankserver haben. Eine Datenbank enthält das vorhandene ASP.net-Mitgliedschafts Schema und die Daten. Die andere *Core- Identity Beispiel* Datenbank wurde mithilfe der zuvor beschriebenen Schritte erstellt. Kommentare sind Inline enthalten, um weitere Informationen zu erhalten.
 
 ```sql
 -- THIS SCRIPT NEEDS TO RUN FROM THE CONTEXT OF THE MEMBERSHIP DB
