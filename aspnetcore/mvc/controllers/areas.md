@@ -5,6 +5,8 @@ description: Erfahren Sie mehr über Bereiche, ein Feature von ASP.NET MVC, das 
 ms.author: riande
 ms.date: 03/21/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/areas
-ms.openlocfilehash: f4471f54e92b940ecb0eabab82f03e0c77a0509f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: af765eebfa8bfd147bd3b721508b5794d15d64a7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406406"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018441"
 ---
 # <a name="areas-in-aspnet-core"></a>Bereiche in ASP.NET Core
 
@@ -64,20 +66,20 @@ Stellen Sie sich eine App vor, die zwei logische Gruppen hat, *Produkte* und *Di
 * Projektname
   * Bereiche
     * Produkte
-      * Controller
+      * Controllers
         * HomeController.cs
         * ManageController.cs
-      * Ansichten
-        * Startseite
+      * Sichten
+        * -Startseite
           * Index.cshtml
         * Verwalten
           * Index.cshtml
           * About.cshtml
     * Dienste
-      * Controller
+      * Controllers
         * HomeController.cs
-      * Ansichten
-        * Startseite
+      * Sichten
+        * -Startseite
           * Index.cshtml
 
 Während das vorherige Layout typisch ist, wenn Bereiche verwendet werden, müssen nur die Ansichtsdateien diese Ordnerstruktur verwenden. Die Ansichtsermittlung sucht nach einer passenden Bereichsansichtsdatei im folgenden Ordner:
@@ -162,7 +164,7 @@ Der folgende Code ändert den Standardbereichsordner von `"Areas"` in `"MyAreas"
 
 <a name="arp"></a>
 
-## <a name="areas-with-razor-pages"></a>Bereiche mit Razor Seiten
+## <a name="areas-with-no-locrazor-pages"></a>Bereiche mit Razor Seiten
 
 Bereiche mit Razor Seiten erfordern einen `Areas/<area name>/Pages` Ordner im Stamm der app. Die folgende Ordnerstruktur wird mit dem [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples) verwendet.
 
@@ -179,7 +181,7 @@ Bereiche mit Razor Seiten erfordern einen `Areas/<area name>/Pages` Ordner im St
           * Info
           * Index
 
-### <a name="link-generation-with-razor-pages-and-areas"></a>Link Generierung mit Razor Seiten und Bereichen
+### <a name="link-generation-with-no-locrazor-pages-and-areas"></a>Link Generierung mit Razor Seiten und Bereichen
 
 Im folgenden Code aus dem [Beispieldownload](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) sehen Sie die Erstellung eines Links mit dem angegebenen Bereich (z.B. `asp-area="Products"`):
 
@@ -222,7 +224,7 @@ In der vorherigen Datei werden Namespace und `@addTagHelper`-Anweisung von der D
 
 Weitere Informationen finden Sie unter [Verwalten des Taghilfsprogrammbereichs](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) und [Importieren gemeinsam verwendeter Anweisungen](xref:mvc/views/layout#importing-shared-directives).
 
-### <a name="shared-layout-for-razor-pages-areas"></a>Frei gegebenes Layout für Razor Seitenbereiche
+### <a name="shared-layout-for-no-locrazor-pages-areas"></a>Frei gegebenes Layout für Razor Seitenbereiche
 
 Um ein gemeinsames Layout für die gesamte App freizugeben, verschieben Sie *_ViewStart.cshtml* in den Stammordner der Anwendung.
 
@@ -266,20 +268,20 @@ Stellen Sie sich eine App vor, die zwei logische Gruppen hat, *Produkte* und *Di
 * Projektname
   * Bereiche
     * Produkte
-      * Controller
+      * Controllers
         * HomeController.cs
         * ManageController.cs
-      * Ansichten
-        * Startseite
+      * Sichten
+        * -Startseite
           * Index.cshtml
         * Verwalten
           * Index.cshtml
           * About.cshtml
     * Dienste
-      * Controller
+      * Controllers
         * HomeController.cs
-      * Ansichten
-        * Startseite
+      * Sichten
+        * -Startseite
           * Index.cshtml
 
 Während das vorherige Layout typisch ist, wenn Bereiche verwendet werden, müssen nur die Ansichtsdateien diese Ordnerstruktur verwenden. Die Ansichtsermittlung sucht nach einer passenden Bereichsansichtsdatei im folgenden Ordner:
@@ -349,7 +351,7 @@ Der folgende Code ändert den Standardbereichsordner von `"Areas"` in `"MyAreas"
 
 <a name="arp"></a>
 
-## <a name="areas-with-razor-pages"></a>Bereiche mit Razor Seiten
+## <a name="areas-with-no-locrazor-pages"></a>Bereiche mit Razor Seiten
 
 Bereiche mit Razor Seiten erfordern einen `Areas/<area name>/Pages` Ordner im Stamm der app. Die folgende Ordnerstruktur wird mit dem [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) verwendet.
 
@@ -366,7 +368,7 @@ Bereiche mit Razor Seiten erfordern einen `Areas/<area name>/Pages` Ordner im St
           * Info
           * Index
 
-### <a name="link-generation-with-razor-pages-and-areas"></a>Link Generierung mit Razor Seiten und Bereichen
+### <a name="link-generation-with-no-locrazor-pages-and-areas"></a>Link Generierung mit Razor Seiten und Bereichen
 
 Im folgenden Code aus dem [Beispieldownload](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) sehen Sie die Erstellung eines Links mit dem angegebenen Bereich (z.B. `asp-area="Products"`):
 
@@ -411,7 +413,7 @@ In der vorherigen Datei werden Namespace und `@addTagHelper`-Anweisung von der D
 
 Weitere Informationen finden Sie unter [Verwalten des Taghilfsprogrammbereichs](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) und [Importieren gemeinsam verwendeter Anweisungen](xref:mvc/views/layout#importing-shared-directives).
 
-### <a name="shared-layout-for-razor-pages-areas"></a>Frei gegebenes Layout für Razor Seitenbereiche
+### <a name="shared-layout-for-no-locrazor-pages-areas"></a>Frei gegebenes Layout für Razor Seitenbereiche
 
 Um ein gemeinsames Layout für die gesamte App freizugeben, verschieben Sie *_ViewStart.cshtml* in den Stammordner der Anwendung.
 

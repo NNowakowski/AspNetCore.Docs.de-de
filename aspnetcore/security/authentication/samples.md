@@ -5,6 +5,8 @@ description: Enthält Links zu den Authentifizierungs Beispielen im ASP.net Core
 ms.author: riande
 ms.date: 01/31/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/samples
-ms.openlocfilehash: 3e5e487adafc09d38400ea58936c5c2e8385e84f
-ms.sourcegitcommit: 5a36758cca2861aeb10840093e46d273a6e6e91d
+ms.openlocfilehash: 71e614eb3d91e8425ec430d775b8a0163dc7258f
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87303598"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017791"
 ---
 # <a name="authentication-samples-for-aspnet-core"></a>Authentifizierungs Beispiele für ASP.net Core
 
@@ -29,11 +31,11 @@ Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 Das [ASP.net Core-Repository](https://github.com/dotnet/AspNetCore) enthält die folgenden Authentifizierungs Beispiele im Ordner " *aspnetcore/src/Security/Samples* ":
 
 * [Transformation von Ansprüchen](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/ClaimsTransformation)
-* [Cookie-Authentifizierung](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Cookies)
+* [CookieGenehmigung](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Cookies)
 * [Benutzerdefinierter Richtlinien Anbieter-iauthorizationpolicyprovider](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider)
 * [Dynamische Authentifizierungs Schemas und-Optionen](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/DynamicSchemes)
 * [Externe Ansprüche](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Identity.ExternalClaims)
-* [Auswählen zwischen Cookie und einem anderen Authentifizierungsschema basierend auf der Anforderung](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/PathSchemeSelection)
+* [Auswählen zwischen cookie und einem anderen Authentifizierungsschema basierend auf der Anforderung](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/PathSchemeSelection)
 * [Schränkt den Zugriff auf statische Dateien ein.](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/StaticFilesAuth)
 
 ## <a name="run-the-samples"></a>Ausführen der Beispiele
@@ -50,11 +52,11 @@ Das [ASP.net Core-Repository](https://github.com/dotnet/AspNetCore) enthält die
 Das [ASP.net Core-Repository](https://github.com/dotnet/AspNetCore) enthält die folgenden Authentifizierungs Beispiele im Ordner " *aspnetcore/src/Security/Samples* ":
 
 * [Transformation von Ansprüchen](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/ClaimsTransformation)
-* [Cookie-Authentifizierung](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Cookies)
+* [CookieGenehmigung](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Cookies)
 * [Benutzerdefinierter Richtlinien Anbieter-iauthorizationpolicyprovider](https://github.com/dotnet/AspNetCore/tree/2.1.3/src/Security/samples/CustomPolicyProvider)
 * [Dynamische Authentifizierungs Schemas und-Optionen](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/DynamicSchemes)
 * [Externe Ansprüche](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Identity.ExternalClaims)
-* [Auswählen zwischen Cookie und einem anderen Authentifizierungsschema basierend auf der Anforderung](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/PathSchemeSelection)
+* [Auswählen zwischen cookie und einem anderen Authentifizierungsschema basierend auf der Anforderung](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/PathSchemeSelection)
 * [Schränkt den Zugriff auf statische Dateien ein.](https://github.com/dotnet/AspNetCore/tree/2.1.3/src/Security/samples/StaticFilesAuth)
 
 ## <a name="run-the-samples"></a>Ausführen der Beispiele
