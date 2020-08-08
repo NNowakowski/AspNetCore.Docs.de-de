@@ -5,6 +5,8 @@ description: Erfahren Sie, wie man gängige Layouts verwendet, Anweisungen von m
 ms.author: riande
 ms.date: 07/30/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: 08e6284a6c5fc8e8926651f6fe873a71df449acb
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 4d5032f02db28341d7781dd57d58d776636fd16d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406653"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020443"
 ---
 # <a name="layout-in-aspnet-core"></a>Layout in ASP.NET Core
 
@@ -41,7 +43,7 @@ Die meisten Web-Apps haben ein gebräuchliches Layout, das dem Benutzer beim Nav
 
 ![Beispiel für ein Seitenlayout](layout/_static/page-layout.png)
 
-Gängige HTML-Strukturen wie Skripts und Stylesheets werden häufig von vielen Seiten in einer App verwendet. Alle diese gemeinsamen Elemente werden in einer *Layoutdatei* definiert, auf die dann von jeder Ansicht einer App verwiesen werden kann. Layouts minimieren duplizierten Code in Ansichten.
+Oft verwendete HTML-Strukturen wie Skripts und Stylesheets werden auch häufig von vielen Seiten in einer App genutzt. Alle diese freigegebenen Elemente können in einer *Layoutdatei* definiert werden, auf die von jeder in der APP verwendeten Ansicht verwiesen werden kann. Layouts verringern Codeduplikate in Ansichten.
 
 Gemäß Konvention ist *_Layout.cshtml* das Standardlayout für eine ASP.NET Core-App. Für neue ASP.NET Core-Projekte, die mit den Vorlagen erstellt wurden, sind folgende Layoutdateien vorhanden:
 
@@ -53,7 +55,7 @@ Gemäß Konvention ist *_Layout.cshtml* das Standardlayout für eine ASP.NET Cor
 
   ![Ordner „Views“ im Projektmappen-Explorer](layout/_static/mvc-web-project-views.png)
 
-Das Layout definiert eine übergeordnete Vorlage für die Ansichten einer App. Apps erfordern nicht zwingend ein Layout. Apps können aber auch mehrere Layouts definieren. Die Ansichten der App können dann unterschiedliche Layouts nutzen.
+Das Layout definiert eine übergeordnete Vorlage für die Ansichten einer App. Für Apps ist kein Layout erforderlich. Sie können allerdings mehrere Layouts mit unterschiedlichen Ansichten aufweisen.
 
 Der folgende Code zeigt die Layoutdatei für eine Vorlage, die mit dem Projekt mit einem Controller und Ansichten erstellt wurde:
 

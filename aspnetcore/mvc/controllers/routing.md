@@ -5,6 +5,8 @@ description: Erfahren Sie, wie ASP.NET Core MVC Routingmiddleware verwendet, um 
 ms.author: riande
 ms.date: 3/25/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 962b42239b2101fc95e55fb38ce214481bf0ef01
-ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
+ms.openlocfilehash: 4d367a6b15fdcf9ef6be1bac749368fd48fa259e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87444137"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020365"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing zu Controlleraktionen in ASP.NET Core
 
@@ -216,7 +218,7 @@ Wenn zwei Endpunkte über das Routing abgleichen, muss das Routing einen der fol
 * Wählen Sie den besten Kandidaten aus.
 * Löst eine Ausnahme aus.
 
-Beispiel:
+Zum Beispiel:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
@@ -430,7 +432,7 @@ In der folgenden Tabelle werden die `[Route]` Attribute im vorangehenden Code er
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | Ja | `"Home"` |
 | `[Route("Index")]` | Ja | `"Home/Index"` |
-| `[Route("/")]` | **No** | `""` |
+| `[Route("/")]` | **Nein** | `""` |
 | `[Route("About")]` | Ja | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
@@ -721,7 +723,7 @@ Wenn der Wert `{ d = Donovan }` hinzugefügt wird:
 
 Möglicherweise erwarten Sie dieses Problem mit der Standardroute `{controller}/{action}/{id?}` . Dieses Problem tritt in der Praxis selten auf, da `Url.Action` explizit einen `controller` -Wert und einen- `action` Wert angibt.
 
-Mehrere über Ladungen von [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) nehmen ein Routen Werte Objekt an, um Werte für andere Routen Parameter als und bereitzustellen `controller` `action` . Das Routen Werte Objekt wird häufig mit verwendet `id` . Beispiel: `Url.Action("Buy", "Products", new { id = 17 })`. Das Routen Werte Objekt:
+Mehrere über Ladungen von [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) nehmen ein Routen Werte Objekt an, um Werte für andere Routen Parameter als und bereitzustellen `controller` `action` . Das Routen Werte Objekt wird häufig mit verwendet `id` . Beispielsweise `Url.Action("Buy", "Products", new { id = 17 })`. Das Routen Werte Objekt:
 
 * Gemäß der Konvention ist in der Regel ein Objekt des anonymen Typs.
 * Kann ein `IDictionary<>` oder ein [poco](https://wikipedia.org/wiki/Plain_old_CLR_object)sein).
@@ -1009,7 +1011,7 @@ Im Rahmen der Anforderungsverarbeitung überprüft MVC, ob mit den Routenwerten 
 
 ### <a name="disambiguating-actions"></a>Aktionen eindeutig zuordnen
 
-Wenn zwei Aktionen beim Routing übereinstimmen, muss MVC beide analysieren und die beste auswählen oder eine Ausnahme auslösen. Beispiel:
+Wenn zwei Aktionen beim Routing übereinstimmen, muss MVC beide analysieren und die beste auswählen oder eine Ausnahme auslösen. Zum Beispiel:
 
 ```csharp
 public class ProductsController : Controller

@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: 65d8bbcdaed76a308b924ba024219e8f520bb585
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 7d2ff774b7654993e2cd9b126db252f81a3032d3
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399282"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018753"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Cache-Taghilfsprogramm im ASP.NET Core MVC
 
@@ -73,7 +75,7 @@ Im folgenden Beispiel werden die Inhalte des Cache-Taghilfsprogramms bis zum 29.
 
 ### <a name="expires-after"></a>expires-after
 
-| Attributtyp | Beispiel                      | Standard    |
+| Attributtyp | Beispiel                      | Standardwert    |
 | -------------- | ---------------------------- | ---------- |
 | `TimeSpan`     | `@TimeSpan.FromSeconds(120)` | 20 Minuten |
 
@@ -109,7 +111,7 @@ Beispiel:
 
 | Attributtyp | Beispiele                                    |
 | -------------- | ------------------------------------------- |
-| Zeichenfolge         | `User-Agent`, `User-Agent,content-encoding` |
+| String         | `User-Agent`, `User-Agent,content-encoding` |
 
 `vary-by-header` akzeptiert eine durch Trennzeichen getrennte Liste von Headerwerten, die eine Cacheaktualisierung auslösen, wenn diese geändert werden.
 
@@ -125,7 +127,7 @@ Im folgenden Beispiel wird der Headerwert `User-Agent` überwacht. Außerdem wer
 
 | Attributtyp | Beispiele             |
 | -------------- | -------------------- |
-| Zeichenfolge         | `Make`, `Make,Model` |
+| String         | `Make`, `Make,Model` |
 
 `vary-by-query` akzeptiert eine durch Kommas getrennte Liste von <xref:Microsoft.AspNetCore.Http.IQueryCollection.Keys*> in eine Abfragezeichenfolge (<xref:Microsoft.AspNetCore.Http.HttpRequest.Query*>), die eine Cacheaktualisierung auslösen, wenn der Wert eines aufgeführten Schlüssels geändert wird.
 
@@ -141,7 +143,7 @@ Im folgenden Beispiel werden die Werte von `Make` und `Model` überwacht. Außer
 
 | Attributtyp | Beispiele             |
 | -------------- | -------------------- |
-| Zeichenfolge         | `Make`, `Make,Model` |
+| String         | `Make`, `Make,Model` |
 
 `vary-by-route` akzeptiert eine durch Trennzeichen getrennte Liste mit Namen von Routenparametern, die eine Cacheaktualisierung auslösen, wenn der Routendatenparameter geändert wird.
 
@@ -163,15 +165,15 @@ routes.MapRoute(
 </cache>
 ```
 
-### <a name="vary-by-cookie"></a>vary-by-cookie
+### <a name="vary-by-no-loccookie"></a>variieren nachcookie
 
 | Attributtyp | Beispiele                                                                         |
 | -------------- | -------------------------------------------------------------------------------- |
-| Zeichenfolge         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
+| String         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
-`vary-by-cookie` akzeptiert eine durch Trennzeichen getrennte Liste mit Namen von Cookies, die eine Cacheaktualisierung auslösen, wenn der Cookiewert geändert wird.
+`vary-by-cookie`akzeptiert eine durch Trennzeichen getrennte Liste von cookie Namen, die eine Cache Aktualisierung auslöst, wenn sich die cookie Werte ändern.
 
-Im folgenden Beispiel wird das Cookie überwacht, das ASP.net Core zugeordnet ist Identity . Wenn ein Benutzer authentifiziert wird, löst eine Änderung im Identity Cookie eine Cache Aktualisierung aus:
+Im folgenden Beispiel wird die, die cookie mit ASP.net Core verknüpft ist, überwacht Identity . Wenn ein Benutzer authentifiziert wird, löst eine Änderung in Identity cookie eine Cache Aktualisierung aus:
 
 ```cshtml
 <cache vary-by-cookie=".AspNetCore.Identity.Application">
@@ -195,13 +197,13 @@ Das folgende Beispiel überwacht den derzeit angemeldeten Benutzer, um eine Cach
 </cache>
 ```
 
-Wenn Sie dieses Attribut verwenden, werden die Inhalte im Cache über einen Anmelde- und Abmeldezyklus verwaltet. Wenn der Wert auf `true` festgelegt wird, erklärt ein Authentifizierungszyklus den Cache für den authentifizierten Benutzer als ungültig. Der Cache wird für ungültig erklärt, da ein neuer eindeutiger Cookiewert bei der Anmeldung generiert wird, wenn ein Benutzer authentifiziert wird. Der Cache wird für den Status „Anonym“ verwaltet, wenn kein Cookie vorhanden ist oder es abgelaufen ist. Wenn der Benutzer **nicht** authentifiziert ist, wird der Cache verwaltet.
+Wenn Sie dieses Attribut verwenden, werden die Inhalte im Cache über einen Anmelde- und Abmeldezyklus verwaltet. Wenn der Wert auf `true` festgelegt wird, erklärt ein Authentifizierungszyklus den Cache für den authentifizierten Benutzer als ungültig. Der Cache wird für ungültig erklärt, weil ein neuer eindeutiger cookie Wert generiert wird, wenn ein Benutzer authentifiziert wird. Der Cache wird für den anonymen Status beibehalten, wenn kein cookie vorhanden ist oder cookie abgelaufen ist. Wenn der Benutzer **nicht** authentifiziert ist, wird der Cache verwaltet.
 
 ### <a name="vary-by"></a>vary-by
 
 | Attributtyp | Beispiel  |
 | -------------- | -------- |
-| Zeichenfolge         | `@Model` |
+| String         | `@Model` |
 
 Über `vary-by` können Sie festlegen, welche Daten zwischengespeichert werden sollen. Wenn das Objekt verändert wird, auf das der Zeichenfolgenwert des Attributs verweist, wird der Inhalt des Cache-Hilfsprogramms aktualisiert. Häufig wird eine Zeichenfolgenverkettung von Modellwerten diesem Attribut zugewiesen. Dies führt letztlich zu einem Szenario, bei dem der Cache ungültig wird, wenn ein Update an einem der verketteten Werte vorgenommen wird.
 

@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,16 +16,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-configuration
-ms.openlocfilehash: 5c999b426742cf75b1997f5b40223e2dda112901
-ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
+ms.openlocfilehash: b7f6eaba1a0e819a077e3d63b4f997e75b8cd317
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87160286"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020599"
 ---
 # <a name="configure-aspnet-core-no-locidentity"></a>Konfigurieren von ASP.net CoreIdentity
 
-In ASP.net Core werden Identity Standardwerte für Einstellungen verwendet, z. b. Kenn Wort Richtlinie, Sperrung und Konfiguration von Cookies. Diese Einstellungen können in der-Klasse überschrieben werden `Startup` .
+In ASP.net Core werden Identity Standardwerte für Einstellungen wie Kenn Wort Richtlinie, Sperrung und cookie Konfiguration verwendet. Diese Einstellungen können in der-Klasse überschrieben werden `Startup` .
 
 ## <a name="no-locidentity-options"></a>IdentityOptionen
 
@@ -61,7 +63,7 @@ Bei erfolgreicher Authentifizierung wird die Anzahl fehlerhafter Zugriffsversuch
 | Eigenschaft | BESCHREIBUNG | Standard |
 | -------- | ----------- | :-----: |
 | ["Zuweisen"](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.allowedfornewusers) | Bestimmt, ob ein neuer Benutzer gesperrt werden kann. | `true` |
-| [Defaultlockouttimespan](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan) | Die Zeitspanne, für die ein Benutzer gesperrt wird, wenn eine Sperre auftritt. | 5 Minuten |
+| [Defaultlockouttimespan](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan) | Die Zeitspanne, für die ein Benutzer gesperrt wird, wenn eine Sperre auftritt. | 5 Minuten |
 | [Maxfailedaccessversuchs](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.maxfailedaccessattempts) | Die Anzahl der fehlgeschlagenen Zugriffsversuche, bis ein Benutzer gesperrt ist, wenn die Sperre aktiviert ist. | 5 |
 
 ### <a name="password"></a>Kennwort
@@ -125,13 +127,13 @@ Mit dem folgenden Code werden Einstellungen festgelegt `SignIn` (auf Standardwer
 | [Zuordnung von "Zuweisung"](/dotnet/api/microsoft.aspnetcore.identity.useroptions.allowedusernamecharacters) | Zulässige Zeichen im Benutzernamen. | abcdefghijklmnopqrstuvwxyz<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789<br>-.\_@+ |
 | [Requirements-e-Mail](/dotnet/api/microsoft.aspnetcore.identity.useroptions.requireuniqueemail) | Erfordert, dass jeder Benutzer eine eindeutige e-Mail-Adresse hat. | `false` |
 
-### <a name="cookie-settings"></a>Cookie-Einstellungen
+### <a name="no-loccookie-settings"></a>Cookie -Einstellungen
 
-Konfigurieren Sie das Cookie der app in `Startup.ConfigureServices` . " [Applireapplicationcookie](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) " muss **nach** dem Aufrufen von oder aufgerufen werden `AddIdentity` `AddDefaultIdentity` .
+Konfigurieren Sie die APP- cookie in `Startup.ConfigureServices` . [Konfigurieren der Anwendung Cookie ](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) muss **nach** dem Aufrufen von `AddIdentity` oder aufgerufen werden `AddDefaultIdentity` .
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_cookie)]
 
-Weitere Informationen finden Sie unter [cookieauthenticationoptions](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions).
+Weitere Informationen finden Sie unter [ Cookie authenticationoptions](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions).
 
 ## <a name="password-hasher-options"></a>Optionen für Kennwort Hasher
 

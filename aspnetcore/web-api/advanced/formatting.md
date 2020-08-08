@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 04/17/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: e6b78af3eeb858310eb772fdf0034510c10351c0
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8aa94bd1f33d1dd8ce8e7f50468ed60b4ccb2515
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400361"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019936"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Formatieren von Antwortdaten in Web-APIs in ASP.NET Core
 
@@ -163,7 +165,7 @@ Vor ASP.NET Core 3.0 wurden standardmäßig die JSON-Formatierer verwendet, die
 
 Einige Features funktionieren mit `System.Text.Json`-basierten Formatierern möglicherweise nicht gut und erfordern einen Verweis auf die `Newtonsoft.Json`-basierten Formatierer. Verwenden Sie weiterhin `Newtonsoft.Json`-basierte Formatierer, wenn für die App Folgendes gilt:
 
-* Sie verwendet `Newtonsoft.Json`-Attribute. Beispielsweise `[JsonProperty]` oder `[JsonIgnore]`.
+* Sie verwendet `Newtonsoft.Json`-Attribute.  Zum Beispiel: `[JsonProperty]` oder `[JsonIgnore]`.
 * Sie passt die Serialisierungseinstellungen an.
 * Sie nutzt Features, die von `Newtonsoft.Json` bereitgestellt werden.
 * `Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings` konfiguriert. Vor ASP.NET Core 3.0 akzeptiert `JsonResult.SerializerSettings` eine Instanz von `JsonSerializerSettings`, die für `Newtonsoft.Json` spezifisch ist.

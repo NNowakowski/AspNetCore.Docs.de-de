@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: af0f07a0f50a79f25b6a14459402f9dd8b59dae2
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 25f1716b5c80492edb72bc9555954c9c93c02a49
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408252"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018765"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Anchor-Tag-Hilfsprogramm in ASP.NET Core
 
@@ -181,7 +183,7 @@ Hashtags sind beim Erstellen von clientseitigen Apps nützlich. Sie können beis
 
 Das Attribut [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) legt den Bereichsnamen zum Festlegen der geeigneten Route fest. Die folgenden Beispiele zeigen, wie das `asp-area`-Attribut eine Neuzuordnung von Routen verursacht.
 
-#### <a name="usage-in-razor-pages"></a>Verwendung in Razor Seiten
+#### <a name="usage-in-no-locrazor-pages"></a>Verwendung in Razor Seiten
 
 RazorSeitenbereiche werden in ASP.net Core 2,1 oder höher unterstützt.
 
@@ -211,7 +213,7 @@ Der generierte HTML-Code:
 > RazorFühren Sie einen der folgenden Schritte aus, um Bereiche in einer Pages-APP zu unterstützen `Startup.ConfigureServices` :
 >
 > * Legen Sie die [Kompatibilitätsversion](xref:mvc/compatibility-version) auf 2.1 oder höher fest.
-> * Legen Sie die [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*)-Eigenschaft auf `true` fest:
+> * Legen Sie die Eigenschaft " [ Razor pgesoptions. zuweieas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) " auf Folgendes fest `true` :
 >
 >   [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_AllowAreas)]
 
@@ -226,7 +228,7 @@ Betrachten Sie die folgende Verzeichnishierarchie:
       * **Controller**
         * *HomeController.cs*
       * **Ansichten**
-        * **Start**
+        * **Home**
           * *AboutBlog.cshtml*
           * *Index.cshtml*
         * *\_Viewstart. cshtml*

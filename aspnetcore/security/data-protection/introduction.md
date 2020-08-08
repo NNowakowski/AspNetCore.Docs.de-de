@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/introduction
-ms.openlocfilehash: bf41d5a756c988b239824c19ef7a9d177a93a4a1
-ms.sourcegitcommit: b0fa7ff0cb158277df61bcd08058a81222c3fe10
+ms.openlocfilehash: b29711e8e1ef1558731ba58ca2ff14000af19ca2
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87913820"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019355"
 ---
 # <a name="aspnet-core-data-protection"></a>ASP.net Core Datenschutz
 
@@ -31,7 +33,7 @@ Der ASP.net Core Datenschutz Stapel ist so konzipiert, dass er als langfristiger
 
 Die allgemeine Problem Erklärung kann in einem einzelnen Satz kurz gesagt werden: Ich muss vertrauenswürdige Informationen für den späteren Abruf beibehalten, aber ich vertraue dem Persistenzmechanismus nicht. In webbegriffen könnte dies wie folgt lauten: "Ich muss den vertrauenswürdigen Zustand über einen nicht vertrauenswürdigen Client Roundtrip".
 
-Das kanonische Beispiel hierfür ist ein Authentifizierungs Cookie oder bearertoken. Der Server generiert das Token "I am Groot und hat XYZ-Berechtigungen" und übergibt es an den Client. Zu einem späteren Zeitpunkt zeigt der Client das Token wieder dem Server an, der Server muss jedoch sicher sein, dass der Client das Token nicht gefälscht hat. Daher die erste Anforderung: Authentizität (auch bekannt als Integrität, Manipulationsschutz).
+Das kanonische Beispiel hierfür ist ein Authentifizierungs- cookie oder bearertoken. Der Server generiert das Token "I am Groot und hat XYZ-Berechtigungen" und übergibt es an den Client. Zu einem späteren Zeitpunkt zeigt der Client das Token wieder dem Server an, der Server muss jedoch sicher sein, dass der Client das Token nicht gefälscht hat. Daher die erste Anforderung: Authentizität (auch bekannt als Integrität, Manipulationsschutz).
 
 Da der beibehaltene Zustand vom Server als vertrauenswürdig eingestuft wird, erwarten wir, dass dieser Zustand Informationen enthält, die spezifisch für die Betriebsumgebung sind. Dies kann ein Dateipfad, eine Berechtigung, ein Handle oder ein anderer indirekter Verweis oder ein anderer Teil der serverspezifischen Daten sein. Diese Informationen sollten in der Regel nicht einem nicht vertrauenswürdigen Client offengelegt werden. Daher ist dies die zweite Anforderung: Vertraulichkeit.
 

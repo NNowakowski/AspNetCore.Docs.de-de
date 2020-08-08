@@ -5,6 +5,8 @@ description: Erfahren Sie, wie Sie das Attribut "autorisieren" verwenden, um den
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/simple
-ms.openlocfilehash: 09514032349d489b73d5bb785f11e44ca18b169c
-ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
+ms.openlocfilehash: b503f5e79cbfbbd3e74e18356884c3223ede66a6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87160234"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019026"
 ---
 # <a name="simple-authorization-in-aspnet-core"></a>Einfache Autorisierung in ASP.net Core
 
@@ -60,7 +62,7 @@ public class AccountController : Controller
 
 Jetzt können nur authentifizierte Benutzer auf die `Logout` Funktion zugreifen.
 
-Sie können auch das- `AllowAnonymous` Attribut verwenden, um den Zugriff durch nicht authentifizierte Benutzer auf einzelne Aktionen zuzulassen. Beispiel:
+Sie können auch das- `AllowAnonymous` Attribut verwenden, um den Zugriff durch nicht authentifizierte Benutzer auf einzelne Aktionen zuzulassen. Zum Beispiel:
 
 ```csharp
 [Authorize]

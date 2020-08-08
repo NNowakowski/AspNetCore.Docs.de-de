@@ -5,6 +5,8 @@ description: Erfahren Sie mehr über Razor Markup Syntax zum Einbetten von Serve
 ms.author: riande
 ms.date: 02/12/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: ba778c45c9a6f608b50a17a9f8c6d50484dbf07c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 4b418c53535965eae6b41f3297b0c6336fb993d5
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405899"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020586"
 ---
-# <a name="razor-syntax-reference-for-aspnet-core"></a>RazorSyntax Verweis für ASP.net Core
+# <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>RazorSyntax Verweis für ASP.net Core
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen)und [Dan vicarel](https://github.com/Rabadash8820)
 
@@ -30,7 +32,7 @@ Razorist eine Markup Syntax zum Einbetten von Server basiertem Code in Webseiten
 
 Die Standard Razor Sprache ist HTML. Das Rendern von HTML aus Razor Markup unterscheidet sich nicht vom Rendern von HTML aus einer HTML-Datei. Das HTML-Markup in *. cshtml* - Razor Dateien wird vom Server unverändert gerendert.
 
-## <a name="razor-syntax"></a>Razor-Syntax
+## <a name="no-locrazor-syntax"></a>Razor-Syntax
 
 Razorunterstützt c# und verwendet das `@` Symbol für den Übergang von HTML zu c#. Razorwertet c#-Ausdrücke aus und rendert Sie in der HTML-Ausgabe.
 
@@ -54,7 +56,7 @@ Bei HTML-Attributen und Inhalt mit E-Mail-Adressen wird das `@`-Symbol nicht als
 <a href="mailto:Support@contoso.com">Support@contoso.com</a>
 ```
 
-## <a name="implicit-razor-expressions"></a>Implizite Razor Ausdrücke
+## <a name="implicit-no-locrazor-expressions"></a>Implizite Razor Ausdrücke
 
 Implizite Razor Ausdrücke beginnen mit, `@` gefolgt von c#-Code:
 
@@ -82,7 +84,7 @@ Der vorhergehende Code erzeugt einen Compilerfehler, der folgendermaßen aussehe
 
 Generische Methodenaufrufe müssen in einen [expliziten Razor Ausdruck](#explicit-razor-expressions) oder einen [ Razor Codeblock](#razor-code-blocks)umschließt werden.
 
-## <a name="explicit-razor-expressions"></a>Explizite Razor Ausdrücke
+## <a name="explicit-no-locrazor-expressions"></a>Explizite Razor Ausdrücke
 
 Explizite Razor Ausdrücke bestehen aus einem `@` Symbol mit einer ausgeglichenen Klammer. Zum Rendering der letzten Woche wird das folgende Razor Markup verwendet:
 
@@ -155,7 +157,7 @@ Der Code rendert den folgenden HTML-Code:
 <span>Hello World</span>
 ```
 
-## <a name="razor-code-blocks"></a>RazorCode Blöcke
+## <a name="no-locrazor-code-blocks"></a>RazorCode Blöcke
 
 RazorCode Blöcke beginnen mit `@` und werden von eingeschlossen `{}` . Im Gegensatz zu Ausdrücken wird C#-Code in Codeblöcken nicht gerendert. Codeblöcke und Ausdrücke in einer Ansicht nutzen den gleichen Bereich und werden der Reihe nach definiert:
 
@@ -777,7 +779,7 @@ Die `@typeparam`-Anweisung deklariert einen generischen Typparameter für die ge
 
 ::: moniker-end
 
-## <a name="templated-razor-delegates"></a>Auf Vorlagen basierende Delegaten Razor
+## <a name="templated-no-locrazor-delegates"></a>Auf Vorlagen basierende Delegaten Razor
 
 Razormithilfe von Vorlagen können Sie einen UI-Code Ausschnitt im folgenden Format definieren:
 
@@ -888,9 +890,9 @@ Die folgenden drei Anweisungen gehören zu den [Taghilfsprogrammen](xref:mvc/vie
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Entfernt zuvor hinzugefügte Taghilfsprogramme aus einer Ansicht. |
 | [`@tagHelperPrefix`](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Gibt ein Tagpräfix an, um Unterstützung für Taghilfsprogramme zu aktivieren und ihre Verwendung explizit zu machen. |
 
-## <a name="razor-reserved-keywords"></a>Razorreservierte Schlüsselwörter
+## <a name="no-locrazor-reserved-keywords"></a>Razorreservierte Schlüsselwörter
 
-### <a name="razor-keywords"></a>RazorKeywords
+### <a name="no-locrazor-keywords"></a>RazorKeywords
 
 * `page`(Erfordert ASP.net Core 2,1 oder höher)
 * `namespace`
@@ -902,7 +904,7 @@ Die folgenden drei Anweisungen gehören zu den [Taghilfsprogrammen](xref:mvc/vie
 
 RazorSchlüsselwörter werden mit Escapezeichen versehen `@(Razor Keyword)` (z `@(functions)` . b.).
 
-### <a name="c-razor-keywords"></a>C#- Razor Schlüsselwörter
+### <a name="c-no-locrazor-keywords"></a>C#- Razor Schlüsselwörter
 
 * `case`
 * `do`
@@ -921,11 +923,11 @@ RazorSchlüsselwörter werden mit Escapezeichen versehen `@(Razor Keyword)` (z `
 
 C# Razor -Schlüsselwörter müssen mit einem doppelten Escapezeichen versehen werden `@(@C# Razor Keyword)` (z `@(@case)` . b.). Der erste schützt `@` den Razor Parser. Das zweite `@` dient als Escapezeichen für den C#-Parser.
 
-### <a name="reserved-keywords-not-used-by-razor"></a>Reservierte Schlüsselwörter werden von nicht verwendetRazor
+### <a name="reserved-keywords-not-used-by-no-locrazor"></a>Reservierte Schlüsselwörter werden von nicht verwendetRazor
 
 * `class`
 
-## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Überprüfen der Razor für eine Sicht generierten c#-Klasse
+## <a name="inspect-the-no-locrazor-c-class-generated-for-a-view"></a>Überprüfen der Razor für eine Sicht generierten c#-Klasse
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -1003,6 +1005,6 @@ Entwicklern wird empfohlen, sich bei der Groß-/Kleinschreibung von Datei- und V
 
 Durch Überprüfung der Groß-/Kleinschreibung wird sichergestellt, dass die entsprechenden Ansichten für die Bereitstellungen unabhängig von dem zugrunde liegenden Dateisystem gefunden werden.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 [Einführung in ASP.net-Webprogrammierung mithilfe Razor von Die Syntax](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) bietet viele Beispiele für die Programmierung mit Razor Syntax.

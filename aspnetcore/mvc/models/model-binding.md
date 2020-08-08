@@ -6,6 +6,8 @@ ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 12/18/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: b3dcb3a80e8d5150d8513ef558531749d0884568
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6ec531a04a220f75f5793cb2c7b5232908dbd883
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400153"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019156"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Modellbindung in ASP.NET Core
 
@@ -155,13 +157,13 @@ Wenden Sie `[FromBody]` auf nicht mehr als einen Parameter pro Aktionsmethode an
 
 ### <a name="additional-sources"></a>Zusätzliche Quellen
 
-Quelldaten werden dem Modellbindungssystem durch *Wertanbieter* bereitgestellt. Sie können benutzerdefinierte Wertanbieter schreiben und registrieren, die Daten für die Modellbindung aus anderen Quellen abrufen. Beispielsweise können Sie Daten aus Cookies oder Sitzungszuständen abrufen. So rufen Sie Daten aus einer neuen Quelle ab
+Quelldaten werden dem Modellbindungssystem durch *Wertanbieter* bereitgestellt. Sie können benutzerdefinierte Wertanbieter schreiben und registrieren, die Daten für die Modellbindung aus anderen Quellen abrufen. Angenommen, Sie möchten Daten aus cookie s oder dem Sitzungszustand. So rufen Sie Daten aus einer neuen Quelle ab
 
 * Erstellen Sie eine Klasse, die das `IValueProvider` implementiert.
 * Erstellen Sie eine Klasse, die das `IValueProviderFactory` implementiert.
 * Registrieren Sie die Factoryklasse in `Startup.ConfigureServices`.
 
-Die Beispiel-App umfasst ein Beispiel für einen [Wertanbieter](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProvider.cs) und eine [Factory](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProviderFactory.cs), das Werte aus Cookies abruft. Dies ist der Registrierungscode in `Startup.ConfigureServices`:
+Die Beispiel-app enthält einen [Wert Anbieter](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProvider.cs) und ein [Factory](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProviderFactory.cs) -Beispiel, mit dem Werte von s abgerufen werden cookie . Dies ist der Registrierungscode in `Startup.ConfigureServices`:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=4)]
 
@@ -282,13 +284,13 @@ Mehrere integrierte Attribute stehen für die Kontrolle der Modellbindung komple
 
 ### <a name="bindrequired-attribute"></a>[BindRequired]-Attribut
 
-Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter. Bewirkt, dass die Modellbindung einen Modellzustandsfehler hinzufügt, wenn die Bindung für die Eigenschaft eines Modells nicht erfolgen kann. Im Folgenden ein Beispiel:
+Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter. Bewirkt, dass die Modellbindung einen Modellzustandsfehler hinzufügt, wenn die Bindung für die Eigenschaft eines Modells nicht erfolgen kann. Hier sehen Sie ein Beispiel:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
 
 ### <a name="bindnever-attribute"></a>[BindNever]-Attribut
 
-Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter. Verhindert, dass die Modellbindung die Eigenschaft eines Modells festlegt. Im Folgenden ein Beispiel:
+Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter. Verhindert, dass die Modellbindung die Eigenschaft eines Modells festlegt. Hier sehen Sie ein Beispiel:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
@@ -488,7 +490,7 @@ Sie können die Modellbindung erweitern, indem Sie eine benutzerdefinierte Model
 
 ## <a name="manual-model-binding"></a>Manuelle Modellbindung 
 
-Die Modellbindung kann mithilfe der <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>-Methode manuell aufgerufen werden. Die Methode ist für die beiden Klassen `ControllerBase` und `PageModel` definiert. Mithilfe von Methodenüberladungen können Sie das Präfix und den Wertanbieter festlegen, die verwendet werden sollen. Die Methode gibt `false` zurück, wenn die Modellbindung fehlschlägt. Im Folgenden ein Beispiel:
+Die Modellbindung kann mithilfe der <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>-Methode manuell aufgerufen werden. Die Methode ist für die beiden Klassen `ControllerBase` und `PageModel` definiert. Mithilfe von Methodenüberladungen können Sie das Präfix und den Wertanbieter festlegen, die verwendet werden sollen. Die Methode gibt `false` zurück, wenn die Modellbindung fehlschlägt. Hier sehen Sie ein Beispiel:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
@@ -503,7 +505,7 @@ Weitere Informationen finden Sie unter [TryUpdateModelAsync](xref:data/ef-rp/cru
 
 Der Name dieses Attributs folgt dem Muster von Modellbindungsattributen, die eine Datenquelle angeben. Es ist aber nicht zum Binden von Daten aus einem Wertanbieter gedacht. Es ruft eine Instanz eines Typs aus dem [Dependency Injection](xref:fundamentals/dependency-injection)-Container (Abhängigkeitsinjektion) ab. Sein Zweck besteht darin, eine Alternative zur „Constructor Injection“ (Konstruktorinjektion) bereitzustellen, wenn Sie einen Dienst nur dann benötigen, wenn eine bestimmte Methode aufgerufen wird.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 * <xref:mvc/models/validation>
 * <xref:mvc/advanced/custom-model-binding>
@@ -641,13 +643,13 @@ Wenden Sie `[FromBody]` auf nicht mehr als einen Parameter pro Aktionsmethode an
 
 ### <a name="additional-sources"></a>Zusätzliche Quellen
 
-Quelldaten werden dem Modellbindungssystem durch *Wertanbieter* bereitgestellt. Sie können benutzerdefinierte Wertanbieter schreiben und registrieren, die Daten für die Modellbindung aus anderen Quellen abrufen. Beispielsweise können Sie Daten aus Cookies oder Sitzungszuständen abrufen. So rufen Sie Daten aus einer neuen Quelle ab
+Quelldaten werden dem Modellbindungssystem durch *Wertanbieter* bereitgestellt. Sie können benutzerdefinierte Wertanbieter schreiben und registrieren, die Daten für die Modellbindung aus anderen Quellen abrufen. Angenommen, Sie möchten Daten aus cookie s oder dem Sitzungszustand. So rufen Sie Daten aus einer neuen Quelle ab
 
 * Erstellen Sie eine Klasse, die das `IValueProvider` implementiert.
 * Erstellen Sie eine Klasse, die das `IValueProviderFactory` implementiert.
 * Registrieren Sie die Factoryklasse in `Startup.ConfigureServices`.
 
-Die Beispiel-App umfasst ein Beispiel für einen [Wertanbieter](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProvider.cs) und eine [Factory](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProviderFactory.cs), das Werte aus Cookies abruft. Dies ist der Registrierungscode in `Startup.ConfigureServices`:
+Die Beispiel-app enthält einen [Wert Anbieter](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProvider.cs) und ein [Factory](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProviderFactory.cs) -Beispiel, mit dem Werte von s abgerufen werden cookie . Dies ist der Registrierungscode in `Startup.ConfigureServices`:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=3)]
 
@@ -768,13 +770,13 @@ Mehrere integrierte Attribute stehen für die Kontrolle der Modellbindung komple
 
 ### <a name="bindrequired-attribute"></a>[BindRequired]-Attribut
 
-Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter. Bewirkt, dass die Modellbindung einen Modellzustandsfehler hinzufügt, wenn die Bindung für die Eigenschaft eines Modells nicht erfolgen kann. Im Folgenden ein Beispiel:
+Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter. Bewirkt, dass die Modellbindung einen Modellzustandsfehler hinzufügt, wenn die Bindung für die Eigenschaft eines Modells nicht erfolgen kann. Hier sehen Sie ein Beispiel:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
 
 ### <a name="bindnever-attribute"></a>[BindNever]-Attribut
 
-Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter. Verhindert, dass die Modellbindung die Eigenschaft eines Modells festlegt. Im Folgenden ein Beispiel:
+Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter. Verhindert, dass die Modellbindung die Eigenschaft eines Modells festlegt. Hier sehen Sie ein Beispiel:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
@@ -956,7 +958,7 @@ Sie können die Modellbindung erweitern, indem Sie eine benutzerdefinierte Model
 
 ## <a name="manual-model-binding"></a>Manuelle Modellbindung
 
-Die Modellbindung kann mithilfe der <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>-Methode manuell aufgerufen werden. Die Methode ist für die beiden Klassen `ControllerBase` und `PageModel` definiert. Mithilfe von Methodenüberladungen können Sie das Präfix und den Wertanbieter festlegen, die verwendet werden sollen. Die Methode gibt `false` zurück, wenn die Modellbindung fehlschlägt. Im Folgenden ein Beispiel:
+Die Modellbindung kann mithilfe der <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>-Methode manuell aufgerufen werden. Die Methode ist für die beiden Klassen `ControllerBase` und `PageModel` definiert. Mithilfe von Methodenüberladungen können Sie das Präfix und den Wertanbieter festlegen, die verwendet werden sollen. Die Methode gibt `false` zurück, wenn die Modellbindung fehlschlägt. Hier sehen Sie ein Beispiel:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
