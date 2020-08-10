@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Komponenten aus einer externen Komponentenbibliot
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 07/27/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: b172059407f9a08dacc0fadd804864c7aee7fb90
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 8293d61f88f53e55d94b114ca2143fdfb6fd8468
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944493"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87819066"
 ---
-# <a name="aspnet-core-razor-components-class-libraries"></a>Klassenbibliotheken für ASP.NET Core-Razor-Komponenten
+# <a name="aspnet-core-no-locrazor-components-class-libraries"></a>Klassenbibliotheken für ASP.NET Core-Razor-Komponenten
 
 Von [Simon Timms](https://github.com/stimms)
 
@@ -41,7 +41,7 @@ Genauso wie Komponenten normale .NET-Typen sind, sind von der RCL bereitgestellt
 1. Erstellen Sie ein neues Projekt.
 1. Klicken Sie auf **Razor-Klassenbibliothek**. Klicken Sie auf **Weiter**.
 1. Klicken Sie im Dialogfeld **Neue Razor-Klassenbibliothek erstellen** auf **Erstellen**.
-1. Geben Sie im Feld **Projektname** einen Projektnamen ein, oder übernehmen Sie den Standardnamen. Die Beispiele in diesem Thema verwenden den Projektnamen `MyComponentLib1`. Wählen Sie **Erstellen** aus.
+1. Geben Sie im Feld **Projektname** einen Projektnamen ein, oder übernehmen Sie den Standardnamen. Die Beispiele in diesem Thema verwenden den Projektnamen `ComponentLibrary`. Wählen Sie **Erstellen** aus.
 1. Fügen Sie die RCL zu einer Projektmappe hinzu:
    1. Klicken Sie mit der rechten Maustaste auf die Projektmappe. Wählen Sie **Hinzufügen** > **Vorhandenes Projekt** aus.
    1. Navigieren Sie zur Projektdatei der RCL.
@@ -61,10 +61,10 @@ Genauso wie Komponenten normale .NET-Typen sind, sind von der RCL bereitgestellt
 
 # <a name="net-core-cli"></a>[.NET Core-CLI](#tab/netcore-cli)
 
-1. Verwenden Sie die Vorlage **Razor-Klassenbibliothek** (`razorclasslib`) mit dem Befehl [`dotnet new`](/dotnet/core/tools/dotnet-new) in einer Befehlsshell. Im folgenden Beispiel wird eine RCL mit dem Namen `MyComponentLib1` erstellt. Der Ordner, der `MyComponentLib1` enthält, wird automatisch erstellt, wenn der Befehl ausgeführt wird:
+1. Verwenden Sie die Vorlage **Razor-Klassenbibliothek** (`razorclasslib`) mit dem Befehl [`dotnet new`](/dotnet/core/tools/dotnet-new) in einer Befehlsshell. Im folgenden Beispiel wird eine RCL mit dem Namen `ComponentLibrary` erstellt. Der Ordner, der `ComponentLibrary` enthält, wird automatisch erstellt, wenn der Befehl ausgeführt wird:
 
    ```dotnetcli
-   dotnet new razorclasslib -o MyComponentLib1
+   dotnet new razorclasslib -o ComponentLibrary
    ```
 
    > [!NOTE]
@@ -91,35 +91,82 @@ Um Komponenten, die in einer Bibliothek definiert sind, in einem anderen Projekt
 * Verwenden Sie den vollständigen Typnamen mit dem Namespace.
 * Verwenden Sie die Razor-Anweisung [`@using`](xref:mvc/views/razor#using). Einzelne Komponenten können über den Namen hinzugefügt werden.
 
-In den folgenden Beispielen ist `MyComponentLib1` eine Komponentenbibliothek, die eine `SalesReport`-Komponente enthält.
+In den folgenden Beispielen ist `ComponentLibrary` eine Komponentenbibliothek, die die `Component1`-Komponente (`Component1.razor`) enthält. Die `Component1`-Komponente ist eine Beispielkomponente, die bei der Erstellung der Bibliothek automatisch durch die RCL-Projektvorlage hinzugefügt wird.
 
-Die `SalesReport`-Komponente kann über ihren vollständigen Typnamen mit Namespace referenziert werden:
+Verweisen Sie mit dem zugehörigen Namespace auf die `Component1`-Komponente:
 
 ```razor
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<MyComponentLib1.SalesReport />
+<ComponentLibrary.Component1 />
 ```
 
-Auf die Komponente kann auch verwiesen werden, wenn die Bibliothek mit einer `@using`-Direktive in den Gültigkeitsbereich eingebunden wird:
+Alternativ können Sie die Bibliothek mit einer [`@using`](xref:mvc/views/razor#using)-Anweisung in den Gültigkeitsbereich einbeziehen und die Komponente ohne ihren Namespace verwenden:
 
 ```razor
-@using MyComponentLib1
+@using ComponentLibrary
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<SalesReport />
+<Component1 />
 ```
 
-Fügen Sie die `@using MyComponentLib1`-Direktive in die `_Import.razor`-Datei der obersten Ebene ein, um die Komponenten der Bibliothek für ein ganzes Projekt zur Verfügung zu stellen. Fügen Sie die Direktive auf beliebiger Ebene zu einer `_Import.razor`-Datei hinzu, um den Namespace auf eine einzelne Seite oder eine Reihe von Seiten innerhalb eines Ordners anzuwenden.
+Fügen Sie die `@using ComponentLibrary`-Anweisung optional in die `_Import.razor`-Datei der obersten Ebene ein, um die Komponenten der Bibliothek für ein ganzes Projekt zur Verfügung zu stellen. Fügen Sie die Anweisung auf beliebiger Ebene zu einer `_Import.razor`-Datei hinzu, um den Namespace auf eine einzelne Komponente oder eine Reihe von Komponenten innerhalb eines Ordners anzuwenden.
 
-## <a name="create-a-razor-components-class-library-with-static-assets"></a>Erstellen einer Klassenbibliothek für Razor-Komponenten mit statischen Objekten
+::: moniker range=">= aspnetcore-5.0"
+
+Um die `my-component`-CSS-Klasse von `Component1` für die Komponente bereitzustellen, stellen Sie eine Verknüpfung mit dem Stylesheet der Bibliothek unter Verwendung der [`Link`-Komponente](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) des Frameworks in `Component1.razor` her:
+
+```razor
+<div class="my-component">
+    <Link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+
+    <p>
+        This Blazor component is defined in the <strong>ComponentLibrary</strong> package.
+    </p>
+</div>
+```
+
+Um das Stylesheet in der gesamten App bereitzustellen, können Sie alternativ eine Verknüpfung mit dem Stylesheet der Bibliothek in der `wwwroot/index.html`-Datei (Blazor WebAssembly) oder `Pages/_Host.cshtml`-Datei (Blazor Server) der App erstellen:
+
+```html
+<head>
+    ...
+    <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+</head>
+```
+
+Wenn die `Link`-Komponente in einer untergeordneten Komponente verwendet wird, ist die verknüpfte Ressource auch für jede andere untergeordnete Komponente der übergeordneten Komponente verfügbar, solange die untergeordnete Komponente mit der `Link`-Komponente gerendert wird. Der Unterschied zwischen der Verwendung der `Link`-Komponente in einer untergeordneten Komponente und dem Platzieren eines `<link>`-HTML-Tags in `wwwroot/index.html` oder `Pages/_Host.cshtml` besteht darin, dass das gerenderte HTML-Tag einer Rahmenkomponente:
+
+* Nach Anwendungszustand geändert werden kann. Ein hartcodiertes `<link>`-HTML-Tag kann nicht nach Anwendungszustand geändert werden.
+* Aus dem HTML-`<head>` entfernt wird, wenn die übergeordnete Komponente nicht mehr gerendert wird.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Um die `my-component`-CSS-Klasse von `Component1`bereitzustellen, stellen Sie eine Verknüpfung mit dem Stylesheet der Bibliothek in der Datei `wwwroot/index.html` (Blazor WebAssembly) oder der Datei `Pages/_Host.cshtml` (Blazor Server) der App her:
+
+```html
+<head>
+    ...
+    <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+</head>
+```
+
+::: moniker-end
+
+## <a name="create-a-no-locrazor-components-class-library-with-static-assets"></a>Erstellen einer Klassenbibliothek für Razor-Komponenten mit statischen Objekten
 
 Eine RCL kann statische Objekte enthalten. Die statischen Objekte sind für jede App verfügbar, die die Bibliothek nutzt. Weitere Informationen finden Sie unter <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
+
+## <a name="supply-components-and-static-assets-to-multiple-hosted-no-locblazor-apps"></a>Bereitstellen von Komponenten und statischen Ressourcen für mehrere gehostete Blazor-Apps
+
+Weitere Informationen finden Sie unter <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries>.
 
 ## <a name="build-pack-and-ship-to-nuget"></a>Erstellen, Verpacken und Liefern an NuGet
 

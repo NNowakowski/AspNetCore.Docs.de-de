@@ -5,7 +5,7 @@ description: Hier erfahren Sie mehr über ASP.NET Core-Vorlagen für Blazor-Apps
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 08/04/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: f1b131947a242323295a763ba2f2473af0ccfb4f
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 65d6a3156419b57eae6c7e41a9778fa25fd88f4f
+ms.sourcegitcommit: 6eacadf1be61679ab8e6f781ece76b7395512879
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944535"
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87758527"
 ---
-# <a name="aspnet-core-blazor-templates"></a>ASP.NET Core-Blazor-Vorlagen
+# <a name="aspnet-core-no-locblazor-templates"></a>ASP.NET Core-Blazor-Vorlagen
 
 Von [Daniel Roth](https://github.com/danroth27) und [Luke Latham](https://github.com/guardrex)
 
@@ -40,17 +40,16 @@ dotnet new blazorwasm --help
 dotnet new blazorserver --help
 ```
 
-## <a name="blazor-project-structure"></a>Blazor-Projektstruktur
+## <a name="no-locblazor-project-structure"></a>Blazor-Projektstruktur
 
-Die folgenden Dateien und Ordner bilden eine Blazor-App, die aus einer Blazor-Vorlage generiert wird:
+Die folgenden Dateien und Ordner bilden eine Blazor-App, die aus einer Blazor-Projektvorlage generiert wird:
 
 * `Program.cs`: Der Einstiegspunkt der App, von dem aus Folgendes eingerichtet wird:
 
   * ASP.NET Core-[Host](xref:fundamentals/host/generic-host) (Blazor Server)
   * WebAssembly-Host (Blazor WebAssembly): Der Code in dieser Datei ist für Apps eindeutig, die aus der Blazor WebAssembly-Vorlage (`blazorwasm`) erstellt wurden.
-    * Die `App`-Komponente, die die Stammkomponente der App ist, wird als `app`-DOM-Element für die `Add`-Methode angegeben.
-    * Dienste können mit der `ConfigureServices`-Methode auf dem Host-Generator konfiguriert werden (z. B. `builder.Services.AddSingleton<IMyDependency, MyDependency>();`).
-    * Die Konfiguration kann über den Host-Generator (`builder.Configuration`) bereitgestellt werden.
+    * Die `App`-Komponente ist die Stammkomponente der App. Die `App`-Komponente wird als das `app`-DOM-Element (`<app>...</app>`) für die Stammkomponentensammlung (`builder.RootComponents.Add<App>("app")`) angegeben.
+    * [Dienste](xref:blazor/fundamentals/dependency-injection) werden hinzugefügt und konfiguriert (z. B. `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
 
 * `Startup.cs` (Blazor Server): Diese Datei enthält die Startlogik der App. Die `Startup`-Klasse definiert zwei Methoden:
 
@@ -61,7 +60,7 @@ Die folgenden Dateien und Ordner bilden eine Blazor-App, die aus einer Blazor-Vo
 
 * `wwwroot/index.html` (Blazor WebAssembly): Die Stammseite der App, die als HTML-Seite implementiert ist:
   * Wenn eine Seite der App zum ersten Mal angefordert wird, wird diese Seite gerendert und in der Antwort zurückgegeben.
-  * Die Seite gibt an, wo die `App`-Stammkomponente gerendert wird. Die `App`-Komponente (`App.razor`) wird in der `AddComponent` -Methode in `Startup.Configure` als `app`-DOM-Element angegeben.
+  * Die Seite gibt an, wo die `App`-Stammkomponente gerendert wird. Die Komponente wird an der Position des `app`-DOM-Elements (`<app>...</app>`) gerendert.
   * Die `_framework/blazor.webassembly.js`-JavaScript-Datei wird geladen:
     * Diese lädt die .NET-Runtime, die App und der App-Abhängigkeiten herunter.
     * Sie initialisiert die Runtime, damit die App ausgeführt werden kann.
@@ -77,9 +76,11 @@ Die folgenden Dateien und Ordner bilden eine Blazor-App, die aus einer Blazor-Vo
   * `Error` (`Error.razor`, nur Blazor Server-App): Wird gerendert, wenn in der App eine nicht behandelte Ausnahme auftritt.
   * `FetchData` (`Pages/FetchData.razor`): Implementiert die Seite zum Abrufen von Daten.
   * `Index` (`Pages/Index.razor`): Implementiert die Homepage.
+  
+* `Properties/launchSettings.json`: Enthält die [Konfiguration der Entwicklungsumgebung](xref:fundamentals/environments#development-and-launchsettingsjson).
 
 * `Shared`-Ordner: Dieser Ordner enthält weitere Benutzeroberflächenkomponenten (`.razor`), die von der App verwendet werden:
-  * `MainLayout` (`MainLayout.razor`): Die Layoutkomponente der App.
+  * `MainLayout` (`MainLayout.razor`): Die [Layoutkomponente](xref:blazor/layouts) der App.
   * `NavMenu` (`NavMenu.razor`): Diese Komponente implementiert die Navigation in der Seitenleiste. Sie schließt die [`NavLink`-Komponente](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>) ein, die Navigationslinks zu anderen Razor-Komponenten rendert. Die <xref:Microsoft.AspNetCore.Components.Routing.NavLink>-Komponente gibt automatisch einen ausgewählten Zustand an, wenn die Komponente geladen wird, sodass der Benutzer nachvollziehen kann, welche Komponente derzeit angezeigt wird.
 
 * `_Imports.razor`: Enthält gängige Razor-Anweisungen, die in die Komponenten der App (`.razor`) eingefügt werden sollen, z. B. [`@using`](xref:mvc/views/razor#using)-Anweisungen für Namespaces.
@@ -88,4 +89,4 @@ Die folgenden Dateien und Ordner bilden eine Blazor-App, die aus einer Blazor-Vo
 
 * `wwwroot`: Der Ordner [Web Root](xref:fundamentals/index#web-root) für die App, der die öffentlichen statischen Ressourcen der App enthält.
 
-* `appsettings.json` (Blazor Server): Konfigurationseinstellungen für die App.
+* `appsettings.json`: Enthält [Konfigurationseinstellungen](xref:blazor/fundamentals/configuration) für die App. In einer Blazor WebAssembly-App befindet sich die Datei mit den App-Einstellungen im Ordner `wwwroot`. In einer Blazor Server-App befindet sich die Datei mit den App-Einstellungen im Projektstamm.

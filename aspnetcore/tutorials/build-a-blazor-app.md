@@ -5,7 +5,7 @@ description: Erstellen Sie Schritt für Schritt eine Blazor-App.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2020
+ms.date: 07/30/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 174a8e561701bb3ebd68ed05e42dfc3d70a9b450
-ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
+ms.openlocfilehash: b58c0c3db685d0a5b082aaf2eb434635bd10e2eb
+ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86176227"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87444032"
 ---
-# <a name="build-a-blazor-todo-list-app"></a>Erstellen einer Blazor-App mit einer Aufgabenliste
+# <a name="build-a-no-locblazor-todo-list-app"></a>Erstellen einer Blazor-App mit einer Aufgabenliste
 
 Von [Daniel Roth](https://github.com/danroth27) und [Luke Latham](https://github.com/guardrex)
 
@@ -32,9 +32,15 @@ In diesem Tutorial erfahren Sie, wie Sie eine Blazor-App erstellen und ändern. 
 > * Erstellen eines Aufgabenlisten-Blazor-App-Projekts
 > * Ändern von Razor-Komponenten
 > * Verwenden von Ereignisbehandlung und Datenbindung in Komponenten
-> * Verwenden von Abhängigkeitsinjektion (DI, Dependency Injection) und Routing in einer Blazor-App
+> * Verwenden von Routing in einer Blazor-App
 
 Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten-App.
+
+## <a name="prerequisites"></a>Voraussetzungen
+
+[!INCLUDE[](~/includes/3.1-SDK.md)]
+
+## <a name="create-a-todo-list-no-locblazor-app"></a>Erstellen einer Aufgabenlisten-Blazor-App
 
 1. Erstellen Sie in einer Befehlsshell eine neue Blazor-App namens `TodoList`:
 
@@ -140,7 +146,7 @@ In diesem Tutorial haben Sie gelernt, wie die folgenden Aufgaben ausgeführt wer
 > * Erstellen eines Aufgabenlisten-Blazor-App-Projekts
 > * Ändern von Razor-Komponenten
 > * Verwenden von Ereignisbehandlung und Datenbindung in Komponenten
-> * Verwenden von Abhängigkeitsinjektion (DI, Dependency Injection) und Routing in einer Blazor-App
+> * Verwenden von Routing in einer Blazor-App
 
 Informationen über Tools für ASP.NET-Core Blazor:
 
