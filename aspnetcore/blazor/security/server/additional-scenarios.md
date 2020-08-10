@@ -1,36 +1,36 @@
 ---
-title: Zusätzliche Sicherheitsszenarios für ASP.NET Core [Blazor Server
+title: Zusätzliche Sicherheitsszenarios für ASP.NET Core Blazor Server
 author: guardrex
-description: Erfahren Sie, wie Sie [Blazor Server für zusätzliche Sicherheitsszenarios konfigurieren.
+description: Erfahren Sie, wie Sie Blazor Server für zusätzliche Sicherheitsszenarios konfigurieren.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: 46de9a22dec540b8dfda7583b7a3c5c2dcbbc549
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8f112a4d71e44cae112e9854fc77dfda4af5a47a
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402324"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87818910"
 ---
-# <a name="aspnet-core-blazor-server-additional-security-scenarios"></a><span data-ttu-id="ad131-103">Zusätzliche Sicherheitsszenarios für ASP.NET Core [Blazor Server</span><span class="sxs-lookup"><span data-stu-id="ad131-103">ASP.NET Core [Blazor Server additional security scenarios</span></span>
+# <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a><span data-ttu-id="b2fd8-103">Zusätzliche Sicherheitsszenarios für ASP.NET Core Blazor Server</span><span class="sxs-lookup"><span data-stu-id="b2fd8-103">ASP.NET Core Blazor Server additional security scenarios</span></span>
 
-<span data-ttu-id="ad131-104">Von [Javier Calvarro Nelson](https://github.com/javiercn)</span><span class="sxs-lookup"><span data-stu-id="ad131-104">By [Javier Calvarro Nelson](https://github.com/javiercn)</span></span>
+<span data-ttu-id="b2fd8-104">Von [Javier Calvarro Nelson](https://github.com/javiercn)</span><span class="sxs-lookup"><span data-stu-id="b2fd8-104">By [Javier Calvarro Nelson](https://github.com/javiercn)</span></span>
 
-## <a name="pass-tokens-to-a-blazor-server-app"></a><span data-ttu-id="ad131-105">Übergeben von Token an eine [Blazor Server-App</span><span class="sxs-lookup"><span data-stu-id="ad131-105">Pass tokens to a [Blazor Server app</span></span>
+## <a name="pass-tokens-to-a-no-locblazor-server-app"></a><span data-ttu-id="b2fd8-105">Übergeben von Token an eine Blazor Server-App</span><span class="sxs-lookup"><span data-stu-id="b2fd8-105">Pass tokens to a Blazor Server app</span></span>
 
-<span data-ttu-id="ad131-106">Token, die außerhalb der [Razor-Komponenten in einer [Blazor Server-App verfügbar sind, können mit dem in diesem Abschnitt beschriebenen Ansatz an Komponenten übergeben werden.</span><span class="sxs-lookup"><span data-stu-id="ad131-106">Tokens available outside of the [Razor components in a [Blazor Server app can be passed to components with the approach described in this section.</span></span> <span data-ttu-id="ad131-107">Beispielcode, einschließlich eines umfassenden `Startup.ConfigureServices`-Beispiels, finden Sie unter [Übergeben von Token an eine serverseitige [Blazor-Anwendung](https://github.com/javiercn/blazor-server-aad-sample).</span><span class="sxs-lookup"><span data-stu-id="ad131-107">For sample code, including a complete `Startup.ConfigureServices` example, see the [Passing tokens to a server-side [Blazor application](https://github.com/javiercn/blazor-server-aad-sample).</span></span>
+<span data-ttu-id="b2fd8-106">Token, die außerhalb der Razor-Komponenten in einer Blazor Server-App verfügbar sind, können mit dem in diesem Abschnitt beschriebenen Ansatz an Komponenten übergeben werden.</span><span class="sxs-lookup"><span data-stu-id="b2fd8-106">Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section.</span></span> <span data-ttu-id="b2fd8-107">Beispielcode, einschließlich eines umfassenden `Startup.ConfigureServices`-Beispiels, finden Sie unter [Übergeben von Token an eine serverseitige Blazor-Anwendung](https://github.com/javiercn/blazor-server-aad-sample).</span><span class="sxs-lookup"><span data-stu-id="b2fd8-107">For sample code, including a complete `Startup.ConfigureServices` example, see the [Passing tokens to a server-side Blazor application](https://github.com/javiercn/blazor-server-aad-sample).</span></span>
 
-<span data-ttu-id="ad131-108">Authentifizieren Sie die [Blazor Server-App genauso wie eine reguläre [Razor Pages- oder MVC-App.</span><span class="sxs-lookup"><span data-stu-id="ad131-108">Authenticate the [Blazor Server app as you would with a regular [Razor Pages or MVC app.</span></span> <span data-ttu-id="ad131-109">Stellen Sie die Token für das Authentifizierungscookie bereit, und speichern Sie diese.</span><span class="sxs-lookup"><span data-stu-id="ad131-109">Provision and save the tokens to the authentication cookie.</span></span> <span data-ttu-id="ad131-110">Zum Beispiel:</span><span class="sxs-lookup"><span data-stu-id="ad131-110">For example:</span></span>
+<span data-ttu-id="b2fd8-108">Authentifizieren Sie die Blazor Server-App genauso wie eine reguläre Razor Pages- oder MVC-App.</span><span class="sxs-lookup"><span data-stu-id="b2fd8-108">Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app.</span></span> <span data-ttu-id="b2fd8-109">Stellen Sie die Token für das Authentifizierungscookie bereit, und speichern Sie diese.</span><span class="sxs-lookup"><span data-stu-id="b2fd8-109">Provision and save the tokens to the authentication cookie.</span></span> <span data-ttu-id="b2fd8-110">Zum Beispiel:</span><span class="sxs-lookup"><span data-stu-id="b2fd8-110">For example:</span></span>
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -48,7 +48,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
 });
 ```
 
-<span data-ttu-id="ad131-111">Definieren Sie eine Klasse, um den anfänglichen App-Zustand mit den Zugriffs- und Aktualisierungstoken zu übergeben:</span><span class="sxs-lookup"><span data-stu-id="ad131-111">Define a class to pass in the initial app state with the access and refresh tokens:</span></span>
+<span data-ttu-id="b2fd8-111">Definieren Sie eine Klasse, um den anfänglichen App-Zustand mit den Zugriffs- und Aktualisierungstoken zu übergeben:</span><span class="sxs-lookup"><span data-stu-id="b2fd8-111">Define a class to pass in the initial app state with the access and refresh tokens:</span></span>
 
 ```csharp
 public class InitialApplicationState
@@ -58,7 +58,7 @@ public class InitialApplicationState
 }
 ```
 
-<span data-ttu-id="ad131-112">Definieren Sie einen **bereichsbezogenen** Tokenanbieterdienst, der innerhalb der [Blazor-App verwendet werden kann, um die Token aus der [Abhängigkeitsinjektion](xref:blazor/fundamentals/dependency-injection) aufzulösen:</span><span class="sxs-lookup"><span data-stu-id="ad131-112">Define a **scoped** token provider service that can be used within the [Blazor app to resolve the tokens from [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection):</span></span>
+<span data-ttu-id="b2fd8-112">Definieren Sie einen **bereichsbezogenen** Tokenanbieterdienst, der innerhalb der Blazor-App verwendet werden kann, um die Token aus der [Abhängigkeitsinjektion](xref:blazor/fundamentals/dependency-injection) aufzulösen:</span><span class="sxs-lookup"><span data-stu-id="b2fd8-112">Define a **scoped** token provider service that can be used within the Blazor app to resolve the tokens from [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection):</span></span>
 
 ```csharp
 public class TokenProvider
@@ -68,7 +68,7 @@ public class TokenProvider
 }
 ```
 
-<span data-ttu-id="ad131-113">Fügen Sie in `Startup.ConfigureServices` Dienste für Folgendes hinzu:</span><span class="sxs-lookup"><span data-stu-id="ad131-113">In `Startup.ConfigureServices`, add services for:</span></span>
+<span data-ttu-id="b2fd8-113">Fügen Sie in `Startup.ConfigureServices` Dienste für Folgendes hinzu:</span><span class="sxs-lookup"><span data-stu-id="b2fd8-113">In `Startup.ConfigureServices`, add services for:</span></span>
 
 * `IHttpClientFactory`
 * `TokenProvider`
@@ -78,7 +78,7 @@ services.AddHttpClient();
 services.AddScoped<TokenProvider>();
 ```
 
-<span data-ttu-id="ad131-114">Erstellen Sie in der Datei `_Host.cshtml` eine Instanz von `InitialApplicationState`, und übergeben Sie diese als Parameter an die App:</span><span class="sxs-lookup"><span data-stu-id="ad131-114">In the `_Host.cshtml` file, create and instance of `InitialApplicationState` and pass it as a parameter to the app:</span></span>
+<span data-ttu-id="b2fd8-114">Erstellen Sie in der Datei `_Host.cshtml` eine Instanz von `InitialApplicationState`, und übergeben Sie diese als Parameter an die App:</span><span class="sxs-lookup"><span data-stu-id="b2fd8-114">In the `_Host.cshtml` file, create and instance of `InitialApplicationState` and pass it as a parameter to the app:</span></span>
 
 ```cshtml
 @using Microsoft.AspNetCore.Authentication
@@ -99,7 +99,7 @@ services.AddScoped<TokenProvider>();
 </app>
 ```
 
-<span data-ttu-id="ad131-115">Lösen Sie in der `App`-Komponente (`App.razor`) den Dienst auf, und initialisieren Sie diesen mit den Daten aus dem Parameter:</span><span class="sxs-lookup"><span data-stu-id="ad131-115">In the `App` component (`App.razor`), resolve the service and initialize it with the data from the parameter:</span></span>
+<span data-ttu-id="b2fd8-115">Lösen Sie in der `App`-Komponente (`App.razor`) den Dienst auf, und initialisieren Sie diesen mit den Daten aus dem Parameter:</span><span class="sxs-lookup"><span data-stu-id="b2fd8-115">In the `App` component (`App.razor`), resolve the service and initialize it with the data from the parameter:</span></span>
 
 ```razor
 @inject TokenProvider TokenProvider
@@ -120,7 +120,7 @@ services.AddScoped<TokenProvider>();
 }
 ```
 
-<span data-ttu-id="ad131-116">Fügen Sie den Tokenanbieter in den Dienst ein, der eine sichere API-Anforderung stellt, und rufen Sie das Token ab, um die API aufzurufen:</span><span class="sxs-lookup"><span data-stu-id="ad131-116">In the service that makes a secure API request, inject the token provider and retrieve the token to call the API:</span></span>
+<span data-ttu-id="b2fd8-116">Fügen Sie den Tokenanbieter in den Dienst ein, der eine sichere API-Anforderung stellt, und rufen Sie das Token ab, um die API aufzurufen:</span><span class="sxs-lookup"><span data-stu-id="b2fd8-116">In the service that makes a secure API request, inject the token provider and retrieve the token to call the API:</span></span>
 
 ```csharp
 public class WeatherForecastService
@@ -150,9 +150,9 @@ public class WeatherForecastService
 }
 ```
 
-## <a name="set-the-authentication-scheme"></a><span data-ttu-id="ad131-117">Festlegen des Authentifizierungsschemas</span><span class="sxs-lookup"><span data-stu-id="ad131-117">Set the authentication scheme</span></span>
+## <a name="set-the-authentication-scheme"></a><span data-ttu-id="b2fd8-117">Festlegen des Authentifizierungsschemas</span><span class="sxs-lookup"><span data-stu-id="b2fd8-117">Set the authentication scheme</span></span>
 
-<span data-ttu-id="ad131-118">Für eine App, die mehr als eine Authentifizierungsmiddleware verwendet und daher über mehr als ein Authentifizierungsschema verfügt, kann das von [Blazor verwendete Schema explizit in der Endpunktkonfiguration von `Startup.Configure` festgelegt werden.</span><span class="sxs-lookup"><span data-stu-id="ad131-118">For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that [Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`.</span></span> <span data-ttu-id="ad131-119">Im folgenden Beispiel wird das Azure Active Directory-Schema festgelegt:</span><span class="sxs-lookup"><span data-stu-id="ad131-119">The following example sets the Azure Active Directory scheme:</span></span>
+<span data-ttu-id="b2fd8-118">Für eine App, die mehr als eine Authentifizierungsmiddleware verwendet und daher über mehr als ein Authentifizierungsschema verfügt, kann das von Blazor verwendete Schema explizit in der Endpunktkonfiguration von `Startup.Configure` festgelegt werden.</span><span class="sxs-lookup"><span data-stu-id="b2fd8-118">For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`.</span></span> <span data-ttu-id="b2fd8-119">Im folgenden Beispiel wird das Azure Active Directory-Schema festgelegt:</span><span class="sxs-lookup"><span data-stu-id="b2fd8-119">The following example sets the Azure Active Directory scheme:</span></span>
 
 ```csharp
 endpoints.MapBlazorHub().RequireAuthorization(
@@ -162,9 +162,9 @@ endpoints.MapBlazorHub().RequireAuthorization(
     });
 ```
 
-## <a name="use-open-id-connect-oidc-v20-endpoints"></a><span data-ttu-id="ad131-120">Verwenden von OpenID Connect 2.0-Endpunkten (OIDC)</span><span class="sxs-lookup"><span data-stu-id="ad131-120">Use Open ID Connect (OIDC) v2.0 endpoints</span></span>
+## <a name="use-openid-connect-oidc-v20-endpoints"></a><span data-ttu-id="b2fd8-120">Verwenden von OpenID Connect v2.0-Endpunkten (OIDC)</span><span class="sxs-lookup"><span data-stu-id="b2fd8-120">Use OpenID Connect (OIDC) v2.0 endpoints</span></span>
 
-<span data-ttu-id="ad131-121">Die Authentifizierungsbibliothek sowie [Blazor-Vorlagen verwenden OpenID Connect 1.0-Endpunkte (OIDC).</span><span class="sxs-lookup"><span data-stu-id="ad131-121">The authentication library and [Blazor templates use Open ID Connect (OIDC) v1.0 endpoints.</span></span> <span data-ttu-id="ad131-122">Zum Verwenden eines 2.0-Endpunkts konfigurieren Sie die Option <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> unter <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:</span><span class="sxs-lookup"><span data-stu-id="ad131-122">To use a v2.0 endpoint, configure the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> option in the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:</span></span>
+<span data-ttu-id="b2fd8-121">Die Authentifizierungsbibliothek sowie Blazor-Vorlagen verwenden OpenID Connect 1.0-Endpunkte (OIDC).</span><span class="sxs-lookup"><span data-stu-id="b2fd8-121">The authentication library and Blazor templates use OpenID Connect (OIDC) v1.0 endpoints.</span></span> <span data-ttu-id="b2fd8-122">Zum Verwenden eines 2.0-Endpunkts konfigurieren Sie die Option <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> unter <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:</span><span class="sxs-lookup"><span data-stu-id="b2fd8-122">To use a v2.0 endpoint, configure the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> option in the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:</span></span>
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, 
@@ -174,7 +174,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
     }
 ```
 
-<span data-ttu-id="ad131-123">Alternativ kann die Einstellung in der Datei mit den App-Einstellungen (`appsettings.json`) festgelegt werden:</span><span class="sxs-lookup"><span data-stu-id="ad131-123">Alternatively, the setting can be made in the app settings (`appsettings.json`) file:</span></span>
+<span data-ttu-id="b2fd8-123">Alternativ kann die Einstellung in der Datei mit den App-Einstellungen (`appsettings.json`) festgelegt werden:</span><span class="sxs-lookup"><span data-stu-id="b2fd8-123">Alternatively, the setting can be made in the app settings (`appsettings.json`) file:</span></span>
 
 ```json
 {
@@ -185,12 +185,12 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
 }
 ```
 
-<span data-ttu-id="ad131-124">Wenn das Anheften eines Segments an die Autorität für den OIDC-Anbieter der App nicht geeignet ist (z. B. bei Nicht-AAD-Anbietern), legen Sie die Eigenschaft <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> direkt fest.</span><span class="sxs-lookup"><span data-stu-id="ad131-124">If tacking on a segment to the authority isn't appropriate for the app's OIDC provider, such as with non-AAD providers, set the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> property directly.</span></span> <span data-ttu-id="ad131-125">Legen Sie die Eigenschaft entweder in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> oder in der Datei mit den App-Einstellungen mit dem <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority>-Schlüssel fest.</span><span class="sxs-lookup"><span data-stu-id="ad131-125">Either set the property in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> or in the app settings file with the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> key.</span></span>
+<span data-ttu-id="b2fd8-124">Wenn das Anheften eines Segments an die Autorität für den OIDC-Anbieter der App nicht geeignet ist (z. B. bei Nicht-AAD-Anbietern), legen Sie die Eigenschaft <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> direkt fest.</span><span class="sxs-lookup"><span data-stu-id="b2fd8-124">If tacking on a segment to the authority isn't appropriate for the app's OIDC provider, such as with non-AAD providers, set the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> property directly.</span></span> <span data-ttu-id="b2fd8-125">Legen Sie die Eigenschaft entweder in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> oder in der Datei mit den App-Einstellungen mit dem <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority>-Schlüssel fest.</span><span class="sxs-lookup"><span data-stu-id="b2fd8-125">Either set the property in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> or in the app settings file with the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> key.</span></span>
 
-### <a name="code-changes"></a><span data-ttu-id="ad131-126">Codeänderungen</span><span class="sxs-lookup"><span data-stu-id="ad131-126">Code changes</span></span>
+### <a name="code-changes"></a><span data-ttu-id="b2fd8-126">Codeänderungen</span><span class="sxs-lookup"><span data-stu-id="b2fd8-126">Code changes</span></span>
 
-* <span data-ttu-id="ad131-127">Die Liste der Ansprüche im ID-Token ändert sich für Endpunkte der Version 2.0.</span><span class="sxs-lookup"><span data-stu-id="ad131-127">The list of claims in the ID token changes for v2.0 endpoints.</span></span> <span data-ttu-id="ad131-128">Weitere Informationen finden Sie unter [Gründe für eine Aktualisierung auf Microsoft Identity Platform (v2.0)](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison)</span><span class="sxs-lookup"><span data-stu-id="ad131-128">For more information, see [Why update to Microsoft identity platform (v2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison)</span></span> <span data-ttu-id="ad131-129">in der Azure-Dokumentation.</span><span class="sxs-lookup"><span data-stu-id="ad131-129">in the Azure documentation.</span></span>
-* <span data-ttu-id="ad131-130">Da Ressourcen in Bereichs-URIs für 2.0-Endpunkte angegeben werden, entfernen Sie die Einstellung der <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Resource?displayProperty=nameWithType>-Eigenschaft in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:</span><span class="sxs-lookup"><span data-stu-id="ad131-130">Since resources are specified in scope URIs for v2.0 endpoints, remove the the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Resource?displayProperty=nameWithType> property setting in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:</span></span>
+* <span data-ttu-id="b2fd8-127">Die Liste der Ansprüche im ID-Token ändert sich für Endpunkte der Version 2.0.</span><span class="sxs-lookup"><span data-stu-id="b2fd8-127">The list of claims in the ID token changes for v2.0 endpoints.</span></span> <span data-ttu-id="b2fd8-128">Weitere Informationen finden Sie unter [Gründe für eine Aktualisierung auf Microsoft Identity Platform (v2.0)](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison)</span><span class="sxs-lookup"><span data-stu-id="b2fd8-128">For more information, see [Why update to Microsoft identity platform (v2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison)</span></span> <span data-ttu-id="b2fd8-129">in der Azure-Dokumentation.</span><span class="sxs-lookup"><span data-stu-id="b2fd8-129">in the Azure documentation.</span></span>
+* <span data-ttu-id="b2fd8-130">Da Ressourcen in Bereichs-URIs für 2.0-Endpunkte angegeben werden, entfernen Sie die Einstellung der <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Resource?displayProperty=nameWithType>-Eigenschaft in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:</span><span class="sxs-lookup"><span data-stu-id="b2fd8-130">Since resources are specified in scope URIs for v2.0 endpoints, remove the the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Resource?displayProperty=nameWithType> property setting in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:</span></span>
 
   ```csharp
   services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options => 
@@ -221,4 +221,4 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
 }
 ```
 
-<span data-ttu-id="ad131-131">Sie finden den zu verwendenden App-ID-URI in der Beschreibung zur App-Registrierung des OIDC-Anbieters.</span><span class="sxs-lookup"><span data-stu-id="ad131-131">You can find the App ID URI to use in the OIDC provider app registration description.</span></span>
+<span data-ttu-id="b2fd8-131">Sie finden den zu verwendenden App-ID-URI in der Beschreibung zur App-Registrierung des OIDC-Anbieters.</span><span class="sxs-lookup"><span data-stu-id="b2fd8-131">You can find the App ID URI to use in the OIDC provider app registration description.</span></span>

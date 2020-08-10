@@ -1,181 +1,258 @@
 ---
-title: '[Blazor-Zustandsverwaltung in ASP.NET Core'
+title: Blazor-Zustandsverwaltung in ASP.NET Core
 author: guardrex
-description: Erfahren Sie, wie Sie den Zustand in [Blazor Server-Apps beibehalten.
+description: Erfahren Sie, wie Sie den Zustand in Blazor Server-Apps beibehalten.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/22/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/state-management
-ms.openlocfilehash: a6c646425145855538f408ec6cafdb151cd24b86
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+zone_pivot_groups: blazor-hosting-models
+ms.openlocfilehash: e4ec360e1f9fb0bc5784b3120d7842faf24cfa5b
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401947"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87818767"
 ---
-# <a name="aspnet-core-blazor-state-management"></a><span data-ttu-id="4543f-103">[Blazor-Zustandsverwaltung in ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="4543f-103">ASP.NET Core [Blazor state management</span></span>
+# <a name="aspnet-core-no-locblazor-state-management"></a><span data-ttu-id="27361-103">Blazor-Zustandsverwaltung in ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="27361-103">ASP.NET Core Blazor state management</span></span>
 
-<span data-ttu-id="4543f-104">Von [Steve Sanderson](https://github.com/SteveSandersonMS)</span><span class="sxs-lookup"><span data-stu-id="4543f-104">By [Steve Sanderson](https://github.com/SteveSandersonMS)</span></span>
+<span data-ttu-id="27361-104">Von [Steve Sanderson](https://github.com/SteveSandersonMS) und [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="27361-104">By [Steve Sanderson](https://github.com/SteveSandersonMS) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="4543f-105">[Blazor Server ist ein zustandsbehaftetes App-Framework.</span><span class="sxs-lookup"><span data-stu-id="4543f-105">[Blazor Server is a stateful app framework.</span></span> <span data-ttu-id="4543f-106">In den meisten Fällen behält die App eine laufende Verbindung mit dem Server bei.</span><span class="sxs-lookup"><span data-stu-id="4543f-106">Most of the time, the app maintains an ongoing connection to the server.</span></span> <span data-ttu-id="4543f-107">Der Benutzerzustand wird in einer *Verbindung* im Speicher des Servers gespeichert.</span><span class="sxs-lookup"><span data-stu-id="4543f-107">The user's state is held in the server's memory in a *circuit*.</span></span> 
+::: zone pivot="webassembly"
 
-<span data-ttu-id="4543f-108">Beispiele für den Zustand einer Benutzerverbindung sind:</span><span class="sxs-lookup"><span data-stu-id="4543f-108">Examples of state held for a user's circuit include:</span></span>
+<span data-ttu-id="27361-105">Der Benutzerzustand, der in einer Blazor WebAssembly-App erstellt wird, wird im Arbeitsspeicher des Browsers gespeichert.</span><span class="sxs-lookup"><span data-stu-id="27361-105">User state created in a Blazor WebAssembly app is held in the browser's memory.</span></span>
 
-* <span data-ttu-id="4543f-109">Die gerenderte Benutzeroberfläche: die Hierarchie der Komponenteninstanzen und deren neueste Renderausgabe.</span><span class="sxs-lookup"><span data-stu-id="4543f-109">The rendered UI: The hierarchy of component instances and their most recent render output.</span></span>
-* <span data-ttu-id="4543f-110">Die Werte aller Felder und Eigenschaften in Komponenteninstanzen.</span><span class="sxs-lookup"><span data-stu-id="4543f-110">The values of any fields and properties in component instances.</span></span>
-* <span data-ttu-id="4543f-111">Daten, die in [-Abhängigkeitsinjektion (DI)](xref:fundamentals/dependency-injection)-Dienstinstanzen gespeichert sind, die auf die Verbindung beschränkt sind.</span><span class="sxs-lookup"><span data-stu-id="4543f-111">Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit.</span></span>
+<span data-ttu-id="27361-106">Beispiele für den Benutzerzustand im Arbeitsspeicher des Browsers sind:</span><span class="sxs-lookup"><span data-stu-id="27361-106">Examples of user state held in browser memory include:</span></span>
 
-> [!NOTE]
-> <span data-ttu-id="4543f-112">In diesem Artikel wird die Zustandspersistenz in [Blazor Server-Apps behandelt.</span><span class="sxs-lookup"><span data-stu-id="4543f-112">This article addresses state persistence in [Blazor Server apps.</span></span> <span data-ttu-id="4543f-113">[Blazor WebAssembly-Apps können [clientseitige Zustandspersistenz im Browser nutzen](#client-side-in-the-browser), erfordern jedoch benutzerdefinierte Lösungen oder Drittanbieterpakete, die den Rahmen dieses Artikels sprengen würden.</span><span class="sxs-lookup"><span data-stu-id="4543f-113">[Blazor WebAssembly apps can take advantage of [client-side state persistence in the browser](#client-side-in-the-browser) but require custom solutions or 3rd party packages beyond the scope of this article.</span></span>
+* <span data-ttu-id="27361-107">Die Hierarchie der Komponenteninstanzen und deren neueste Renderausgabe in der gerenderten Benutzeroberfläche.</span><span class="sxs-lookup"><span data-stu-id="27361-107">The hierarchy of component instances and their most recent render output in the rendered UI.</span></span>
+* <span data-ttu-id="27361-108">Die Werte der Felder und Eigenschaften in Komponenteninstanzen.</span><span class="sxs-lookup"><span data-stu-id="27361-108">The values of fields and properties in component instances.</span></span>
+* <span data-ttu-id="27361-109">Daten, die in [DI](xref:fundamentals/dependency-injection)-Dienstinstanzen (Dependency Injection, Abhängigkeitsinjektion) gespeichert sind.</span><span class="sxs-lookup"><span data-stu-id="27361-109">Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances.</span></span>
+* <span data-ttu-id="27361-110">Werte, die durch [JavaScript-Interop](xref:blazor/call-javascript-from-dotnet)-Aufrufe festgelegt werden.</span><span class="sxs-lookup"><span data-stu-id="27361-110">Values set through [JavaScript interop](xref:blazor/call-javascript-from-dotnet) calls.</span></span>
 
-## <a name="blazor-circuits"></a><span data-ttu-id="4543f-114">[Blazor-Verbindungen</span><span class="sxs-lookup"><span data-stu-id="4543f-114">[Blazor circuits</span></span>
+<span data-ttu-id="27361-111">Wenn ein Benutzer seinen Browser schließt und erneut öffnet oder die Seite erneut lädt, geht der Benutzerzustand im Arbeitsspeicher des Browsers verloren.</span><span class="sxs-lookup"><span data-stu-id="27361-111">When a user closes and re-opens their browser or reloads the page, user state held in the browser's memory is lost.</span></span>
 
-<span data-ttu-id="4543f-115">Wenn die Netzwerkverbindung vorübergehend getrennt wird, versucht [Blazor, den Benutzer nochmals mit der ursprünglichen Verbindung zu verbinden, damit er die mit der Verwendung der App fortfahren kann.</span><span class="sxs-lookup"><span data-stu-id="4543f-115">If a user experiences a temporary network connection loss, [Blazor attempts to reconnect the user to their original circuit so they can continue to use the app.</span></span> <span data-ttu-id="4543f-116">Es ist jedoch nicht immer möglich, einen Benutzer noch mal mit der ursprünglichen Verbindung im Arbeitsspeicher des Servers zu verbinden:</span><span class="sxs-lookup"><span data-stu-id="4543f-116">However, reconnecting a user to their original circuit in the server's memory isn't always possible:</span></span>
+## <a name="persist-state-across-browser-sessions"></a><span data-ttu-id="27361-112">Persistentes Speichern des Zustands über Browsersitzungen hinweg</span><span class="sxs-lookup"><span data-stu-id="27361-112">Persist state across browser sessions</span></span>
 
-* <span data-ttu-id="4543f-117">Der Server kann eine getrennte Verbindung nicht dauerhaft beibehalten.</span><span class="sxs-lookup"><span data-stu-id="4543f-117">The server can't retain a disconnected circuit forever.</span></span> <span data-ttu-id="4543f-118">Der Server muss eine getrennte Verbindung nach einem Timeout freigeben, oder wenn der Server nicht über genügend Arbeitsspeicher verfügt.</span><span class="sxs-lookup"><span data-stu-id="4543f-118">The server must release a disconnected circuit after a timeout or when the server is under memory pressure.</span></span>
-* <span data-ttu-id="4543f-119">In Bereitstellungsumgebungen mit mehreren Servern und Lastenausgleich kann es vorkommen, dass ein Server, der Anforderungen verarbeitet, zu einem bestimmten Zeitpunkt nicht mehr verfügbar ist.</span><span class="sxs-lookup"><span data-stu-id="4543f-119">In multiserver, load-balanced deployment environments, any server processing requests may become unavailable at any given time.</span></span> <span data-ttu-id="4543f-120">Bei einzelnen Servern tritt möglicherweise ein Fehler auf, oder sie werden automatisch entfernt, wenn nicht mehr das gesamte Anforderungsvolumen verarbeitet werden muss.</span><span class="sxs-lookup"><span data-stu-id="4543f-120">Individual servers may fail or be automatically removed when no longer required to handle the overall volume of requests.</span></span> <span data-ttu-id="4543f-121">Der ursprüngliche Server ist möglicherweise nicht verfügbar, wenn der Benutzer versucht, noch mal eine Verbindung herzustellen.</span><span class="sxs-lookup"><span data-stu-id="4543f-121">The original server may not be available when the user attempts to reconnect.</span></span>
-* <span data-ttu-id="4543f-122">Der Benutzer kann den Browser schließen und noch mal öffnen oder die Seite erneut laden, wodurch alle Zustände im Arbeitsspeicher des Browsers entfernt werden.</span><span class="sxs-lookup"><span data-stu-id="4543f-122">The user might close and re-open their browser or reload the page, which removes any state held in the browser's memory.</span></span> <span data-ttu-id="4543f-123">So gehen beispielsweise Werte, die durch JavaScript-Interoperabilitätsaufrufe festgelegt wurden, verloren.</span><span class="sxs-lookup"><span data-stu-id="4543f-123">For example, values set through JavaScript interop calls are lost.</span></span>
+<span data-ttu-id="27361-113">Im Allgemeinen gilt: Die Beibehaltung des Zustands über mehrere Browsersitzungen hinweg erfolgt in Szenarien, in denen Benutzer aktiv Daten erstellen und nicht nur Daten lesen, die bereits vorhanden sind.</span><span class="sxs-lookup"><span data-stu-id="27361-113">Generally, maintain state across browser sessions where users are actively creating data, not simply reading data that already exists.</span></span>
 
-<span data-ttu-id="4543f-124">Wenn ein Benutzer nicht erneut mit der ursprünglichen Verbindung verbunden werden kann, erhält der Benutzer eine neue Verbindung mit einem leeren Zustand.</span><span class="sxs-lookup"><span data-stu-id="4543f-124">When a user can't be reconnected to their original circuit, the user receives a new circuit with an empty state.</span></span> <span data-ttu-id="4543f-125">Dies entspricht dem Schließen und erneuten Öffnen einer Desktop-App.</span><span class="sxs-lookup"><span data-stu-id="4543f-125">This is equivalent to closing and re-opening a desktop app.</span></span>
+<span data-ttu-id="27361-114">Um den Zustand über Browsersitzungen hinweg beizubehalten, muss die App die Daten an einem anderen Speicherort als im Arbeitsspeicher des Browsers persistent speichern.</span><span class="sxs-lookup"><span data-stu-id="27361-114">To preserve state across browser sessions, the app must persist the data to some other storage location than the browser's memory.</span></span> <span data-ttu-id="27361-115">Die Zustandspersistenz erfolgt nicht automatisch.</span><span class="sxs-lookup"><span data-stu-id="27361-115">State persistence isn't automatic.</span></span> <span data-ttu-id="27361-116">Sie müssen bei der Entwicklung der App Schritte ausführen, um zustandsbehaftete Datenpersistenz zu implementieren.</span><span class="sxs-lookup"><span data-stu-id="27361-116">You must take steps when developing the app to implement stateful data persistence.</span></span>
 
-## <a name="preserve-state-across-circuits"></a><span data-ttu-id="4543f-126">Beibehaltung von zustandsübergreifenden Verbindungen</span><span class="sxs-lookup"><span data-stu-id="4543f-126">Preserve state across circuits</span></span>
+<span data-ttu-id="27361-117">Die Datenpersistenz ist in der Regel nur für Zustände mit hohem Wert erforderlich, die von Benutzern mit großem Aufwand erstellt wurden.</span><span class="sxs-lookup"><span data-stu-id="27361-117">Data persistence is typically only required for high-value state that users expended effort to create.</span></span> <span data-ttu-id="27361-118">In den folgenden Beispielen werden durch die Beibehaltung des Zustands Zeit- oder Hilfsmitteleinsparungen in kommerziellen Aktivitäten erzielt:</span><span class="sxs-lookup"><span data-stu-id="27361-118">In the following examples, persisting state either saves time or aids in commercial activities:</span></span>
 
-<span data-ttu-id="4543f-127">In einigen Szenarios ist die Beibehaltung des Zustands über mehrere Verbindungen wünschenswert.</span><span class="sxs-lookup"><span data-stu-id="4543f-127">In some scenarios, preserving state across circuits is desirable.</span></span> <span data-ttu-id="4543f-128">Eine App kann in folgenden Fällen wichtige Daten für einen Benutzer beibehalten:</span><span class="sxs-lookup"><span data-stu-id="4543f-128">An app can retain important data for a user if:</span></span>
+* <span data-ttu-id="27361-119">Webformulare mit mehreren Schritten: Es ist für den Benutzer zeitaufwändig, Daten für mehrere abgeschlossene Schritte eines mehrstufigen Webformulars wiederholt einzugeben, wenn der Zustand nicht mehr vorhanden ist.</span><span class="sxs-lookup"><span data-stu-id="27361-119">Multi-step web forms: It's time-consuming for a user to re-enter data for several completed steps of a multi-step web form if their state is lost.</span></span> <span data-ttu-id="27361-120">Der Benutzer verliert in diesem Szenario seinen Zustand, wenn er vom Formular weg navigiert und später zurückkehrt.</span><span class="sxs-lookup"><span data-stu-id="27361-120">A user loses state in this scenario if they navigate away from the form and return later.</span></span>
+* <span data-ttu-id="27361-121">Warenkörbe: Kommerziell wichtige Komponenten einer App, die potenzielle Umsätze ermöglichen, können beibehalten werden.</span><span class="sxs-lookup"><span data-stu-id="27361-121">Shopping carts: Any commercially important component of an app that represents potential revenue can be maintained.</span></span> <span data-ttu-id="27361-122">Ein Benutzer, der seinen Zustand verliert und dessen Warenkorb dadurch gelöscht wird, kann weniger Produkte oder Dienste kaufen, wenn er zu einem späteren Zeitpunkt zur Website zurückkehrt.</span><span class="sxs-lookup"><span data-stu-id="27361-122">A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.</span></span>
 
-* <span data-ttu-id="4543f-129">Der Webserver ist nicht mehr verfügbar.</span><span class="sxs-lookup"><span data-stu-id="4543f-129">The web server becomes unavailable.</span></span>
-* <span data-ttu-id="4543f-130">Der Browser des Benutzers ist gezwungen, eine neue Verbindung mit einem neuen Webserver zu starten.</span><span class="sxs-lookup"><span data-stu-id="4543f-130">The user's browser is forced to start a new circuit with a new web server.</span></span>
+<span data-ttu-id="27361-123">Eine App kann nur den *App-Zustand* beibehalten.</span><span class="sxs-lookup"><span data-stu-id="27361-123">An app can only persist *app state*.</span></span> <span data-ttu-id="27361-124">Benutzeroberflächen wie Komponenteninstanzen und deren Renderingstrukturen können nicht beibehalten werden.</span><span class="sxs-lookup"><span data-stu-id="27361-124">UIs can't be persisted, such as component instances and their render trees.</span></span> <span data-ttu-id="27361-125">Komponenten und Renderingstrukturen sind in der Regel nicht serialisierbar.</span><span class="sxs-lookup"><span data-stu-id="27361-125">Components and render trees aren't generally serializable.</span></span> <span data-ttu-id="27361-126">Um den Benutzeroberflächenzustand (z. B. von den erweiterten Knoten einer Strukturansicht) zu erhalten, muss die App über benutzerdefinierten Code verfügen, um das Verhalten des Benutzeroberflächenzustands als serialisierbaren App-Zustand modellieren zu können.</span><span class="sxs-lookup"><span data-stu-id="27361-126">To persist UI state, such as the expanded nodes of a tree view control, the app must use custom code to model the behavior of the UI state as serializable app state.</span></span>
 
-<span data-ttu-id="4543f-131">Im Allgemeinen gilt: die Beibehaltung des Zustands über mehrere Verbindungen hinweg erfolgt in Szenarios, in denen Benutzer aktiv Daten erstellen und nicht nur Daten lesen, die bereits vorhanden sind.</span><span class="sxs-lookup"><span data-stu-id="4543f-131">In general, maintaining state across circuits applies to scenarios where users are actively creating data, not simply reading data that already exists.</span></span>
+## <a name="where-to-persist-state"></a><span data-ttu-id="27361-127">Speicherort des Zustands</span><span class="sxs-lookup"><span data-stu-id="27361-127">Where to persist state</span></span>
 
-<span data-ttu-id="4543f-132">Um den Zustand über eine einzelne Verbindung hinaus beizubehalten, *speichern Sie die Daten nicht nur im Arbeitsspeicher des Servers*.</span><span class="sxs-lookup"><span data-stu-id="4543f-132">To preserve state beyond a single circuit, *don't merely store the data in the server's memory*.</span></span> <span data-ttu-id="4543f-133">Die App muss die Daten an einem anderen Speicherort speichern.</span><span class="sxs-lookup"><span data-stu-id="4543f-133">The app must persist the data to some other storage location.</span></span> <span data-ttu-id="4543f-134">Die Zustandspersistenz erfolgt nicht automatisch.</span><span class="sxs-lookup"><span data-stu-id="4543f-134">State persistence isn't automatic.</span></span> <span data-ttu-id="4543f-135">Sie müssen bei der Entwicklung der App Schritte ausführen, um zustandsbehaftete Datenpersistenz zu implementieren.</span><span class="sxs-lookup"><span data-stu-id="4543f-135">You must take steps when developing the app to implement stateful data persistence.</span></span>
+<span data-ttu-id="27361-128">Es gibt drei allgemeine Speicherorte für die Beibehaltung des Zustands:</span><span class="sxs-lookup"><span data-stu-id="27361-128">Three common locations exist for persisting state:</span></span>
 
-<span data-ttu-id="4543f-136">Die Datenpersistenz ist in der Regel nur für Zustände mit hohem Wert erforderlich, die von den Benutzern mit großem Aufwand erstellt wurden.</span><span class="sxs-lookup"><span data-stu-id="4543f-136">Data persistence is typically only required for high-value state that users have expended effort to create.</span></span> <span data-ttu-id="4543f-137">In den folgenden Beispielen werden durch die Beibehaltung des Zustands Zeit- oder Hilfsmitteleinsparungen in kommerziellen Aktivitäten erzielt:</span><span class="sxs-lookup"><span data-stu-id="4543f-137">In the following examples, persisting state either saves time or aids in commercial activities:</span></span>
+* [<span data-ttu-id="27361-129">Serverseitige Speicherung</span><span class="sxs-lookup"><span data-stu-id="27361-129">Server-side storage</span></span>](#server-side-storage)
+* [<span data-ttu-id="27361-130">URL</span><span class="sxs-lookup"><span data-stu-id="27361-130">URL</span></span>](#url)
+* [<span data-ttu-id="27361-131">Browserspeicherung</span><span class="sxs-lookup"><span data-stu-id="27361-131">Browser storage</span></span>](#browser-storage)
 
-* <span data-ttu-id="4543f-138">Mehrstufiges Webformular: Es ist für den Benutzer zeitaufwändig, Daten für mehrere abgeschlossene Schritte eines mehrstufigen Prozesses wiederholt einzugeben, wenn der Zustand nicht mehr vorhanden ist.</span><span class="sxs-lookup"><span data-stu-id="4543f-138">Multistep webform: It's time-consuming for a user to re-enter data for several completed steps of a multistep process if their state is lost.</span></span> <span data-ttu-id="4543f-139">Der Benutzer verliert in diesem Szenario seinen Zustand, wenn er vom mehrstufigen Formular weg navigiert und später zum Formular zurückkehrt.</span><span class="sxs-lookup"><span data-stu-id="4543f-139">A user loses state in this scenario if they navigate away from the multistep form and return to the form later.</span></span>
-* <span data-ttu-id="4543f-140">Warenkorb: Kommerziell wichtige Komponenten einer App, die potenzielle Umsätze ermöglichen, können beibehalten werden.</span><span class="sxs-lookup"><span data-stu-id="4543f-140">Shopping cart: Any commercially important component of an app that represents potential revenue can be maintained.</span></span> <span data-ttu-id="4543f-141">Ein Benutzer, der seinen Zustand verliert und dessen Warenkorb dadurch gelöscht wird, kann weniger Produkte oder Dienste kaufen, wenn er zu einem späteren Zeitpunkt zur Website zurückkehrt.</span><span class="sxs-lookup"><span data-stu-id="4543f-141">A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.</span></span>
+### <a name="server-side-storage"></a><span data-ttu-id="27361-132">Serverseitige Speicherung</span><span class="sxs-lookup"><span data-stu-id="27361-132">Server-side storage</span></span>
 
-<span data-ttu-id="4543f-142">Es ist in der Regel nicht notwendig, einen Zustand beizubehalten, der einfach erneut erstellt werden kann, z. B. den in ein Anmeldedialogfeld eingegebenen Benutzernamen, der nicht übermittelt wurde.</span><span class="sxs-lookup"><span data-stu-id="4543f-142">It's usually not necessary to preserve easily-recreated state, such as the username entered into a sign-in dialog that hasn't been submitted.</span></span>
+<span data-ttu-id="27361-133">Für permanente Datenspeicherung, die mehrere Benutzer und Geräte umfasst, kann die App unabhängigen serverseitigen Speicher verwenden, auf den über eine Web-API zugegriffen wird.</span><span class="sxs-lookup"><span data-stu-id="27361-133">For permanent data persistence that spans multiple users and devices, the app can use independent server-side storage accessed via a web API.</span></span> <span data-ttu-id="27361-134">Folgende Optionen sind verfügbar:</span><span class="sxs-lookup"><span data-stu-id="27361-134">Options include:</span></span>
 
-> [!IMPORTANT]
-> <span data-ttu-id="4543f-143">Eine App kann nur den *App-Zustand* beibehalten.</span><span class="sxs-lookup"><span data-stu-id="4543f-143">An app can only persist *app state*.</span></span> <span data-ttu-id="4543f-144">Benutzeroberflächen wie Komponenteninstanzen und deren Renderingstrukturen können nicht beibehalten werden.</span><span class="sxs-lookup"><span data-stu-id="4543f-144">UIs can't be persisted, such as component instances and their render trees.</span></span> <span data-ttu-id="4543f-145">Komponenten und Renderingstrukturen sind in der Regel nicht serialisierbar.</span><span class="sxs-lookup"><span data-stu-id="4543f-145">Components and render trees aren't generally serializable.</span></span> <span data-ttu-id="4543f-146">Um eine Art von Benutzeroberflächenzustand, z. B. von den erweiterten Knoten einer Strukturansicht, zu erhalten, muss die App über benutzerdefinierten Code verfügen, um das Verhalten als serialisierbaren App-Zustand modellieren zu können.</span><span class="sxs-lookup"><span data-stu-id="4543f-146">To persist something similar to UI state, such as the expanded nodes of a TreeView, the app must have custom code to model the behavior as serializable app state.</span></span>
+* <span data-ttu-id="27361-135">Blob-Speicher</span><span class="sxs-lookup"><span data-stu-id="27361-135">Blob storage</span></span>
+* <span data-ttu-id="27361-136">Schlüssel-Wert-Speicher</span><span class="sxs-lookup"><span data-stu-id="27361-136">Key-value storage</span></span>
+* <span data-ttu-id="27361-137">Relationale Datenbank</span><span class="sxs-lookup"><span data-stu-id="27361-137">Relational database</span></span>
+* <span data-ttu-id="27361-138">Table Storage</span><span class="sxs-lookup"><span data-stu-id="27361-138">Table storage</span></span>
 
-## <a name="where-to-persist-state"></a><span data-ttu-id="4543f-147">Speicherort des Zustands</span><span class="sxs-lookup"><span data-stu-id="4543f-147">Where to persist state</span></span>
+<span data-ttu-id="27361-139">Nachdem die Daten gespeichert wurden, wird der Zustand des Benutzers beibehalten und ist in jeder neuen Browsersitzung verfügbar.</span><span class="sxs-lookup"><span data-stu-id="27361-139">After data is saved, the user's state is retained and available in any new browser session.</span></span>
 
-<span data-ttu-id="4543f-148">Es gibt drei allgemeine Speicherorte für die Beibehaltung des Zustands in einer [Blazor Server-App.</span><span class="sxs-lookup"><span data-stu-id="4543f-148">Three common locations exist for persisting state in a [Blazor Server app.</span></span> <span data-ttu-id="4543f-149">Die Ansätze eignen sich jeweils für verschiedene Szenarios und weisen unterschiedliche Einschränkungen auf:</span><span class="sxs-lookup"><span data-stu-id="4543f-149">Each approach is best suited to different scenarios and has different caveats:</span></span>
+<span data-ttu-id="27361-140">Da Blazor WebAssembly-Apps vollständig im Browser des Benutzers ausgeführt werden, benötigen sie zusätzliche Maßnahmen für den Zugriff auf sichere externe Systeme, z. B. auf Speicherdienste und Datenbanken.</span><span class="sxs-lookup"><span data-stu-id="27361-140">Because Blazor WebAssembly apps run entirely in the user's browser, they require additional measures to access secure external systems, such as storage services and databases.</span></span> <span data-ttu-id="27361-141">Blazor WebAssembly-Apps werden auf die gleiche Weise gesichert wie Single-Page-Anwendungen (SPAs).</span><span class="sxs-lookup"><span data-stu-id="27361-141">Blazor WebAssembly apps are secured in the same manner as Single Page Applications (SPAs).</span></span> <span data-ttu-id="27361-142">In der Regel authentifiziert eine App einen Benutzer über [OAuth](https://oauth.net)/[OpenID Connect (OIDC)](https://openid.net/connect/) und interagiert dann über Web-API-Aufrufe einer serverseitigen App mit Speicherdiensten und Datenbanken.</span><span class="sxs-lookup"><span data-stu-id="27361-142">Typically, an app authenticates a user via [OAuth](https://oauth.net)/[OpenID Connect (OIDC)](https://openid.net/connect/) and then interacts with storage services and databases through web API calls to a server-side app.</span></span> <span data-ttu-id="27361-143">Die serverseitige Anwendung vermittelt die Übertragung von Daten zwischen der Blazor WebAssembly-Anwendung und dem Speicherdienst oder der Datenbank.</span><span class="sxs-lookup"><span data-stu-id="27361-143">The server-side app mediates the transfer of data between the Blazor WebAssembly app and the storage service or database.</span></span> <span data-ttu-id="27361-144">Die Blazor WebAssembly-App unterhält eine kurzlebige Verbindung mit der serverseitigen App, während die serverseitige App über eine permanente Verbindung mit dem Speicher verfügt.</span><span class="sxs-lookup"><span data-stu-id="27361-144">The Blazor WebAssembly app maintains an ephemeral connection to the server-side app, while the server-side app has a persistent connection to storage.</span></span>
 
-* [<span data-ttu-id="4543f-150">Serverseitig in einer Datenbank</span><span class="sxs-lookup"><span data-stu-id="4543f-150">Server-side in a database</span></span>](#server-side-in-a-database)
-* [<span data-ttu-id="4543f-151">URL</span><span class="sxs-lookup"><span data-stu-id="4543f-151">URL</span></span>](#url)
-* [<span data-ttu-id="4543f-152">Clientseitig im Browser</span><span class="sxs-lookup"><span data-stu-id="4543f-152">Client-side in the browser</span></span>](#client-side-in-the-browser)
+<span data-ttu-id="27361-145">Weitere Informationen finden Sie in den folgenden Ressourcen:</span><span class="sxs-lookup"><span data-stu-id="27361-145">For more information, see the following resources:</span></span>
 
-### <a name="server-side-in-a-database"></a><span data-ttu-id="4543f-153">Serverseitig in einer Datenbank</span><span class="sxs-lookup"><span data-stu-id="4543f-153">Server-side in a database</span></span>
+* <xref:blazor/call-web-api>
+* <xref:blazor/security/webassembly/index>
+* <span data-ttu-id="27361-146">Blazor *Sicherheit und Identity* -Artikel</span><span class="sxs-lookup"><span data-stu-id="27361-146">Blazor *Security and Identity* articles</span></span>
 
-<span data-ttu-id="4543f-154">Für die dauerhafte Beibehaltung von Daten oder für Daten, die mehrere Benutzer oder Geräte einbeziehen müssen, ist eine unabhängige serverseitige Datenbank in den meisten Fällen die beste Lösung.</span><span class="sxs-lookup"><span data-stu-id="4543f-154">For permanent data persistence or for any data that must span multiple users or devices, an independent server-side database is almost certainly the best choice.</span></span> <span data-ttu-id="4543f-155">Zu den Optionen gehören:</span><span class="sxs-lookup"><span data-stu-id="4543f-155">Options include:</span></span>
+<span data-ttu-id="27361-147">Weitere Informationen zu den Azure-Datenspeicheroptionen finden Sie hier:</span><span class="sxs-lookup"><span data-stu-id="27361-147">For more information on Azure data storage options, see the following:</span></span>
 
-* <span data-ttu-id="4543f-156">Relationale SQL-Datenbank</span><span class="sxs-lookup"><span data-stu-id="4543f-156">Relational SQL database</span></span>
-* <span data-ttu-id="4543f-157">Schlüssel-Wert-Speicherung</span><span class="sxs-lookup"><span data-stu-id="4543f-157">Key-value store</span></span>
-* <span data-ttu-id="4543f-158">Blob-Speicher</span><span class="sxs-lookup"><span data-stu-id="4543f-158">Blob store</span></span>
-* <span data-ttu-id="4543f-159">Tabellenspeicher</span><span class="sxs-lookup"><span data-stu-id="4543f-159">Table store</span></span>
+* [<span data-ttu-id="27361-148">Azure-Datenbanken</span><span class="sxs-lookup"><span data-stu-id="27361-148">Azure Databases</span></span>](https://azure.microsoft.com/product-categories/databases/)
+* [<span data-ttu-id="27361-149">Azure Storage-Dokumentation</span><span class="sxs-lookup"><span data-stu-id="27361-149">Azure Storage Documentation</span></span>](/azure/storage/)
 
-<span data-ttu-id="4543f-160">Nachdem die Daten in der Datenbank gespeichert wurden, kann der Benutzer jederzeit eine neue Verbindung starten.</span><span class="sxs-lookup"><span data-stu-id="4543f-160">After data is saved in the database, a new circuit can be started by a user at any time.</span></span> <span data-ttu-id="4543f-161">Die Daten des Benutzers werden beibehalten und sind in jeder neuen Verbindung verfügbar.</span><span class="sxs-lookup"><span data-stu-id="4543f-161">The user's data is retained and available in any new circuit.</span></span>
+### <a name="url"></a><span data-ttu-id="27361-150">URL</span><span class="sxs-lookup"><span data-stu-id="27361-150">URL</span></span>
 
-<span data-ttu-id="4543f-162">Weitere Informationen zu den Azure-Datenspeicheroptionen finden Sie in der [Azure Storage-Dokumentation](/azure/storage/) und [Azure-Datenbanken](https://azure.microsoft.com/product-categories/databases/).</span><span class="sxs-lookup"><span data-stu-id="4543f-162">For more information on Azure data storage options, see the [Azure Storage Documentation](/azure/storage/) and [Azure Databases](https://azure.microsoft.com/product-categories/databases/).</span></span>
+<span data-ttu-id="27361-151">Modellieren Sie vorübergehende Daten, die den Navigationszustand darstellen, als Teil der URL.</span><span class="sxs-lookup"><span data-stu-id="27361-151">For transient data representing navigation state, model the data as a part of the URL.</span></span> <span data-ttu-id="27361-152">Beispiele für in der URL modellierte Benutzerzustände:</span><span class="sxs-lookup"><span data-stu-id="27361-152">Examples of user state modeled in the URL include:</span></span>
 
-### <a name="url"></a><span data-ttu-id="4543f-163">URL</span><span class="sxs-lookup"><span data-stu-id="4543f-163">URL</span></span>
+* <span data-ttu-id="27361-153">Die ID einer angezeigten Entität.</span><span class="sxs-lookup"><span data-stu-id="27361-153">The ID of a viewed entity.</span></span>
+* <span data-ttu-id="27361-154">Die aktuelle Seitenzahl in einem ausgelagerten Raster.</span><span class="sxs-lookup"><span data-stu-id="27361-154">The current page number in a paged grid.</span></span>
 
-<span data-ttu-id="4543f-164">Modellieren Sie vorübergehende Daten, die den Navigationszustand darstellen, als Teil der URL.</span><span class="sxs-lookup"><span data-stu-id="4543f-164">For transient data representing navigation state, model the data as a part of the URL.</span></span> <span data-ttu-id="4543f-165">Beispiele für in der URL modellierte Zustände:</span><span class="sxs-lookup"><span data-stu-id="4543f-165">Examples of state modeled in the URL include:</span></span>
+<span data-ttu-id="27361-155">Der Inhalt der Adressleiste des Browsers wird beibehalten, wenn der Benutzer die Seite manuell erneut lädt.</span><span class="sxs-lookup"><span data-stu-id="27361-155">The contents of the browser's address bar are retained if the user manually reloads the page.</span></span>
 
-* <span data-ttu-id="4543f-166">Die ID einer angezeigten Entität.</span><span class="sxs-lookup"><span data-stu-id="4543f-166">The ID of a viewed entity.</span></span>
-* <span data-ttu-id="4543f-167">Die aktuelle Seitenzahl in einem ausgelagerten Raster.</span><span class="sxs-lookup"><span data-stu-id="4543f-167">The current page number in a paged grid.</span></span>
+<span data-ttu-id="27361-156">Weitere Informationen zum Definieren von URL-Mustern mit der [`@page`](xref:mvc/views/razor#page)-Direktive finden Sie unter <xref:blazor/fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="27361-156">For information on defining URL patterns with the [`@page`](xref:mvc/views/razor#page) directive, see <xref:blazor/fundamentals/routing>.</span></span>
 
-<span data-ttu-id="4543f-168">Der Inhalt der Adressleiste des Browsers wird in folgenden Fällen beibehalten:</span><span class="sxs-lookup"><span data-stu-id="4543f-168">The contents of the browser's address bar are retained:</span></span>
+### <a name="browser-storage"></a><span data-ttu-id="27361-157">Browserspeicherung</span><span class="sxs-lookup"><span data-stu-id="27361-157">Browser storage</span></span>
 
-* <span data-ttu-id="4543f-169">Der Benutzer lädt die Seite nochmals manuell.</span><span class="sxs-lookup"><span data-stu-id="4543f-169">If the user manually reloads the page.</span></span>
-* <span data-ttu-id="4543f-170">Wenn der Webserver nicht mehr verfügbar ist, ist der Benutzer gezwungen, die Seite nochmals zu laden, damit eine Verbindung mit einem anderen Server hergestellt werden kann.</span><span class="sxs-lookup"><span data-stu-id="4543f-170">If the web server becomes unavailable, and the user is forced to reload the page in order to connect to a different server.</span></span>
+<span data-ttu-id="27361-158">Für vorübergehende Daten, die der Benutzer aktiv erstellt, sind die [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage)- und [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)-Sammlungen des Browsers ein häufig verwendeter Speicherort:</span><span class="sxs-lookup"><span data-stu-id="27361-158">For transient data that the user is actively creating, a commonly used storage location is the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) collections:</span></span>
 
-<span data-ttu-id="4543f-171">Weitere Informationen zum Definieren von URL-Mustern mit der `@page`-Direktive finden Sie unter <xref:blazor/fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="4543f-171">For information on defining URL patterns with the `@page` directive, see <xref:blazor/fundamentals/routing>.</span></span>
-
-### <a name="client-side-in-the-browser"></a><span data-ttu-id="4543f-172">Clientseitig im Browser</span><span class="sxs-lookup"><span data-stu-id="4543f-172">Client-side in the browser</span></span>
-
-<span data-ttu-id="4543f-173">Für vorübergehende Daten, die der Benutzer aktiv erstellt, sind die `localStorage`- und `sessionStorage`-Sammlungen des Browsers ein häufig verwendeter Sicherungsspeicher.</span><span class="sxs-lookup"><span data-stu-id="4543f-173">For transient data that the user is actively creating, a common backing store is the browser's `localStorage` and `sessionStorage` collections.</span></span> <span data-ttu-id="4543f-174">Die App muss den gespeicherten Zustand nicht verwalten oder löschen, wenn die Verbindung abgebrochen wird. Dies ist ein Vorteil gegenüber serverseitigem Speicher.</span><span class="sxs-lookup"><span data-stu-id="4543f-174">The app isn't required to manage or clear the stored state if the circuit is abandoned, which is an advantage over server-side storage.</span></span>
+* <span data-ttu-id="27361-159">`localStorage` bezieht sich auf das Fenster des Browsers.</span><span class="sxs-lookup"><span data-stu-id="27361-159">`localStorage` is scoped to the browser's window.</span></span> <span data-ttu-id="27361-160">Wenn der Benutzer die Seite noch mal lädt oder den Browser schließt und erneut öffnet, wird der Zustand beibehalten.</span><span class="sxs-lookup"><span data-stu-id="27361-160">If the user reloads the page or closes and re-opens the browser, the state persists.</span></span> <span data-ttu-id="27361-161">Wenn der Benutzer mehrere Browserregisterkarten öffnet, wird der Zustand auf allen Registerkarten freigegeben.</span><span class="sxs-lookup"><span data-stu-id="27361-161">If the user opens multiple browser tabs, the state is shared across the tabs.</span></span> <span data-ttu-id="27361-162">Daten bleiben in `localStorage` so lange beibehalten, bis sie explizit gelöscht werden.</span><span class="sxs-lookup"><span data-stu-id="27361-162">Data persists in `localStorage` until explicitly cleared.</span></span>
+* <span data-ttu-id="27361-163">`sessionStorage` bezieht sich auf die Registerkarte des Browsers. Wenn der Benutzer die Registerkarte noch mal lädt, wird der Zustand beibehalten.</span><span class="sxs-lookup"><span data-stu-id="27361-163">`sessionStorage` is scoped to the browser tab. If the user reloads the tab, the state persists.</span></span> <span data-ttu-id="27361-164">Wenn der Benutzer die Registerkarte oder den Browser schließt, geht der Zustand verloren.</span><span class="sxs-lookup"><span data-stu-id="27361-164">If the user closes the tab or the browser, the state is lost.</span></span> <span data-ttu-id="27361-165">Wenn der Benutzer mehrere Browserregisterkarten öffnet, hat jede Registerkarte eine eigene unabhängige Version der Daten.</span><span class="sxs-lookup"><span data-stu-id="27361-165">If the user opens multiple browser tabs, each tab has its own independent version of the data.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="4543f-175">„Clientseitig“ bezieht sich in diesem Abschnitt auf clientseitige Szenarios im Browser, nicht auf das [[Blazor WebAssembly-Hostingmodell](xref:blazor/hosting-models#blazor-webassembly).</span><span class="sxs-lookup"><span data-stu-id="4543f-175">"Client-side" in this section refers to client-side scenarios in the browser, not the [[Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly).</span></span> <span data-ttu-id="4543f-176">`localStorage` und `sessionStorage` können in [Blazor WebAssembly-Apps verwendet werden, jedoch nur durch Schreiben von benutzerdefiniertem Code oder Verwenden eines Drittanbieterpakets.</span><span class="sxs-lookup"><span data-stu-id="4543f-176">`localStorage` and `sessionStorage` can be used in [Blazor WebAssembly apps but only by writing custom code or using a 3rd party package.</span></span>
+> <span data-ttu-id="27361-166">`localStorage` und `sessionStorage` können in Blazor WebAssembly-Apps verwendet werden, jedoch nur durch Schreiben von benutzerdefiniertem Code oder Verwenden eines Drittanbieterpakets.</span><span class="sxs-lookup"><span data-stu-id="27361-166">`localStorage` and `sessionStorage` can be used in Blazor WebAssembly apps but only by writing custom code or using a third-party package.</span></span>
 
-<span data-ttu-id="4543f-177">`localStorage` und `sessionStorage` unterscheiden sich wie folgt:</span><span class="sxs-lookup"><span data-stu-id="4543f-177">`localStorage` and `sessionStorage` differ as follows:</span></span>
+<span data-ttu-id="27361-167">Im Allgemeinen ist `sessionStorage` in der Anwendung sicherer.</span><span class="sxs-lookup"><span data-stu-id="27361-167">Generally, `sessionStorage` is safer to use.</span></span> <span data-ttu-id="27361-168">`sessionStorage` verhindert, dass ein Benutzer mehrere Registerkarten öffnet und auf folgende Probleme stößt:</span><span class="sxs-lookup"><span data-stu-id="27361-168">`sessionStorage` avoids the risk that a user opens multiple tabs and encounters the following:</span></span>
 
-* <span data-ttu-id="4543f-178">`localStorage` bezieht sich auf den Browser des Benutzers.</span><span class="sxs-lookup"><span data-stu-id="4543f-178">`localStorage` is scoped to the user's browser.</span></span> <span data-ttu-id="4543f-179">Wenn der Benutzer die Seite noch mal lädt oder den Browser schließt und erneut öffnet, wird der Zustand beibehalten.</span><span class="sxs-lookup"><span data-stu-id="4543f-179">If the user reloads the page or closes and re-opens the browser, the state persists.</span></span> <span data-ttu-id="4543f-180">Wenn der Benutzer mehrere Browserregisterkarten öffnet, wird der Zustand auf allen Registerkarten freigegeben.</span><span class="sxs-lookup"><span data-stu-id="4543f-180">If the user opens multiple browser tabs, the state is shared across the tabs.</span></span> <span data-ttu-id="4543f-181">Daten bleiben in `localStorage` so lange beibehalten, bis sie explizit gelöscht werden.</span><span class="sxs-lookup"><span data-stu-id="4543f-181">Data persists in `localStorage` until explicitly cleared.</span></span>
-* <span data-ttu-id="4543f-182">`sessionStorage` bezieht sich auf die Registerkarte des Browsers des Benutzers. Wenn der Benutzer die Registerkarte noch mal lädt, wird der Zustand beibehalten.</span><span class="sxs-lookup"><span data-stu-id="4543f-182">`sessionStorage` is scoped to the user's browser tab. If the user reloads the tab, the state persists.</span></span> <span data-ttu-id="4543f-183">Wenn der Benutzer die Registerkarte oder den Browser schließt, geht der Zustand verloren.</span><span class="sxs-lookup"><span data-stu-id="4543f-183">If the user closes the tab or the browser, the state is lost.</span></span> <span data-ttu-id="4543f-184">Wenn der Benutzer mehrere Browserregisterkarten öffnet, hat jede Registerkarte eine eigene unabhängige Version der Daten.</span><span class="sxs-lookup"><span data-stu-id="4543f-184">If the user opens multiple browser tabs, each tab has its own independent version of the data.</span></span>
+* <span data-ttu-id="27361-169">Fehler in Zustandsspeicher über mehrere Registerkarten hinweg</span><span class="sxs-lookup"><span data-stu-id="27361-169">Bugs in state storage across tabs.</span></span>
+* <span data-ttu-id="27361-170">Verwirrendes Verhalten, wenn eine Registerkarte den Zustand anderer Registerkarten überschreibt</span><span class="sxs-lookup"><span data-stu-id="27361-170">Confusing behavior when a tab overwrites the state of other tabs.</span></span>
 
-<span data-ttu-id="4543f-185">Im Allgemeinen ist `sessionStorage` in der Anwendung sicherer.</span><span class="sxs-lookup"><span data-stu-id="4543f-185">Generally, `sessionStorage` is safer to use.</span></span> <span data-ttu-id="4543f-186">`sessionStorage` verhindert, dass ein Benutzer mehrere Registerkarten öffnet und auf folgende Probleme stößt:</span><span class="sxs-lookup"><span data-stu-id="4543f-186">`sessionStorage` avoids the risk that a user opens multiple tabs and encounters the following:</span></span>
-
-* <span data-ttu-id="4543f-187">Fehler in Zustandsspeicher über mehrere Registerkarten hinweg</span><span class="sxs-lookup"><span data-stu-id="4543f-187">Bugs in state storage across tabs.</span></span>
-* <span data-ttu-id="4543f-188">Verwirrendes Verhalten, wenn eine Registerkarte den Zustand anderer Registerkarten überschreibt</span><span class="sxs-lookup"><span data-stu-id="4543f-188">Confusing behavior when a tab overwrites the state of other tabs.</span></span>
-
-<span data-ttu-id="4543f-189">`localStorage` ist die bessere Wahl, wenn der Zustand der App auch nach dem Schließen und erneuten Öffnen des Browsers bestehen bleiben muss.</span><span class="sxs-lookup"><span data-stu-id="4543f-189">`localStorage` is the better choice if the app must persist state across closing and re-opening the browser.</span></span>
-
-<span data-ttu-id="4543f-190">Einschränkungen bei der Verwendung des Browserspeichers:</span><span class="sxs-lookup"><span data-stu-id="4543f-190">Caveats for using browser storage:</span></span>
-
-* <span data-ttu-id="4543f-191">Ähnlich wie bei der Verwendung einer serverseitigen Datenbank erfolgt das Laden und Speichern von Daten asynchron.</span><span class="sxs-lookup"><span data-stu-id="4543f-191">Similar to the use of a server-side database, loading and saving data are asynchronous.</span></span>
-* <span data-ttu-id="4543f-192">Im Gegensatz zu einer serverseitigen Datenbank ist der Speicher während des Prerenderings nicht verfügbar, da die angeforderte Seite im Browser während der Prerenderingphase nicht vorhanden ist.</span><span class="sxs-lookup"><span data-stu-id="4543f-192">Unlike a server-side database, storage isn't available during prerendering because the requested page doesn't exist in the browser during the prerendering stage.</span></span>
-* <span data-ttu-id="4543f-193">Es ist ohne Weiteres möglich, einige wenige Kilobyte Daten für [Blazor Server-Apps zu speichern.</span><span class="sxs-lookup"><span data-stu-id="4543f-193">Storage of a few kilobytes of data is reasonable to persist for [Blazor Server apps.</span></span> <span data-ttu-id="4543f-194">Bei mehr Kilobyte müssen Beeinträchtigungen der Leistung berücksichtigt werden, da die Daten über das Netzwerk geladen und gespeichert werden.</span><span class="sxs-lookup"><span data-stu-id="4543f-194">Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.</span></span>
-* <span data-ttu-id="4543f-195">Benutzer können die Daten anzeigen oder manipulieren.</span><span class="sxs-lookup"><span data-stu-id="4543f-195">Users may view or tamper with the data.</span></span> <span data-ttu-id="4543f-196">Die [Datenschutzlösung](xref:security/data-protection/introduction) von ASP.NET Core reduziert die damit verbundenen Risiken.</span><span class="sxs-lookup"><span data-stu-id="4543f-196">ASP.NET Core [Data Protection](xref:security/data-protection/introduction) can mitigate the risk.</span></span>
-
-## <a name="third-party-browser-storage-solutions"></a><span data-ttu-id="4543f-197">Browserspeicherlösungen von Drittanbietern</span><span class="sxs-lookup"><span data-stu-id="4543f-197">Third-party browser storage solutions</span></span>
-
-<span data-ttu-id="4543f-198">NuGet-Pakete von Drittanbietern stellen APIs für die Verwendung mit `localStorage` und `sessionStorage` bereit.</span><span class="sxs-lookup"><span data-stu-id="4543f-198">Third-party NuGet packages provide APIs for working with `localStorage` and `sessionStorage`.</span></span>
-
-<span data-ttu-id="4543f-199">Erwägen Sie die Auswahl eines Pakets, das die [Datenschutzlösung](xref:security/data-protection/introduction) von ASP.NET Core transparent verwendet.</span><span class="sxs-lookup"><span data-stu-id="4543f-199">It's worth considering choosing a package that transparently uses ASP.NET Core's [Data Protection](xref:security/data-protection/introduction).</span></span> <span data-ttu-id="4543f-200">Die Datenschutzlösung von ASP.NET Core verschlüsselt gespeicherte Daten und verringert das potenzielle Risiko, dass gespeicherte Daten manipuliert werden.</span><span class="sxs-lookup"><span data-stu-id="4543f-200">ASP.NET Core Data Protection encrypts stored data and reduces the potential risk of tampering with stored data.</span></span> <span data-ttu-id="4543f-201">Wenn JSON-serialisierte Daten als Klartext gespeichert werden, können Benutzer die Daten mithilfe von Browserentwicklertools anzeigen und auch die gespeicherten Daten ändern.</span><span class="sxs-lookup"><span data-stu-id="4543f-201">If JSON-serialized data is stored in plaintext, users can see the data using browser developer tools and also modify the stored data.</span></span> <span data-ttu-id="4543f-202">Das Sichern von Daten ist nicht immer problematisch, da die Daten möglicherweise trivial sind.</span><span class="sxs-lookup"><span data-stu-id="4543f-202">Securing data isn't always a problem because the data might be trivial in nature.</span></span> <span data-ttu-id="4543f-203">Beispielsweise stellt das Lesen oder Ändern der gespeicherten Farbe eines Benutzeroberflächenelements für den Benutzer oder die Organisation kein ernsthaftes Sicherheitsrisiko dar.</span><span class="sxs-lookup"><span data-stu-id="4543f-203">For example, reading or modifying the stored color of a UI element isn't a significant security risk to the user or the organization.</span></span> <span data-ttu-id="4543f-204">Vermeiden Sie, dass Benutzer *sensible Daten* überprüfen oder manipulieren können.</span><span class="sxs-lookup"><span data-stu-id="4543f-204">Avoid allowing users to inspect or tamper with *sensitive data*.</span></span>
-
-## <a name="protected-browser-storage-experimental-package"></a><span data-ttu-id="4543f-205">Experimentelles Paket für geschützten Browserspeicher</span><span class="sxs-lookup"><span data-stu-id="4543f-205">Protected Browser Storage experimental package</span></span>
-
-<span data-ttu-id="4543f-206">Ein Beispiel für ein NuGet-Paket, das [Datenschutz](xref:security/data-protection/introduction) für `localStorage` und `sessionStorage` bietet, ist [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).</span><span class="sxs-lookup"><span data-stu-id="4543f-206">An example of a NuGet package that provides [Data Protection](xref:security/data-protection/introduction) for `localStorage` and `sessionStorage` is [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).</span></span>
+<span data-ttu-id="27361-171">`localStorage` ist die bessere Wahl, wenn der Zustand der App auch nach dem Schließen und erneuten Öffnen des Browsers bestehen bleiben muss.</span><span class="sxs-lookup"><span data-stu-id="27361-171">`localStorage` is the better choice if the app must persist state across closing and re-opening the browser.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="4543f-207">`Microsoft.AspNetCore.ProtectedBrowserStorage` ist ein nicht unterstütztes experimentelles Paket, das derzeit nicht für den Einsatz in der Produktion geeignet ist.</span><span class="sxs-lookup"><span data-stu-id="4543f-207">`Microsoft.AspNetCore.ProtectedBrowserStorage` is an unsupported experimental package unsuitable for production use at this time.</span></span>
+> <span data-ttu-id="27361-172">Benutzer können die Daten anzeigen oder bearbeiten, die in `localStorage` und `sessionStorage` gespeichert sind.</span><span class="sxs-lookup"><span data-stu-id="27361-172">Users may view or tamper with the data stored in `localStorage` and `sessionStorage`.</span></span>
 
-### <a name="installation"></a><span data-ttu-id="4543f-208">Installation</span><span class="sxs-lookup"><span data-stu-id="4543f-208">Installation</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="27361-173">Weitere Ressourcen</span><span class="sxs-lookup"><span data-stu-id="27361-173">Additional resources</span></span>
 
-<span data-ttu-id="4543f-209">So installieren Sie das `Microsoft.AspNetCore.ProtectedBrowserStorage`-Paket</span><span class="sxs-lookup"><span data-stu-id="4543f-209">To install the `Microsoft.AspNetCore.ProtectedBrowserStorage` package:</span></span>
+* [<span data-ttu-id="27361-174">Speichern des App-Zustands vor einem Authentifizierungsvorgang</span><span class="sxs-lookup"><span data-stu-id="27361-174">Save app state before an authentication operation</span></span>](xref:blazor/security/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)
+* <xref:blazor/call-web-api>
+* <xref:blazor/security/webassembly/index>
 
-1. <span data-ttu-id="4543f-210">Fügen Sie im [Blazor Server-App-Projekt einen Paketverweis zu [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage) hinzu.</span><span class="sxs-lookup"><span data-stu-id="4543f-210">In the [Blazor Server app project, add a package reference to [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).</span></span>
-1. <span data-ttu-id="4543f-211">Fügen Sie im HTML-Code der obersten Ebene (z. B. in der Datei `Pages/_Host.cshtml` in der Standardprojektvorlage) das folgende `<script>`-Tag hinzu:</span><span class="sxs-lookup"><span data-stu-id="4543f-211">In the top-level HTML (for example, in the `Pages/_Host.cshtml` file in the default project template), add the following `<script>` tag:</span></span>
+::: zone-end
 
-   ```html
-   <script src="_content/Microsoft.AspNetCore.ProtectedBrowserStorage/protectedBrowserStorage.js"></script>
-   ```
+::: zone pivot="server"
 
-1. <span data-ttu-id="4543f-212">Rufen Sie für die `Startup.ConfigureServices`-Methode `AddProtectedBrowserStorage` auf, um der Dienstsammlung die Dienste `localStorage` und `sessionStorage` hinzuzufügen:</span><span class="sxs-lookup"><span data-stu-id="4543f-212">In the `Startup.ConfigureServices` method, call `AddProtectedBrowserStorage` to add `localStorage` and `sessionStorage` services to the service collection:</span></span>
+<span data-ttu-id="27361-175">Blazor Server ist ein zustandsbehaftetes App-Framework.</span><span class="sxs-lookup"><span data-stu-id="27361-175">Blazor Server is a stateful app framework.</span></span> <span data-ttu-id="27361-176">In den meisten Fällen unterhält die App eine Verbindung mit dem Server.</span><span class="sxs-lookup"><span data-stu-id="27361-176">Most of the time, the app maintains a connection to the server.</span></span> <span data-ttu-id="27361-177">Der Benutzerzustand wird in einer *Verbindung* im Speicher des Servers gespeichert.</span><span class="sxs-lookup"><span data-stu-id="27361-177">The user's state is held in the server's memory in a *circuit*.</span></span> 
+
+<span data-ttu-id="27361-178">Beispiele für den in einer Verbindung gespeicherten Benutzerzustand sind:</span><span class="sxs-lookup"><span data-stu-id="27361-178">Examples of user state held in a circuit include:</span></span>
+
+* <span data-ttu-id="27361-179">Die Hierarchie der Komponenteninstanzen und deren neueste Renderausgabe in der gerenderten Benutzeroberfläche.</span><span class="sxs-lookup"><span data-stu-id="27361-179">The hierarchy of component instances and their most recent render output in the rendered UI.</span></span>
+* <span data-ttu-id="27361-180">Die Werte der Felder und Eigenschaften in Komponenteninstanzen.</span><span class="sxs-lookup"><span data-stu-id="27361-180">The values of fields and properties in component instances.</span></span>
+* <span data-ttu-id="27361-181">Daten, die in [-Abhängigkeitsinjektion (DI)](xref:fundamentals/dependency-injection)-Dienstinstanzen gespeichert sind, die auf die Verbindung beschränkt sind.</span><span class="sxs-lookup"><span data-stu-id="27361-181">Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit.</span></span>
+
+<span data-ttu-id="27361-182">Der Benutzerzustand ist möglicherweise auch in JavaScript-Variablen im Arbeitsspeicher des Browsers enthalten, die über [JavaScript-Interop](xref:blazor/call-javascript-from-dotnet)-Aufrufe festgelegt werden.</span><span class="sxs-lookup"><span data-stu-id="27361-182">User state might also be found in JavaScript variables in the browser's memory set via [JavaScript interop](xref:blazor/call-javascript-from-dotnet) calls.</span></span>
+
+<span data-ttu-id="27361-183">Wenn die Netzwerkverbindung vorübergehend getrennt wird, versucht Blazor, den Benutzer nochmals mit der ursprünglichen Verbindung mit seinem ursprünglichen Zustand zu verbinden.</span><span class="sxs-lookup"><span data-stu-id="27361-183">If a user experiences a temporary network connection loss, Blazor attempts to reconnect the user to their original circuit with their original state.</span></span> <span data-ttu-id="27361-184">Es ist jedoch nicht immer möglich, einen Benutzer noch mal mit der ursprünglichen Verbindung im Arbeitsspeicher des Servers zu verbinden:</span><span class="sxs-lookup"><span data-stu-id="27361-184">However, reconnecting a user to their original circuit in the server's memory isn't always possible:</span></span>
+
+* <span data-ttu-id="27361-185">Der Server kann eine getrennte Verbindung nicht dauerhaft beibehalten.</span><span class="sxs-lookup"><span data-stu-id="27361-185">The server can't retain a disconnected circuit forever.</span></span> <span data-ttu-id="27361-186">Der Server muss eine getrennte Verbindung nach einem Timeout freigeben, oder wenn der Server nicht über genügend Arbeitsspeicher verfügt.</span><span class="sxs-lookup"><span data-stu-id="27361-186">The server must release a disconnected circuit after a timeout or when the server is under memory pressure.</span></span>
+* <span data-ttu-id="27361-187">In Bereitstellungsumgebungen mit mehreren Servern und Lastenausgleich tritt bei einzelnen Servern möglicherweise ein Fehler auf, oder sie werden automatisch entfernt, wenn nicht mehr das gesamte Anforderungsvolumen verarbeitet werden muss.</span><span class="sxs-lookup"><span data-stu-id="27361-187">In multi-server, load-balanced deployment environments, individual servers may fail or be automatically removed when no longer required to handle the overall volume of requests.</span></span> <span data-ttu-id="27361-188">Die ursprünglichen Serververarbeitungsanforderungen für einen Benutzer sind möglicherweise nicht mehr verfügbar, wenn der Benutzer versucht, erneut eine Verbindung herzustellen.</span><span class="sxs-lookup"><span data-stu-id="27361-188">The original server processing requests for a user may become unavailable when the user attempts to reconnect.</span></span>
+* <span data-ttu-id="27361-189">Der Benutzer kann den Browser schließen und noch mal öffnen oder die Seite erneut laden, wodurch alle Zustände im Arbeitsspeicher des Browsers entfernt werden.</span><span class="sxs-lookup"><span data-stu-id="27361-189">The user might close and re-open their browser or reload the page, which removes any state held in the browser's memory.</span></span> <span data-ttu-id="27361-190">So gehen beispielsweise JavaScript-Variablenwerte, die durch JavaScript-Interop-Aufrufe festgelegt wurden, verloren.</span><span class="sxs-lookup"><span data-stu-id="27361-190">For example, JavaScript variable values set through JavaScript interop calls are lost.</span></span>
+
+<span data-ttu-id="27361-191">Wenn ein Benutzer nicht erneut mit der ursprünglichen Verbindung verbunden werden kann, erhält der Benutzer eine neue Verbindung mit einem leeren Zustand.</span><span class="sxs-lookup"><span data-stu-id="27361-191">When a user can't be reconnected to their original circuit, the user receives a new circuit with an empty state.</span></span> <span data-ttu-id="27361-192">Dies entspricht dem Schließen und erneuten Öffnen einer Desktop-App.</span><span class="sxs-lookup"><span data-stu-id="27361-192">This is equivalent to closing and re-opening a desktop app.</span></span>
+
+## <a name="persist-state-across-circuits"></a><span data-ttu-id="27361-193">Persistentes verbindungsübergreifendes Speichern des Zustands</span><span class="sxs-lookup"><span data-stu-id="27361-193">Persist state across circuits</span></span>
+
+<span data-ttu-id="27361-194">Im Allgemeinen gilt: Die Beibehaltung des Zustands über Verbindungen hinweg erfolgt in Szenarien, in denen Benutzer aktiv Daten erstellen und nicht nur Daten lesen, die bereits vorhanden sind.</span><span class="sxs-lookup"><span data-stu-id="27361-194">Generally, maintain state across circuits where users are actively creating data, not simply reading data that already exists.</span></span>
+
+<span data-ttu-id="27361-195">Um den Zustand über Verbindungen hinweg beizubehalten, muss die App die Daten an einem anderen Speicherort als im Arbeitsspeicher des Servers persistent speichern.</span><span class="sxs-lookup"><span data-stu-id="27361-195">To preserve state across circuits, the app must persist the data to some other storage location than the server's memory.</span></span> <span data-ttu-id="27361-196">Die Zustandspersistenz erfolgt nicht automatisch.</span><span class="sxs-lookup"><span data-stu-id="27361-196">State persistence isn't automatic.</span></span> <span data-ttu-id="27361-197">Sie müssen bei der Entwicklung der App Schritte ausführen, um zustandsbehaftete Datenpersistenz zu implementieren.</span><span class="sxs-lookup"><span data-stu-id="27361-197">You must take steps when developing the app to implement stateful data persistence.</span></span>
+
+<span data-ttu-id="27361-198">Die Datenpersistenz ist in der Regel nur für Zustände mit hohem Wert erforderlich, die von Benutzern mit großem Aufwand erstellt wurden.</span><span class="sxs-lookup"><span data-stu-id="27361-198">Data persistence is typically only required for high-value state that users expended effort to create.</span></span> <span data-ttu-id="27361-199">In den folgenden Beispielen werden durch die Beibehaltung des Zustands Zeit- oder Hilfsmitteleinsparungen in kommerziellen Aktivitäten erzielt:</span><span class="sxs-lookup"><span data-stu-id="27361-199">In the following examples, persisting state either saves time or aids in commercial activities:</span></span>
+
+* <span data-ttu-id="27361-200">Webformulare mit mehreren Schritten: Es ist für den Benutzer zeitaufwändig, Daten für mehrere abgeschlossene Schritte eines mehrstufigen Webformulars wiederholt einzugeben, wenn der Zustand nicht mehr vorhanden ist.</span><span class="sxs-lookup"><span data-stu-id="27361-200">Multi-step web forms: It's time-consuming for a user to re-enter data for several completed steps of a multi-step web form if their state is lost.</span></span> <span data-ttu-id="27361-201">Der Benutzer verliert in diesem Szenario seinen Zustand, wenn er vom Formular weg navigiert und später zurückkehrt.</span><span class="sxs-lookup"><span data-stu-id="27361-201">A user loses state in this scenario if they navigate away from the form and return later.</span></span>
+* <span data-ttu-id="27361-202">Warenkörbe: Kommerziell wichtige Komponenten einer App, die potenzielle Umsätze ermöglichen, können beibehalten werden.</span><span class="sxs-lookup"><span data-stu-id="27361-202">Shopping carts: Any commercially important component of an app that represents potential revenue can be maintained.</span></span> <span data-ttu-id="27361-203">Ein Benutzer, der seinen Zustand verliert und dessen Warenkorb dadurch gelöscht wird, kann weniger Produkte oder Dienste kaufen, wenn er zu einem späteren Zeitpunkt zur Website zurückkehrt.</span><span class="sxs-lookup"><span data-stu-id="27361-203">A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.</span></span>
+
+<span data-ttu-id="27361-204">Eine App kann nur den *App-Zustand* beibehalten.</span><span class="sxs-lookup"><span data-stu-id="27361-204">An app can only persist *app state*.</span></span> <span data-ttu-id="27361-205">Benutzeroberflächen wie Komponenteninstanzen und deren Renderingstrukturen können nicht beibehalten werden.</span><span class="sxs-lookup"><span data-stu-id="27361-205">UIs can't be persisted, such as component instances and their render trees.</span></span> <span data-ttu-id="27361-206">Komponenten und Renderingstrukturen sind in der Regel nicht serialisierbar.</span><span class="sxs-lookup"><span data-stu-id="27361-206">Components and render trees aren't generally serializable.</span></span> <span data-ttu-id="27361-207">Um den Benutzeroberflächenzustand (z. B. von den erweiterten Knoten einer Strukturansicht) zu erhalten, muss die App über benutzerdefinierten Code verfügen, um das Verhalten des Benutzeroberflächenzustands als serialisierbaren App-Zustand modellieren zu können.</span><span class="sxs-lookup"><span data-stu-id="27361-207">To persist UI state, such as the expanded nodes of a tree view control, the app must use custom code to model the behavior of the UI state as serializable app state.</span></span>
+
+## <a name="where-to-persist-state"></a><span data-ttu-id="27361-208">Speicherort des Zustands</span><span class="sxs-lookup"><span data-stu-id="27361-208">Where to persist state</span></span>
+
+<span data-ttu-id="27361-209">Es gibt drei allgemeine Speicherorte für die Beibehaltung des Zustands:</span><span class="sxs-lookup"><span data-stu-id="27361-209">Three common locations exist for persisting state:</span></span>
+
+* [<span data-ttu-id="27361-210">Serverseitige Speicherung</span><span class="sxs-lookup"><span data-stu-id="27361-210">Server-side storage</span></span>](#server-side-storage)
+* [<span data-ttu-id="27361-211">URL</span><span class="sxs-lookup"><span data-stu-id="27361-211">URL</span></span>](#url)
+* [<span data-ttu-id="27361-212">Browserspeicherung</span><span class="sxs-lookup"><span data-stu-id="27361-212">Browser storage</span></span>](#browser-storage)
+
+### <a name="server-side-storage"></a><span data-ttu-id="27361-213">Serverseitige Speicherung</span><span class="sxs-lookup"><span data-stu-id="27361-213">Server-side storage</span></span>
+
+<span data-ttu-id="27361-214">Für permanente Datenspeicherung, die mehrere Benutzer und Geräte umfasst, kann die App serverseitigen Speicher verwenden.</span><span class="sxs-lookup"><span data-stu-id="27361-214">For permanent data persistence that spans multiple users and devices, the app can use server-side storage.</span></span> <span data-ttu-id="27361-215">Folgende Optionen sind verfügbar:</span><span class="sxs-lookup"><span data-stu-id="27361-215">Options include:</span></span>
+
+* <span data-ttu-id="27361-216">Blob-Speicher</span><span class="sxs-lookup"><span data-stu-id="27361-216">Blob storage</span></span>
+* <span data-ttu-id="27361-217">Schlüssel-Wert-Speicher</span><span class="sxs-lookup"><span data-stu-id="27361-217">Key-value storage</span></span>
+* <span data-ttu-id="27361-218">Relationale Datenbank</span><span class="sxs-lookup"><span data-stu-id="27361-218">Relational database</span></span>
+* <span data-ttu-id="27361-219">Table Storage</span><span class="sxs-lookup"><span data-stu-id="27361-219">Table storage</span></span>
+
+<span data-ttu-id="27361-220">Nachdem die Daten gespeichert wurden, wird der Zustand des Benutzers beibehalten und ist in jeder neuen Verbindung verfügbar.</span><span class="sxs-lookup"><span data-stu-id="27361-220">After data is saved, the user's state is retained and available in any new circuit.</span></span>
+
+<span data-ttu-id="27361-221">Weitere Informationen zu den Azure-Datenspeicheroptionen finden Sie hier:</span><span class="sxs-lookup"><span data-stu-id="27361-221">For more information on Azure data storage options, see the following:</span></span>
+
+* [<span data-ttu-id="27361-222">Azure-Datenbanken</span><span class="sxs-lookup"><span data-stu-id="27361-222">Azure Databases</span></span>](https://azure.microsoft.com/product-categories/databases/)
+* [<span data-ttu-id="27361-223">Azure Storage-Dokumentation</span><span class="sxs-lookup"><span data-stu-id="27361-223">Azure Storage Documentation</span></span>](/azure/storage/)
+
+### <a name="url"></a><span data-ttu-id="27361-224">URL</span><span class="sxs-lookup"><span data-stu-id="27361-224">URL</span></span>
+
+<span data-ttu-id="27361-225">Modellieren Sie vorübergehende Daten, die den Navigationszustand darstellen, als Teil der URL.</span><span class="sxs-lookup"><span data-stu-id="27361-225">For transient data representing navigation state, model the data as a part of the URL.</span></span> <span data-ttu-id="27361-226">Beispiele für in der URL modellierte Benutzerzustände:</span><span class="sxs-lookup"><span data-stu-id="27361-226">Examples of user state modeled in the URL include:</span></span>
+
+* <span data-ttu-id="27361-227">Die ID einer angezeigten Entität.</span><span class="sxs-lookup"><span data-stu-id="27361-227">The ID of a viewed entity.</span></span>
+* <span data-ttu-id="27361-228">Die aktuelle Seitenzahl in einem ausgelagerten Raster.</span><span class="sxs-lookup"><span data-stu-id="27361-228">The current page number in a paged grid.</span></span>
+
+<span data-ttu-id="27361-229">Der Inhalt der Adressleiste des Browsers wird in folgenden Fällen beibehalten:</span><span class="sxs-lookup"><span data-stu-id="27361-229">The contents of the browser's address bar are retained:</span></span>
+
+* <span data-ttu-id="27361-230">Der Benutzer lädt die Seite nochmals manuell.</span><span class="sxs-lookup"><span data-stu-id="27361-230">If the user manually reloads the page.</span></span>
+* <span data-ttu-id="27361-231">Wenn der Webserver nicht mehr verfügbar ist, ist der Benutzer gezwungen, die Seite nochmals zu laden, damit eine Verbindung mit einem anderen Server hergestellt werden kann.</span><span class="sxs-lookup"><span data-stu-id="27361-231">If the web server becomes unavailable, and the user is forced to reload the page in order to connect to a different server.</span></span>
+
+<span data-ttu-id="27361-232">Weitere Informationen zum Definieren von URL-Mustern mit der [`@page`](xref:mvc/views/razor#page)-Direktive finden Sie unter <xref:blazor/fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="27361-232">For information on defining URL patterns with the [`@page`](xref:mvc/views/razor#page) directive, see <xref:blazor/fundamentals/routing>.</span></span>
+
+### <a name="browser-storage"></a><span data-ttu-id="27361-233">Browserspeicherung</span><span class="sxs-lookup"><span data-stu-id="27361-233">Browser storage</span></span>
+
+<span data-ttu-id="27361-234">Für vorübergehende Daten, die der Benutzer aktiv erstellt, sind die [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage)- und [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)-Sammlungen des Browsers ein häufig verwendeter Speicherort:</span><span class="sxs-lookup"><span data-stu-id="27361-234">For transient data that the user is actively creating, a commonly used storage location is the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) collections:</span></span>
+
+* <span data-ttu-id="27361-235">`localStorage` bezieht sich auf das Fenster des Browsers.</span><span class="sxs-lookup"><span data-stu-id="27361-235">`localStorage` is scoped to the browser's window.</span></span> <span data-ttu-id="27361-236">Wenn der Benutzer die Seite noch mal lädt oder den Browser schließt und erneut öffnet, wird der Zustand beibehalten.</span><span class="sxs-lookup"><span data-stu-id="27361-236">If the user reloads the page or closes and re-opens the browser, the state persists.</span></span> <span data-ttu-id="27361-237">Wenn der Benutzer mehrere Browserregisterkarten öffnet, wird der Zustand auf allen Registerkarten freigegeben.</span><span class="sxs-lookup"><span data-stu-id="27361-237">If the user opens multiple browser tabs, the state is shared across the tabs.</span></span> <span data-ttu-id="27361-238">Daten bleiben in `localStorage` so lange beibehalten, bis sie explizit gelöscht werden.</span><span class="sxs-lookup"><span data-stu-id="27361-238">Data persists in `localStorage` until explicitly cleared.</span></span>
+* <span data-ttu-id="27361-239">`sessionStorage` bezieht sich auf die Registerkarte des Browsers. Wenn der Benutzer die Registerkarte noch mal lädt, wird der Zustand beibehalten.</span><span class="sxs-lookup"><span data-stu-id="27361-239">`sessionStorage` is scoped to the browser tab. If the user reloads the tab, the state persists.</span></span> <span data-ttu-id="27361-240">Wenn der Benutzer die Registerkarte oder den Browser schließt, geht der Zustand verloren.</span><span class="sxs-lookup"><span data-stu-id="27361-240">If the user closes the tab or the browser, the state is lost.</span></span> <span data-ttu-id="27361-241">Wenn der Benutzer mehrere Browserregisterkarten öffnet, hat jede Registerkarte eine eigene unabhängige Version der Daten.</span><span class="sxs-lookup"><span data-stu-id="27361-241">If the user opens multiple browser tabs, each tab has its own independent version of the data.</span></span>
+
+<span data-ttu-id="27361-242">Im Allgemeinen ist `sessionStorage` in der Anwendung sicherer.</span><span class="sxs-lookup"><span data-stu-id="27361-242">Generally, `sessionStorage` is safer to use.</span></span> <span data-ttu-id="27361-243">`sessionStorage` verhindert, dass ein Benutzer mehrere Registerkarten öffnet und auf folgende Probleme stößt:</span><span class="sxs-lookup"><span data-stu-id="27361-243">`sessionStorage` avoids the risk that a user opens multiple tabs and encounters the following:</span></span>
+
+* <span data-ttu-id="27361-244">Fehler in Zustandsspeicher über mehrere Registerkarten hinweg</span><span class="sxs-lookup"><span data-stu-id="27361-244">Bugs in state storage across tabs.</span></span>
+* <span data-ttu-id="27361-245">Verwirrendes Verhalten, wenn eine Registerkarte den Zustand anderer Registerkarten überschreibt</span><span class="sxs-lookup"><span data-stu-id="27361-245">Confusing behavior when a tab overwrites the state of other tabs.</span></span>
+
+<span data-ttu-id="27361-246">`localStorage` ist die bessere Wahl, wenn der Zustand der App auch nach dem Schließen und erneuten Öffnen des Browsers bestehen bleiben muss.</span><span class="sxs-lookup"><span data-stu-id="27361-246">`localStorage` is the better choice if the app must persist state across closing and re-opening the browser.</span></span>
+
+<span data-ttu-id="27361-247">Einschränkungen bei der Verwendung des Browserspeichers:</span><span class="sxs-lookup"><span data-stu-id="27361-247">Caveats for using browser storage:</span></span>
+
+* <span data-ttu-id="27361-248">Ähnlich wie bei der Verwendung einer serverseitigen Datenbank erfolgt das Laden und Speichern von Daten asynchron.</span><span class="sxs-lookup"><span data-stu-id="27361-248">Similar to the use of a server-side database, loading and saving data are asynchronous.</span></span>
+* <span data-ttu-id="27361-249">Im Gegensatz zu einer serverseitigen Datenbank ist der Speicher während des Prerenderings nicht verfügbar, da die angeforderte Seite im Browser während der Prerenderingphase nicht vorhanden ist.</span><span class="sxs-lookup"><span data-stu-id="27361-249">Unlike a server-side database, storage isn't available during prerendering because the requested page doesn't exist in the browser during the prerendering stage.</span></span>
+* <span data-ttu-id="27361-250">Es ist ohne Weiteres möglich, einige wenige Kilobyte Daten für Blazor Server-Apps zu speichern.</span><span class="sxs-lookup"><span data-stu-id="27361-250">Storage of a few kilobytes of data is reasonable to persist for Blazor Server apps.</span></span> <span data-ttu-id="27361-251">Bei mehr Kilobyte müssen Beeinträchtigungen der Leistung berücksichtigt werden, da die Daten über das Netzwerk geladen und gespeichert werden.</span><span class="sxs-lookup"><span data-stu-id="27361-251">Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.</span></span>
+* <span data-ttu-id="27361-252">Benutzer können die Daten anzeigen oder manipulieren.</span><span class="sxs-lookup"><span data-stu-id="27361-252">Users may view or tamper with the data.</span></span> <span data-ttu-id="27361-253">Die [Datenschutzlösung von ASP.NET Core](xref:security/data-protection/introduction) reduziert die damit verbundenen Risiken.</span><span class="sxs-lookup"><span data-stu-id="27361-253">[ASP.NET Core Data Protection](xref:security/data-protection/introduction) can mitigate the risk.</span></span> <span data-ttu-id="27361-254">Beispielsweise verwendet [ASP.NET Core Protected Browser Storage](#aspnet-core-protected-browser-storage) ASP.NET Core-Datenschutz.</span><span class="sxs-lookup"><span data-stu-id="27361-254">For example, [ASP.NET Core Protected Browser Storage](#aspnet-core-protected-browser-storage) uses ASP.NET Core Data Protection.</span></span>
+
+<span data-ttu-id="27361-255">NuGet-Pakete von Drittanbietern stellen APIs für die Verwendung mit `localStorage` und `sessionStorage` bereit.</span><span class="sxs-lookup"><span data-stu-id="27361-255">Third-party NuGet packages provide APIs for working with `localStorage` and `sessionStorage`.</span></span> <span data-ttu-id="27361-256">Erwägen Sie die Auswahl eines Pakets, das die [Datenschutzlösung](xref:security/data-protection/introduction) von ASP.NET Core transparent verwendet.</span><span class="sxs-lookup"><span data-stu-id="27361-256">It's worth considering choosing a package that transparently uses [ASP.NET Core Data Protection](xref:security/data-protection/introduction).</span></span> <span data-ttu-id="27361-257">Die Datenschutzlösung verschlüsselt gespeicherte Daten und verringert das potenzielle Risiko, dass gespeicherte Daten manipuliert werden.</span><span class="sxs-lookup"><span data-stu-id="27361-257">Data Protection encrypts stored data and reduces the potential risk of tampering with stored data.</span></span> <span data-ttu-id="27361-258">Wenn JSON-serialisierte Daten als Nur-Text gespeichert werden, können Benutzer die Daten mithilfe von Browserentwicklertools anzeigen und auch die gespeicherten Daten ändern.</span><span class="sxs-lookup"><span data-stu-id="27361-258">If JSON-serialized data is stored in plain text, users can see the data using browser developer tools and also modify the stored data.</span></span> <span data-ttu-id="27361-259">Das Sichern von Daten ist nicht immer problematisch, da die Daten möglicherweise trivial sind.</span><span class="sxs-lookup"><span data-stu-id="27361-259">Securing data isn't always a problem because the data might be trivial in nature.</span></span> <span data-ttu-id="27361-260">Beispielsweise stellt das Lesen oder Ändern der gespeicherten Farbe eines Benutzeroberflächenelements für den Benutzer oder die Organisation kein ernsthaftes Sicherheitsrisiko dar.</span><span class="sxs-lookup"><span data-stu-id="27361-260">For example, reading or modifying the stored color of a UI element isn't a significant security risk to the user or the organization.</span></span> <span data-ttu-id="27361-261">Vermeiden Sie, dass Benutzer *sensible Daten* überprüfen oder manipulieren können.</span><span class="sxs-lookup"><span data-stu-id="27361-261">Avoid allowing users to inspect or tamper with *sensitive data*.</span></span>
+
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="aspnet-core-protected-browser-storage"></a><span data-ttu-id="27361-262">ASP.NET Core Protected Browser Storage</span><span class="sxs-lookup"><span data-stu-id="27361-262">ASP.NET Core Protected Browser Storage</span></span>
+
+<span data-ttu-id="27361-263">[ASP.NET Core Protected Browser Storage](xref:security/data-protection/introduction) nutzt ASP.NET Core-Datenschutz für [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) und [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).</span><span class="sxs-lookup"><span data-stu-id="27361-263">ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](xref:security/data-protection/introduction) for [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="27361-264">Protected Browser Storage basiert auf ASP.NET Core Datenschutz und wird nur für Blazor Server-Apps unterstützt.</span><span class="sxs-lookup"><span data-stu-id="27361-264">Protected Browser Storage relies on ASP.NET Core Data Protection and is only supported for Blazor Server apps.</span></span>
+
+### <a name="configuration"></a><span data-ttu-id="27361-265">Konfiguration</span><span class="sxs-lookup"><span data-stu-id="27361-265">Configuration</span></span>
+
+1. <span data-ttu-id="27361-266">Fügen Sie [`Microsoft.AspNetCore.Components.Web.Extensions`](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Extensions) einen Paketverweis hinzu.</span><span class="sxs-lookup"><span data-stu-id="27361-266">Add a package reference to [`Microsoft.AspNetCore.Components.Web.Extensions`](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Extensions).</span></span>
+1. <span data-ttu-id="27361-267">Rufen Sie in `Startup.ConfigureServices` `AddProtectedBrowserStorage` auf, um der Dienstsammlung die Dienste `localStorage` und `sessionStorage` hinzuzufügen:</span><span class="sxs-lookup"><span data-stu-id="27361-267">In `Startup.ConfigureServices`, call `AddProtectedBrowserStorage` to add `localStorage` and `sessionStorage` services to the service collection:</span></span>
 
    ```csharp
    services.AddProtectedBrowserStorage();
    ```
 
-### <a name="save-and-load-data-within-a-component"></a><span data-ttu-id="4543f-213">Speichern und Laden von Daten in einer Komponente</span><span class="sxs-lookup"><span data-stu-id="4543f-213">Save and load data within a component</span></span>
+### <a name="save-and-load-data-within-a-component"></a><span data-ttu-id="27361-268">Speichern und Laden von Daten in einer Komponente</span><span class="sxs-lookup"><span data-stu-id="27361-268">Save and load data within a component</span></span>
 
-<span data-ttu-id="4543f-214">Verwenden Sie für jede Komponente, die das Laden oder Speichern von Daten im Browserspeicher erfordert, [`@inject`](xref:mvc/views/razor#inject), um eine Instanz von einem der folgenden Komponenten einzufügen:</span><span class="sxs-lookup"><span data-stu-id="4543f-214">In any component that requires loading or saving data to browser storage, use [`@inject`](xref:mvc/views/razor#inject) to inject an instance of either of the following:</span></span>
+<span data-ttu-id="27361-269">Verwenden Sie für jede Komponente, die das Laden oder Speichern von Daten im Browserspeicher erfordert, die [`@inject`](xref:mvc/views/razor#inject)-Anweisung, um eine Instanz von einem der folgenden Komponenten einzufügen:</span><span class="sxs-lookup"><span data-stu-id="27361-269">In any component that requires loading or saving data to browser storage, use the [`@inject`](xref:mvc/views/razor#inject) directive to inject an instance of either of the following:</span></span>
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
 
-<span data-ttu-id="4543f-215">Die Auswahl hängt von dem Sicherungsspeicher ab, den Sie verwenden möchten.</span><span class="sxs-lookup"><span data-stu-id="4543f-215">The choice depends on which backing store you wish to use.</span></span> <span data-ttu-id="4543f-216">Im folgenden Beispiel wird `sessionStorage` verwendet:</span><span class="sxs-lookup"><span data-stu-id="4543f-216">In the following example, `sessionStorage` is used:</span></span>
+<span data-ttu-id="27361-270">Die Auswahl hängt davon ab, welchen Browserspeicherort Sie verwenden möchten.</span><span class="sxs-lookup"><span data-stu-id="27361-270">The choice depends on which browser storage location you wish to use.</span></span> <span data-ttu-id="27361-271">Im folgenden Beispiel wird `sessionStorage` verwendet:</span><span class="sxs-lookup"><span data-stu-id="27361-271">In the following example, `sessionStorage` is used:</span></span>
 
 ```razor
-@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@using Microsoft.AspNetCore.Components.Web.Extensions
 @inject ProtectedSessionStorage ProtectedSessionStore
 ```
 
-<span data-ttu-id="4543f-217">Die `@using`-Anweisung kann in einer `_Imports.razor`-Datei statt in der Komponente abgelegt werden.</span><span class="sxs-lookup"><span data-stu-id="4543f-217">The `@using` statement can be placed into an `_Imports.razor` file instead of in the component.</span></span> <span data-ttu-id="4543f-218">Bei Verwendung der `_Imports.razor`-Datei wird der Namespace für größere Segmente der App oder die gesamte App zur Verfügung gestellt.</span><span class="sxs-lookup"><span data-stu-id="4543f-218">Use of the `_Imports.razor` file makes the namespace available to larger segments of the app or the whole app.</span></span>
+<span data-ttu-id="27361-272">Die `@using`-Anweisung kann in einer Datei `_Imports.razor` der App anstatt in der Komponente platziert werden.</span><span class="sxs-lookup"><span data-stu-id="27361-272">The `@using` directive can be placed in the app's `_Imports.razor` file instead of in the component.</span></span> <span data-ttu-id="27361-273">Bei Verwendung der `_Imports.razor`-Datei wird der Namespace für größere Segmente der App oder die gesamte App zur Verfügung gestellt.</span><span class="sxs-lookup"><span data-stu-id="27361-273">Use of the `_Imports.razor` file makes the namespace available to larger segments of the app or the whole app.</span></span>
 
-<span data-ttu-id="4543f-219">Um den `currentCount`-Wert in der `Counter`-Komponente der Projektvorlage beizubehalten, ändern Sie die `IncrementCount`-Methode so, dass `ProtectedSessionStore.SetAsync` verwendet wird:</span><span class="sxs-lookup"><span data-stu-id="4543f-219">To persist the `currentCount` value in the `Counter` component of the project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:</span></span>
+<span data-ttu-id="27361-274">Um den `currentCount`-Wert in der `Counter`-Komponente einer App basierend auf der Blazor Server-Projektvorlage beizubehalten, ändern Sie die `IncrementCount`-Methode so, dass `ProtectedSessionStore.SetAsync` verwendet wird:</span><span class="sxs-lookup"><span data-stu-id="27361-274">To persist the `currentCount` value in the `Counter` component of an app based on the Blazor Server project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:</span></span>
 
 ```csharp
 private async Task IncrementCount()
@@ -185,45 +262,43 @@ private async Task IncrementCount()
 }
 ```
 
-<span data-ttu-id="4543f-220">Bei größeren, realistischeren Apps ist die Speicherung einzelner Felder ein unwahrscheinliches Szenario.</span><span class="sxs-lookup"><span data-stu-id="4543f-220">In larger, more realistic apps, storage of individual fields is an unlikely scenario.</span></span> <span data-ttu-id="4543f-221">Apps speichern meist ganze Modellobjekte, die komplexe Zustände enthalten.</span><span class="sxs-lookup"><span data-stu-id="4543f-221">Apps are more likely to store entire model objects that include complex state.</span></span> <span data-ttu-id="4543f-222">`ProtectedSessionStore` serialisiert und deserialisiert JSON-Daten automatisch.</span><span class="sxs-lookup"><span data-stu-id="4543f-222">`ProtectedSessionStore` automatically serializes and deserializes JSON data.</span></span>
+<span data-ttu-id="27361-275">Bei größeren, realistischeren Apps ist die Speicherung einzelner Felder ein unwahrscheinliches Szenario.</span><span class="sxs-lookup"><span data-stu-id="27361-275">In larger, more realistic apps, storage of individual fields is an unlikely scenario.</span></span> <span data-ttu-id="27361-276">Apps speichern meist ganze Modellobjekte, die komplexe Zustände enthalten.</span><span class="sxs-lookup"><span data-stu-id="27361-276">Apps are more likely to store entire model objects that include complex state.</span></span> <span data-ttu-id="27361-277">`ProtectedSessionStore` serialisiert und deserialisiert JSON-Daten automatisch, um komplexe Zustandsobjekte zu speichern.</span><span class="sxs-lookup"><span data-stu-id="27361-277">`ProtectedSessionStore` automatically serializes and deserializes JSON data to store complex state objects.</span></span>
 
-<span data-ttu-id="4543f-223">Im vorangehenden Codebeispiel werden die `currentCount`-Daten als `sessionStorage['count']` im Browser des Benutzers gespeichert.</span><span class="sxs-lookup"><span data-stu-id="4543f-223">In the preceding code example, the `currentCount` data is stored as `sessionStorage['count']` in the user's browser.</span></span> <span data-ttu-id="4543f-224">Die Daten werden nicht im Klartext gespeichert, sondern mit der [Datenschutzlösung](xref:security/data-protection/introduction) von ASP.NET Core geschützt.</span><span class="sxs-lookup"><span data-stu-id="4543f-224">The data isn't stored in plaintext but rather is protected using ASP.NET Core's [Data Protection](xref:security/data-protection/introduction).</span></span> <span data-ttu-id="4543f-225">Die verschlüsselten Daten können angezeigt werden, wenn `sessionStorage['count']` in der Entwicklerkonsole des Browsers ausgewertet wird.</span><span class="sxs-lookup"><span data-stu-id="4543f-225">The encrypted data can be seen if `sessionStorage['count']` is evaluated in the browser's developer console.</span></span>
+<span data-ttu-id="27361-278">Im vorangehenden Codebeispiel werden die `currentCount`-Daten als `sessionStorage['count']` im Browser des Benutzers gespeichert.</span><span class="sxs-lookup"><span data-stu-id="27361-278">In the preceding code example, the `currentCount` data is stored as `sessionStorage['count']` in the user's browser.</span></span> <span data-ttu-id="27361-279">Die Daten werden nicht als Nur-Text gespeichert, sondern mit der Datenschutzlösung von ASP.NET Core geschützt.</span><span class="sxs-lookup"><span data-stu-id="27361-279">The data isn't stored in plain text but rather is protected using ASP.NET Core Data Protection.</span></span> <span data-ttu-id="27361-280">Die verschlüsselten Daten können untersucht werden, wenn `sessionStorage['count']` in der Entwicklerkonsole des Browsers ausgewertet wird.</span><span class="sxs-lookup"><span data-stu-id="27361-280">The encrypted data can be inspected if `sessionStorage['count']` is evaluated in the browser's developer console.</span></span>
 
-<span data-ttu-id="4543f-226">Verwenden Sie `ProtectedSessionStore.GetAsync`, um die `currentCount`-Daten wiederherzustellen, wenn der Benutzer zu einem späteren Zeitpunkt zur `Counter`-Komponente zurückkehrt (auch wenn er sich in einer vollständig neuen Verbindung befindet):</span><span class="sxs-lookup"><span data-stu-id="4543f-226">To recover the `currentCount` data if the user returns to the `Counter` component later (including if they're on an entirely new circuit), use `ProtectedSessionStore.GetAsync`:</span></span>
+<span data-ttu-id="27361-281">Verwenden Sie `ProtectedSessionStore.GetAsync`, um die `currentCount`-Daten wiederherzustellen, wenn der Benutzer zu einem späteren Zeitpunkt zur `Counter`-Komponente zurückkehrt (auch wenn er sich in einer neuen Verbindung befindet):</span><span class="sxs-lookup"><span data-stu-id="27361-281">To recover the `currentCount` data if the user returns to the `Counter` component later, including if the user is on a new circuit, use `ProtectedSessionStore.GetAsync`:</span></span>
 
 ```csharp
 protected override async Task OnInitializedAsync()
 {
-    currentCount = await ProtectedSessionStore.GetAsync<int>("count");
+    var result = await ProtectedSessionStore.GetAsync<int>("count");
+    currentCount = result.Success ? result.Value : 0;
 }
 ```
 
-<span data-ttu-id="4543f-227">Wenn die Parameter der Komponente den Navigationszustand enthalten, rufen Sie `ProtectedSessionStore.GetAsync` auf, und weisen Sie das Ergebnis in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> und nicht in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> zu.</span><span class="sxs-lookup"><span data-stu-id="4543f-227">If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.</span></span> <span data-ttu-id="4543f-228"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> wird nur einmal aufgerufen, wenn die Komponente zum ersten Mal instanziiert wird.</span><span class="sxs-lookup"><span data-stu-id="4543f-228"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is only called one time when the component is first instantiated.</span></span> <span data-ttu-id="4543f-229"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> wird später nicht nochmals aufgerufen, wenn der Benutzer zu einer anderen URL navigiert, während er auf der gleichen Seite bleibt.</span><span class="sxs-lookup"><span data-stu-id="4543f-229"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> isn't called again later if the user navigates to a different URL while remaining on the same page.</span></span> <span data-ttu-id="4543f-230">Weitere Informationen finden Sie unter <xref:blazor/components/lifecycle>.</span><span class="sxs-lookup"><span data-stu-id="4543f-230">For more information, see <xref:blazor/components/lifecycle>.</span></span>
+<span data-ttu-id="27361-282">Wenn die Parameter der Komponente den Navigationszustand enthalten, rufen Sie `ProtectedSessionStore.GetAsync` auf, und weisen Sie ein Ergebnis ungleich `null` in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> zu, nicht <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.</span><span class="sxs-lookup"><span data-stu-id="27361-282">If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign a non-`null` result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.</span></span> <span data-ttu-id="27361-283"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> wird nur ein Mal aufgerufen, wenn die Komponente zum ersten Mal instanziiert wird.</span><span class="sxs-lookup"><span data-stu-id="27361-283"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is only called once when the component is first instantiated.</span></span> <span data-ttu-id="27361-284"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> wird später nicht nochmals aufgerufen, wenn der Benutzer zu einer anderen URL navigiert, während er auf der gleichen Seite bleibt.</span><span class="sxs-lookup"><span data-stu-id="27361-284"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> isn't called again later if the user navigates to a different URL while remaining on the same page.</span></span> <span data-ttu-id="27361-285">Weitere Informationen finden Sie unter <xref:blazor/components/lifecycle>.</span><span class="sxs-lookup"><span data-stu-id="27361-285">For more information, see <xref:blazor/components/lifecycle>.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="4543f-231">Die Beispiele in diesem Abschnitt funktionieren nur, wenn für den Server kein Prerendering aktiviert ist.</span><span class="sxs-lookup"><span data-stu-id="4543f-231">The examples in this section only work if the server doesn't have prerendering enabled.</span></span> <span data-ttu-id="4543f-232">Wenn Prerendering aktiviert ist, wird ein Fehler ähnlich dem folgenden generiert:</span><span class="sxs-lookup"><span data-stu-id="4543f-232">With prerendering enabled, an error is generated similar to:</span></span>
+> <span data-ttu-id="27361-286">Die Beispiele in diesem Abschnitt funktionieren nur, wenn für den Server kein Prerendering aktiviert ist.</span><span class="sxs-lookup"><span data-stu-id="27361-286">The examples in this section only work if the server doesn't have prerendering enabled.</span></span> <span data-ttu-id="27361-287">Bei aktiviertem PreRendering wird ein Fehler generiert, der besagt, dass JavaScript-Interop-Aufrufe nicht ausgegeben werden können, weil PreRendering für die Komponente ausgeführt wird.</span><span class="sxs-lookup"><span data-stu-id="27361-287">With prerendering enabled, an error is generated explaining that JavaScript interop calls cannot be issued because the component is being prerendered.</span></span>
 >
-> > <span data-ttu-id="4543f-233">JavaScript-Interop-Aufrufe können derzeit nicht durchgeführt werden.</span><span class="sxs-lookup"><span data-stu-id="4543f-233">JavaScript interop calls cannot be issued at this time.</span></span> <span data-ttu-id="4543f-234">Dies liegt daran, dass die Komponente vorab gerendert wird.</span><span class="sxs-lookup"><span data-stu-id="4543f-234">This is because the component is being prerendered.</span></span>
->
-> <span data-ttu-id="4543f-235">Deaktivieren Sie entweder Prerendering, oder fügen Sie zusätzlichen Code hinzu, um mit Prerendering zu arbeiten.</span><span class="sxs-lookup"><span data-stu-id="4543f-235">Either disable prerendering or add additional code to work with prerendering.</span></span> <span data-ttu-id="4543f-236">Weitere Informationen zum Schreiben von Code, der mit Prerendering kompatibel ist, finden Sie im Abschnitt [Handhabung von Prerendering](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="4543f-236">To learn more about writing code that works with prerendering, see the [Handle prerendering](#handle-prerendering) section.</span></span>
+> <span data-ttu-id="27361-288">Deaktivieren Sie entweder Prerendering, oder fügen Sie zusätzlichen Code hinzu, um mit Prerendering zu arbeiten.</span><span class="sxs-lookup"><span data-stu-id="27361-288">Either disable prerendering or add additional code to work with prerendering.</span></span> <span data-ttu-id="27361-289">Weitere Informationen zum Schreiben von Code, der mit Prerendering kompatibel ist, finden Sie im Abschnitt [Handhabung von Prerendering](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="27361-289">To learn more about writing code that works with prerendering, see the [Handle prerendering](#handle-prerendering) section.</span></span>
 
-### <a name="handle-the-loading-state"></a><span data-ttu-id="4543f-237">Handhabung des Ladezustands</span><span class="sxs-lookup"><span data-stu-id="4543f-237">Handle the loading state</span></span>
+### <a name="handle-the-loading-state"></a><span data-ttu-id="27361-290">Handhabung des Ladezustands</span><span class="sxs-lookup"><span data-stu-id="27361-290">Handle the loading state</span></span>
 
-<span data-ttu-id="4543f-238">Da die Browserspeicherung asynchron erfolgt (Zugriff über eine Netzwerkverbindung), vergeht immer eine gewisse Zeit, bis die Daten geladen und für die Verwendung durch eine Komponente verfügbar sind.</span><span class="sxs-lookup"><span data-stu-id="4543f-238">Since browser storage is asynchronous (accessed over a network connection), there's always a period of time before the data is loaded and available for use by a component.</span></span> <span data-ttu-id="4543f-239">Die besten Ergebnisse erzielen Sie, wenn Sie während des Ladevorgangs eine Ladezustandsmeldung rendern, anstatt leere oder Standarddaten anzuzeigen.</span><span class="sxs-lookup"><span data-stu-id="4543f-239">For the best results, render a loading-state message while loading is in progress instead of displaying blank or default data.</span></span>
+<span data-ttu-id="27361-291">Da die Browserspeicherung asynchron über eine Netzwerkverbindung erfolgt, vergeht immer eine gewisse Zeit, bis die Daten geladen werden und für eine Komponente zur Verfügung stehen.</span><span class="sxs-lookup"><span data-stu-id="27361-291">Since browser storage is accessed asynchronously over a network connection, there's always a period of time before the data is loaded and available to a component.</span></span> <span data-ttu-id="27361-292">Die besten Ergebnisse erzielen Sie, wenn Sie während des Ladevorgangs eine Ladezustandsmeldung rendern, anstatt leere oder Standarddaten anzuzeigen.</span><span class="sxs-lookup"><span data-stu-id="27361-292">For the best results, render a loading-state message while loading is in progress instead of displaying blank or default data.</span></span>
 
-<span data-ttu-id="4543f-240">Ein Ansatz besteht darin, zu beobachten, ob die Daten den Zustand `null` aufweisen (werden noch geladen) oder nicht.</span><span class="sxs-lookup"><span data-stu-id="4543f-240">One approach is to track whether the data is `null` (still loading) or not.</span></span> <span data-ttu-id="4543f-241">In der `Counter`-Standardkomponente wird die Anzahl in einer `int` gespeichert.</span><span class="sxs-lookup"><span data-stu-id="4543f-241">In the default `Counter` component, the count is held in an `int`.</span></span> <span data-ttu-id="4543f-242">Legen Sie fest, dass `currentCount` NULL-Werte aufweisen können, indem Sie dem Typ (`int`) ein Fragezeichen (`?`) hinzufügen:</span><span class="sxs-lookup"><span data-stu-id="4543f-242">Make `currentCount` nullable by adding a question mark (`?`) to the type (`int`):</span></span>
+<span data-ttu-id="27361-293">Ein Ansatz besteht darin, nachzuverfolgen, ob die Daten den Zustand `null` aufweisen. Dies bedeutet, dass die Daten noch geladen werden.</span><span class="sxs-lookup"><span data-stu-id="27361-293">One approach is to track whether the data is `null`, which means that the data is still loading.</span></span> <span data-ttu-id="27361-294">In der `Counter`-Standardkomponente wird die Anzahl in einer `int` gespeichert.</span><span class="sxs-lookup"><span data-stu-id="27361-294">In the default `Counter` component, the count is held in an `int`.</span></span> <span data-ttu-id="27361-295">[Legen Sie fest, dass `currentCount` NULL-Werte aufweisen kann](/dotnet/csharp/language-reference/builtin-types/nullable-value-types), indem Sie dem Typ (`int`) ein Fragezeichen (`?`) hinzufügen:</span><span class="sxs-lookup"><span data-stu-id="27361-295">[Make `currentCount` nullable](/dotnet/csharp/language-reference/builtin-types/nullable-value-types) by adding a question mark (`?`) to the type (`int`):</span></span>
 
 ```csharp
 private int? currentCount;
 ```
 
-<span data-ttu-id="4543f-243">Anstatt bedingungslos die Anzahl und die Schaltfläche **`Increment`** anzuzeigen, legen Sie fest, dass diese Elemente nur dann angezeigt werden, wenn die Daten geladen sind:</span><span class="sxs-lookup"><span data-stu-id="4543f-243">Instead of unconditionally displaying the count and **`Increment`** button, choose to display these elements only if the data is loaded:</span></span>
+<span data-ttu-id="27361-296">Anstatt bedingungslos die Anzahl und die Schaltfläche **`Increment`** anzuzeigen, zeigen Sie diese Elemente nur dann an, wenn die Daten geladen wurden, indem Sie <xref:System.Nullable%601.HasValue%2A> überprüfen:</span><span class="sxs-lookup"><span data-stu-id="27361-296">Instead of unconditionally displaying the count and **`Increment`** button, display these elements only if the data is loaded by checking <xref:System.Nullable%601.HasValue%2A>:</span></span>
 
 ```razor
 @if (currentCount.HasValue)
 {
     <p>Current count: <strong>@currentCount</strong></p>
-
     <button @onclick="IncrementCount">Increment</button>
 }
 else
@@ -232,39 +307,47 @@ else
 }
 ```
 
-### <a name="handle-prerendering"></a><span data-ttu-id="4543f-244">Handhabung von Prerendering</span><span class="sxs-lookup"><span data-stu-id="4543f-244">Handle prerendering</span></span>
+### <a name="handle-prerendering"></a><span data-ttu-id="27361-297">Handhabung von Prerendering</span><span class="sxs-lookup"><span data-stu-id="27361-297">Handle prerendering</span></span>
 
-<span data-ttu-id="4543f-245">Während des Prerenderings:</span><span class="sxs-lookup"><span data-stu-id="4543f-245">During prerendering:</span></span>
+<span data-ttu-id="27361-298">Während des Prerenderings:</span><span class="sxs-lookup"><span data-stu-id="27361-298">During prerendering:</span></span>
 
-* <span data-ttu-id="4543f-246">Eine interaktive Verbindung zum Browser des Benutzers ist nicht vorhanden.</span><span class="sxs-lookup"><span data-stu-id="4543f-246">An interactive connection to the user's browser doesn't exist.</span></span>
-* <span data-ttu-id="4543f-247">Der Browser verfügt noch nicht über eine Seite, auf der der JavaScript-Code ausgeführt werden kann.</span><span class="sxs-lookup"><span data-stu-id="4543f-247">The browser doesn't yet have a page in which it can run JavaScript code.</span></span>
+* <span data-ttu-id="27361-299">Eine interaktive Verbindung zum Browser des Benutzers ist nicht vorhanden.</span><span class="sxs-lookup"><span data-stu-id="27361-299">An interactive connection to the user's browser doesn't exist.</span></span>
+* <span data-ttu-id="27361-300">Der Browser verfügt noch nicht über eine Seite, auf der der JavaScript-Code ausgeführt werden kann.</span><span class="sxs-lookup"><span data-stu-id="27361-300">The browser doesn't yet have a page in which it can run JavaScript code.</span></span>
 
-<span data-ttu-id="4543f-248">`localStorage` oder `sessionStorage` sind während des Prerenderings nicht verfügbar.</span><span class="sxs-lookup"><span data-stu-id="4543f-248">`localStorage` or `sessionStorage` aren't available during prerendering.</span></span> <span data-ttu-id="4543f-249">Wenn die Komponente versucht, mit dem Speicher zu interagieren, wird ein Fehler ähnlich dem folgenden generiert:</span><span class="sxs-lookup"><span data-stu-id="4543f-249">If the component attempts to interact with storage, an error is generated similar to:</span></span>
+<span data-ttu-id="27361-301">`localStorage` oder `sessionStorage` sind während des Prerenderings nicht verfügbar.</span><span class="sxs-lookup"><span data-stu-id="27361-301">`localStorage` or `sessionStorage` aren't available during prerendering.</span></span> <span data-ttu-id="27361-302">Wenn die Komponente versucht,mit dem Speicher zu interagieren, wird ein Fehler generiert, der besagt, dass JavaScript-Interop-Aufrufe nicht ausgegeben werden können, weil PreRendering für die Komponente ausgeführt wird.</span><span class="sxs-lookup"><span data-stu-id="27361-302">If the component attempts to interact with storage, an error is generated explaining that JavaScript interop calls cannot be issued because the component is being prerendered.</span></span>
 
-> <span data-ttu-id="4543f-250">JavaScript-Interop-Aufrufe können derzeit nicht durchgeführt werden.</span><span class="sxs-lookup"><span data-stu-id="4543f-250">JavaScript interop calls cannot be issued at this time.</span></span> <span data-ttu-id="4543f-251">Dies liegt daran, dass die Komponente vorab gerendert wird.</span><span class="sxs-lookup"><span data-stu-id="4543f-251">This is because the component is being prerendered.</span></span>
+<span data-ttu-id="27361-303">Eine Möglichkeit, den Fehler zu beheben, besteht darin, das Prerendering zu deaktivieren.</span><span class="sxs-lookup"><span data-stu-id="27361-303">One way to resolve the error is to disable prerendering.</span></span> <span data-ttu-id="27361-304">Dies ist normalerweise die beste Lösung, wenn die App den browserbasierten Speicher stark nutzt.</span><span class="sxs-lookup"><span data-stu-id="27361-304">This is usually the best choice if the app makes heavy use of browser-based storage.</span></span> <span data-ttu-id="27361-305">Das Prerendering erhöht die Komplexität und bringt der App keinen Nutzen, da die App keinen nützlichen Inhalt vorab rendern kann, bevor nicht `localStorage` oder `sessionStorage` verfügbar sind.</span><span class="sxs-lookup"><span data-stu-id="27361-305">Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.</span></span>
 
-<span data-ttu-id="4543f-252">Eine Möglichkeit, den Fehler zu beheben, besteht darin, das Prerendering zu deaktivieren.</span><span class="sxs-lookup"><span data-stu-id="4543f-252">One way to resolve the error is to disable prerendering.</span></span> <span data-ttu-id="4543f-253">Dies ist normalerweise die beste Lösung, wenn die App den browserbasierten Speicher stark nutzt.</span><span class="sxs-lookup"><span data-stu-id="4543f-253">This is usually the best choice if the app makes heavy use of browser-based storage.</span></span> <span data-ttu-id="4543f-254">Das Prerendering erhöht die Komplexität und bringt der App keinen Nutzen, da die App keinen nützlichen Inhalt vorab rendern kann, bevor nicht `localStorage` oder `sessionStorage` verfügbar sind.</span><span class="sxs-lookup"><span data-stu-id="4543f-254">Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.</span></span>
+<span data-ttu-id="27361-306">Öffnen Sie die Datei `Pages/_Host.cshtml`, und ändern Sie das `render-mode`-Attribut des [Komponententag-Hilfsprogramms](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) in <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>, um PreRendering zu deaktivieren:</span><span class="sxs-lookup"><span data-stu-id="27361-306">To disable prerendering, open the `Pages/_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:</span></span>
 
-<span data-ttu-id="4543f-255">Öffnen Sie die Datei `Pages/_Host.cshtml`, und ändern Sie die `render-mode`-Eigenschaft des [Komponententag-Hilfsprogramms](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) in <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>, um das Prerendering zu deaktivieren.</span><span class="sxs-lookup"><span data-stu-id="4543f-255">To disable prerendering, open the `Pages/_Host.cshtml` file and change the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.</span></span>
+```cshtml
+<component type="typeof(App)" render-mode="Server" />
+```
 
-<span data-ttu-id="4543f-256">Das Prerendering ist möglicherweise nützlich für andere Seiten, die `localStorage` oder `sessionStorage` nicht verwenden.</span><span class="sxs-lookup"><span data-stu-id="4543f-256">Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`.</span></span> <span data-ttu-id="4543f-257">Damit das Prerendering aktiviert bleibt, verschieben Sie den Ladevorgang, bis der Browser mit der Verbindung verbunden ist.</span><span class="sxs-lookup"><span data-stu-id="4543f-257">To keep prerendering enabled, defer the loading operation until the browser is connected to the circuit.</span></span> <span data-ttu-id="4543f-258">Im Folgenden finden Sie ein Beispiel für das Speichern eines Zählerwerts:</span><span class="sxs-lookup"><span data-stu-id="4543f-258">The following is an example for storing a counter value:</span></span>
+<span data-ttu-id="27361-307">Das Prerendering ist möglicherweise nützlich für andere Seiten, die `localStorage` oder `sessionStorage` nicht verwenden.</span><span class="sxs-lookup"><span data-stu-id="27361-307">Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`.</span></span> <span data-ttu-id="27361-308">Damit PreRendering beibehalten wird, verschieben Sie den Ladevorgang, bis der Browser mit der Verbindung verbunden ist.</span><span class="sxs-lookup"><span data-stu-id="27361-308">To retain prerendering, defer the loading operation until the browser is connected to the circuit.</span></span> <span data-ttu-id="27361-309">Im Folgenden finden Sie ein Beispiel für das Speichern eines Zählerwerts:</span><span class="sxs-lookup"><span data-stu-id="27361-309">The following is an example for storing a counter value:</span></span>
 
 ```razor
-@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@using Microsoft.AspNetCore.Components.Web.Extensions
 @inject ProtectedLocalStorage ProtectedLocalStore
 
-... rendering code goes here ...
+@if (isConnected)
+{
+    <p>Current count: <strong>@currentCount</strong></p>
+    <button @onclick="IncrementCount">Increment</button>
+}
+else
+{
+    <p>Loading...</p>
+}
 
 @code {
-    private int? currentCount;
-    private bool isConnected = false;
+    private int currentCount;
+    private bool isConnected;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            // When execution reaches this point, the first *interactive* render
-            // is complete. The component has an active connection to the browser.
             isConnected = true;
             await LoadStateAsync();
             StateHasChanged();
@@ -273,28 +356,29 @@ else
 
     private async Task LoadStateAsync()
     {
-        currentCount = await ProtectedLocalStore.GetAsync<int>("prerenderedCount");
+        var result = await ProtectedLocalStore.GetAsync<int>("count");
+        currentCount = result.Success ? result.Value : 0;
     }
 
     private async Task IncrementCount()
     {
         currentCount++;
-        await ProtectedSessionStore.SetAsync("count", currentCount);
+        await ProtectedLocalStore.SetAsync("count", currentCount);
     }
 }
 ```
 
-### <a name="factor-out-the-state-preservation-to-a-common-location"></a><span data-ttu-id="4543f-259">Ausklammern der Zustandsbeibehaltung an einen allgemeinen Speicherort</span><span class="sxs-lookup"><span data-stu-id="4543f-259">Factor out the state preservation to a common location</span></span>
+### <a name="factor-out-the-state-preservation-to-a-common-location"></a><span data-ttu-id="27361-310">Ausklammern der Zustandsbeibehaltung an einen allgemeinen Speicherort</span><span class="sxs-lookup"><span data-stu-id="27361-310">Factor out the state preservation to a common location</span></span>
 
-<span data-ttu-id="4543f-260">Wenn viele Komponenten auf browserbasierte Speicherung zurückgreifen, führt ein erneutes Implementieren des Zustandsanbietercodes häufig zur Duplizierung des Codes.</span><span class="sxs-lookup"><span data-stu-id="4543f-260">If many components rely on browser-based storage, re-implementing state provider code many times creates code duplication.</span></span> <span data-ttu-id="4543f-261">Eine Möglichkeit, die Duplizierung von Code zu vermeiden, besteht darin, eine *übergeordnete Komponente des Zustandsanbieters zu erstellen*, die die Zustandsanbieterlogik kapselt.</span><span class="sxs-lookup"><span data-stu-id="4543f-261">One option for avoiding code duplication is to create a *state provider parent component* that encapsulates the state provider logic.</span></span> <span data-ttu-id="4543f-262">Untergeordnete Komponenten können ohne Berücksichtigung des Zustandspersistenzmechanismus mit beibehaltenen Daten arbeiten.</span><span class="sxs-lookup"><span data-stu-id="4543f-262">Child components can work with persisted data without regard to the state persistence mechanism.</span></span>
+<span data-ttu-id="27361-311">Wenn viele Komponenten auf browserbasierte Speicherung zurückgreifen, führt ein erneutes Implementieren des Zustandsanbietercodes häufig zur Duplizierung des Codes.</span><span class="sxs-lookup"><span data-stu-id="27361-311">If many components rely on browser-based storage, re-implementing state provider code many times creates code duplication.</span></span> <span data-ttu-id="27361-312">Eine Möglichkeit, die Duplizierung von Code zu vermeiden, besteht darin, eine *übergeordnete Komponente des Zustandsanbieters zu erstellen*, die die Zustandsanbieterlogik kapselt.</span><span class="sxs-lookup"><span data-stu-id="27361-312">One option for avoiding code duplication is to create a *state provider parent component* that encapsulates the state provider logic.</span></span> <span data-ttu-id="27361-313">Untergeordnete Komponenten können ohne Berücksichtigung des Zustandspersistenzmechanismus mit beibehaltenen Daten arbeiten.</span><span class="sxs-lookup"><span data-stu-id="27361-313">Child components can work with persisted data without regard to the state persistence mechanism.</span></span>
 
-<span data-ttu-id="4543f-263">Im folgenden Beispiel sehen Sie eine `CounterStateProvider`-Komponente, für die die Zählerdaten beibehalten werden:</span><span class="sxs-lookup"><span data-stu-id="4543f-263">In the following example of a `CounterStateProvider` component, counter data is persisted:</span></span>
+<span data-ttu-id="27361-314">Im folgenden Beispiel sehen Sie eine `CounterStateProvider`-Komponente, für die die Zählerdaten in `sessionStorage` persistent gespeichert werden:</span><span class="sxs-lookup"><span data-stu-id="27361-314">In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`:</span></span>
 
 ```razor
-@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@using Microsoft.AspNetCore.Components.Web.Extensions
 @inject ProtectedSessionStorage ProtectedSessionStore
 
-@if (hasLoaded)
+@if (isLoaded)
 {
     <CascadingValue Value="@this">
         @ChildContent
@@ -306,7 +390,7 @@ else
 }
 
 @code {
-    private bool hasLoaded;
+    private bool isLoaded;
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -315,8 +399,9 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentCount = await ProtectedSessionStore.GetAsync<int>("count");
-        hasLoaded = true;
+        var result = await ProtectedSessionStore.GetAsync<int>("count");
+        currentCount = result.Success ? result.Value : 0;
+        isLoaded = true;
     }
 
     public async Task SaveChangesAsync()
@@ -326,9 +411,9 @@ else
 }
 ```
 
-<span data-ttu-id="4543f-264">Die `CounterStateProvider`-Komponente verarbeitet die Ladephase, indem der untergeordnete Inhalt erst nach Abschluss des Ladenvorgangs gerendert wird.</span><span class="sxs-lookup"><span data-stu-id="4543f-264">The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.</span></span>
+<span data-ttu-id="27361-315">Die `CounterStateProvider`-Komponente verarbeitet die Ladephase, indem der untergeordnete Inhalt erst nach Abschluss des Ladenvorgangs gerendert wird.</span><span class="sxs-lookup"><span data-stu-id="27361-315">The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.</span></span>
 
-<span data-ttu-id="4543f-265">Um die `CounterStateProvider`-Komponente zu verwenden, umschließen Sie eine Instanz der Komponente in einer beliebigen anderen Komponente, die Zugriff auf den Zählerzustand benötigt.</span><span class="sxs-lookup"><span data-stu-id="4543f-265">To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state.</span></span> <span data-ttu-id="4543f-266">Um den Zustand für alle Komponenten in einer App zugänglich zu machen, umschließen Sie die `CounterStateProvider`-Komponente um den <xref:Microsoft.AspNetCore.Components.Routing.Router> in der `App`-Komponente (`App.razor`):</span><span class="sxs-lookup"><span data-stu-id="4543f-266">To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (`App.razor`):</span></span>
+<span data-ttu-id="27361-316">Um die `CounterStateProvider`-Komponente zu verwenden, umschließen Sie eine Instanz der Komponente in einer beliebigen anderen Komponente, die Zugriff auf den Zählerzustand benötigt.</span><span class="sxs-lookup"><span data-stu-id="27361-316">To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state.</span></span> <span data-ttu-id="27361-317">Um den Zustand für alle Komponenten in einer App zugänglich zu machen, umschließen Sie die `CounterStateProvider`-Komponente um den <xref:Microsoft.AspNetCore.Components.Routing.Router> in der `App`-Komponente (`App.razor`):</span><span class="sxs-lookup"><span data-stu-id="27361-317">To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (`App.razor`):</span></span>
 
 ```razor
 <CounterStateProvider>
@@ -338,13 +423,12 @@ else
 </CounterStateProvider>
 ```
 
-<span data-ttu-id="4543f-267">Umschließende Komponenten erhalten den beibehaltenen Zählerzustand und können diesen ändern.</span><span class="sxs-lookup"><span data-stu-id="4543f-267">Wrapped components receive and can modify the persisted counter state.</span></span> <span data-ttu-id="4543f-268">Die folgende `Counter`-Komponente implementiert das Muster:</span><span class="sxs-lookup"><span data-stu-id="4543f-268">The following `Counter` component implements the pattern:</span></span>
+<span data-ttu-id="27361-318">Umschließende Komponenten erhalten den beibehaltenen Zählerzustand und können diesen ändern.</span><span class="sxs-lookup"><span data-stu-id="27361-318">Wrapped components receive and can modify the persisted counter state.</span></span> <span data-ttu-id="27361-319">Die folgende `Counter`-Komponente implementiert das Muster:</span><span class="sxs-lookup"><span data-stu-id="27361-319">The following `Counter` component implements the pattern:</span></span>
 
 ```razor
 @page "/counter"
 
 <p>Current count: <strong>@CounterStateProvider.CurrentCount</strong></p>
-
 <button @onclick="IncrementCount">Increment</button>
 
 @code {
@@ -359,13 +443,260 @@ else
 }
 ```
 
-<span data-ttu-id="4543f-269">Die vorherige Komponente muss weder mit `ProtectedBrowserStorage` interagieren, noch eine „Ladephase“ verarbeiten.</span><span class="sxs-lookup"><span data-stu-id="4543f-269">The preceding component isn't required to interact with `ProtectedBrowserStorage`, nor does it deal with a "loading" phase.</span></span>
+<span data-ttu-id="27361-320">Die vorherige Komponente muss weder mit `ProtectedBrowserStorage` interagieren, noch eine „Ladephase“ verarbeiten.</span><span class="sxs-lookup"><span data-stu-id="27361-320">The preceding component isn't required to interact with `ProtectedBrowserStorage`, nor does it deal with a "loading" phase.</span></span>
 
-<span data-ttu-id="4543f-270">Für eine Handhabung des Prerenderings wie oben beschrieben kann `CounterStateProvider` dahingehend geändert werden, dass alle Komponenten, die Zählerdaten verbrauchen, automatisch mit dem Prerendering arbeiten.</span><span class="sxs-lookup"><span data-stu-id="4543f-270">To deal with prerendering as described earlier, `CounterStateProvider` can be amended so that all of the components that consume the counter data automatically work with prerendering.</span></span> <span data-ttu-id="4543f-271">Ausführliche Informationen finden Sie im Abschnitt [Handhabung von Prerendering](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="4543f-271">See the [Handle prerendering](#handle-prerendering) section for details.</span></span>
+<span data-ttu-id="27361-321">Für eine Handhabung des Prerenderings wie oben beschrieben kann `CounterStateProvider` dahingehend geändert werden, dass alle Komponenten, die Zählerdaten verbrauchen, automatisch mit dem Prerendering arbeiten.</span><span class="sxs-lookup"><span data-stu-id="27361-321">To deal with prerendering as described earlier, `CounterStateProvider` can be amended so that all of the components that consume the counter data automatically work with prerendering.</span></span> <span data-ttu-id="27361-322">Weitere Informationen finden Sie im Abschnitt [Verarbeiten von PreRendering](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="27361-322">For more information, see the [Handle prerendering](#handle-prerendering) section.</span></span>
 
-<span data-ttu-id="4543f-272">In folgenden Fällen wird im Allgemeinen das Muster der *übergeordneten Komponente des Zustandsanbieters* empfohlen:</span><span class="sxs-lookup"><span data-stu-id="4543f-272">In general, *state provider parent component* pattern is recommended:</span></span>
+<span data-ttu-id="27361-323">In folgenden Fällen wird im Allgemeinen das Muster der *übergeordneten Komponente des Zustandsanbieters* empfohlen:</span><span class="sxs-lookup"><span data-stu-id="27361-323">In general, the *state provider parent component* pattern is recommended:</span></span>
 
-* <span data-ttu-id="4543f-273">Der Zustand soll in vielen anderen Komponenten verwendet werden können.</span><span class="sxs-lookup"><span data-stu-id="4543f-273">To consume state in many other components.</span></span>
-* <span data-ttu-id="4543f-274">Es muss nur ein Zustandsobjekt auf der obersten Ebene beibehalten werden.</span><span class="sxs-lookup"><span data-stu-id="4543f-274">If there's just one top-level state object to persist.</span></span>
+* <span data-ttu-id="27361-324">Um den Zustand über viele Komponenten hinweg zu nutzen.</span><span class="sxs-lookup"><span data-stu-id="27361-324">To consume state across many components.</span></span>
+* <span data-ttu-id="27361-325">Es muss nur ein Zustandsobjekt auf der obersten Ebene beibehalten werden.</span><span class="sxs-lookup"><span data-stu-id="27361-325">If there's just one top-level state object to persist.</span></span>
 
-<span data-ttu-id="4543f-275">Um viele verschiedene Zustandsobjekte beizubehalten und verschiedene Teilmengen von Objekten an verschiedenen Orten zu verarbeiten, ist es besser, das Laden und Speichern von Zustandsobjekten nicht global zu handhaben.</span><span class="sxs-lookup"><span data-stu-id="4543f-275">To persist many different state objects and consume different subsets of objects in different places, it's better to avoid handling the loading and saving of state globally.</span></span>
+<span data-ttu-id="27361-326">Um viele verschiedene Zustandsobjekte beizubehalten und verschiedene Teilmengen von Objekten an verschiedenen Orten zu verarbeiten, ist es besser, das globale persistente Speichern des Zustands zu vermeiden.</span><span class="sxs-lookup"><span data-stu-id="27361-326">To persist many different state objects and consume different subsets of objects in different places, it's better to avoid persisting state globally.</span></span>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+## <a name="protected-browser-storage-experimental-nuget-package"></a><span data-ttu-id="27361-327">Experimentelles NuGet-Paket für Protected Browser Storage</span><span class="sxs-lookup"><span data-stu-id="27361-327">Protected Browser Storage experimental NuGet package</span></span>
+
+<span data-ttu-id="27361-328">[ASP.NET Core Protected Browser Storage](xref:security/data-protection/introduction) nutzt ASP.NET Core-Datenschutz für [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) und [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).</span><span class="sxs-lookup"><span data-stu-id="27361-328">ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](xref:security/data-protection/introduction) for [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).</span></span>
+
+> [!WARNING]
+> <span data-ttu-id="27361-329">`Microsoft.AspNetCore.ProtectedBrowserStorage` ist ein nicht unterstütztes experimentelles Paket, das nicht für den Einsatz in der Produktion geeignet ist.</span><span class="sxs-lookup"><span data-stu-id="27361-329">`Microsoft.AspNetCore.ProtectedBrowserStorage` is an unsupported, experimental package unsuitable for production use.</span></span>
+>
+> <span data-ttu-id="27361-330">Das Paket ist nur für die Verwendung in ASP.NET Core 3.1 Blazor Server-Apps verfügbar.</span><span class="sxs-lookup"><span data-stu-id="27361-330">The package is only available for use in ASP.NET Core 3.1 Blazor Server apps.</span></span>
+
+### <a name="configuration"></a><span data-ttu-id="27361-331">Konfiguration</span><span class="sxs-lookup"><span data-stu-id="27361-331">Configuration</span></span>
+
+1. <span data-ttu-id="27361-332">Fügen Sie [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage) einen Paketverweis hinzu.</span><span class="sxs-lookup"><span data-stu-id="27361-332">Add a package reference to [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).</span></span>
+1. <span data-ttu-id="27361-333">Fügen Sie in der Datei `Pages/_Host.cshtml` das folgende Skript innerhalb des schließenden Tags `</body>` hinzu:</span><span class="sxs-lookup"><span data-stu-id="27361-333">In the `Pages/_Host.cshtml` file, add the following script inside the closing `</body>` tag:</span></span>
+
+   ```cshtml
+   <script src="_content/Microsoft.AspNetCore.ProtectedBrowserStorage/protectedBrowserStorage.js"></script>
+   ```
+
+1. <span data-ttu-id="27361-334">Rufen Sie in `Startup.ConfigureServices` `AddProtectedBrowserStorage` auf, um der Dienstsammlung die Dienste `localStorage` und `sessionStorage` hinzuzufügen:</span><span class="sxs-lookup"><span data-stu-id="27361-334">In `Startup.ConfigureServices`, call `AddProtectedBrowserStorage` to add `localStorage` and `sessionStorage` services to the service collection:</span></span>
+
+   ```csharp
+   services.AddProtectedBrowserStorage();
+   ```
+
+### <a name="save-and-load-data-within-a-component"></a><span data-ttu-id="27361-335">Speichern und Laden von Daten in einer Komponente</span><span class="sxs-lookup"><span data-stu-id="27361-335">Save and load data within a component</span></span>
+
+<span data-ttu-id="27361-336">Verwenden Sie für jede Komponente, die das Laden oder Speichern von Daten im Browserspeicher erfordert, die [`@inject`](xref:mvc/views/razor#inject)-Anweisung, um eine Instanz von einem der folgenden Komponenten einzufügen:</span><span class="sxs-lookup"><span data-stu-id="27361-336">In any component that requires loading or saving data to browser storage, use the [`@inject`](xref:mvc/views/razor#inject) directive to inject an instance of either of the following:</span></span>
+
+* `ProtectedLocalStorage`
+* `ProtectedSessionStorage`
+
+<span data-ttu-id="27361-337">Die Auswahl hängt davon ab, welchen Browserspeicherort Sie verwenden möchten.</span><span class="sxs-lookup"><span data-stu-id="27361-337">The choice depends on which browser storage location you wish to use.</span></span> <span data-ttu-id="27361-338">Im folgenden Beispiel wird `sessionStorage` verwendet:</span><span class="sxs-lookup"><span data-stu-id="27361-338">In the following example, `sessionStorage` is used:</span></span>
+
+```razor
+@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@inject ProtectedSessionStorage ProtectedSessionStore
+```
+
+<span data-ttu-id="27361-339">Die `@using`-Anweisung kann in einer `_Imports.razor`-Datei statt in der Komponente abgelegt werden.</span><span class="sxs-lookup"><span data-stu-id="27361-339">The `@using` statement can be placed into an `_Imports.razor` file instead of in the component.</span></span> <span data-ttu-id="27361-340">Bei Verwendung der `_Imports.razor`-Datei wird der Namespace für größere Segmente der App oder die gesamte App zur Verfügung gestellt.</span><span class="sxs-lookup"><span data-stu-id="27361-340">Use of the `_Imports.razor` file makes the namespace available to larger segments of the app or the whole app.</span></span>
+
+<span data-ttu-id="27361-341">Um den `currentCount`-Wert in der `Counter`-Komponente einer App basierend auf der Blazor Server-Projektvorlage beizubehalten, ändern Sie die `IncrementCount`-Methode so, dass `ProtectedSessionStore.SetAsync` verwendet wird:</span><span class="sxs-lookup"><span data-stu-id="27361-341">To persist the `currentCount` value in the `Counter` component of an app based on the Blazor Server project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:</span></span>
+
+```csharp
+private async Task IncrementCount()
+{
+    currentCount++;
+    await ProtectedSessionStore.SetAsync("count", currentCount);
+}
+```
+
+<span data-ttu-id="27361-342">Bei größeren, realistischeren Apps ist die Speicherung einzelner Felder ein unwahrscheinliches Szenario.</span><span class="sxs-lookup"><span data-stu-id="27361-342">In larger, more realistic apps, storage of individual fields is an unlikely scenario.</span></span> <span data-ttu-id="27361-343">Apps speichern meist ganze Modellobjekte, die komplexe Zustände enthalten.</span><span class="sxs-lookup"><span data-stu-id="27361-343">Apps are more likely to store entire model objects that include complex state.</span></span> <span data-ttu-id="27361-344">`ProtectedSessionStore` serialisiert und deserialisiert JSON-Daten automatisch.</span><span class="sxs-lookup"><span data-stu-id="27361-344">`ProtectedSessionStore` automatically serializes and deserializes JSON data.</span></span>
+
+<span data-ttu-id="27361-345">Im vorangehenden Codebeispiel werden die `currentCount`-Daten als `sessionStorage['count']` im Browser des Benutzers gespeichert.</span><span class="sxs-lookup"><span data-stu-id="27361-345">In the preceding code example, the `currentCount` data is stored as `sessionStorage['count']` in the user's browser.</span></span> <span data-ttu-id="27361-346">Die Daten werden nicht als Nur-Text gespeichert, sondern mit der Datenschutzlösung von ASP.NET Core geschützt.</span><span class="sxs-lookup"><span data-stu-id="27361-346">The data isn't stored in plain text but rather is protected using ASP.NET Core Data Protection.</span></span> <span data-ttu-id="27361-347">Die verschlüsselten Daten können untersucht werden, wenn `sessionStorage['count']` in der Entwicklerkonsole des Browsers ausgewertet wird.</span><span class="sxs-lookup"><span data-stu-id="27361-347">The encrypted data can be inspected if `sessionStorage['count']` is evaluated in the browser's developer console.</span></span>
+
+<span data-ttu-id="27361-348">Verwenden Sie `ProtectedSessionStore.GetAsync`, um die `currentCount`-Daten wiederherzustellen, wenn der Benutzer zu einem späteren Zeitpunkt zur `Counter`-Komponente zurückkehrt (auch wenn er sich in einer vollständig neuen Verbindung befindet):</span><span class="sxs-lookup"><span data-stu-id="27361-348">To recover the `currentCount` data if the user returns to the `Counter` component later, including if they're on an entirely new circuit, use `ProtectedSessionStore.GetAsync`:</span></span>
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    currentCount = await ProtectedSessionStore.GetAsync<int>("count");
+}
+```
+
+<span data-ttu-id="27361-349">Wenn die Parameter der Komponente den Navigationszustand enthalten, rufen Sie `ProtectedSessionStore.GetAsync` auf, und weisen Sie das Ergebnis in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> und nicht in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> zu.</span><span class="sxs-lookup"><span data-stu-id="27361-349">If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.</span></span> <span data-ttu-id="27361-350"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> wird nur ein Mal aufgerufen, wenn die Komponente zum ersten Mal instanziiert wird.</span><span class="sxs-lookup"><span data-stu-id="27361-350"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is only called once when the component is first instantiated.</span></span> <span data-ttu-id="27361-351"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> wird später nicht nochmals aufgerufen, wenn der Benutzer zu einer anderen URL navigiert, während er auf der gleichen Seite bleibt.</span><span class="sxs-lookup"><span data-stu-id="27361-351"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> isn't called again later if the user navigates to a different URL while remaining on the same page.</span></span> <span data-ttu-id="27361-352">Weitere Informationen finden Sie unter <xref:blazor/components/lifecycle>.</span><span class="sxs-lookup"><span data-stu-id="27361-352">For more information, see <xref:blazor/components/lifecycle>.</span></span>
+
+> [!WARNING]
+> <span data-ttu-id="27361-353">Die Beispiele in diesem Abschnitt funktionieren nur, wenn für den Server kein Prerendering aktiviert ist.</span><span class="sxs-lookup"><span data-stu-id="27361-353">The examples in this section only work if the server doesn't have prerendering enabled.</span></span> <span data-ttu-id="27361-354">Bei aktiviertem PreRendering wird ein Fehler generiert, der besagt, dass JavaScript-Interop-Aufrufe nicht ausgegeben werden können, weil PreRendering für die Komponente ausgeführt wird.</span><span class="sxs-lookup"><span data-stu-id="27361-354">With prerendering enabled, an error is generated explaining that JavaScript interop calls cannot be issued because the component is being prerendered.</span></span>
+>
+> <span data-ttu-id="27361-355">Deaktivieren Sie entweder Prerendering, oder fügen Sie zusätzlichen Code hinzu, um mit Prerendering zu arbeiten.</span><span class="sxs-lookup"><span data-stu-id="27361-355">Either disable prerendering or add additional code to work with prerendering.</span></span> <span data-ttu-id="27361-356">Weitere Informationen zum Schreiben von Code, der mit Prerendering kompatibel ist, finden Sie im Abschnitt [Handhabung von Prerendering](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="27361-356">To learn more about writing code that works with prerendering, see the [Handle prerendering](#handle-prerendering) section.</span></span>
+
+### <a name="handle-the-loading-state"></a><span data-ttu-id="27361-357">Handhabung des Ladezustands</span><span class="sxs-lookup"><span data-stu-id="27361-357">Handle the loading state</span></span>
+
+<span data-ttu-id="27361-358">Da die Browserspeicherung asynchron über eine Netzwerkverbindung erfolgt, vergeht immer eine gewisse Zeit, bis die Daten geladen werden und für eine Komponente zur Verfügung stehen.</span><span class="sxs-lookup"><span data-stu-id="27361-358">Since browser storage is accessed asynchronously over a network connection, there's always a period of time before the data is loaded and available to a component.</span></span> <span data-ttu-id="27361-359">Die besten Ergebnisse erzielen Sie, wenn Sie während des Ladevorgangs eine Ladezustandsmeldung rendern, anstatt leere oder Standarddaten anzuzeigen.</span><span class="sxs-lookup"><span data-stu-id="27361-359">For the best results, render a loading-state message while loading is in progress instead of displaying blank or default data.</span></span>
+
+<span data-ttu-id="27361-360">Ein Ansatz besteht darin, nachzuverfolgen, ob die Daten den Zustand `null` aufweisen. Dies bedeutet, dass die Daten noch geladen werden.</span><span class="sxs-lookup"><span data-stu-id="27361-360">One approach is to track whether the data is `null`, which means that the data is still loading.</span></span> <span data-ttu-id="27361-361">In der `Counter`-Standardkomponente wird die Anzahl in einer `int` gespeichert.</span><span class="sxs-lookup"><span data-stu-id="27361-361">In the default `Counter` component, the count is held in an `int`.</span></span> <span data-ttu-id="27361-362">[Legen Sie fest, dass `currentCount` NULL-Werte aufweisen kann](/dotnet/csharp/language-reference/builtin-types/nullable-value-types), indem Sie dem Typ (`int`) ein Fragezeichen (`?`) hinzufügen:</span><span class="sxs-lookup"><span data-stu-id="27361-362">[Make `currentCount` nullable](/dotnet/csharp/language-reference/builtin-types/nullable-value-types) by adding a question mark (`?`) to the type (`int`):</span></span>
+
+```csharp
+private int? currentCount;
+```
+
+<span data-ttu-id="27361-363">Anstatt bedingungslos die Anzahl und die Schaltfläche **`Increment`** anzuzeigen, legen Sie fest, dass diese Elemente nur dann angezeigt werden, wenn die Daten geladen sind:</span><span class="sxs-lookup"><span data-stu-id="27361-363">Instead of unconditionally displaying the count and **`Increment`** button, choose to display these elements only if the data is loaded:</span></span>
+
+```razor
+@if (currentCount.HasValue)
+{
+    <p>Current count: <strong>@currentCount</strong></p>
+    <button @onclick="IncrementCount">Increment</button>
+}
+else
+{
+    <p>Loading...</p>
+}
+```
+
+### <a name="handle-prerendering"></a><span data-ttu-id="27361-364">Handhabung von Prerendering</span><span class="sxs-lookup"><span data-stu-id="27361-364">Handle prerendering</span></span>
+
+<span data-ttu-id="27361-365">Während des Prerenderings:</span><span class="sxs-lookup"><span data-stu-id="27361-365">During prerendering:</span></span>
+
+* <span data-ttu-id="27361-366">Eine interaktive Verbindung zum Browser des Benutzers ist nicht vorhanden.</span><span class="sxs-lookup"><span data-stu-id="27361-366">An interactive connection to the user's browser doesn't exist.</span></span>
+* <span data-ttu-id="27361-367">Der Browser verfügt noch nicht über eine Seite, auf der der JavaScript-Code ausgeführt werden kann.</span><span class="sxs-lookup"><span data-stu-id="27361-367">The browser doesn't yet have a page in which it can run JavaScript code.</span></span>
+
+<span data-ttu-id="27361-368">`localStorage` oder `sessionStorage` sind während des Prerenderings nicht verfügbar.</span><span class="sxs-lookup"><span data-stu-id="27361-368">`localStorage` or `sessionStorage` aren't available during prerendering.</span></span> <span data-ttu-id="27361-369">Wenn die Komponente versucht,mit dem Speicher zu interagieren, wird ein Fehler generiert, der besagt, dass JavaScript-Interop-Aufrufe nicht ausgegeben werden können, weil PreRendering für die Komponente ausgeführt wird.</span><span class="sxs-lookup"><span data-stu-id="27361-369">If the component attempts to interact with storage, an error is generated explaining that JavaScript interop calls cannot be issued because the component is being prerendered.</span></span>
+
+<span data-ttu-id="27361-370">Eine Möglichkeit, den Fehler zu beheben, besteht darin, das Prerendering zu deaktivieren.</span><span class="sxs-lookup"><span data-stu-id="27361-370">One way to resolve the error is to disable prerendering.</span></span> <span data-ttu-id="27361-371">Dies ist normalerweise die beste Lösung, wenn die App den browserbasierten Speicher stark nutzt.</span><span class="sxs-lookup"><span data-stu-id="27361-371">This is usually the best choice if the app makes heavy use of browser-based storage.</span></span> <span data-ttu-id="27361-372">Das Prerendering erhöht die Komplexität und bringt der App keinen Nutzen, da die App keinen nützlichen Inhalt vorab rendern kann, bevor nicht `localStorage` oder `sessionStorage` verfügbar sind.</span><span class="sxs-lookup"><span data-stu-id="27361-372">Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.</span></span>
+
+<span data-ttu-id="27361-373">Öffnen Sie die Datei `Pages/_Host.cshtml`, und ändern Sie das `render-mode`-Attribut des [Komponententag-Hilfsprogramms](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) in <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>, um PreRendering zu deaktivieren:</span><span class="sxs-lookup"><span data-stu-id="27361-373">To disable prerendering, open the `Pages/_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:</span></span>
+
+```cshtml
+<component type="typeof(App)" render-mode="Server" />
+```
+
+<span data-ttu-id="27361-374">Das Prerendering ist möglicherweise nützlich für andere Seiten, die `localStorage` oder `sessionStorage` nicht verwenden.</span><span class="sxs-lookup"><span data-stu-id="27361-374">Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`.</span></span> <span data-ttu-id="27361-375">Damit PreRendering beibehalten wird, verschieben Sie den Ladevorgang, bis der Browser mit der Verbindung verbunden ist.</span><span class="sxs-lookup"><span data-stu-id="27361-375">To retain prerendering, defer the loading operation until the browser is connected to the circuit.</span></span> <span data-ttu-id="27361-376">Im Folgenden finden Sie ein Beispiel für das Speichern eines Zählerwerts:</span><span class="sxs-lookup"><span data-stu-id="27361-376">The following is an example for storing a counter value:</span></span>
+
+```razor
+@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@inject ProtectedLocalStorage ProtectedLocalStore
+
+@if (isConnected)
+{
+    <p>Current count: <strong>@currentCount</strong></p>
+    <button @onclick="IncrementCount">Increment</button>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    private int? currentCount;
+    private bool isConnected = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isConnected = true;
+            await LoadStateAsync();
+            StateHasChanged();
+        }
+    }
+
+    private async Task LoadStateAsync()
+    {
+        currentCount = await ProtectedLocalStore.GetAsync<int>("count");
+    }
+
+    private async Task IncrementCount()
+    {
+        currentCount++;
+        await ProtectedLocalStore.SetAsync("count", currentCount);
+    }
+}
+```
+
+### <a name="factor-out-the-state-preservation-to-a-common-location"></a><span data-ttu-id="27361-377">Ausklammern der Zustandsbeibehaltung an einen allgemeinen Speicherort</span><span class="sxs-lookup"><span data-stu-id="27361-377">Factor out the state preservation to a common location</span></span>
+
+<span data-ttu-id="27361-378">Wenn viele Komponenten auf browserbasierte Speicherung zurückgreifen, führt ein erneutes Implementieren des Zustandsanbietercodes häufig zur Duplizierung des Codes.</span><span class="sxs-lookup"><span data-stu-id="27361-378">If many components rely on browser-based storage, re-implementing state provider code many times creates code duplication.</span></span> <span data-ttu-id="27361-379">Eine Möglichkeit, die Duplizierung von Code zu vermeiden, besteht darin, eine *übergeordnete Komponente des Zustandsanbieters zu erstellen*, die die Zustandsanbieterlogik kapselt.</span><span class="sxs-lookup"><span data-stu-id="27361-379">One option for avoiding code duplication is to create a *state provider parent component* that encapsulates the state provider logic.</span></span> <span data-ttu-id="27361-380">Untergeordnete Komponenten können ohne Berücksichtigung des Zustandspersistenzmechanismus mit beibehaltenen Daten arbeiten.</span><span class="sxs-lookup"><span data-stu-id="27361-380">Child components can work with persisted data without regard to the state persistence mechanism.</span></span>
+
+<span data-ttu-id="27361-381">Im folgenden Beispiel sehen Sie eine `CounterStateProvider`-Komponente, für die die Zählerdaten in `sessionStorage` persistent gespeichert werden:</span><span class="sxs-lookup"><span data-stu-id="27361-381">In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`:</span></span>
+
+```razor
+@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@inject ProtectedSessionStorage ProtectedSessionStore
+
+@if (isLoaded)
+{
+    <CascadingValue Value="@this">
+        @ChildContent
+    </CascadingValue>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    private bool isLoaded;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public int CurrentCount { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        CurrentCount = await ProtectedSessionStore.GetAsync<int>("count");
+        isLoaded = true;
+    }
+
+    public async Task SaveChangesAsync()
+    {
+        await ProtectedSessionStore.SetAsync("count", CurrentCount);
+    }
+}
+```
+
+<span data-ttu-id="27361-382">Die `CounterStateProvider`-Komponente verarbeitet die Ladephase, indem der untergeordnete Inhalt erst nach Abschluss des Ladenvorgangs gerendert wird.</span><span class="sxs-lookup"><span data-stu-id="27361-382">The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.</span></span>
+
+<span data-ttu-id="27361-383">Um die `CounterStateProvider`-Komponente zu verwenden, umschließen Sie eine Instanz der Komponente in einer beliebigen anderen Komponente, die Zugriff auf den Zählerzustand benötigt.</span><span class="sxs-lookup"><span data-stu-id="27361-383">To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state.</span></span> <span data-ttu-id="27361-384">Um den Zustand für alle Komponenten in einer App zugänglich zu machen, umschließen Sie die `CounterStateProvider`-Komponente um den <xref:Microsoft.AspNetCore.Components.Routing.Router> in der `App`-Komponente (`App.razor`):</span><span class="sxs-lookup"><span data-stu-id="27361-384">To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (`App.razor`):</span></span>
+
+```razor
+<CounterStateProvider>
+    <Router AppAssembly="typeof(Startup).Assembly">
+        ...
+    </Router>
+</CounterStateProvider>
+```
+
+<span data-ttu-id="27361-385">Umschließende Komponenten erhalten den beibehaltenen Zählerzustand und können diesen ändern.</span><span class="sxs-lookup"><span data-stu-id="27361-385">Wrapped components receive and can modify the persisted counter state.</span></span> <span data-ttu-id="27361-386">Die folgende `Counter`-Komponente implementiert das Muster:</span><span class="sxs-lookup"><span data-stu-id="27361-386">The following `Counter` component implements the pattern:</span></span>
+
+```razor
+@page "/counter"
+
+<p>Current count: <strong>@CounterStateProvider.CurrentCount</strong></p>
+<button @onclick="IncrementCount">Increment</button>
+
+@code {
+    [CascadingParameter]
+    private CounterStateProvider CounterStateProvider { get; set; }
+
+    private async Task IncrementCount()
+    {
+        CounterStateProvider.CurrentCount++;
+        await CounterStateProvider.SaveChangesAsync();
+    }
+}
+```
+
+<span data-ttu-id="27361-387">Die vorherige Komponente muss weder mit `ProtectedBrowserStorage` interagieren, noch eine „Ladephase“ verarbeiten.</span><span class="sxs-lookup"><span data-stu-id="27361-387">The preceding component isn't required to interact with `ProtectedBrowserStorage`, nor does it deal with a "loading" phase.</span></span>
+
+<span data-ttu-id="27361-388">Für eine Handhabung des Prerenderings wie oben beschrieben kann `CounterStateProvider` dahingehend geändert werden, dass alle Komponenten, die Zählerdaten verbrauchen, automatisch mit dem Prerendering arbeiten.</span><span class="sxs-lookup"><span data-stu-id="27361-388">To deal with prerendering as described earlier, `CounterStateProvider` can be amended so that all of the components that consume the counter data automatically work with prerendering.</span></span> <span data-ttu-id="27361-389">Weitere Informationen finden Sie im Abschnitt [Verarbeiten von PreRendering](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="27361-389">For more information, see the [Handle prerendering](#handle-prerendering) section.</span></span>
+
+<span data-ttu-id="27361-390">In folgenden Fällen wird im Allgemeinen das Muster der *übergeordneten Komponente des Zustandsanbieters* empfohlen:</span><span class="sxs-lookup"><span data-stu-id="27361-390">In general, *state provider parent component* pattern is recommended:</span></span>
+
+* <span data-ttu-id="27361-391">Um den Zustand über viele Komponenten hinweg zu nutzen.</span><span class="sxs-lookup"><span data-stu-id="27361-391">To consume state across many components.</span></span>
+* <span data-ttu-id="27361-392">Es muss nur ein Zustandsobjekt auf der obersten Ebene beibehalten werden.</span><span class="sxs-lookup"><span data-stu-id="27361-392">If there's just one top-level state object to persist.</span></span>
+
+<span data-ttu-id="27361-393">Um viele verschiedene Zustandsobjekte beizubehalten und verschiedene Teilmengen von Objekten an verschiedenen Orten zu verarbeiten, ist es besser, das globale persistente Speichern des Zustands zu vermeiden.</span><span class="sxs-lookup"><span data-stu-id="27361-393">To persist many different state objects and consume different subsets of objects in different places, it's better to avoid persisting state globally.</span></span>
+
+::: moniker-end
+
+::: zone-end
