@@ -5,6 +5,8 @@ description: Anweisungen zum Migrieren vorhandener ASP.NET MVC- oder Web-API-App
 ms.author: scaddie
 ms.date: 10/18/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 1530a5e6cc4b241b916ed7c64587b515186cc6ca
-ms.sourcegitcommit: d306407dc5bfe6fdfbac482214b3f59371b582bc
+ms.openlocfilehash: defdb190acf915eaa7c4aa8469ee47888f771526
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/04/2020
-ms.locfileid: "85951928"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014918"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Migration von ASP.NET zu ASP.NET Core
 
@@ -163,9 +165,9 @@ Beispielsweise kann ein Browser an einem Speicherort wie `http://<app>/images/<i
 > [!NOTE]
 > Ausführliche Informationen zum Bereitstellen statischer Dateien in ASP.NET Core finden Sie im Artikel zu [statischen Dateien](xref:fundamentals/static-files).
 
-## <a name="multi-value-cookies"></a>Mehrwertige Cookies
+## <a name="multi-value-no-loccookies"></a>Mehrwertige cookies
 
-[Mehrwertige Cookies](xref:System.Web.HttpCookie.Values) werden in ASP.NET Core nicht unterstützt. Erstellen Sie ein Cookie pro Wert.
+[Mehrwertige cookies](xref:System.Web.HttpCookie.Values) werden in ASP.NET Core nicht unterstützt. Erstellen Sie ein cookie pro Wert.
 
 ## <a name="partial-app-migration"></a>Partielle App-Migration
 

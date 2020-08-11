@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/index
-ms.openlocfilehash: a230e1ae85a54ddf16900b2ee7ed4a18d45e4ea2
-ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
+ms.openlocfilehash: b0258118e116b1686abbebf1c8d89135ae3cb1f6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87160207"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019315"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Übersicht über die ASP.NET Core-Authentifizierung
 
@@ -37,7 +39,7 @@ Authentifizierungsschemas werden festgelegt, indem die Authentifizierungsdienste
 * Durch Aufrufen einer schemaspezifischen Erweiterungsmethode nach einem Aufruf von `services.AddAuthentication` (z. B. `AddJwtBearer` oder `AddCookie`). Diese Erweiterungsmethoden verwenden [AuthenticationBuilder.AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*), um Schemas mit den geeigneten Einstellungen zu registrieren.
 * In seltenen Fällen wird [AuthenticationBuilder.AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) direkt aufgerufen.
 
-Im folgenden Code werden beispielsweise die Authentifizierungsdienste und -handler für Cookie- und JWT-Bearer-Authentifizierungsschemas registriert:
+Im folgenden Code werden beispielsweise die Authentifizierungsdienste und -handler für cookie- und JWT-Bearer-Authentifizierungsschemas registriert:
 
 ```csharp
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -47,7 +49,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 Der `AddAuthentication`-Parameter `JwtBearerDefaults.AuthenticationScheme` ist der Name des Schemas, das standardmäßig verwendet werden soll, wenn kein bestimmtes Schema angefordert wird.
 
-Wenn mehrere Schemas verwendet werden, können Autorisierungsrichtlinien (oder Autorisierungsattribute) [das Authentifizierungsschema (oder die Authentifizierungsschemas) angeben](xref:security/authorization/limitingidentitybyscheme), von denen sie zur Authentifizierung des Benutzers abhängig sind. Im Beispiel oben kann das Cookie-Authentifizierungsschema verwendet werden, indem der Name angegeben wird (standardmäßig `CookieAuthenticationDefaults.AuthenticationScheme`, obwohl beim Aufruf von `AddCookie` ein anderer Name angegeben werden kann).
+Wenn mehrere Schemas verwendet werden, können Autorisierungsrichtlinien (oder Autorisierungsattribute) [das Authentifizierungsschema (oder die Authentifizierungsschemas) angeben](xref:security/authorization/limitingidentitybyscheme), von denen sie zur Authentifizierung des Benutzers abhängig sind. Im Beispiel oben kann das cookieauthentifizierungsschema verwendet werden, indem der Name angegeben wird (standardmäßig `CookieAuthenticationDefaults.AuthenticationScheme`, obwohl beim Aufruf von `AddCookie` ein anderer Name angegeben werden kann).
 
 In bestimmten Fällen erfolgt der Aufruf von `AddAuthentication` automatisch durch andere Erweiterungsmethoden. Wenn Sie z. B. [ASP.NET Core Identity](xref:security/authentication/identity) verwenden, wird `AddAuthentication` intern aufgerufen.
 
@@ -90,14 +92,14 @@ In Abhängigkeit von der Konfiguration des Authentifizierungsschemas und vom Kon
 
 Die Authentifizierungsaktion eines Authentifizierungsschemas ist für das Erstellen der Identität des Benutzers basierend auf dem Anforderungskontext verantwortlich. Sie gibt ein <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult>, das angibt, ob die Authentifizierung erfolgreich war, und in diesem Fall außerdem die Identität des Benutzers in einem Authentifizierungsticket zurück. Siehe <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Beispiele für die Authentifizierung:
 
-* Ein Cookieauthentifizierungsschema, bei dem die Identität des Benutzers aus Cookies erstellt wird.
+* Ein cookieauthentifizierungsschema, bei dem die Identität des Benutzers aus cookies erstellt wird.
 * Ein JWT-Bearer-Schema, das ein JWT-Bearertoken zum Erstellen der Identität des Benutzers deserialisiert und überprüft.
 
 ### <a name="challenge"></a>Herausforderung
 
 Eine Authentifizierungsaufforderung wird durch die Autorisierung aufgerufen, wenn ein nicht authentifizierter Benutzer einen Endpunkt anfordert, für den eine Authentifizierung erforderlich ist. Eine Authentifizierungsaufforderung wird z. B. ausgegeben, wenn ein anonymer Benutzer eine eingeschränkte Ressource anfordert oder auf einen Anmeldelink klickt. Die Autorisierung ruft eine Aufforderung mithilfe des/der angegebenen Authentifizierungsschema(s) oder, wenn keines angegeben ist, des Standardschemas auf. Siehe <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Beispiele für Authentifizierungsaufforderungen:
 
-* Ein Cookie-Authentifizierungsschema, das den Benutzer auf eine Anmeldeseite umleitet.
+* Ein cookieauthentifizierungsschema, das den Benutzer auf eine Anmeldeseite umleitet.
 * Ein JWT-Bearer-Schema, das ein 401-Ergebnis mit einem `www-authenticate: bearer`-Header zurückgibt.
 
 Eine Aufforderungsaktion sollte dem Benutzer mitteilen können, welcher Authentifizierungsmechanismus für den Zugriff auf die angeforderte Ressource verwendet werden soll.
@@ -105,7 +107,7 @@ Eine Aufforderungsaktion sollte dem Benutzer mitteilen können, welcher Authenti
 ### <a name="forbid"></a>Unterbindung
 
 Die Unterbindungsaktion eines Authentifizierungsschemas wird von der Autorisierung aufgerufen, wenn ein authentifizierter Benutzer versucht, auf eine Ressource zuzugreifen, für die er keine Berechtigung besitzt. Siehe <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ForbidAsync%2A>. Beispiele für Authentifizierungsunterbindungen:
-* Ein Cookie-Authentifizierungsschema, das den Benutzer auf eine Seite umleitet, auf der steht, dass der Zugriff unzulässig war.
+* Ein cookieauthentifizierungsschema, das den Benutzer auf eine Seite umleitet, die anzeigt, dass der Zugriff unzulässig war.
 * Ein JWT-Bearer-Schema, das ein 403-Ergebnis zurückgibt.
 * Ein benutzerdefiniertes Authentifizierungsschema, das den Benutzer auf eine Seite umleitet, auf der er den Zugriff auf die Ressource anfordern kann.
 

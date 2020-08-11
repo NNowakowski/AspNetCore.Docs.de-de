@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc, seoapril2019
 ms.date: 06/19/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: 30f11a137e711b1cf7a8b036af92fbb5fa2a1f05
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ad543087243658f09a23e4f6d957d0c6aa77b361
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402571"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014177"
 ---
-# <a name="introduction-to-aspnet-core-blazor"></a>Einführung in ASP.NET Core Blazor
+# <a name="introduction-to-aspnet-core-no-locblazor"></a>Einführung in ASP.NET Core Blazor
 
 Von [Daniel Roth](https://github.com/danroth27) und [Luke Latham](https://github.com/guardrex)
 
@@ -140,7 +142,7 @@ Die Runtime handhabt das Senden von Benutzeroberflächenereignissen vom Browser 
 
 Die Verbindung, die von Blazor Server für die Kommunikation mit dem Browser verwendet wird, wird auch für die Verarbeitung von JavaScript-Interopaufrufen verwendet.
 
-![Blazor Server führt .NET-Code auf dem Server aus und interagiert über eine SignalR-Verbindung](index/_static/blazor-server.png) mit dem Dokumentobjektmodell.
+![Blazor Server führt .NET-Code auf dem Server aus und interagiert über eine SignalR-Verbindung mit dem Dokumentobjektmodell.](index/_static/blazor-server.png)
 
 ## <a name="javascript-interop"></a>JavaScript-Interoperabilität
 
