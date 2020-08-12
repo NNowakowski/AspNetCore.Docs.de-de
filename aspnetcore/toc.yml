@@ -163,9 +163,14 @@
         - name: Web-API-Apps >>
           displayName: tutorial
           href: /learn/modules/build-web-api-net-core/
-        - name: Cloudnative Microservices >>
-          displayName: 'tutorial, kubernetes, aks, acr, docker'
-          href: /learn/modules/microservices-aspnet-core/
+        - name: Cloudnative Microservices
+          items:
+            - name: Erstellen und Bereitstellen >>
+              displayName: 'tutorial, kubernetes, aks, acr, docker'
+              href: /learn/modules/microservices-aspnet-core/
+            - name: Implementieren von Resilienz >>
+              displayName: 'tutorial, kubernetes, aks, acr, docker'
+              href: /learn/modules/microservices-resiliency-aspnet-core/
         - name: Datenzugriff >>
           displayName: 'tutorial, ef, entity framework'
           href: /learn/modules/persist-data-ef-core/
@@ -1191,6 +1196,8 @@
       uid: performance/diagnostic-tools
     - name: Auslastungs- und Belastungstests
       uid: test/loadtests
+    - name: Ereignisindikatoren
+      href: /dotnet/core/diagnostics/event-counter-perf
 - name: Globalisierung und Lokalisierung
   items:
     - name: Übersicht
