@@ -4,7 +4,7 @@ author: anurse
 description: Erfahren Sie, wie Sie Diagnoseinformationen aus Ihrer ASP.net Core- SignalR App erfassen.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
-ms.custom: signalr
+ms.custom: devx-track-csharp, signalr
 ms.date: 06/12/2020
 no-loc:
 - cookie
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 61733fe4fbcd7b94662404a39a288ff2ce75ec53
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 922b2ca0aa7933e1010db7ca319631766ffbf753
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021834"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130534"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Protokollierung und Diagnose in ASP.net CoreSignalR
 
@@ -104,7 +104,7 @@ In der folgenden Tabelle werden die für den JavaScript-Client verfügbaren Prot
 
 Nachdem Sie die Ausführlichkeit konfiguriert haben, werden die Protokolle in die Browser Konsole (oder die Standard Ausgabe in einer nodejs-APP) geschrieben.
 
-Wenn Sie Protokolle an ein benutzerdefiniertes Protokollierungs System senden möchten, können Sie ein JavaScript-Objekt bereitstellen, das die- `ILogger` Schnittstelle implementiert. Die einzige Methode, die implementiert werden muss `log` , ist, die die Ebene des Ereignisses und die dem Ereignis zugeordnete Meldung annimmt. Zum Beispiel:
+Wenn Sie Protokolle an ein benutzerdefiniertes Protokollierungs System senden möchten, können Sie ein JavaScript-Objekt bereitstellen, das die- `ILogger` Schnittstelle implementiert. Die einzige Methode, die implementiert werden muss `log` , ist, die die Ebene des Ereignisses und die dem Ereignis zugeordnete Meldung annimmt. Beispiel:
 
 [!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
 
