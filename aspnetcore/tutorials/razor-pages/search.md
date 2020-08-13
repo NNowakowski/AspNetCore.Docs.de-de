@@ -5,6 +5,8 @@ description: Dies ist Teil 6 der Tutorialreihe zu Razor Pages.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: b0ee3294a4646b199f85d6a023e152e5eabaa225
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b28d228449549e1071df4100ee2d52626c50845b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408785"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021639"
 ---
-# <a name="part-6-add-search-to-aspnet-core-razor-pages"></a>Teil 6: Hinzufügen der Suche zu Razor Pages in ASP.NET Core
+# <a name="part-6-add-search-to-aspnet-core-no-locrazor-pages"></a>Teil 6: Hinzufügen der Suche zu Razor Pages in ASP.NET Core
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -109,7 +111,7 @@ Die `SelectList` von Genres wird durch Projizieren der unterschiedlichen Genres 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-razor-page"></a>Hinzufügen einer Suche anhand von Genre zur Razor Page
+### <a name="add-search-by-genre-to-the-no-locrazor-page"></a>Hinzufügen einer Suche anhand von Genre zur Razor Page
 
 Aktualisieren Sie *Index.cshtml* wie folgt:
 
@@ -211,7 +213,7 @@ Die `SelectList` von Genres wird durch Projizieren der unterschiedlichen Genres 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-razor-page"></a>Hinzufügen einer Suche anhand von Genre zur Razor Page
+### <a name="add-search-by-genre-to-the-no-locrazor-page"></a>Hinzufügen einer Suche anhand von Genre zur Razor Page
 
 Aktualisieren Sie *Index.cshtml* wie folgt:
 

@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 2/18/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/filter
-ms.openlocfilehash: 626003ad75333cfaf17a3ea97549ca82650469a8
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b8942020e98d0f985e5445bb1816c540bcb7829b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407368"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021405"
 ---
-# <a name="filter-methods-for-razor-pages-in-aspnet-core"></a>Filtermethoden für Razor-Seiten in ASP-NET Core
+# <a name="filter-methods-for-no-locrazor-pages-in-aspnet-core"></a>Filtermethoden für Razor-Seiten in ASP-NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -57,7 +59,7 @@ Filter für Razor-Seiten bieten die folgenden Methoden, die global oder auf Seit
 
 Implementieren Sie **entweder** die synchrone oder asynchrone Version einer Filterschnittstelle, aber **nicht** beide. Das Framework prüft zuerst, ob der Filter die asynchrone Schnittstelle implementiert, und wenn dies der Fall ist, ruft es sie auf. Wenn dies nicht der Fall ist, ruft es die Methode(n) der synchronen Schnittstelle auf. Wenn beide Schnittstellen implementiert werden, werden nur die asynchronen Methoden aufgerufen. Die gleiche Regel gilt für Überschreibungen in Seiten. Implementieren Sie die synchrone oder asynchrone Version der Überschreibung, nicht beide.
 
-## <a name="implement-razor-page-filters-globally"></a>Globales implementieren von Filtern für Razor-Seiten
+## <a name="implement-no-locrazor-page-filters-globally"></a>Globales implementieren von Filtern für Razor-Seiten
 
 Mit dem folgenden Code wird das `IAsyncPageFilter`-Element implementiert:
 
@@ -81,7 +83,7 @@ Der folgende Code aktiviert `SamplePageFilter`:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/StartupSync.cs?name=snippet2)]
 
-## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Implementieren von Filtern für Razor-Seiten durch Überschreiben von Filtermethoden
+## <a name="implement-no-locrazor-page-filters-by-overriding-filter-methods"></a>Implementieren von Filtern für Razor-Seiten durch Überschreiben von Filtermethoden
 
 Der folgende Code überschreibt die asynchronen Razor Page-Filter:
 
@@ -149,7 +151,7 @@ Filter für Razor-Seiten bieten die folgenden Methoden, die global oder auf Seit
 > [!NOTE]
 > Implementieren Sie **entweder** die synchrone oder asynchrone Version einer Filterschnittstelle, aber nicht beide. Das Framework prüft zuerst, ob der Filter die asynchrone Schnittstelle implementiert, und wenn dies der Fall ist, ruft es sie auf. Wenn dies nicht der Fall ist, ruft es die Methode(n) der synchronen Schnittstelle auf. Wenn beide Schnittstellen implementiert werden, werden nur die asynchronen Methoden aufgerufen. Die gleiche Regel gilt für Überschreibungen in Seiten. Implementieren Sie die synchrone oder asynchrone Version der Überschreibung, nicht beide.
 
-## <a name="implement-razor-page-filters-globally"></a>Globales implementieren von Filtern für Razor-Seiten
+## <a name="implement-no-locrazor-page-filters-globally"></a>Globales implementieren von Filtern für Razor-Seiten
 
 Mit dem folgenden Code wird das `IAsyncPageFilter`-Element implementiert:
 
@@ -177,7 +179,7 @@ Der folgende Code aktiviert `SamplePageFilter`:
 
 [!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
-## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Implementieren von Filtern für Razor-Seiten durch Überschreiben von Filtermethoden
+## <a name="implement-no-locrazor-page-filters-by-overriding-filter-methods"></a>Implementieren von Filtern für Razor-Seiten durch Überschreiben von Filtermethoden
 
 Der folgende Code überschreibt die synchronen Razor Page-Filter:
 

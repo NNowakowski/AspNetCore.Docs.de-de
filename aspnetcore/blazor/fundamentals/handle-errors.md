@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/23/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/handle-errors
-ms.openlocfilehash: e3ce3a62f351255fd059adaa6e9b0a8e9bdc2ce7
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 5f7112d9a072f28d387e07bdf69ec0b7595ff6b4
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86059876"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014437"
 ---
-# <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Fehlerbehandlung in ASP.NET Core Blazor-Apps
+# <a name="handle-errors-in-aspnet-core-no-locblazor-apps"></a>Fehlerbehandlung in ASP.NET Core Blazor-Apps
 
 Von [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -85,7 +87,7 @@ Das `blazor-error-ui`-Element wird von den Stilen in den Blazor-Vorlagen (`wwwro
 }
 ```
 
-## <a name="how-a-blazor-server-app-reacts-to-unhandled-exceptions"></a>Reaktion einer Blazor Server-App auf Ausnahmefehler
+## <a name="how-a-no-locblazor-server-app-reacts-to-unhandled-exceptions"></a>Reaktion einer Blazor Server-App auf Ausnahmefehler
 
 Blazor Server ist ein zustandsbehaftetes Framework. Während Benutzer mit einer App interagieren, besteht eine Verbindung mit dem Server, die als *Leitung* bezeichnet wird. Die Leitung enthält aktive Instanzen von Komponenten und weist zahlreiche andere Aspekte zum Zustand auf wie:
 
@@ -221,7 +223,7 @@ Weitere Informationen finden Sie in den folgenden Artikeln:
 * <xref:blazor/call-javascript-from-dotnet>
 * <xref:blazor/call-dotnet-from-javascript>
 
-### <a name="blazor-server-prerendering"></a>Blazor Server-Prerendering
+### <a name="no-locblazor-server-prerendering"></a>Blazor Server-Prerendering
 
 Blazor-Komponenten können mit dem [Komponententaghilfsprogramm](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) vorab gerendert werden, sodass das gerenderte HTML-Markup als Teil der ursprünglichen HTTP-Anforderung des Benutzers zurückgegeben wird. Dies funktioniert durch:
 

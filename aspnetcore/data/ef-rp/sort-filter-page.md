@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 496221bb4e34e1f9e4177d1934786a77d8c9b411
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 5bfea63cc1ff85adbe5ce572858b78a8e86b2280
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212545"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017726"
 ---
-# <a name="part-3-razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Teil 3: Razor Pages mit EF Core in ASP.NET Core – Sortieren, Filtern und Paging
+# <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Teil 3: Razor Pages mit EF Core in ASP.NET Core – Sortieren, Filtern und Paging
 
 Von [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT) und [Jon P. Smith](https://twitter.com/thereformedprog)
 
@@ -134,7 +136,7 @@ Beim Aufrufen von `ToUpper` kommt es zu Leistungseinbußen. Der `ToUpper`-Code i
 
 Weitere Informationen finden Sie unter [Verwenden von Abfragen ohne Berücksichtigung der Groß-/Kleinschreibung mit dem SQLite-Anbieter](https://github.com/aspnet/EntityFrameworkCore/issues/11414).
 
-### <a name="update-the-razor-page"></a>Aktualisieren der Razor-Seite
+### <a name="update-the-no-locrazor-page"></a>Aktualisieren der Razor-Seite
 
 Ersetzen Sie den Code in *Pages/Students/Index.cshtml*, um eine Schaltfläche **Search** (Suchen) und sortiertes Chrom zu erstellen.
 
@@ -211,7 +213,7 @@ Wenn die Suchzeichenfolge während des Pagings geändert wird, wird die Seite au
 
   Die zwei Fragezeichen nach `pageIndex` im `PaginatedList.CreateAsync`-Aufruf stellen den [NULL-Sammeloperator](/dotnet/csharp/language-reference/operators/null-conditional-operator) dar. Der NULL-Sammeloperator definiert einen Standardwert für einen auf NULL festlegbaren Typ. Der Ausdruck `(pageIndex ?? 1)` bedeutet, dass der Wert von `pageIndex` zurückgegeben wird, wenn dieser einen Wert aufweist. Wenn der `pageIndex` keinen Wert aufweist, wird 1 zurückgegeben.
 
-### <a name="add-paging-links-to-the-razor-page"></a>Hinzufügen von Paging-Links zur Razor-Seite
+### <a name="add-paging-links-to-the-no-locrazor-page"></a>Hinzufügen von Paging-Links zur Razor-Seite
 
 Ersetzen Sie den Code in *Students/Index.cshtml* durch den folgenden Code. Die Änderungen werden hervorgehoben:
 
@@ -247,7 +249,7 @@ Erstellen Sie *SchoolViewModels/EnrollmentDateGroup.cs* mit dem folgenden Code:
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### <a name="create-the-razor-page"></a>Erstellen der Razor-Seite
+### <a name="create-the-no-locrazor-page"></a>Erstellen der Razor-Seite
 
 Fügen Sie eine Datei *Pages/About.cshtml* mit dem folgenden Code hinzu:
 
@@ -467,7 +469,7 @@ Die Methode `PaginatedList.CreateAsync` konvertiert die Studentenabfrage in eine
 
 Die zwei Fragezeichen in `PaginatedList.CreateAsync` stellen den [NULL-Sammeloperator](/dotnet/csharp/language-reference/operators/null-conditional-operator) dar. Der NULL-Sammeloperator definiert einen Standardwert für einen auf NULL festlegbaren Typ. Der Ausdruck `(pageIndex ?? 1)` bedeutet, dass der Wert von `pageIndex` zurückgegeben wird, wenn dieser einen Wert aufweist. Wenn der `pageIndex` keinen Wert aufweist, wird 1 zurückgegeben.
 
-## <a name="add-paging-links-to-the-student-razor-page"></a>Hinzufügen von Paging-Links zur Razor Page für Studenten
+## <a name="add-paging-links-to-the-student-no-locrazor-page"></a>Hinzufügen von Paging-Links zur Razor Page für Studenten
 
 Aktualisieren Sie das Markup in *Students/Index.cshtml*. Die Änderungen werden hervorgehoben:
 
@@ -521,7 +523,7 @@ Aktualisieren Sie die Datei *Pages/About.cshtml.cs* mit folgendem Code:
 
 Die LINQ-Anweisung gruppiert die Studentenentitäten nach Anmeldedatum, berechnet die Anzahl der Entitäten in jeder Gruppe und speichert die Ergebnisse in einer Sammlung von `EnrollmentDateGroup`-Ansichtsmodellobjekten.
 
-### <a name="modify-the-about-razor-page"></a>Ändern der Seite „Informationen zu Razor Page“
+### <a name="modify-the-about-no-locrazor-page"></a>Ändern der Seite „Informationen zu Razor Page“
 
 Ersetzen Sie den Code in der Datei *Pages/About.cshtml* durch den folgenden Code:
 

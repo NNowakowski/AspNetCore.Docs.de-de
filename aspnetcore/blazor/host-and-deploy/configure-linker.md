@@ -1,38 +1,40 @@
 ---
-title: Konfigurieren des Linkers für ASP.NET Core [Blazor
+title: Konfigurieren des Linkers für ASP.NET Core Blazor
 author: guardrex
-description: Erfahren Sie, wie Sie den IL-Linker (Intermediate Language, Zwischensprache) beim Erstellen einer [Blazor-App steuern.
+description: Erfahren Sie, wie Sie den IL-Linker (Intermediate Language, Zwischensprache) beim Erstellen einer Blazor-App steuern.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/host-and-deploy/configure-linker
-ms.openlocfilehash: 568efe9971aefc11841c42789ac7f2af3004003f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e76d25dbbf5c7a166e5f58a5ad1f9b5a2ecacf79
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402701"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014254"
 ---
-# <a name="configure-the-linker-for-aspnet-core-blazor"></a>Konfigurieren des Linkers für ASP.NET Core [Blazor
+# <a name="configure-the-linker-for-aspnet-core-no-locblazor"></a>Konfigurieren des Linkers für ASP.NET Core Blazor
 
 Von [Luke Latham](https://github.com/guardrex)
 
-[Blazor WebAssembly führt bei einem Build eine [IL](/dotnet/standard/managed-code#intermediate-language--execution)-Verknüpfung durch, um nicht benötigte Zwischensprache aus den Ausgabeassemblys der App zu kürzen. Der Linker ist beim Buildvorgang in der Debugkonfiguration deaktiviert. Apps müssen in der Releasekonfiguration erstellt werden, damit der Linker aktiviert wird. Sie sollten die Releasekonfiguration beim Buildvorgang anwenden, wenn Sie [Blazor WebAssembly-Apps erstellen. 
+Blazor WebAssembly führt bei einem Build eine [IL](/dotnet/standard/managed-code#intermediate-language--execution)-Verknüpfung durch, um nicht benötigte Zwischensprache aus den Ausgabeassemblys der App zu kürzen. Der Linker ist beim Buildvorgang in der Debugkonfiguration deaktiviert. Apps müssen in der Releasekonfiguration erstellt werden, damit der Linker aktiviert wird. Sie sollten die Releasekonfiguration beim Buildvorgang anwenden, wenn Sie Blazor WebAssembly-Apps erstellen. 
 
 Das Verknüpfen einer App optimiert die Größe, kann jedoch auch negative Auswirkungen haben. Apps, die Reflektion oder ähnliche dynamische Features verwenden, können beim Kürzen unterbrochen werden, da der Linker dieses dynamische Verhalten nicht kennt und nicht ermitteln kann, welche Typen für die Reflektion zur Laufzeit erforderlich sind. Zur Kürzung solcher Apps muss der Linker über alle Typen informiert werden, die für die Reflektion im Code und in Paketen oder Frameworks erforderlich sind, von denen die App abhängig ist. 
 
 Wenn Sie sicherstellen möchten, dass die gekürzte App nach der Bereitstellung ordnungsgemäß funktioniert, ist es wichtig, bei der Entwicklung häufig die Releasebuilds der App zu testen.
 
-Das Verknüpfen von [Blazor-Apps kann mithilfe der folgenden MSBuild-Funktionen konfiguriert werden:
+Das Verknüpfen von Blazor-Apps kann mithilfe der folgenden MSBuild-Funktionen konfiguriert werden:
 
 * Globales Konfigurieren der Verknüpfung mit einer [MSBuild-Eigenschaft](#control-linking-with-an-msbuild-property)
 * Steuern der Verknüpfung für unterschiedliche Assemblys mit einer [Konfigurationsdatei](#control-linking-with-a-configuration-file)
@@ -62,7 +64,7 @@ Sie können die Verknüpfung für unterschiedliche Assemblys steuern, indem Sie 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-  This file specifies which parts of the BCL or [Blazor packages must not be
+  This file specifies which parts of the BCL or Blazor packages must not be
   stripped by the IL Linker even if they aren't referenced by user code.
 -->
 <linker>
@@ -107,7 +109,7 @@ Im folgenden Beispiel wird die Datei `LinkerConfig.xml` als eingebettete Ressour
 
 ### <a name="configure-the-linker-for-internationalization"></a>Konfigurieren des Linkers für die Internationalisierung
 
-Die [Blazor-Linkerkonfiguration für [Blazor WebAssembly-Apps entfernt standardmäßig Internationalisierungsinformationen, mit Ausnahme von explizit angeforderten Gebietsschemas. Durch die Entfernung dieser Assemblys wird die Größe der App minimiert.
+Die Blazor-Linkerkonfiguration für Blazor WebAssembly-Apps entfernt standardmäßig Internationalisierungsinformationen, mit Ausnahme von explizit angeforderten Gebietsschemas. Durch die Entfernung dieser Assemblys wird die Größe der App minimiert.
 
 Legen Sie die MSBuild-Eigenschaft `<BlazorWebAssemblyI18NAssemblies>` in der Projektdatei fest, um zu steuern, welche I18N-Assemblys beibehalten werden:
 

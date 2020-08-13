@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -16,18 +18,18 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 33245e669b317ed577a8a1652b2eed8f9ea5b915
-ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
+ms.openlocfilehash: 077d8943e424df4d5a14950dfadc2dd73d2ce4d6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/15/2020
-ms.locfileid: "86407644"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013397"
 ---
-# <a name="tooling-for-aspnet-core-blazor"></a>Tools für ASP.NET-Core Blazor
+# <a name="tooling-for-aspnet-core-no-locblazor"></a>Tools für ASP.NET-Core Blazor
 
 Von [Daniel Roth](https://github.com/danroth27) und [Luke Latham](https://github.com/guardrex)
 
-::: zone pivot="os-windows"
+::: zone pivot="windows"
 
 1. Installieren Sie die neueste Version von [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) mit der Workload **ASP.NET und Webentwicklung**.
 
@@ -47,7 +49,7 @@ Weitere Informationen zum Festlegen des ASP.NET Core-HTTPS-Entwicklungszertifika
 
 ::: zone-end
 
-::: zone pivot="os-linux"
+::: zone pivot="linux"
 
 1. Installieren Sie die neueste Version des [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). Wenn Sie das SDK zuvor installiert haben, können Sie die installierte Version ermitteln, indem Sie den folgenden Befehl in einer Befehlsshell ausführen:
 
@@ -91,7 +93,7 @@ Weitere Informationen finden Sie in der Dokumentation zu Ihrem Browser und Ihrer
 
 ::: zone-end
 
-::: zone pivot="os-macos"
+::: zone pivot="macos"
 
 1. Installieren Sie [Visual Studio für Mac](https://visualstudio.microsoft.com/vs/mac/).
 

@@ -7,20 +7,22 @@ ms.author: scaddie
 ms.custom: H1Hack27Feb2017
 ms.date: 09/06/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: client-side/spa-services
-ms.openlocfilehash: 05f76a7d341fc5c55b8234b6ff6d2be5aa61d6fd
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2c91fa13c6fcb92c5985cae21c175c0a2a2a313e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401830"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013267"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>Verwenden von JavaScript Services zum Erstellen von Single-Page-Anwendungen in ASP.NET Core
 
@@ -105,7 +107,7 @@ Die Taghilfsprogramme werden durch die Registrierung des Namespaces in der Datei
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/_ViewImports.cshtml?highlight=3)]
 
-Diese Taghilfsprogramme beseitigen die Komplexität der direkten Kommunikation mit Low-Level-APIs, indem sie eine HTML-ähnliche Syntax innerhalb der [Razor-Ansicht verwenden:
+Diese Taghilfsprogramme beseitigen die Komplexität der direkten Kommunikation mit Low-Level-APIs, indem sie eine HTML-ähnliche Syntax innerhalb der Razor-Ansicht verwenden:
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=5)]
 
@@ -121,7 +123,7 @@ Im folgenden Angular-Beispiel verwendet die Datei *ClientApp/boot-server.ts* die
 
 ### <a name="asp-prerender-data-tag-helper"></a>Taghilfsprogramm „asp-prerender-data“
 
-In Verbindung mit dem Taghilfsprogramm `asp-prerender-module` kann das Taghilfsprogramm `asp-prerender-data` verwendet werden, um kontextbezogene Informationen aus der [Razor-Ansicht an den serverseitigen JavaScript-Code zu übergeben. Das folgende Markup übergibt z. B. Benutzerdaten an das `main-server`-Modul:
+In Verbindung mit dem Taghilfsprogramm `asp-prerender-module` kann das Taghilfsprogramm `asp-prerender-data` verwendet werden, um kontextbezogene Informationen aus der Razor-Ansicht an den serverseitigen JavaScript-Code zu übergeben. Das folgende Markup übergibt z. B. Benutzerdaten an das `main-server`-Modul:
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=9-12)]
 

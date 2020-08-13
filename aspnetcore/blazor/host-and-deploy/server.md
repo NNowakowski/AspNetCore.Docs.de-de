@@ -1,46 +1,48 @@
 ---
-title: Hosten und Bereitstellen von ASP.NET Core [Blazor Server
+title: Hosten und Bereitstellen von ASP.NET Core Blazor Server
 author: guardrex
-description: Erfahren Sie, wie Sie eine [Blazor Server-App mit ASP.NET Core hosten und bereitstellen.
+description: Erfahren Sie, wie Sie eine Blazor Server-App mit ASP.NET Core hosten und bereitstellen.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/host-and-deploy/server
-ms.openlocfilehash: e59579046ecbfdbb4cca79bfb0e39d299e26913c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e7c8627cd27fd30288b4bcfa1ac2ffe3e9b46e29
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402597"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014216"
 ---
-# <a name="host-and-deploy-blazor-server"></a>Hosten und Bereitstellen [Blazor Server
+# <a name="host-and-deploy-no-locblazor-server"></a>Hosten und Bereitstellen Blazor Server
 
 Von [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com) und [Daniel Roth](https://github.com/danroth27)
 
 ## <a name="host-configuration-values"></a>Hostkonfigurationswerte
 
-[[Blazor Server-Apps](xref:blazor/hosting-models#blazor-server) können [generische Hostkonfigurationswerte](xref:fundamentals/host/generic-host#host-configuration) akzeptieren.
+[Blazor Server-Apps](xref:blazor/hosting-models#blazor-server) können [generische Hostkonfigurationswerte](xref:fundamentals/host/generic-host#host-configuration) akzeptieren.
 
 ## <a name="deployment"></a>Bereitstellung
 
-Mit dem [[Blazor Server-Hostingmodell](xref:blazor/hosting-models#blazor-server) wird [Blazor in einer ASP.NET Core-App auf dem Server ausgeführt. Benutzeroberflächenupdates, Ereignisbehandlung und JavaScript-Aufrufe werden über eine [[SignalR](xref:signalr/introduction)-Verbindung verarbeitet.
+Mit dem [Blazor Server-Hostingmodell](xref:blazor/hosting-models#blazor-server) wird Blazor in einer ASP.NET Core-App auf dem Server ausgeführt. Benutzeroberflächenupdates, Ereignisbehandlung und JavaScript-Aufrufe werden über eine [SignalR](xref:signalr/introduction)-Verbindung verarbeitet.
 
-Hierfür wird ein Webserver benötigt, der eine ASP.NET Core-App hosten kann. Visual Studio enthält die Projektvorlage der **[Blazor Server-App** (oder die `blazorserverside`-Vorlage bei Verwendung des Befehls [`dotnet new`](/dotnet/core/tools/dotnet-new)).
+Hierfür wird ein Webserver benötigt, der eine ASP.NET Core-App hosten kann. Visual Studio enthält die Projektvorlage der **Blazor Server-App** (oder die `blazorserverside`-Vorlage bei Verwendung des Befehls [`dotnet new`](/dotnet/core/tools/dotnet-new)).
 
 ## <a name="scalability"></a>Skalierbarkeit
 
-Planen Sie eine Bereitstellung, um die verfügbare Infrastruktur für eine [Blazor Server-App optimal zu nutzen. Sehen Sie sich die folgenden Ressourcen an, um die Skalierbarkeit von [Blazor Server-Apps zu behandeln:
+Planen Sie eine Bereitstellung, um die verfügbare Infrastruktur für eine Blazor Server-App optimal zu nutzen. Sehen Sie sich die folgenden Ressourcen an, um die Skalierbarkeit von Blazor Server-Apps zu behandeln:
 
-* [Grundlagen von [Blazor Server-Apps](xref:blazor/hosting-models#blazor-server)
+* [Grundlagen von Blazor Server-Apps](xref:blazor/hosting-models#blazor-server)
 * <xref:blazor/security/server/threat-mitigation>
 
 ### <a name="deployment-server"></a>Bereitstellungsserver
@@ -50,19 +52,19 @@ Wenn Sie die Skalierbarkeit eines einzelnen Servers in Erwägung ziehen (zentral
 * Anzahl der aktiven Verbindungen, die ein Server unterstützen kann.
 * Benutzeroberflächenlatenz auf dem Client.
 
-Anleitungen zum Erstellen sicherer und skalierbarer [Blazor Server-Apps finden Sie unter <xref:blazor/security/server/threat-mitigation>.
+Anleitungen zum Erstellen sicherer und skalierbarer Blazor Server-Apps finden Sie unter <xref:blazor/security/server/threat-mitigation>.
 
 Jede Verbindung verwendet ungefähr 250 KB Arbeitsspeicher für eine minimale App im *Hello World*-Stil. Die Größe einer Verbindung hängt vom App-Code und den Zustandsverwaltungsanforderungen der einzelnen Komponenten ab. Sie sollten die Ressourcenanforderungen während der Entwicklung für Ihre App und die Infrastruktur messen, aber die folgende Baseline kann ein Ausgangspunkt zur Planung des Bereitstellungsziels sein: Wenn Sie davon ausgehen, dass Ihre App 5.000 gleichzeitige Benutzer unterstützt, sollten Sie erwägen, mindestens 1,3 GB Serverarbeitsspeicher (oder ~273 KB pro Benutzer) für die App einzukalkulieren.
 
-### <a name="signalr-configuration"></a>[SignalR-Konfiguration
+### <a name="no-locsignalr-configuration"></a>SignalR-Konfiguration
 
-[Blazor Server-Apps verwenden ASP.NET Core [SignalR, um mit dem Browser zu kommunizieren. [Die Hosting- und Skalierungsbedingungen von [SignalR](xref:signalr/publish-to-azure-web-app) gelten für [Blazor Server-Apps.
+Blazor Server-Apps verwenden ASP.NET Core SignalR, um mit dem Browser zu kommunizieren. [Die Hosting- und Skalierungsbedingungen von SignalR](xref:signalr/publish-to-azure-web-app) gelten für Blazor Server-Apps.
 
-[Blazor funktioniert am besten, wenn WebSockets aufgrund geringerer Latenz und wegen Zuverlässigkeit und [Sicherheit](xref:signalr/security) zum [SignalR-Transport verwendet wird. [SignalR verwendet Long Polling, wenn WebSockets nicht verfügbar oder die App explizit für die Verwendung von Long Polling konfiguriert ist. Konfigurieren Sie die App bei Bereitstellung für Azure App Service in den Einstellungen für den Dienst im Azure-Portal für die Verwendung von WebSockets. Weitere Informationen zum Konfigurieren der App für Azure App Service finden Sie in den [Richtlinien für die [SignalR-Veröffentlichung](xref:signalr/publish-to-azure-web-app).
+Blazor funktioniert am besten, wenn WebSockets aufgrund geringerer Latenz und wegen Zuverlässigkeit und [Sicherheit](xref:signalr/security) zum SignalR-Transport verwendet wird. SignalR verwendet Long Polling, wenn WebSockets nicht verfügbar oder die App explizit für die Verwendung von Long Polling konfiguriert ist. Konfigurieren Sie die App bei Bereitstellung für Azure App Service in den Einstellungen für den Dienst im Azure-Portal für die Verwendung von WebSockets. Weitere Informationen zum Konfigurieren der App für Azure App Service finden Sie in den [Richtlinien für die SignalR-Veröffentlichung](xref:signalr/publish-to-azure-web-app).
 
-#### <a name="azure-signalr-service"></a>Azure [SignalR Service
+#### <a name="azure-no-locsignalr-service"></a>Azure SignalR Service
 
-Sie sollten [Azure [SignalR Service](/azure/azure-signalr) für [Blazor Server-Apps verwenden. Der Dienst ermöglicht das Hochskalieren einer [Blazor Server-App auf eine große Anzahl gleichzeitiger [SignalR-Verbindungen. Außerdem tragen die globale Reichweite und die Hochleistungsrechenzentren von [SignalR Service erheblich zur Verringerung der geografiebedingten Latenz bei. So konfigurieren Sie eine App (und stellen optional Azure [SignalR Service bereit)
+Sie sollten [Azure SignalR Service](/azure/azure-signalr) für Blazor Server-Apps verwenden. Der Dienst ermöglicht das Hochskalieren einer Blazor Server-App auf eine große Anzahl gleichzeitiger SignalR-Verbindungen. Außerdem tragen die globale Reichweite und die Hochleistungsrechenzentren von SignalR Service erheblich zur Verringerung der geografiebedingten Latenz bei. So konfigurieren Sie eine App (und stellen optional Azure SignalR Service bereit)
 
 1. Aktivieren Sie die Unterstützung von *persistenten Sitzungen* des Diensts, damit Clients [beim Vorabrendering an denselben Server umgeleitet werden](xref:blazor/hosting-models#connection-to-the-server). Legen Sie die `ServerStickyMode`-Option oder den Konfigurationswert auf `Required` fest. In der Regel erstellt eine App die Konfiguration mithilfe von **einem** der folgenden Ansätze:
 
@@ -72,7 +74,7 @@ Sie sollten [Azure [SignalR Service](/azure/azure-signalr) für [Blazor Server-A
      services.AddSignalR().AddAzureSignalR(options =>
      {
          options.ServerStickyMode = 
-             Microsoft.Azure.[SignalR.ServerStickyMode.Required;
+             Microsoft.Azure.SignalR.ServerStickyMode.Required;
      });
      ```
 
@@ -81,13 +83,13 @@ Sie sollten [Azure [SignalR Service](/azure/azure-signalr) für [Blazor Server-A
      * `appsettings.json`:
 
        ```json
-       "Azure:[SignalR:ServerStickyMode": "Required"
+       "Azure:SignalR:ServerStickyMode": "Required"
        ```
 
-     * **Konfiguration** > **Anwendungseinstellungen** des App-Diensts im Azure-Portal (**Name**: `Azure:[SignalR:ServerStickyMode`, **Wert**: `Required`).
+     * **Konfiguration** > **Anwendungseinstellungen** des App-Diensts im Azure-Portal (**Name**: `Azure:SignalR:ServerStickyMode`, **Wert**: `Required`).
 
-1. Erstellen Sie ein Veröffentlichungsprofil für Azure-Apps in Visual Studio für die [Blazor Server-App.
-1. Fügen Sie dem Profil die **Azure [SignalR Service**-Abhängigkeit hinzu. Wenn das Azure-Abonnement nicht über eine bereits vorhandene Azure [SignalR Service-Instanz verfügt, die der App zugewiesen werden soll, wählen Sie **Neue Azure [SignalR Service-Instanz erstellen** aus, um eine neue Dienstinstanz bereitzustellen.
+1. Erstellen Sie ein Veröffentlichungsprofil für Azure-Apps in Visual Studio für die Blazor Server-App.
+1. Fügen Sie dem Profil die **Azure SignalR Service**-Abhängigkeit hinzu. Wenn das Azure-Abonnement nicht über eine bereits vorhandene Azure SignalR Service-Instanz verfügt, die der App zugewiesen werden soll, wählen Sie **Neue Azure SignalR Service-Instanz erstellen** aus, um eine neue Dienstinstanz bereitzustellen.
 1. Veröffentlichen Sie die App in Azure.
 
 #### <a name="iis"></a>IIS
@@ -115,7 +117,7 @@ metadata:
 
 #### <a name="linux-with-nginx"></a>Linux mit Nginx
 
-Damit [SignalR WebSockets ordnungsgemäß funktioniert, sollten Sie sich vergewissern, dass die Header `Upgrade` und `Connection` des Proxys auf die folgenden Werte festgelegt sind und dass `$connection_upgrade` einem der folgenden Werte zugeordnet ist:
+Damit SignalR WebSockets ordnungsgemäß funktioniert, sollten Sie sich vergewissern, dass die Header `Upgrade` und `Connection` des Proxys auf die folgenden Werte festgelegt sind und dass `$connection_upgrade` einem der folgenden Werte zugeordnet ist:
 
 * Der Standardwert für den Upgradeheader
 * `close`, wenn der Upgradeheader fehlt oder leer ist
@@ -152,7 +154,7 @@ Weitere Informationen finden Sie in den folgenden Artikeln:
 
 ## <a name="linux-with-apache"></a>Linux mit Apache
 
-Konfigurieren Sie `ProxyPass` für den HTTP- und WebSockets-Datenverkehr, um eine [Blazor-App hinter Apache unter Linux zu hosten.
+Konfigurieren Sie `ProxyPass` für den HTTP- und WebSockets-Datenverkehr, um eine Blazor-App hinter Apache unter Linux zu hosten.
 
 Im folgenden Beispiel:
 

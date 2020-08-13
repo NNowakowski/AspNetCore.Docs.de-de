@@ -6,20 +6,22 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: test/troubleshoot
-ms.openlocfilehash: f3c975567ee9ea5a1d9f317d3bc77997f68be928
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: a05b5f85ee9e399daf35c32dabe0149be38ff6c2
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85398996"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021353"
 ---
 # <a name="troubleshoot-and-debug-aspnet-core-projects"></a>Problembehandlung und Debuggen von ASP.NET Core-Projekten
 
@@ -83,7 +85,7 @@ Wenn eine App in der Lage ist, auf Anforderungen zu antworten, können Sie die f
 
 * Anforderung: Methode, Schema, Host, Pfadbasis, Pfad, Abfragezeichenfolge, Header
 * Verbindung: Remote-IP-Adresse, Remoteport, lokale IP-Adresse, lokaler Port, Clientzertifikat
-* [Identity: Name, Anzeigename
+* Identity: Name, Anzeigename
 * Konfigurationseinstellungen
 * Umgebungsvariablen
 
@@ -125,8 +127,8 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env,
             sb.Append($"LocalPort: {context.Connection.LocalPort}{nl}");
             sb.Append($"ClientCert: {context.Connection.ClientCertificate}{nl}{nl}");
 
-            sb.Append($"[Identity{rule}");
-            sb.Append($"User: {context.User.[Identity.Name}{nl}");
+            sb.Append($"Identity{rule}");
+            sb.Append($"User: {context.User.Identity.Name}{nl}");
             var scheme = await authSchemeProvider
                 .GetSchemeAsync(IISDefaults.AuthenticationScheme);
             sb.Append($"DisplayName: {scheme?.DisplayName}{nl}{nl}");

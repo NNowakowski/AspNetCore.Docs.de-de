@@ -5,6 +5,8 @@ description: Dies ist Teil 2 der Tutorialreihe zu Razor Pages und dem Entity Fr
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 46846d99230620e45d8a2baab46df320425cfb6c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f205e7741c8e901e9219bec2028c7bee98129161
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401206"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018363"
 ---
-# <a name="part-2-razor-pages-with-ef-core-in-aspnet-core---crud"></a>Teil 2: Razor Pages mit EF Core in ASP.NET Core – CRUD
+# <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>Teil 2: Razor Pages mit EF Core in ASP.NET Core – CRUD
 
 Von [Tom Dykstra](https://github.com/tdykstra), [Jon P. Smith](https://twitter.com/thereformedprog) und [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -393,7 +395,7 @@ Der vorangehende Code ruft die ausgewählte Entität ab und anschließend die Me
 * Wird die Datenbankausnahme abgefangen.
 * Wird die Methode `OnGetAsync` auf der Seite „Löschen“ mit `saveChangesError=true` aufgerufen.
 
-### <a name="update-the-delete-razor-page"></a>Aktualisieren der Razor Page „Delete“ (Löschen)
+### <a name="update-the-delete-no-locrazor-page"></a>Aktualisieren der Razor Page „Delete“ (Löschen)
 
 Fügen Sie folgende hervorgehobene Fehlermeldung zur Razor Page „Löschen“ hinzu.
 <!--

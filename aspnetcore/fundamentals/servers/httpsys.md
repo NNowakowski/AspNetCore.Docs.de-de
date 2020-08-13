@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: 27ee69130bc455ab2570556091692053d59e89a5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 384b6559b4ee6140da5cf785ffda3978aafbb132
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408226"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016764"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementierung des Http.sys-Webservers in ASP.NET Core
 
@@ -169,7 +171,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Die Einstellungen in `UrlPrefixes` überschreiben die Einstellungen für `UseUrls`/`urls`/`ASPNETCORE_URLS`. Daher bieten `UseUrls`, `urls` und die Umgebungsvariable `ASPNETCORE_URLS` den Vorteil, dass sie den Wechsel zwischen Kestrel und HTTP.sys vereinfachen.
 
-   HTTP.sys verwendet die [HTTP Server-API-UrlPrefix-Zeichenfolgenformate](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys verwendet die [HTTP Server-API-UrlPrefix-Zeichenfolgenformate](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > Allgemeine Platzhalterbindungen (`http://*:80/` und `http://+:80`) dürfen **nicht** verwendet werden. Platzhalterbindungen auf oberster Ebene gefährden die Sicherheit Ihrer App. Dies gilt für starke und schwache Platzhalter. Verwenden Sie statt Platzhaltern explizite Hostnamen oder IP-Adressen. Platzhalterbindungen in untergeordneten Domänen (z.B. `*.mysub.com`) stellen kein Sicherheitsrisiko dar, wenn Sie die gesamte übergeordnete Domäne steuern (im Gegensatz zu `*.com`, das angreifbar ist). Weitere Informationen finden Sie unter [RFC 7230: Abschnitt 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -253,7 +255,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    Referenzdokumentation für *netsh.exe*:
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)
 
 1. Führen Sie die App aus.
 
@@ -272,7 +274,7 @@ Für Apps, die von HTTP.sys gehostet werden und mit Anforderungen aus dem Intern
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Aktivieren der Windows-Authentifizierung mit HTTP.sys](xref:security/authentication/windowsauth#httpsys)
-* [HTTP-Server-API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [HTTP-Server-API](/windows/win32/http/http-api-start-page)
 * [aspnet/HttpSysServer – GitHub-Repository (Quellcode)](https://github.com/aspnet/HttpSysServer/)
 * [Der Host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -420,7 +422,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Die Einstellungen in `UrlPrefixes` überschreiben die Einstellungen für `UseUrls`/`urls`/`ASPNETCORE_URLS`. Daher bieten `UseUrls`, `urls` und die Umgebungsvariable `ASPNETCORE_URLS` den Vorteil, dass sie den Wechsel zwischen Kestrel und HTTP.sys vereinfachen.
 
-   HTTP.sys verwendet die [HTTP Server-API-UrlPrefix-Zeichenfolgenformate](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys verwendet die [HTTP Server-API-UrlPrefix-Zeichenfolgenformate](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > Allgemeine Platzhalterbindungen (`http://*:80/` und `http://+:80`) dürfen **nicht** verwendet werden. Platzhalterbindungen auf oberster Ebene gefährden die Sicherheit Ihrer App. Dies gilt für starke und schwache Platzhalter. Verwenden Sie statt Platzhaltern explizite Hostnamen oder IP-Adressen. Platzhalterbindungen in untergeordneten Domänen (z.B. `*.mysub.com`) stellen kein Sicherheitsrisiko dar, wenn Sie die gesamte übergeordnete Domäne steuern (im Gegensatz zu `*.com`, das angreifbar ist). Weitere Informationen finden Sie unter [RFC 7230: Abschnitt 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -504,7 +506,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    Referenzdokumentation für *netsh.exe*:
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)
 
 1. Führen Sie die App aus.
 
@@ -523,7 +525,7 @@ Für Apps, die von HTTP.sys gehostet werden und mit Anforderungen aus dem Intern
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Aktivieren der Windows-Authentifizierung mit HTTP.sys](xref:security/authentication/windowsauth#httpsys)
-* [HTTP-Server-API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [HTTP-Server-API](/windows/win32/http/http-api-start-page)
 * [aspnet/HttpSysServer – GitHub-Repository (Quellcode)](https://github.com/aspnet/HttpSysServer/)
 * [Der Host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -673,7 +675,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Die Einstellungen in `UrlPrefixes` überschreiben die Einstellungen für `UseUrls`/`urls`/`ASPNETCORE_URLS`. Daher bieten `UseUrls`, `urls` und die Umgebungsvariable `ASPNETCORE_URLS` den Vorteil, dass sie den Wechsel zwischen Kestrel und HTTP.sys vereinfachen.
 
-   HTTP.sys verwendet die [HTTP Server-API-UrlPrefix-Zeichenfolgenformate](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys verwendet die [HTTP Server-API-UrlPrefix-Zeichenfolgenformate](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > Allgemeine Platzhalterbindungen (`http://*:80/` und `http://+:80`) dürfen **nicht** verwendet werden. Platzhalterbindungen auf oberster Ebene gefährden die Sicherheit Ihrer App. Dies gilt für starke und schwache Platzhalter. Verwenden Sie statt Platzhaltern explizite Hostnamen oder IP-Adressen. Platzhalterbindungen in untergeordneten Domänen (z.B. `*.mysub.com`) stellen kein Sicherheitsrisiko dar, wenn Sie die gesamte übergeordnete Domäne steuern (im Gegensatz zu `*.com`, das angreifbar ist). Weitere Informationen finden Sie unter [RFC 7230: Abschnitt 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -757,7 +759,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    Referenzdokumentation für *netsh.exe*:
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)
 
 1. Führen Sie die App aus.
 
@@ -776,7 +778,7 @@ Für Apps, die von HTTP.sys gehostet werden und mit Anforderungen aus dem Intern
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Aktivieren der Windows-Authentifizierung mit HTTP.sys](xref:security/authentication/windowsauth#httpsys)
-* [HTTP-Server-API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [HTTP-Server-API](/windows/win32/http/http-api-start-page)
 * [aspnet/HttpSysServer – GitHub-Repository (Quellcode)](https://github.com/aspnet/HttpSysServer/)
 * [Der Host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -926,7 +928,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Die Einstellungen in `UrlPrefixes` überschreiben die Einstellungen für `UseUrls`/`urls`/`ASPNETCORE_URLS`. Daher bieten `UseUrls`, `urls` und die Umgebungsvariable `ASPNETCORE_URLS` den Vorteil, dass sie den Wechsel zwischen Kestrel und HTTP.sys vereinfachen.
 
-   HTTP.sys verwendet die [HTTP Server-API-UrlPrefix-Zeichenfolgenformate](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys verwendet die [HTTP Server-API-UrlPrefix-Zeichenfolgenformate](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > Allgemeine Platzhalterbindungen (`http://*:80/` und `http://+:80`) dürfen **nicht** verwendet werden. Platzhalterbindungen auf oberster Ebene gefährden die Sicherheit Ihrer App. Dies gilt für starke und schwache Platzhalter. Verwenden Sie statt Platzhaltern explizite Hostnamen oder IP-Adressen. Platzhalterbindungen in untergeordneten Domänen (z.B. `*.mysub.com`) stellen kein Sicherheitsrisiko dar, wenn Sie die gesamte übergeordnete Domäne steuern (im Gegensatz zu `*.com`, das angreifbar ist). Weitere Informationen finden Sie unter [RFC 7230: Abschnitt 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -1010,7 +1012,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    Referenzdokumentation für *netsh.exe*:
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)
 
 1. Führen Sie die App aus.
 
@@ -1029,7 +1031,7 @@ Für Apps, die von HTTP.sys gehostet werden und mit Anforderungen aus dem Intern
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Aktivieren der Windows-Authentifizierung mit HTTP.sys](xref:security/authentication/windowsauth#httpsys)
-* [HTTP-Server-API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [HTTP-Server-API](/windows/win32/http/http-api-start-page)
 * [aspnet/HttpSysServer – GitHub-Repository (Quellcode)](https://github.com/aspnet/HttpSysServer/)
 * [Der Host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
