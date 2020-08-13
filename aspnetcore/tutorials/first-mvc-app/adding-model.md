@@ -5,6 +5,8 @@ description: Dies ist Teil 4 der Tutorialreihe zu ASP.NET Core MVC.
 ms.author: riande
 ms.date: 01/13/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,89 +15,89 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 77c12b98462c8a84ab807abef247573b6a028fcc
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: cc9c0447dc032ff0a88d379cd9d542e3406777bf
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86213164"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021964"
 ---
-# <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a><span data-ttu-id="fb05f-103">Teil 4: Hinzufügen eines Modells zu einer ASP.NET Core MVC-App</span><span class="sxs-lookup"><span data-stu-id="fb05f-103">Part 4, add a model to an ASP.NET Core MVC app</span></span>
+# <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a><span data-ttu-id="ede3b-103">Teil 4: Hinzufügen eines Modells zu einer ASP.NET Core MVC-App</span><span class="sxs-lookup"><span data-stu-id="ede3b-103">Part 4, add a model to an ASP.NET Core MVC app</span></span>
 
-<span data-ttu-id="fb05f-104">Von [Rick Anderson](https://twitter.com/RickAndMSFT) und [Tom Dykstra](https://github.com/tdykstra)</span><span class="sxs-lookup"><span data-stu-id="fb05f-104">By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)</span></span>
+<span data-ttu-id="ede3b-104">Von [Rick Anderson](https://twitter.com/RickAndMSFT) und [Tom Dykstra](https://github.com/tdykstra)</span><span class="sxs-lookup"><span data-stu-id="ede3b-104">By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)</span></span>
 
-<span data-ttu-id="fb05f-105">In diesem Abschnitt fügen Sie die Klassen für die Verwaltung von Filmen in einer Datenbank hinzu.</span><span class="sxs-lookup"><span data-stu-id="fb05f-105">In this section, you add classes for managing movies in a database.</span></span> <span data-ttu-id="fb05f-106">Diese Klassen bilden den „**M**odell“-Teil der **M**VC-App.</span><span class="sxs-lookup"><span data-stu-id="fb05f-106">These classes will be the "**M**odel" part of the **M**VC app.</span></span>
+<span data-ttu-id="ede3b-105">In diesem Abschnitt fügen Sie die Klassen für die Verwaltung von Filmen in einer Datenbank hinzu.</span><span class="sxs-lookup"><span data-stu-id="ede3b-105">In this section, you add classes for managing movies in a database.</span></span> <span data-ttu-id="ede3b-106">Diese Klassen bilden den „**M**odell“-Teil der **M**VC-App.</span><span class="sxs-lookup"><span data-stu-id="ede3b-106">These classes will be the "**M**odel" part of the **M**VC app.</span></span>
 
-<span data-ttu-id="fb05f-107">Verwenden Sie diese Klassen mit [Entity Framework Core](/ef/core) (EF Core), um mit einer Datenbank zu arbeiten.</span><span class="sxs-lookup"><span data-stu-id="fb05f-107">You use these classes with [Entity Framework Core](/ef/core) (EF Core) to work with a database.</span></span> <span data-ttu-id="fb05f-108">EF Core ist ein ORM-Framework (Objektrelationales Mapping, ORM), das den Datenzugriffscode vereinfacht, den Sie schreiben müssen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-108">EF Core is an object-relational mapping (ORM) framework that simplifies the data access code that you have to write.</span></span>
+<span data-ttu-id="ede3b-107">Verwenden Sie diese Klassen mit [Entity Framework Core](/ef/core) (EF Core), um mit einer Datenbank zu arbeiten.</span><span class="sxs-lookup"><span data-stu-id="ede3b-107">You use these classes with [Entity Framework Core](/ef/core) (EF Core) to work with a database.</span></span> <span data-ttu-id="ede3b-108">EF Core ist ein ORM-Framework (Objektrelationales Mapping, ORM), das den Datenzugriffscode vereinfacht, den Sie schreiben müssen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-108">EF Core is an object-relational mapping (ORM) framework that simplifies the data access code that you have to write.</span></span>
 
-<span data-ttu-id="fb05f-109">Die Modellklassen, die Sie erstellen, werden als POCO-Klassen (von **P**lain **O**ld **C**LR **O**bjects) bezeichnet, da sie nicht über eine Abhängigkeit von EF Core verfügen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-109">The model classes you create are known as POCO classes (from **P**lain **O**ld **C**LR **O**bjects) because they don't have any dependency on EF Core.</span></span> <span data-ttu-id="fb05f-110">Sie definieren lediglich die Eigenschaften der Daten, die in der Datenbank gespeichert werden.</span><span class="sxs-lookup"><span data-stu-id="fb05f-110">They just define the properties of the data that will be stored in the database.</span></span>
+<span data-ttu-id="ede3b-109">Die Modellklassen, die Sie erstellen, werden als POCO-Klassen (von **P**lain **O**ld **C**LR **O**bjects) bezeichnet, da sie nicht über eine Abhängigkeit von EF Core verfügen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-109">The model classes you create are known as POCO classes (from **P**lain **O**ld **C**LR **O**bjects) because they don't have any dependency on EF Core.</span></span> <span data-ttu-id="ede3b-110">Sie definieren lediglich die Eigenschaften der Daten, die in der Datenbank gespeichert werden.</span><span class="sxs-lookup"><span data-stu-id="ede3b-110">They just define the properties of the data that will be stored in the database.</span></span>
 
-<span data-ttu-id="fb05f-111">In diesem Tutorial schreiben Sie zuerst die Modellklassen. Anschließend erstellt EF Core die Datenbank.</span><span class="sxs-lookup"><span data-stu-id="fb05f-111">In this tutorial, you write the model classes first, and EF Core creates the database.</span></span>
+<span data-ttu-id="ede3b-111">In diesem Tutorial schreiben Sie zuerst die Modellklassen. Anschließend erstellt EF Core die Datenbank.</span><span class="sxs-lookup"><span data-stu-id="ede3b-111">In this tutorial, you write the model classes first, and EF Core creates the database.</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="add-a-data-model-class"></a><span data-ttu-id="fb05f-112">Hinzufügen einer Datenmodellklasse</span><span class="sxs-lookup"><span data-stu-id="fb05f-112">Add a data model class</span></span>
+## <a name="add-a-data-model-class"></a><span data-ttu-id="ede3b-112">Hinzufügen einer Datenmodellklasse</span><span class="sxs-lookup"><span data-stu-id="ede3b-112">Add a data model class</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-113">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-113">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-113">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-113">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="fb05f-114">Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*>**Hinzufügen** > **Klasse**.</span><span class="sxs-lookup"><span data-stu-id="fb05f-114">Right-click the *Models* folder > **Add** > **Class**.</span></span> <span data-ttu-id="fb05f-115">Nennen Sie die Datei *Movie.cs*.</span><span class="sxs-lookup"><span data-stu-id="fb05f-115">Name the file *Movie.cs*.</span></span>
+<span data-ttu-id="ede3b-114">Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*>**Hinzufügen** > **Klasse**.</span><span class="sxs-lookup"><span data-stu-id="ede3b-114">Right-click the *Models* folder > **Add** > **Class**.</span></span> <span data-ttu-id="ede3b-115">Nennen Sie die Datei *Movie.cs*.</span><span class="sxs-lookup"><span data-stu-id="ede3b-115">Name the file *Movie.cs*.</span></span>
 
-# <a name="visual-studio-code"></a>[<span data-ttu-id="fb05f-116">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="fb05f-116">Visual Studio Code</span></span>](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[<span data-ttu-id="ede3b-116">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="ede3b-116">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
-<span data-ttu-id="fb05f-117">Fügen Sie dem Ordner *Models* eine Datei mit dem Namen *Movie.cs* hinzu.</span><span class="sxs-lookup"><span data-stu-id="fb05f-117">Add a file named *Movie.cs* to the *Models* folder.</span></span>
+<span data-ttu-id="ede3b-117">Fügen Sie dem Ordner *Models* eine Datei mit dem Namen *Movie.cs* hinzu.</span><span class="sxs-lookup"><span data-stu-id="ede3b-117">Add a file named *Movie.cs* to the *Models* folder.</span></span>
 
-# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-118">Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-118">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-118">Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-118">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-<span data-ttu-id="fb05f-119">Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle* > **Hinzufügen** > **Neue Klasse** > **Leere Klasse**.</span><span class="sxs-lookup"><span data-stu-id="fb05f-119">Right-click the *Models* folder > **Add** > **New Class** > **Empty Class**.</span></span> <span data-ttu-id="fb05f-120">Nennen Sie die Datei *Movie.cs*.</span><span class="sxs-lookup"><span data-stu-id="fb05f-120">Name the file *Movie.cs*.</span></span>
+<span data-ttu-id="ede3b-119">Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle* > **Hinzufügen** > **Neue Klasse** > **Leere Klasse**.</span><span class="sxs-lookup"><span data-stu-id="ede3b-119">Right-click the *Models* folder > **Add** > **New Class** > **Empty Class**.</span></span> <span data-ttu-id="ede3b-120">Nennen Sie die Datei *Movie.cs*.</span><span class="sxs-lookup"><span data-stu-id="ede3b-120">Name the file *Movie.cs*.</span></span>
 
 ---
 
-<span data-ttu-id="fb05f-121">Aktualisieren Sie die Datei *Movie.cs* mit dem folgenden Code:</span><span class="sxs-lookup"><span data-stu-id="fb05f-121">Update the *Movie.cs* file with the following code:</span></span>
+<span data-ttu-id="ede3b-121">Aktualisieren Sie die Datei *Movie.cs* mit dem folgenden Code:</span><span class="sxs-lookup"><span data-stu-id="ede3b-121">Update the *Movie.cs* file with the following code:</span></span>
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/Movie.cs)]
 
-<span data-ttu-id="fb05f-122">Die `Movie`-Klasse enthält ein `Id`-Feld, das von der Datenbank für den Primärschlüssel benötigt wird.</span><span class="sxs-lookup"><span data-stu-id="fb05f-122">The `Movie` class contains an `Id` field, which is required by the database for the primary key.</span></span>
+<span data-ttu-id="ede3b-122">Die `Movie`-Klasse enthält ein `Id`-Feld, das von der Datenbank für den Primärschlüssel benötigt wird.</span><span class="sxs-lookup"><span data-stu-id="ede3b-122">The `Movie` class contains an `Id` field, which is required by the database for the primary key.</span></span>
 
-<span data-ttu-id="fb05f-123">Das <xref:System.ComponentModel.DataAnnotations.DataType>-Attribut für `ReleaseDate` gibt den Typ der Daten (`Date`) an.</span><span class="sxs-lookup"><span data-stu-id="fb05f-123">The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseDate` specifies the type of the data (`Date`).</span></span> <span data-ttu-id="fb05f-124">Mit diesem Attribut:</span><span class="sxs-lookup"><span data-stu-id="fb05f-124">With this attribute:</span></span>
+<span data-ttu-id="ede3b-123">Das <xref:System.ComponentModel.DataAnnotations.DataType>-Attribut für `ReleaseDate` gibt den Typ der Daten (`Date`) an.</span><span class="sxs-lookup"><span data-stu-id="ede3b-123">The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseDate` specifies the type of the data (`Date`).</span></span> <span data-ttu-id="ede3b-124">Mit diesem Attribut:</span><span class="sxs-lookup"><span data-stu-id="ede3b-124">With this attribute:</span></span>
 
-* <span data-ttu-id="fb05f-125">Es ist nicht erforderlich, dass der Benutzer Zeitinformationen in das Datumsfeld eingibt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-125">The user is not required to enter time information in the date field.</span></span>
-* <span data-ttu-id="fb05f-126">Nur das Datum wird angezeigt, keine Zeitinformationen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-126">Only the date is displayed, not time information.</span></span>
+* <span data-ttu-id="ede3b-125">Es ist nicht erforderlich, dass der Benutzer Zeitinformationen in das Datumsfeld eingibt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-125">The user is not required to enter time information in the date field.</span></span>
+* <span data-ttu-id="ede3b-126">Nur das Datum wird angezeigt, keine Zeitinformationen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-126">Only the date is displayed, not time information.</span></span>
 
-<span data-ttu-id="fb05f-127">[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) werden in einem späteren Tutorial behandelt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-127">[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.</span></span>
+<span data-ttu-id="ede3b-127">[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) werden in einem späteren Tutorial behandelt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-127">[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.</span></span>
 
-## <a name="add-nuget-packages"></a><span data-ttu-id="fb05f-128">Hinzufügen von NuGet-Paketen</span><span class="sxs-lookup"><span data-stu-id="fb05f-128">Add NuGet packages</span></span>
+## <a name="add-nuget-packages"></a><span data-ttu-id="ede3b-128">Hinzufügen von NuGet-Paketen</span><span class="sxs-lookup"><span data-stu-id="ede3b-128">Add NuGet packages</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-129">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-129">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-129">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-129">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="fb05f-130">Wählen Sie im Menü **Tools** **NuGet-Paket-Manager** > **Paket-Manager-Konsole** (PMC) aus.</span><span class="sxs-lookup"><span data-stu-id="fb05f-130">From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).</span></span>
+<span data-ttu-id="ede3b-130">Wählen Sie im Menü **Tools** **NuGet-Paket-Manager** > **Paket-Manager-Konsole** (PMC) aus.</span><span class="sxs-lookup"><span data-stu-id="ede3b-130">From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).</span></span>
 
 ![PMC-Menü](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
 
-<span data-ttu-id="fb05f-132">Führen Sie den folgenden Befehl in der PMC aus:</span><span class="sxs-lookup"><span data-stu-id="fb05f-132">In the PMC, run the following command:</span></span>
+<span data-ttu-id="ede3b-132">Führen Sie den folgenden Befehl in der PMC aus:</span><span class="sxs-lookup"><span data-stu-id="ede3b-132">In the PMC, run the following command:</span></span>
 
 ```powershell
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
-<span data-ttu-id="fb05f-133">Mit dem vorangehenden Befehl wird der EF Core SQL Server-Anbieter hinzugefügt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-133">The preceding command adds the EF Core SQL Server provider.</span></span> <span data-ttu-id="fb05f-134">Das Anbieterpaket installiert das EF Core-Paket als Abhängigkeit.</span><span class="sxs-lookup"><span data-stu-id="fb05f-134">The provider package installs the EF Core package as a dependency.</span></span> <span data-ttu-id="fb05f-135">Weitere Pakete werden im weiteren Verlauf des Tutorials automatisch im Gerüstbauschritt installiert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-135">Additional packages are installed automatically in the scaffolding step later in the tutorial.</span></span>
+<span data-ttu-id="ede3b-133">Mit dem vorangehenden Befehl wird der EF Core SQL Server-Anbieter hinzugefügt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-133">The preceding command adds the EF Core SQL Server provider.</span></span> <span data-ttu-id="ede3b-134">Das Anbieterpaket installiert das EF Core-Paket als Abhängigkeit.</span><span class="sxs-lookup"><span data-stu-id="ede3b-134">The provider package installs the EF Core package as a dependency.</span></span> <span data-ttu-id="ede3b-135">Weitere Pakete werden im weiteren Verlauf des Tutorials automatisch im Gerüstbauschritt installiert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-135">Additional packages are installed automatically in the scaffolding step later in the tutorial.</span></span>
 
-# <a name="visual-studio-code"></a>[<span data-ttu-id="fb05f-136">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="fb05f-136">Visual Studio Code</span></span>](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[<span data-ttu-id="ede3b-136">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="ede3b-136">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
 
-# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-137">Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-137">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-137">Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-137">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-<span data-ttu-id="fb05f-138">Wählen Sie im Menü **Projekt** die Option **NuGet-Pakete verwalten** aus.</span><span class="sxs-lookup"><span data-stu-id="fb05f-138">From the **Project** menu, select **Manage NuGet Packages**.</span></span>
+<span data-ttu-id="ede3b-138">Wählen Sie im Menü **Projekt** die Option **NuGet-Pakete verwalten** aus.</span><span class="sxs-lookup"><span data-stu-id="ede3b-138">From the **Project** menu, select **Manage NuGet Packages**.</span></span>
 
-<span data-ttu-id="fb05f-139">Geben Sie in das Feld **Suchen** in der oberen rechten Ecke `Microsoft.EntityFrameworkCore.SQLite` ein, und drücken Sie die **EINGABETASTE**, um zu suchen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-139">In the **Search** field in the upper right, enter `Microsoft.EntityFrameworkCore.SQLite` and press the **Return** key to search.</span></span> <span data-ttu-id="fb05f-140">Wählen Sie das entsprechende NuGet-Paket aus, und klicken Sie auf die Schaltfläche **Paket hinzufügen**.</span><span class="sxs-lookup"><span data-stu-id="fb05f-140">Select the matching NuGet package and press the **Add Package** button.</span></span>
+<span data-ttu-id="ede3b-139">Geben Sie in das Feld **Suchen** in der oberen rechten Ecke `Microsoft.EntityFrameworkCore.SQLite` ein, und drücken Sie die **EINGABETASTE**, um zu suchen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-139">In the **Search** field in the upper right, enter `Microsoft.EntityFrameworkCore.SQLite` and press the **Return** key to search.</span></span> <span data-ttu-id="ede3b-140">Wählen Sie das entsprechende NuGet-Paket aus, und klicken Sie auf die Schaltfläche **Paket hinzufügen**.</span><span class="sxs-lookup"><span data-stu-id="ede3b-140">Select the matching NuGet package and press the **Add Package** button.</span></span>
 
 ![NuGet-Paket für Entity Framework Core hinzufügen](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
 
-<span data-ttu-id="fb05f-142">Das Dialogfeld **Projekte auswählen** wird angezeigt, und das Projekt `MvcMovie` ist ausgewählt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-142">The **Select Projects** dialog will be displayed, with the `MvcMovie` project selected.</span></span> <span data-ttu-id="fb05f-143">Klicken Sie auf die Schaltfläche **OK**.</span><span class="sxs-lookup"><span data-stu-id="fb05f-143">Press the **Ok** button.</span></span>
+<span data-ttu-id="ede3b-142">Das Dialogfeld **Projekte auswählen** wird angezeigt, und das Projekt `MvcMovie` ist ausgewählt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-142">The **Select Projects** dialog will be displayed, with the `MvcMovie` project selected.</span></span> <span data-ttu-id="ede3b-143">Klicken Sie auf die Schaltfläche **OK**.</span><span class="sxs-lookup"><span data-stu-id="ede3b-143">Press the **Ok** button.</span></span>
 
-<span data-ttu-id="fb05f-144">Ein Dialogfeld **Zustimmen zur Lizenz** wird angezeigt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-144">A **License Acceptance** dialog will be displayed.</span></span> <span data-ttu-id="fb05f-145">Überprüfen Sie die Lizenzen nach Wunsch, und klicken Sie dann auf die Schaltfläche **Akzeptieren**.</span><span class="sxs-lookup"><span data-stu-id="fb05f-145">Review the licenses as desired, then click the **Accept** button.</span></span>
+<span data-ttu-id="ede3b-144">Ein Dialogfeld **Zustimmen zur Lizenz** wird angezeigt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-144">A **License Acceptance** dialog will be displayed.</span></span> <span data-ttu-id="ede3b-145">Überprüfen Sie die Lizenzen nach Wunsch, und klicken Sie dann auf die Schaltfläche **Akzeptieren**.</span><span class="sxs-lookup"><span data-stu-id="ede3b-145">Review the licenses as desired, then click the **Accept** button.</span></span>
 
-<span data-ttu-id="fb05f-146">Wiederholen Sie die Schritte oben, um die folgenden NuGet-Pakete zu installieren:</span><span class="sxs-lookup"><span data-stu-id="fb05f-146">Repeat the above steps to install the following NuGet packages:</span></span>
+<span data-ttu-id="ede3b-146">Wiederholen Sie die Schritte oben, um die folgenden NuGet-Pakete zu installieren:</span><span class="sxs-lookup"><span data-stu-id="ede3b-146">Repeat the above steps to install the following NuGet packages:</span></span>
 
 * `Microsoft.VisualStudio.Web.CodeGeneration.Design`
 * `Microsoft.EntityFrameworkCore.SqlServer`
@@ -105,106 +107,106 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
 <a name="dc"></a>
 
-## <a name="create-a-database-context-class"></a><span data-ttu-id="fb05f-147">Erstellen einer Datenbankkontextklasse</span><span class="sxs-lookup"><span data-stu-id="fb05f-147">Create a database context class</span></span>
+## <a name="create-a-database-context-class"></a><span data-ttu-id="ede3b-147">Erstellen einer Datenbankkontextklasse</span><span class="sxs-lookup"><span data-stu-id="ede3b-147">Create a database context class</span></span>
 
-<span data-ttu-id="fb05f-148">Eine Datenbankkontextklasse ist erforderlich, um EF Core-Funktionalität (Erstellen, Lesen, Aktualisieren, Löschen) für das `Movie`-Modell zu koordinieren.</span><span class="sxs-lookup"><span data-stu-id="fb05f-148">A database context class is needed to coordinate EF Core functionality (Create, Read, Update, Delete) for the `Movie` model.</span></span> <span data-ttu-id="fb05f-149">Der Datenbankkontext wird von [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) abgeleitet und gibt die Entitäten an, die im Datenmodell enthalten sein sollen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-149">The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) and specifies the entities to include in the data model.</span></span>
+<span data-ttu-id="ede3b-148">Eine Datenbankkontextklasse ist erforderlich, um EF Core-Funktionalität (Erstellen, Lesen, Aktualisieren, Löschen) für das `Movie`-Modell zu koordinieren.</span><span class="sxs-lookup"><span data-stu-id="ede3b-148">A database context class is needed to coordinate EF Core functionality (Create, Read, Update, Delete) for the `Movie` model.</span></span> <span data-ttu-id="ede3b-149">Der Datenbankkontext wird von [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) abgeleitet und gibt die Entitäten an, die im Datenmodell enthalten sein sollen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-149">The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) and specifies the entities to include in the data model.</span></span>
 
-<span data-ttu-id="fb05f-150">Erstellen Sie einen Ordner *Data*.</span><span class="sxs-lookup"><span data-stu-id="fb05f-150">Create a *Data* folder.</span></span>
+<span data-ttu-id="ede3b-150">Erstellen Sie einen Ordner *Data*.</span><span class="sxs-lookup"><span data-stu-id="ede3b-150">Create a *Data* folder.</span></span>
 
-<span data-ttu-id="fb05f-151">Fügen Sie eine Datei *Data/MvcMovieContext.cs* mit dem folgenden Code hinzu:</span><span class="sxs-lookup"><span data-stu-id="fb05f-151">Add a *Data/MvcMovieContext.cs* file with the following code:</span></span> 
+<span data-ttu-id="ede3b-151">Fügen Sie eine Datei *Data/MvcMovieContext.cs* mit dem folgenden Code hinzu:</span><span class="sxs-lookup"><span data-stu-id="ede3b-151">Add a *Data/MvcMovieContext.cs* file with the following code:</span></span> 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
-<span data-ttu-id="fb05f-152">Der vorangehende Code erstellt eine [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1)-Eigenschaft für die Entitätsmenge.</span><span class="sxs-lookup"><span data-stu-id="fb05f-152">The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set.</span></span> <span data-ttu-id="fb05f-153">In der Terminologie von Entity Framework entspricht eine Entitätenmenge in der Regel einer Datenbanktabelle.</span><span class="sxs-lookup"><span data-stu-id="fb05f-153">In Entity Framework terminology, an entity set typically corresponds to a database table.</span></span> <span data-ttu-id="fb05f-154">Entitäten entsprechen Zeilen in Tabellen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-154">An entity corresponds to a row in the table.</span></span>
+<span data-ttu-id="ede3b-152">Der vorangehende Code erstellt eine [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1)-Eigenschaft für die Entitätsmenge.</span><span class="sxs-lookup"><span data-stu-id="ede3b-152">The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set.</span></span> <span data-ttu-id="ede3b-153">In der Terminologie von Entity Framework entspricht eine Entitätenmenge in der Regel einer Datenbanktabelle.</span><span class="sxs-lookup"><span data-stu-id="ede3b-153">In Entity Framework terminology, an entity set typically corresponds to a database table.</span></span> <span data-ttu-id="ede3b-154">Entitäten entsprechen Zeilen in Tabellen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-154">An entity corresponds to a row in the table.</span></span>
 
 <a name="reg"></a>
 
-## <a name="register-the-database-context"></a><span data-ttu-id="fb05f-155">Registrieren des Datenbankkontexts</span><span class="sxs-lookup"><span data-stu-id="fb05f-155">Register the database context</span></span>
+## <a name="register-the-database-context"></a><span data-ttu-id="ede3b-155">Registrieren des Datenbankkontexts</span><span class="sxs-lookup"><span data-stu-id="ede3b-155">Register the database context</span></span>
 
-<span data-ttu-id="fb05f-156">ASP.NET Core wird mit [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) (Dependency Injection, DI) erstellt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-156">ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection).</span></span> <span data-ttu-id="fb05f-157">Dienste (z.B. der EF Core-Datenbankkontext) müssen über DI beim Anwendungsstart registriert werden.</span><span class="sxs-lookup"><span data-stu-id="fb05f-157">Services (such as the EF Core DB context) must be registered with DI during application startup.</span></span> <span data-ttu-id="fb05f-158">Komponenten, die diese Dienste erfordern (z. B. Razor Pages), werden von diesen Diensten über Konstruktorparameter bereitgestellt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-158">Components that require these services (such as Razor Pages) are provided these services via constructor parameters.</span></span> <span data-ttu-id="fb05f-159">Der Konstruktorcode, der eine Datenbankkontext-Instanz abruft, wird später in diesem Tutorial erläutert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-159">The constructor code that gets a DB context instance is shown later in the tutorial.</span></span> <span data-ttu-id="fb05f-160">In diesem Abschnitt registrieren Sie den Datenbankkontext mit dem DI-Container.</span><span class="sxs-lookup"><span data-stu-id="fb05f-160">In this section, you register the database context with the DI container.</span></span>
+<span data-ttu-id="ede3b-156">ASP.NET Core wird mit [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) (Dependency Injection, DI) erstellt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-156">ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection).</span></span> <span data-ttu-id="ede3b-157">Dienste (z.B. der EF Core-Datenbankkontext) müssen über DI beim Anwendungsstart registriert werden.</span><span class="sxs-lookup"><span data-stu-id="ede3b-157">Services (such as the EF Core DB context) must be registered with DI during application startup.</span></span> <span data-ttu-id="ede3b-158">Komponenten, die diese Dienste erfordern (z. B. Razor Pages), werden von diesen Diensten über Konstruktorparameter bereitgestellt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-158">Components that require these services (such as Razor Pages) are provided these services via constructor parameters.</span></span> <span data-ttu-id="ede3b-159">Der Konstruktorcode, der eine Datenbankkontext-Instanz abruft, wird später in diesem Tutorial erläutert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-159">The constructor code that gets a DB context instance is shown later in the tutorial.</span></span> <span data-ttu-id="ede3b-160">In diesem Abschnitt registrieren Sie den Datenbankkontext mit dem DI-Container.</span><span class="sxs-lookup"><span data-stu-id="ede3b-160">In this section, you register the database context with the DI container.</span></span>
 
-<span data-ttu-id="fb05f-161">Fügen Sie am Anfang der Datei *Startup.cs* die folgenden `using`-Anweisungen ein.</span><span class="sxs-lookup"><span data-stu-id="fb05f-161">Add the following `using` statements at the top of *Startup.cs*:</span></span>
+<span data-ttu-id="ede3b-161">Fügen Sie am Anfang der Datei *Startup.cs* die folgenden `using`-Anweisungen ein.</span><span class="sxs-lookup"><span data-stu-id="ede3b-161">Add the following `using` statements at the top of *Startup.cs*:</span></span>
 
 ```csharp
 using MvcMovie.Data;
 using Microsoft.EntityFrameworkCore;
 ```
 
-<span data-ttu-id="fb05f-162">Fügen Sie folgenden hervorgehobenen Code in `Startup.ConfigureServices` hinzu:</span><span class="sxs-lookup"><span data-stu-id="fb05f-162">Add the following highlighted code in `Startup.ConfigureServices`:</span></span>
+<span data-ttu-id="ede3b-162">Fügen Sie folgenden hervorgehobenen Code in `Startup.ConfigureServices` hinzu:</span><span class="sxs-lookup"><span data-stu-id="ede3b-162">Add the following highlighted code in `Startup.ConfigureServices`:</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-163">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-163">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-163">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-163">Visual Studio</span></span>](#tab/visual-studio)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-164">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-164">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-164">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-164">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=6-7)]
 
 ---
 
-<span data-ttu-id="fb05f-165">Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-165">The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object.</span></span> <span data-ttu-id="fb05f-166">Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json*-Datei.</span><span class="sxs-lookup"><span data-stu-id="fb05f-166">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.</span></span>
+<span data-ttu-id="ede3b-165">Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-165">The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object.</span></span> <span data-ttu-id="ede3b-166">Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json*-Datei.</span><span class="sxs-lookup"><span data-stu-id="ede3b-166">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.</span></span>
 
 <a name="cs"></a>
 
-## <a name="add-a-database-connection-string"></a><span data-ttu-id="fb05f-167">Hinzufügen einer Datenbank-Verbindungszeichenfolge</span><span class="sxs-lookup"><span data-stu-id="fb05f-167">Add a database connection string</span></span>
+## <a name="add-a-database-connection-string"></a><span data-ttu-id="ede3b-167">Hinzufügen einer Datenbank-Verbindungszeichenfolge</span><span class="sxs-lookup"><span data-stu-id="ede3b-167">Add a database connection string</span></span>
 
-<span data-ttu-id="fb05f-168">Fügen Sie der Datei *appsettings.json* eine Verbindungszeichenfolge hinzu:</span><span class="sxs-lookup"><span data-stu-id="fb05f-168">Add a connection string to the *appsettings.json* file:</span></span>
+<span data-ttu-id="ede3b-168">Fügen Sie der Datei *appsettings.json* eine Verbindungszeichenfolge hinzu:</span><span class="sxs-lookup"><span data-stu-id="ede3b-168">Add a connection string to the *appsettings.json* file:</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-169">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-169">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-169">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-169">Visual Studio</span></span>](#tab/visual-studio)
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings.json?highlight=10-12)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-170">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-170">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-170">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-170">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
 
 ---
 
-<span data-ttu-id="fb05f-171">Erstellen Sie das Projekt, um zu ermitteln, ob Compilerfehler vorliegen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-171">Build the project as a check for compiler errors.</span></span>
+<span data-ttu-id="ede3b-171">Erstellen Sie das Projekt, um zu ermitteln, ob Compilerfehler vorliegen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-171">Build the project as a check for compiler errors.</span></span>
 
-## <a name="scaffold-movie-pages"></a><span data-ttu-id="fb05f-172">Gerüstbau der Movie-Seiten</span><span class="sxs-lookup"><span data-stu-id="fb05f-172">Scaffold movie pages</span></span>
+## <a name="scaffold-movie-pages"></a><span data-ttu-id="ede3b-172">Gerüstbau der Movie-Seiten</span><span class="sxs-lookup"><span data-stu-id="ede3b-172">Scaffold movie pages</span></span>
 
-<span data-ttu-id="fb05f-173">Verwenden Sie das Tool für den Gerüstbau, um CRUD-Seiten („Create“ (Erstellen), „Read“ (Lesen), „Update“ (Aktualisieren) und „Delete“ (Löschen)) für das Movie-Modell zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-173">Use the scaffolding tool to produce Create, Read, Update, and Delete (CRUD) pages for the movie model.</span></span>
+<span data-ttu-id="ede3b-173">Verwenden Sie das Tool für den Gerüstbau, um CRUD-Seiten („Create“ (Erstellen), „Read“ (Lesen), „Update“ (Aktualisieren) und „Delete“ (Löschen)) für das Movie-Modell zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-173">Use the scaffolding tool to produce Create, Read, Update, and Delete (CRUD) pages for the movie model.</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-174">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-174">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-174">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-174">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="fb05f-175">Klicken Sie im *Projektmappen-Explorer* mit der rechten Maustaste auf den Ordner **Controllers** und anschließend auf **Hinzufügen > Neues Gerüstelement**.</span><span class="sxs-lookup"><span data-stu-id="fb05f-175">In **Solution Explorer**, right-click the *Controllers* folder **> Add > New Scaffolded Item**.</span></span>
+<span data-ttu-id="ede3b-175">Klicken Sie im *Projektmappen-Explorer* mit der rechten Maustaste auf den Ordner **Controllers** und anschließend auf **Hinzufügen > Neues Gerüstelement**.</span><span class="sxs-lookup"><span data-stu-id="ede3b-175">In **Solution Explorer**, right-click the *Controllers* folder **> Add > New Scaffolded Item**.</span></span>
 
 ![Screenshot für oben genannten Schritt](adding-model/_static/add_controller21.png)
 
-<span data-ttu-id="fb05f-177">Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **MVC-Controller mit Ansichten unter Verwendung von Entity Framework > Hinzufügen** aus.</span><span class="sxs-lookup"><span data-stu-id="fb05f-177">In the **Add Scaffold** dialog, select **MVC Controller with views, using Entity Framework > Add**.</span></span>
+<span data-ttu-id="ede3b-177">Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **MVC-Controller mit Ansichten unter Verwendung von Entity Framework > Hinzufügen** aus.</span><span class="sxs-lookup"><span data-stu-id="ede3b-177">In the **Add Scaffold** dialog, select **MVC Controller with views, using Entity Framework > Add**.</span></span>
 
 ![Dialogfeld „Gerüst hinzufügen“](adding-model/_static/add_scaffold21.png)
 
-<span data-ttu-id="fb05f-179">Bearbeiten Sie das Dialogfeld **Controller hinzufügen**:</span><span class="sxs-lookup"><span data-stu-id="fb05f-179">Complete the **Add Controller** dialog:</span></span>
+<span data-ttu-id="ede3b-179">Bearbeiten Sie das Dialogfeld **Controller hinzufügen**:</span><span class="sxs-lookup"><span data-stu-id="ede3b-179">Complete the **Add Controller** dialog:</span></span>
 
-* <span data-ttu-id="fb05f-180">**Modellklasse:** *Movie (MvcMovie.Models)*</span><span class="sxs-lookup"><span data-stu-id="fb05f-180">**Model class:** *Movie (MvcMovie.Models)*</span></span>
-* <span data-ttu-id="fb05f-181">**Datenkontextklasse:** *MvcMovieContext (MvcMovie.Data)*</span><span class="sxs-lookup"><span data-stu-id="fb05f-181">**Data context class:** *MvcMovieContext (MvcMovie.Data)*</span></span>
+* <span data-ttu-id="ede3b-180">**Modellklasse:** *Movie (MvcMovie.Models)*</span><span class="sxs-lookup"><span data-stu-id="ede3b-180">**Model class:** *Movie (MvcMovie.Models)*</span></span>
+* <span data-ttu-id="ede3b-181">**Datenkontextklasse:** *MvcMovieContext (MvcMovie.Data)*</span><span class="sxs-lookup"><span data-stu-id="ede3b-181">**Data context class:** *MvcMovieContext (MvcMovie.Data)*</span></span>
 
 ![Datenkontext hinzufügen](adding-model/_static/dc3.png)
 
-* <span data-ttu-id="fb05f-183">**Ansichten:** Belassen Sie den Standardwert der einzelnen Optionen aktiviert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-183">**Views:** Keep the default of each option checked</span></span>
-* <span data-ttu-id="fb05f-184">**Controllername:** Übernehmen Sie den Standardnamen *MoviesController*.</span><span class="sxs-lookup"><span data-stu-id="fb05f-184">**Controller name:** Keep the default *MoviesController*</span></span>
-* <span data-ttu-id="fb05f-185">Wählen Sie **Hinzufügen** aus.</span><span class="sxs-lookup"><span data-stu-id="fb05f-185">Select **Add**</span></span>
+* <span data-ttu-id="ede3b-183">**Ansichten:** Belassen Sie den Standardwert der einzelnen Optionen aktiviert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-183">**Views:** Keep the default of each option checked</span></span>
+* <span data-ttu-id="ede3b-184">**Controllername:** Übernehmen Sie den Standardnamen *MoviesController*.</span><span class="sxs-lookup"><span data-stu-id="ede3b-184">**Controller name:** Keep the default *MoviesController*</span></span>
+* <span data-ttu-id="ede3b-185">Wählen Sie **Hinzufügen** aus.</span><span class="sxs-lookup"><span data-stu-id="ede3b-185">Select **Add**</span></span>
 
-<span data-ttu-id="fb05f-186">Visual Studio erstellt Folgendes:</span><span class="sxs-lookup"><span data-stu-id="fb05f-186">Visual Studio creates:</span></span>
+<span data-ttu-id="ede3b-186">Visual Studio erstellt Folgendes:</span><span class="sxs-lookup"><span data-stu-id="ede3b-186">Visual Studio creates:</span></span>
 
-* <span data-ttu-id="fb05f-187">Einen Movies-Controller (*Controllers/MoviesController.cs*)</span><span class="sxs-lookup"><span data-stu-id="fb05f-187">A movies controller (*Controllers/MoviesController.cs*)</span></span>
-* Razor<span data-ttu-id="fb05f-188">-Ansichtsdateien für die Seiten „Erstellen“, „Löschen“, „Details“ „Bearbeiten“ und „Index“ (*Views/Movies/\*.cshtml*)</span><span class="sxs-lookup"><span data-stu-id="fb05f-188"> view files for Create, Delete, Details, Edit, and Index pages (*Views/Movies/\*.cshtml*)</span></span>
+* <span data-ttu-id="ede3b-187">Einen Movies-Controller (*Controllers/MoviesController.cs*)</span><span class="sxs-lookup"><span data-stu-id="ede3b-187">A movies controller (*Controllers/MoviesController.cs*)</span></span>
+* <span data-ttu-id="ede3b-188">Razor-Ansichtsdateien für die Seiten „Erstellen“, „Löschen“, „Details“ „Bearbeiten“ und „Index“ (*Views/Movies/\*.cshtml*)</span><span class="sxs-lookup"><span data-stu-id="ede3b-188">Razor view files for Create, Delete, Details, Edit, and Index pages (*Views/Movies/\*.cshtml*)</span></span>
 
-<span data-ttu-id="fb05f-189">Die automatische Erstellung dieser Dateien wird als *Gerüstbau* bezeichnet.</span><span class="sxs-lookup"><span data-stu-id="fb05f-189">The automatic creation of these files is known as *scaffolding*.</span></span>
+<span data-ttu-id="ede3b-189">Die automatische Erstellung dieser Dateien wird als *Gerüstbau* bezeichnet.</span><span class="sxs-lookup"><span data-stu-id="ede3b-189">The automatic creation of these files is known as *scaffolding*.</span></span>
 
-### <a name="visual-studio-code"></a>[<span data-ttu-id="fb05f-190">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="fb05f-190">Visual Studio Code</span></span>](#tab/visual-studio-code) 
+### <a name="visual-studio-code"></a>[<span data-ttu-id="ede3b-190">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="ede3b-190">Visual Studio Code</span></span>](#tab/visual-studio-code) 
 
-* <span data-ttu-id="fb05f-191">Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).</span><span class="sxs-lookup"><span data-stu-id="fb05f-191">Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).</span></span>
+* <span data-ttu-id="ede3b-191">Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).</span><span class="sxs-lookup"><span data-stu-id="ede3b-191">Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).</span></span>
 
-* <span data-ttu-id="fb05f-192">Exportieren Sie unter Linux den Pfad des Gerüstbautools:</span><span class="sxs-lookup"><span data-stu-id="fb05f-192">On Linux, export the scaffold tool path:</span></span>
+* <span data-ttu-id="ede3b-192">Exportieren Sie unter Linux den Pfad des Gerüstbautools:</span><span class="sxs-lookup"><span data-stu-id="ede3b-192">On Linux, export the scaffold tool path:</span></span>
 
   ```console
   export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* <span data-ttu-id="fb05f-193">Führen Sie den folgenden Befehl aus:</span><span class="sxs-lookup"><span data-stu-id="fb05f-193">Run the following command:</span></span>
+* <span data-ttu-id="ede3b-193">Führen Sie den folgenden Befehl aus:</span><span class="sxs-lookup"><span data-stu-id="ede3b-193">Run the following command:</span></span>
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -212,11 +214,11 @@ using Microsoft.EntityFrameworkCore;
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
-### <a name="visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-194">Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-194">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
+### <a name="visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-194">Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-194">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-* <span data-ttu-id="fb05f-195">Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).</span><span class="sxs-lookup"><span data-stu-id="fb05f-195">Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).</span></span>
+* <span data-ttu-id="ede3b-195">Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).</span><span class="sxs-lookup"><span data-stu-id="ede3b-195">Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).</span></span>
 
-* <span data-ttu-id="fb05f-196">Führen Sie den folgenden Befehl aus:</span><span class="sxs-lookup"><span data-stu-id="fb05f-196">Run the following command:</span></span>
+* <span data-ttu-id="ede3b-196">Führen Sie den folgenden Befehl aus:</span><span class="sxs-lookup"><span data-stu-id="ede3b-196">Run the following command:</span></span>
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -228,113 +230,113 @@ using Microsoft.EntityFrameworkCore;
 
 <!-- End of tabs                  -->
 
-<span data-ttu-id="fb05f-197">Sie können die Gerüstbauseiten noch nicht verwenden, da die Datenbank nicht vorhanden ist.</span><span class="sxs-lookup"><span data-stu-id="fb05f-197">You can't use the scaffolded pages yet because the database doesn't exist.</span></span> <span data-ttu-id="fb05f-198">Wenn Sie die App ausführen und auf den Link **Movie App** klicken, erhalten Sie eine Fehlermeldung des Typs *Datenbank kann nicht geöffnet werden* oder *Keine solche Tabelle vorhanden: Movie*.</span><span class="sxs-lookup"><span data-stu-id="fb05f-198">If you run the app and click on the **Movie App** link, you get a *Cannot open database* or *no such table: Movie* error message.</span></span>
+<span data-ttu-id="ede3b-197">Sie können die Gerüstbauseiten noch nicht verwenden, da die Datenbank nicht vorhanden ist.</span><span class="sxs-lookup"><span data-stu-id="ede3b-197">You can't use the scaffolded pages yet because the database doesn't exist.</span></span> <span data-ttu-id="ede3b-198">Wenn Sie die App ausführen und auf den Link **Movie App** klicken, erhalten Sie eine Fehlermeldung des Typs *Datenbank kann nicht geöffnet werden* oder *Keine solche Tabelle vorhanden: Movie*.</span><span class="sxs-lookup"><span data-stu-id="ede3b-198">If you run the app and click on the **Movie App** link, you get a *Cannot open database* or *no such table: Movie* error message.</span></span>
 
 <a name="migration"></a>
 
-## <a name="initial-migration"></a><span data-ttu-id="fb05f-199">Anfängliche Migration</span><span class="sxs-lookup"><span data-stu-id="fb05f-199">Initial migration</span></span>
+## <a name="initial-migration"></a><span data-ttu-id="ede3b-199">Anfängliche Migration</span><span class="sxs-lookup"><span data-stu-id="ede3b-199">Initial migration</span></span>
 
-<span data-ttu-id="fb05f-200">Verwenden Sie das Feature [Migrations](xref:data/ef-mvc/migrations) von EF Core, um die Datenbank zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-200">Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the database.</span></span> <span data-ttu-id="fb05f-201">Migrations sind eine Reihe von Tools, mit denen Sie eine Datenbank erstellen und aktualisieren können, damit die Ihrem Datenmodell entspricht.</span><span class="sxs-lookup"><span data-stu-id="fb05f-201">Migrations is a set of tools that let you create and update a database to match your data model.</span></span>
+<span data-ttu-id="ede3b-200">Verwenden Sie das Feature [Migrations](xref:data/ef-mvc/migrations) von EF Core, um die Datenbank zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-200">Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the database.</span></span> <span data-ttu-id="ede3b-201">Migrations sind eine Reihe von Tools, mit denen Sie eine Datenbank erstellen und aktualisieren können, damit die Ihrem Datenmodell entspricht.</span><span class="sxs-lookup"><span data-stu-id="ede3b-201">Migrations is a set of tools that let you create and update a database to match your data model.</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-202">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-202">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-202">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-202">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="fb05f-203">Wählen Sie im Menü **Tools** **NuGet-Paket-Manager** > **Paket-Manager-Konsole** (PMC) aus.</span><span class="sxs-lookup"><span data-stu-id="fb05f-203">From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).</span></span>
+<span data-ttu-id="ede3b-203">Wählen Sie im Menü **Tools** **NuGet-Paket-Manager** > **Paket-Manager-Konsole** (PMC) aus.</span><span class="sxs-lookup"><span data-stu-id="ede3b-203">From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).</span></span>
 
-<span data-ttu-id="fb05f-204">Geben Sie in der PMC die folgenden Befehle ein:</span><span class="sxs-lookup"><span data-stu-id="fb05f-204">In the PMC, enter the following commands:</span></span>
+<span data-ttu-id="ede3b-204">Geben Sie in der PMC die folgenden Befehle ein:</span><span class="sxs-lookup"><span data-stu-id="ede3b-204">In the PMC, enter the following commands:</span></span>
 
 ```powershell
 Add-Migration InitialCreate
 Update-Database
 ```
 
-* <span data-ttu-id="fb05f-205">`Add-Migration InitialCreate`: Generiert die Migrationsdatei *Migrations/{timestamp}_InitialCreate.cs*.</span><span class="sxs-lookup"><span data-stu-id="fb05f-205">`Add-Migration InitialCreate`: Generates a *Migrations/{timestamp}_InitialCreate.cs* migration file.</span></span> <span data-ttu-id="fb05f-206">Das `InitialCreate`-Argument ist der Migrationsname.</span><span class="sxs-lookup"><span data-stu-id="fb05f-206">The `InitialCreate` argument is the migration name.</span></span> <span data-ttu-id="fb05f-207">Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-207">Any name can be used, but by convention, a name is selected that describes the migration.</span></span> <span data-ttu-id="fb05f-208">Da dies die erste Migration ist, enthält die generierte Klasse Code zum Erstellen des Datenbankschemas.</span><span class="sxs-lookup"><span data-stu-id="fb05f-208">Because this is the first migration, the generated class contains code to create the database schema.</span></span> <span data-ttu-id="fb05f-209">Das Datenbankschema basiert auf dem Modell, das in der Klasse `MvcMovieContext` angegeben ist.</span><span class="sxs-lookup"><span data-stu-id="fb05f-209">The database schema is based on the model specified in the `MvcMovieContext` class.</span></span>
+* <span data-ttu-id="ede3b-205">`Add-Migration InitialCreate`: Generiert die Migrationsdatei *Migrations/{timestamp}_InitialCreate.cs*.</span><span class="sxs-lookup"><span data-stu-id="ede3b-205">`Add-Migration InitialCreate`: Generates a *Migrations/{timestamp}_InitialCreate.cs* migration file.</span></span> <span data-ttu-id="ede3b-206">Das `InitialCreate`-Argument ist der Migrationsname.</span><span class="sxs-lookup"><span data-stu-id="ede3b-206">The `InitialCreate` argument is the migration name.</span></span> <span data-ttu-id="ede3b-207">Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-207">Any name can be used, but by convention, a name is selected that describes the migration.</span></span> <span data-ttu-id="ede3b-208">Da dies die erste Migration ist, enthält die generierte Klasse Code zum Erstellen des Datenbankschemas.</span><span class="sxs-lookup"><span data-stu-id="ede3b-208">Because this is the first migration, the generated class contains code to create the database schema.</span></span> <span data-ttu-id="ede3b-209">Das Datenbankschema basiert auf dem Modell, das in der Klasse `MvcMovieContext` angegeben ist.</span><span class="sxs-lookup"><span data-stu-id="ede3b-209">The database schema is based on the model specified in the `MvcMovieContext` class.</span></span>
 
-* <span data-ttu-id="fb05f-210">`Update-Database`: Aktualisiert die Datenbank auf die neueste Migration, die der vorherige Befehl erstellt hat.</span><span class="sxs-lookup"><span data-stu-id="fb05f-210">`Update-Database`: Updates the database to the latest migration, which the previous command created.</span></span> <span data-ttu-id="fb05f-211">Der Befehl führt die `Up`-Methode in der Datei *Migrations/{zeitstempel}_InitialCreate.cs* aus, mit der die Datenbank erstellt wird.</span><span class="sxs-lookup"><span data-stu-id="fb05f-211">This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.</span></span>
+* <span data-ttu-id="ede3b-210">`Update-Database`: Aktualisiert die Datenbank auf die neueste Migration, die der vorherige Befehl erstellt hat.</span><span class="sxs-lookup"><span data-stu-id="ede3b-210">`Update-Database`: Updates the database to the latest migration, which the previous command created.</span></span> <span data-ttu-id="ede3b-211">Der Befehl führt die `Up`-Methode in der Datei *Migrations/{zeitstempel}_InitialCreate.cs* aus, mit der die Datenbank erstellt wird.</span><span class="sxs-lookup"><span data-stu-id="ede3b-211">This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.</span></span>
 
-  <span data-ttu-id="fb05f-212">Der Befehl zum Aktualisieren der Datenbank generiert folgende Warnung:</span><span class="sxs-lookup"><span data-stu-id="fb05f-212">The database update command generates the following warning:</span></span> 
+  <span data-ttu-id="ede3b-212">Der Befehl zum Aktualisieren der Datenbank generiert folgende Warnung:</span><span class="sxs-lookup"><span data-stu-id="ede3b-212">The database update command generates the following warning:</span></span> 
 
-  > <span data-ttu-id="fb05f-213">No type was specified for the decimal column 'Price' on entity type 'Movie'.</span><span class="sxs-lookup"><span data-stu-id="fb05f-213">No type was specified for the decimal column 'Price' on entity type 'Movie'.</span></span> <span data-ttu-id="fb05f-214">Dadurch werden Werte automatisch abgeschnitten, falls diese nicht der Standardgenauigkeit und -skalierung entsprechen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-214">This will cause values to be silently truncated if they do not fit in the default precision and scale.</span></span> <span data-ttu-id="fb05f-215">Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (Für die Spalte „Price“ mit Dezimalwerten für den Entitätstyp „Movie“ wurde kein Typ angegeben. Dadurch werden Werte automatisch abgeschnitten, falls diese nicht der Standardgenauigkeit und -skalierung entsprechen. Geben Sie den Spaltentyp von SQL-Server explizit an, der durch „ForHasColumnType()“ sämtliche Werte unterstützen kann.)</span><span class="sxs-lookup"><span data-stu-id="fb05f-215">Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.</span></span>
+  > <span data-ttu-id="ede3b-213">No type was specified for the decimal column 'Price' on entity type 'Movie'.</span><span class="sxs-lookup"><span data-stu-id="ede3b-213">No type was specified for the decimal column 'Price' on entity type 'Movie'.</span></span> <span data-ttu-id="ede3b-214">Dadurch werden Werte automatisch abgeschnitten, falls diese nicht der Standardgenauigkeit und -skalierung entsprechen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-214">This will cause values to be silently truncated if they do not fit in the default precision and scale.</span></span> <span data-ttu-id="ede3b-215">Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (Für die Spalte „Price“ mit Dezimalwerten für den Entitätstyp „Movie“ wurde kein Typ angegeben. Dadurch werden Werte automatisch abgeschnitten, falls diese nicht der Standardgenauigkeit und -skalierung entsprechen. Geben Sie den Spaltentyp von SQL-Server explizit an, der durch „ForHasColumnType()“ sämtliche Werte unterstützen kann.)</span><span class="sxs-lookup"><span data-stu-id="ede3b-215">Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.</span></span>
 
-  <span data-ttu-id="fb05f-216">Sie können diese Warnung ignorieren, sie wird in einem späteren Tutorial behoben.</span><span class="sxs-lookup"><span data-stu-id="fb05f-216">You can ignore that warning, it will be fixed in a later tutorial.</span></span>
+  <span data-ttu-id="ede3b-216">Sie können diese Warnung ignorieren, sie wird in einem späteren Tutorial behoben.</span><span class="sxs-lookup"><span data-stu-id="ede3b-216">You can ignore that warning, it will be fixed in a later tutorial.</span></span>
 
 [!INCLUDE [more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-217">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-217">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-217">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-217">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
 
-<span data-ttu-id="fb05f-218">Führen Sie die folgenden .NET Core-CLI-Befehle aus:</span><span class="sxs-lookup"><span data-stu-id="fb05f-218">Run the following .NET Core CLI commands:</span></span>
+<span data-ttu-id="ede3b-218">Führen Sie die folgenden .NET Core-CLI-Befehle aus:</span><span class="sxs-lookup"><span data-stu-id="ede3b-218">Run the following .NET Core CLI commands:</span></span>
 
 ```dotnetcli
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-* <span data-ttu-id="fb05f-219">`ef migrations add InitialCreate`: Generiert eine Migrationsdatei *Migrations/{zeitstempel}_InitialCreate.cs*.</span><span class="sxs-lookup"><span data-stu-id="fb05f-219">`ef migrations add InitialCreate`: Generates an *Migrations/{timestamp}_InitialCreate.cs* migration file.</span></span> <span data-ttu-id="fb05f-220">Das `InitialCreate`-Argument ist der Migrationsname.</span><span class="sxs-lookup"><span data-stu-id="fb05f-220">The `InitialCreate` argument is the migration name.</span></span> <span data-ttu-id="fb05f-221">Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-221">Any name can be used, but by convention, a name is selected that describes the migration.</span></span> <span data-ttu-id="fb05f-222">Da dies die erste Migration ist, enthält die generierte Klasse Code zum Erstellen des Datenbankschemas.</span><span class="sxs-lookup"><span data-stu-id="fb05f-222">Because this is the first migration, the generated class contains code to create the database schema.</span></span> <span data-ttu-id="fb05f-223">Das Datenbankschema basiert auf dem Modell, das in der `MvcMovieContext`-Klasse (in der Datei *Data/MvcMovieContext.cs*) angegeben ist.</span><span class="sxs-lookup"><span data-stu-id="fb05f-223">The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file).</span></span>
+* <span data-ttu-id="ede3b-219">`ef migrations add InitialCreate`: Generiert eine Migrationsdatei *Migrations/{zeitstempel}_InitialCreate.cs*.</span><span class="sxs-lookup"><span data-stu-id="ede3b-219">`ef migrations add InitialCreate`: Generates an *Migrations/{timestamp}_InitialCreate.cs* migration file.</span></span> <span data-ttu-id="ede3b-220">Das `InitialCreate`-Argument ist der Migrationsname.</span><span class="sxs-lookup"><span data-stu-id="ede3b-220">The `InitialCreate` argument is the migration name.</span></span> <span data-ttu-id="ede3b-221">Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-221">Any name can be used, but by convention, a name is selected that describes the migration.</span></span> <span data-ttu-id="ede3b-222">Da dies die erste Migration ist, enthält die generierte Klasse Code zum Erstellen des Datenbankschemas.</span><span class="sxs-lookup"><span data-stu-id="ede3b-222">Because this is the first migration, the generated class contains code to create the database schema.</span></span> <span data-ttu-id="ede3b-223">Das Datenbankschema basiert auf dem Modell, das in der `MvcMovieContext`-Klasse (in der Datei *Data/MvcMovieContext.cs*) angegeben ist.</span><span class="sxs-lookup"><span data-stu-id="ede3b-223">The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file).</span></span>
 
-* <span data-ttu-id="fb05f-224">`ef database update`: Aktualisiert die Datenbank auf die neueste Migration, die der vorherige Befehl erstellt hat.</span><span class="sxs-lookup"><span data-stu-id="fb05f-224">`ef database update`: Updates the database to the latest migration, which the previous command created.</span></span> <span data-ttu-id="fb05f-225">Der Befehl führt die `Up`-Methode in der Datei *Migrations/{zeitstempel}_InitialCreate.cs* aus, mit der die Datenbank erstellt wird.</span><span class="sxs-lookup"><span data-stu-id="fb05f-225">This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.</span></span>
+* <span data-ttu-id="ede3b-224">`ef database update`: Aktualisiert die Datenbank auf die neueste Migration, die der vorherige Befehl erstellt hat.</span><span class="sxs-lookup"><span data-stu-id="ede3b-224">`ef database update`: Updates the database to the latest migration, which the previous command created.</span></span> <span data-ttu-id="ede3b-225">Der Befehl führt die `Up`-Methode in der Datei *Migrations/{zeitstempel}_InitialCreate.cs* aus, mit der die Datenbank erstellt wird.</span><span class="sxs-lookup"><span data-stu-id="ede3b-225">This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.</span></span>
 
 ---
 
-### <a name="the-initialcreate-class"></a><span data-ttu-id="fb05f-226">Die InitialCreate-Klasse</span><span class="sxs-lookup"><span data-stu-id="fb05f-226">The InitialCreate class</span></span>
+### <a name="the-initialcreate-class"></a><span data-ttu-id="ede3b-226">Die InitialCreate-Klasse</span><span class="sxs-lookup"><span data-stu-id="ede3b-226">The InitialCreate class</span></span>
 
-<span data-ttu-id="fb05f-227">Untersuchen Sie die Migrationsdatei *Migrations/{zeitstempel}_InitialCreate.cs*:</span><span class="sxs-lookup"><span data-stu-id="fb05f-227">Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:</span></span>
+<span data-ttu-id="ede3b-227">Untersuchen Sie die Migrationsdatei *Migrations/{zeitstempel}_InitialCreate.cs*:</span><span class="sxs-lookup"><span data-stu-id="ede3b-227">Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:</span></span>
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
 
-<span data-ttu-id="fb05f-228">Die `Up`-Methode erstellt die Movie-Tabelle und konfiguriert `Id` als Primärschlüssel.</span><span class="sxs-lookup"><span data-stu-id="fb05f-228">The `Up` method creates the Movie table and configures `Id` as the primary key.</span></span> <span data-ttu-id="fb05f-229">Die `Down`-Methode macht die von der `Up`-Migration vorgenommenen Schemaänderungen rückgängig.</span><span class="sxs-lookup"><span data-stu-id="fb05f-229">The `Down` method reverts the schema changes made by the `Up` migration.</span></span>
+<span data-ttu-id="ede3b-228">Die `Up`-Methode erstellt die Movie-Tabelle und konfiguriert `Id` als Primärschlüssel.</span><span class="sxs-lookup"><span data-stu-id="ede3b-228">The `Up` method creates the Movie table and configures `Id` as the primary key.</span></span> <span data-ttu-id="ede3b-229">Die `Down`-Methode macht die von der `Up`-Migration vorgenommenen Schemaänderungen rückgängig.</span><span class="sxs-lookup"><span data-stu-id="ede3b-229">The `Down` method reverts the schema changes made by the `Up` migration.</span></span>
 
 <a name="test"></a>
 
-## <a name="test-the-app"></a><span data-ttu-id="fb05f-230">Testen der App</span><span class="sxs-lookup"><span data-stu-id="fb05f-230">Test the app</span></span>
+## <a name="test-the-app"></a><span data-ttu-id="ede3b-230">Testen der App</span><span class="sxs-lookup"><span data-stu-id="ede3b-230">Test the app</span></span>
 
-* <span data-ttu-id="fb05f-231">Führen Sie die APP aus, und klicken Sie auf den Link **Movie App**.</span><span class="sxs-lookup"><span data-stu-id="fb05f-231">Run the app and click the **Movie App** link.</span></span>
+* <span data-ttu-id="ede3b-231">Führen Sie die APP aus, und klicken Sie auf den Link **Movie App**.</span><span class="sxs-lookup"><span data-stu-id="ede3b-231">Run the app and click the **Movie App** link.</span></span>
 
-  <span data-ttu-id="fb05f-232">Wenn eine Ausnahme auftritt, die der folgenden ähnelt:</span><span class="sxs-lookup"><span data-stu-id="fb05f-232">If you get an exception similar to one of the following:</span></span>
+  <span data-ttu-id="ede3b-232">Wenn eine Ausnahme auftritt, die der folgenden ähnelt:</span><span class="sxs-lookup"><span data-stu-id="ede3b-232">If you get an exception similar to one of the following:</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-233">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-233">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-233">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-233">Visual Studio</span></span>](#tab/visual-studio)
 
   ```console
   SqlException: Cannot open database "MvcMovieContext-1" requested by the login. The login failed.
   ```
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-234">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-234">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-234">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-234">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
   ```console
   SqliteException: SQLite Error 1: 'no such table: Movie'.
   ```
 
 ---
-  <span data-ttu-id="fb05f-235">Sie haben möglicherweise den [Migrationsschritt](#migration) ausgelassen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-235">You probably missed the [migrations step](#migration).</span></span>
+  <span data-ttu-id="ede3b-235">Sie haben möglicherweise den [Migrationsschritt](#migration) ausgelassen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-235">You probably missed the [migrations step](#migration).</span></span>
 
-* <span data-ttu-id="fb05f-236">Testen Sie die Seite **Create** (Erstellen).</span><span class="sxs-lookup"><span data-stu-id="fb05f-236">Test the **Create** page.</span></span> <span data-ttu-id="fb05f-237">Geben Sie die Daten ein, und senden Sie sie.</span><span class="sxs-lookup"><span data-stu-id="fb05f-237">Enter and submit data.</span></span>
+* <span data-ttu-id="ede3b-236">Testen Sie die Seite **Create** (Erstellen).</span><span class="sxs-lookup"><span data-stu-id="ede3b-236">Test the **Create** page.</span></span> <span data-ttu-id="ede3b-237">Geben Sie die Daten ein, und senden Sie sie.</span><span class="sxs-lookup"><span data-stu-id="ede3b-237">Enter and submit data.</span></span>
 
   > [!NOTE]
-  > <span data-ttu-id="fb05f-238">Sie können unter Umständen in das Feld `Price` keine Kommas als Dezimaltrennzeichen eingeben.</span><span class="sxs-lookup"><span data-stu-id="fb05f-238">You may not be able to enter decimal commas in the `Price` field.</span></span> <span data-ttu-id="fb05f-239">Zur Unterstützung der [jQuery-Validierung](https://jqueryvalidation.org/) für Gebietsschemas mit einer anderen Sprache als Englisch, in denen ein Komma („,“) als Dezimaltrennzeichen verwendet wird, und für Datums- und Uhrzeitformate, die nicht dem US-englischen Format entsprechen, muss die App globalisiert werden.</span><span class="sxs-lookup"><span data-stu-id="fb05f-239">To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized.</span></span> <span data-ttu-id="fb05f-240">Globalisierungsanweisungen finden Sie unter [GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).</span><span class="sxs-lookup"><span data-stu-id="fb05f-240">For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).</span></span>
+  > <span data-ttu-id="ede3b-238">Sie können unter Umständen in das Feld `Price` keine Kommas als Dezimaltrennzeichen eingeben.</span><span class="sxs-lookup"><span data-stu-id="ede3b-238">You may not be able to enter decimal commas in the `Price` field.</span></span> <span data-ttu-id="ede3b-239">Zur Unterstützung der [jQuery-Validierung](https://jqueryvalidation.org/) für Gebietsschemas mit einer anderen Sprache als Englisch, in denen ein Komma („,“) als Dezimaltrennzeichen verwendet wird, und für Datums- und Uhrzeitformate, die nicht dem US-englischen Format entsprechen, muss die App globalisiert werden.</span><span class="sxs-lookup"><span data-stu-id="ede3b-239">To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized.</span></span> <span data-ttu-id="ede3b-240">Globalisierungsanweisungen finden Sie unter [GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).</span><span class="sxs-lookup"><span data-stu-id="ede3b-240">For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).</span></span>
 
-* <span data-ttu-id="fb05f-241">Testen Sie die Seiten **Edit** (Bearbeiten), **Details** und **Delete** (Löschen).</span><span class="sxs-lookup"><span data-stu-id="fb05f-241">Test the **Edit**, **Details**, and **Delete** pages.</span></span>
+* <span data-ttu-id="ede3b-241">Testen Sie die Seiten **Edit** (Bearbeiten), **Details** und **Delete** (Löschen).</span><span class="sxs-lookup"><span data-stu-id="ede3b-241">Test the **Edit**, **Details**, and **Delete** pages.</span></span>
 
-## <a name="dependency-injection-in-the-controller"></a><span data-ttu-id="fb05f-242">Abhängigkeitsinjektion im Controller</span><span class="sxs-lookup"><span data-stu-id="fb05f-242">Dependency injection in the controller</span></span>
+## <a name="dependency-injection-in-the-controller"></a><span data-ttu-id="ede3b-242">Abhängigkeitsinjektion im Controller</span><span class="sxs-lookup"><span data-stu-id="ede3b-242">Dependency injection in the controller</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-243">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-243">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-243">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-243">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="fb05f-244">Öffnen Sie die Datei *Controllers/MoviesController.cs*, und überprüfen Sie den Konstruktor:</span><span class="sxs-lookup"><span data-stu-id="fb05f-244">Open the *Controllers/MoviesController.cs* file and examine the constructor:</span></span>
+<span data-ttu-id="ede3b-244">Öffnen Sie die Datei *Controllers/MoviesController.cs*, und überprüfen Sie den Konstruktor:</span><span class="sxs-lookup"><span data-stu-id="ede3b-244">Open the *Controllers/MoviesController.cs* file and examine the constructor:</span></span>
 
 <!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
-<span data-ttu-id="fb05f-245">Der Konstruktor verwendet die [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) zum Einfügen des Datenbankkontexts (`MvcMovieContext`) in den Controller.</span><span class="sxs-lookup"><span data-stu-id="fb05f-245">The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller.</span></span> <span data-ttu-id="fb05f-246">Der Datenbankkontext wird in den einzelnen [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Methoden im Controller verwendet.</span><span class="sxs-lookup"><span data-stu-id="fb05f-246">The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.</span></span>
+<span data-ttu-id="ede3b-245">Der Konstruktor verwendet die [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) zum Einfügen des Datenbankkontexts (`MvcMovieContext`) in den Controller.</span><span class="sxs-lookup"><span data-stu-id="ede3b-245">The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller.</span></span> <span data-ttu-id="ede3b-246">Der Datenbankkontext wird in den einzelnen [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Methoden im Controller verwendet.</span><span class="sxs-lookup"><span data-stu-id="ede3b-246">The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.</span></span>
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-247">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-247">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-247">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-247">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
-<span data-ttu-id="fb05f-248">Der Konstruktor verwendet die [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) zum Einfügen des Datenbankkontexts (`MvcMovieContext`) in den Controller.</span><span class="sxs-lookup"><span data-stu-id="fb05f-248">The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller.</span></span> <span data-ttu-id="fb05f-249">Der Datenbankkontext wird in den einzelnen [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Methoden im Controller verwendet.</span><span class="sxs-lookup"><span data-stu-id="fb05f-249">The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.</span></span>
+<span data-ttu-id="ede3b-248">Der Konstruktor verwendet die [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) zum Einfügen des Datenbankkontexts (`MvcMovieContext`) in den Controller.</span><span class="sxs-lookup"><span data-stu-id="ede3b-248">The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller.</span></span> <span data-ttu-id="ede3b-249">Der Datenbankkontext wird in den einzelnen [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Methoden im Controller verwendet.</span><span class="sxs-lookup"><span data-stu-id="ede3b-249">The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.</span></span>
 
-### <a name="use-sqlite-for-development-sql-server-for-production"></a><span data-ttu-id="fb05f-250">Verwenden von SQLite für die Entwicklung und von SQL Server für die Produktion</span><span class="sxs-lookup"><span data-stu-id="fb05f-250">Use SQLite for development, SQL Server for production</span></span>
+### <a name="use-sqlite-for-development-sql-server-for-production"></a><span data-ttu-id="ede3b-250">Verwenden von SQLite für die Entwicklung und von SQL Server für die Produktion</span><span class="sxs-lookup"><span data-stu-id="ede3b-250">Use SQLite for development, SQL Server for production</span></span>
 
-<span data-ttu-id="fb05f-251">Wenn SQLite ausgewählt wurde, ist der von der Vorlage generierte Code für die Entwicklung bereit.</span><span class="sxs-lookup"><span data-stu-id="fb05f-251">When SQLite is selected, the template generated code is ready for development.</span></span> <span data-ttu-id="fb05f-252">Der folgende Code zeigt das Injizieren von <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> in Startup.</span><span class="sxs-lookup"><span data-stu-id="fb05f-252">The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into Startup.</span></span> <span data-ttu-id="fb05f-253">`IWebHostEnvironment` wird eingefügt, sodass `ConfigureServices` SQLite bei der Entwicklung und SQL Server für die Produktion verwenden kann.</span><span class="sxs-lookup"><span data-stu-id="fb05f-253">`IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.</span></span>
+<span data-ttu-id="ede3b-251">Wenn SQLite ausgewählt wurde, ist der von der Vorlage generierte Code für die Entwicklung bereit.</span><span class="sxs-lookup"><span data-stu-id="ede3b-251">When SQLite is selected, the template generated code is ready for development.</span></span> <span data-ttu-id="ede3b-252">Der folgende Code zeigt das Injizieren von <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> in Startup.</span><span class="sxs-lookup"><span data-stu-id="ede3b-252">The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into Startup.</span></span> <span data-ttu-id="ede3b-253">`IWebHostEnvironment` wird eingefügt, sodass `ConfigureServices` SQLite bei der Entwicklung und SQL Server für die Produktion verwenden kann.</span><span class="sxs-lookup"><span data-stu-id="ede3b-253">`IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.</span></span>
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=5,10,16-28)]
 
@@ -344,154 +346,154 @@ dotnet ef database update
 <a name="strongly-typed-models-keyword-label"></a>
 <a name="strongly-typed-models-and-the--keyword"></a>
 
-## <a name="strongly-typed-models-and-the-model-keyword"></a><span data-ttu-id="fb05f-254">Stark typisierte Modelle und das Schlüsselwort @model</span><span class="sxs-lookup"><span data-stu-id="fb05f-254">Strongly typed models and the @model keyword</span></span>
+## <a name="strongly-typed-models-and-the-model-keyword"></a><span data-ttu-id="ede3b-254">Stark typisierte Modelle und das Schlüsselwort @model</span><span class="sxs-lookup"><span data-stu-id="ede3b-254">Strongly typed models and the @model keyword</span></span>
 
-<span data-ttu-id="fb05f-255">Weiter oben in diesem Tutorial haben Sie gesehen, wie ein Controller mithilfe des Wörterbuchs `ViewData` Daten oder Objekte an eine Ansicht übergeben kann.</span><span class="sxs-lookup"><span data-stu-id="fb05f-255">Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary.</span></span> <span data-ttu-id="fb05f-256">Das Wörterbuch `ViewData` ist ein dynamisches Objekt, das eine praktische Möglichkeit zur späten Bindung bietet, um Informationen an eine Ansicht zu übergeben.</span><span class="sxs-lookup"><span data-stu-id="fb05f-256">The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.</span></span>
+<span data-ttu-id="ede3b-255">Weiter oben in diesem Tutorial haben Sie gesehen, wie ein Controller mithilfe des Wörterbuchs `ViewData` Daten oder Objekte an eine Ansicht übergeben kann.</span><span class="sxs-lookup"><span data-stu-id="ede3b-255">Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary.</span></span> <span data-ttu-id="ede3b-256">Das Wörterbuch `ViewData` ist ein dynamisches Objekt, das eine praktische Möglichkeit zur späten Bindung bietet, um Informationen an eine Ansicht zu übergeben.</span><span class="sxs-lookup"><span data-stu-id="ede3b-256">The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.</span></span>
 
-<span data-ttu-id="fb05f-257">MVC bietet außerdem die Möglichkeit, stark typisierte Modellobjekte an eine Ansicht zu übergeben.</span><span class="sxs-lookup"><span data-stu-id="fb05f-257">MVC also provides the ability to pass strongly typed model objects to a view.</span></span> <span data-ttu-id="fb05f-258">Dieser stark typisierte Ansatz ermöglicht eine Überprüfung Ihres Codes zur Kompilierzeit.</span><span class="sxs-lookup"><span data-stu-id="fb05f-258">This strongly typed approach enables compile time code checking.</span></span> <span data-ttu-id="fb05f-259">Der Gerüstbaumechnismus hat diesen Ansatz (d.h. das Übergeben eines stark typisierten Modells) mit der `MoviesController`-Klasse und Ansichten genutzt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-259">The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views.</span></span>
+<span data-ttu-id="ede3b-257">MVC bietet außerdem die Möglichkeit, stark typisierte Modellobjekte an eine Ansicht zu übergeben.</span><span class="sxs-lookup"><span data-stu-id="ede3b-257">MVC also provides the ability to pass strongly typed model objects to a view.</span></span> <span data-ttu-id="ede3b-258">Dieser stark typisierte Ansatz ermöglicht eine Überprüfung Ihres Codes zur Kompilierzeit.</span><span class="sxs-lookup"><span data-stu-id="ede3b-258">This strongly typed approach enables compile time code checking.</span></span> <span data-ttu-id="ede3b-259">Der Gerüstbaumechnismus hat diesen Ansatz (d.h. das Übergeben eines stark typisierten Modells) mit der `MoviesController`-Klasse und Ansichten genutzt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-259">The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views.</span></span>
 
-<span data-ttu-id="fb05f-260">Untersuchen Sie die generierte `Details`-Methode in der Datei *Controllers/MoviesController.cs*:</span><span class="sxs-lookup"><span data-stu-id="fb05f-260">Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:</span></span>
+<span data-ttu-id="ede3b-260">Untersuchen Sie die generierte `Details`-Methode in der Datei *Controllers/MoviesController.cs*:</span><span class="sxs-lookup"><span data-stu-id="ede3b-260">Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:</span></span>
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
-<span data-ttu-id="fb05f-261">Der `id`-Parameter wird im Allgemeinen als Routendaten übergeben.</span><span class="sxs-lookup"><span data-stu-id="fb05f-261">The `id` parameter is generally passed as route data.</span></span> <span data-ttu-id="fb05f-262">`https://localhost:5001/movies/details/1` legt beispielsweise Folgendes fest:</span><span class="sxs-lookup"><span data-stu-id="fb05f-262">For example `https://localhost:5001/movies/details/1` sets:</span></span>
+<span data-ttu-id="ede3b-261">Der `id`-Parameter wird im Allgemeinen als Routendaten übergeben.</span><span class="sxs-lookup"><span data-stu-id="ede3b-261">The `id` parameter is generally passed as route data.</span></span> <span data-ttu-id="ede3b-262">`https://localhost:5001/movies/details/1` legt beispielsweise Folgendes fest:</span><span class="sxs-lookup"><span data-stu-id="ede3b-262">For example `https://localhost:5001/movies/details/1` sets:</span></span>
 
-* <span data-ttu-id="fb05f-263">Den Controller auf den Controller `movies` (das erste URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="fb05f-263">The controller to the `movies` controller (the first URL segment).</span></span>
-* <span data-ttu-id="fb05f-264">Die Aktion auf `details` (das zweite URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="fb05f-264">The action to `details` (the second URL segment).</span></span>
-* <span data-ttu-id="fb05f-265">Die ID auf 1 (das letzte URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="fb05f-265">The id to 1 (the last URL segment).</span></span>
+* <span data-ttu-id="ede3b-263">Den Controller auf den Controller `movies` (das erste URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="ede3b-263">The controller to the `movies` controller (the first URL segment).</span></span>
+* <span data-ttu-id="ede3b-264">Die Aktion auf `details` (das zweite URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="ede3b-264">The action to `details` (the second URL segment).</span></span>
+* <span data-ttu-id="ede3b-265">Die ID auf 1 (das letzte URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="ede3b-265">The id to 1 (the last URL segment).</span></span>
 
-<span data-ttu-id="fb05f-266">Sie können die `id` auch mithilfe einer Abfragezeichenfolge übergeben:</span><span class="sxs-lookup"><span data-stu-id="fb05f-266">You can also pass in the `id` with a query string as follows:</span></span>
+<span data-ttu-id="ede3b-266">Sie können die `id` auch mithilfe einer Abfragezeichenfolge übergeben:</span><span class="sxs-lookup"><span data-stu-id="ede3b-266">You can also pass in the `id` with a query string as follows:</span></span>
 
 `https://localhost:5001/movies/details?id=1`
 
-<span data-ttu-id="fb05f-267">Der `id`-Parameter wird als [Nullable-Typ](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) für den Fall definiert, dass kein ID-Wert angegeben wird.</span><span class="sxs-lookup"><span data-stu-id="fb05f-267">The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in case an ID value isn't provided.</span></span>
+<span data-ttu-id="ede3b-267">Der `id`-Parameter wird als [Nullable-Typ](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) für den Fall definiert, dass kein ID-Wert angegeben wird.</span><span class="sxs-lookup"><span data-stu-id="ede3b-267">The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in case an ID value isn't provided.</span></span>
 
-<span data-ttu-id="fb05f-268">Ein [Lambdaausdruck](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) wird an `FirstOrDefaultAsync` übergeben, um Filmentitäten auszuwählen, die mit den Routendaten oder dem Wert der Abfragezeichenfolge übereinstimmen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-268">A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to `FirstOrDefaultAsync` to select movie entities that match the route data or query string value.</span></span>
+<span data-ttu-id="ede3b-268">Ein [Lambdaausdruck](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) wird an `FirstOrDefaultAsync` übergeben, um Filmentitäten auszuwählen, die mit den Routendaten oder dem Wert der Abfragezeichenfolge übereinstimmen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-268">A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to `FirstOrDefaultAsync` to select movie entities that match the route data or query string value.</span></span>
 
 ```csharp
 var movie = await _context.Movie
     .FirstOrDefaultAsync(m => m.Id == id);
 ```
 
-<span data-ttu-id="fb05f-269">Wenn ein Film gefunden wird, wird eine Instanz des `Movie`-Modells an die Ansicht `Details` übergeben:</span><span class="sxs-lookup"><span data-stu-id="fb05f-269">If a movie is found, an instance of the `Movie` model is passed to the `Details` view:</span></span>
+<span data-ttu-id="ede3b-269">Wenn ein Film gefunden wird, wird eine Instanz des `Movie`-Modells an die Ansicht `Details` übergeben:</span><span class="sxs-lookup"><span data-stu-id="ede3b-269">If a movie is found, an instance of the `Movie` model is passed to the `Details` view:</span></span>
 
 ```csharp
 return View(movie);
 ```
 
-<span data-ttu-id="fb05f-270">Untersuchen Sie den Inhalt der Datei *Views/Movies/Details.cshtml*:</span><span class="sxs-lookup"><span data-stu-id="fb05f-270">Examine the contents of the *Views/Movies/Details.cshtml* file:</span></span>
+<span data-ttu-id="ede3b-270">Untersuchen Sie den Inhalt der Datei *Views/Movies/Details.cshtml*:</span><span class="sxs-lookup"><span data-stu-id="ede3b-270">Examine the contents of the *Views/Movies/Details.cshtml* file:</span></span>
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
-<span data-ttu-id="fb05f-271">Die `@model`-Anweisung am Anfang der Ansichtsdatei gibt den Typ des Objekts an, den die Ansicht erwartet.</span><span class="sxs-lookup"><span data-stu-id="fb05f-271">The `@model` statement at the top of the view file specifies the type of object that the view expects.</span></span> <span data-ttu-id="fb05f-272">Beim Erstellen des Movie-Controllers wurde die folgende `@model`-Anweisung eingeschlossen:</span><span class="sxs-lookup"><span data-stu-id="fb05f-272">When the movie controller was created, the following `@model` statement was included:</span></span>
+<span data-ttu-id="ede3b-271">Die `@model`-Anweisung am Anfang der Ansichtsdatei gibt den Typ des Objekts an, den die Ansicht erwartet.</span><span class="sxs-lookup"><span data-stu-id="ede3b-271">The `@model` statement at the top of the view file specifies the type of object that the view expects.</span></span> <span data-ttu-id="ede3b-272">Beim Erstellen des Movie-Controllers wurde die folgende `@model`-Anweisung eingeschlossen:</span><span class="sxs-lookup"><span data-stu-id="ede3b-272">When the movie controller was created, the following `@model` statement was included:</span></span>
 
 ```cshtml
 @model MvcMovie.Models.Movie
 ```
 
-<span data-ttu-id="fb05f-273">Diese `@model`-Anweisung ermöglicht den Zugriff auf den Film, den der Controller an die Ansicht übergeben hat.</span><span class="sxs-lookup"><span data-stu-id="fb05f-273">This `@model` directive allows access to the movie that the controller passed to the view.</span></span> <span data-ttu-id="fb05f-274">Das `Model`-Objekt ist stark typisiert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-274">The `Model` object is strongly typed.</span></span> <span data-ttu-id="fb05f-275">In der Ansicht *Details.cshtml* übergibt der Code jedes Filmfeld an die HTML-Hilfsprogramme `DisplayNameFor` und `DisplayFor` mit dem stark typisierten `Model`-Objekt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-275">For example, in the *Details.cshtml* view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object.</span></span> <span data-ttu-id="fb05f-276">Die Methoden `Create` und `Edit` und Ansichten übergeben außerdem ein `Movie`-Modelobjekt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-276">The `Create` and `Edit` methods and views also pass a `Movie` model object.</span></span>
+<span data-ttu-id="ede3b-273">Diese `@model`-Anweisung ermöglicht den Zugriff auf den Film, den der Controller an die Ansicht übergeben hat.</span><span class="sxs-lookup"><span data-stu-id="ede3b-273">This `@model` directive allows access to the movie that the controller passed to the view.</span></span> <span data-ttu-id="ede3b-274">Das `Model`-Objekt ist stark typisiert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-274">The `Model` object is strongly typed.</span></span> <span data-ttu-id="ede3b-275">In der Ansicht *Details.cshtml* übergibt der Code jedes Filmfeld an die HTML-Hilfsprogramme `DisplayNameFor` und `DisplayFor` mit dem stark typisierten `Model`-Objekt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-275">For example, in the *Details.cshtml* view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object.</span></span> <span data-ttu-id="ede3b-276">Die Methoden `Create` und `Edit` und Ansichten übergeben außerdem ein `Movie`-Modelobjekt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-276">The `Create` and `Edit` methods and views also pass a `Movie` model object.</span></span>
 
-<span data-ttu-id="fb05f-277">Überprüfen Sie die Datei *Index.cshtml* und die `Index`-Methode im „Movies“-Controller.</span><span class="sxs-lookup"><span data-stu-id="fb05f-277">Examine the *Index.cshtml* view and the `Index` method in the Movies controller.</span></span> <span data-ttu-id="fb05f-278">Beachten Sie, wie der Code beim Aufrufen der `View`-Methode ein `List`-Objekt erstellt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-278">Notice how the code creates a `List` object when it calls the `View` method.</span></span> <span data-ttu-id="fb05f-279">Der Code übergibt diese Liste `Movies` aus der Aktionsmethode `Index` an die Ansicht:</span><span class="sxs-lookup"><span data-stu-id="fb05f-279">The code passes this `Movies` list from the `Index` action method to the view:</span></span>
+<span data-ttu-id="ede3b-277">Überprüfen Sie die Datei *Index.cshtml* und die `Index`-Methode im „Movies“-Controller.</span><span class="sxs-lookup"><span data-stu-id="ede3b-277">Examine the *Index.cshtml* view and the `Index` method in the Movies controller.</span></span> <span data-ttu-id="ede3b-278">Beachten Sie, wie der Code beim Aufrufen der `View`-Methode ein `List`-Objekt erstellt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-278">Notice how the code creates a `List` object when it calls the `View` method.</span></span> <span data-ttu-id="ede3b-279">Der Code übergibt diese Liste `Movies` aus der Aktionsmethode `Index` an die Ansicht:</span><span class="sxs-lookup"><span data-stu-id="ede3b-279">The code passes this `Movies` list from the `Index` action method to the view:</span></span>
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_index)]
 
-<span data-ttu-id="fb05f-280">Als der Movies-Controller erstellt wurde, hat der Gerüstbau automatisch die folgende `@model`-Anweisung am Anfang der Datei *Index.cshtml* hinzugefügt:</span><span class="sxs-lookup"><span data-stu-id="fb05f-280">When the movies controller was created, scaffolding included the following `@model` statement at the top of the *Index.cshtml* file:</span></span>
+<span data-ttu-id="ede3b-280">Als der Movies-Controller erstellt wurde, hat der Gerüstbau automatisch die folgende `@model`-Anweisung am Anfang der Datei *Index.cshtml* hinzugefügt:</span><span class="sxs-lookup"><span data-stu-id="ede3b-280">When the movies controller was created, scaffolding included the following `@model` statement at the top of the *Index.cshtml* file:</span></span>
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
 
-<span data-ttu-id="fb05f-281">Diese `@model`-Direktive ermöglicht Ihnen den Zugriff auf die Liste der Filme, die der Controller an die Ansicht übergeben hat, indem ein stark typisiertes `Model`-Objekt verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="fb05f-281">The `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed.</span></span> <span data-ttu-id="fb05f-282">In der Ansicht *Index.cshtml* durchläuft der Code z.B. die Filme mithilfe einer `foreach`-Anweisung für das stark typisierte `Model`-Objekt:</span><span class="sxs-lookup"><span data-stu-id="fb05f-282">For example, in the *Index.cshtml* view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:</span></span>
+<span data-ttu-id="ede3b-281">Diese `@model`-Direktive ermöglicht Ihnen den Zugriff auf die Liste der Filme, die der Controller an die Ansicht übergeben hat, indem ein stark typisiertes `Model`-Objekt verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="ede3b-281">The `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed.</span></span> <span data-ttu-id="ede3b-282">In der Ansicht *Index.cshtml* durchläuft der Code z.B. die Filme mithilfe einer `foreach`-Anweisung für das stark typisierte `Model`-Objekt:</span><span class="sxs-lookup"><span data-stu-id="ede3b-282">For example, in the *Index.cshtml* view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:</span></span>
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
-<span data-ttu-id="fb05f-283">Da das `Model`-Objekt stark typisiert ist (als ein `IEnumerable<Movie>`-Objekt), wird jedes Element in der Schleife als `Movie` typisiert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-283">Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`.</span></span> <span data-ttu-id="fb05f-284">Neben anderen Vorteilen bedeutet dies, dass Sie eine Überprüfung des Codes zur Kompilierzeit erhalten.</span><span class="sxs-lookup"><span data-stu-id="fb05f-284">Among other benefits, this means that you get compile time checking of the code.</span></span>
+<span data-ttu-id="ede3b-283">Da das `Model`-Objekt stark typisiert ist (als ein `IEnumerable<Movie>`-Objekt), wird jedes Element in der Schleife als `Movie` typisiert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-283">Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`.</span></span> <span data-ttu-id="ede3b-284">Neben anderen Vorteilen bedeutet dies, dass Sie eine Überprüfung des Codes zur Kompilierzeit erhalten.</span><span class="sxs-lookup"><span data-stu-id="ede3b-284">Among other benefits, this means that you get compile time checking of the code.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="fb05f-285">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="fb05f-285">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="ede3b-285">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="ede3b-285">Additional resources</span></span>
 
-* [<span data-ttu-id="fb05f-286">Taghilfsprogramme</span><span class="sxs-lookup"><span data-stu-id="fb05f-286">Tag Helpers</span></span>](xref:mvc/views/tag-helpers/intro)
-* [<span data-ttu-id="fb05f-287">Globalisierung und Lokalisierung</span><span class="sxs-lookup"><span data-stu-id="fb05f-287">Globalization and localization</span></span>](xref:fundamentals/localization)
+* [<span data-ttu-id="ede3b-286">Taghilfsprogramme</span><span class="sxs-lookup"><span data-stu-id="ede3b-286">Tag Helpers</span></span>](xref:mvc/views/tag-helpers/intro)
+* [<span data-ttu-id="ede3b-287">Globalisierung und Lokalisierung</span><span class="sxs-lookup"><span data-stu-id="ede3b-287">Globalization and localization</span></span>](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
-> <span data-ttu-id="fb05f-288">[Vorheriges Tutorial: Hinzufügen einer Ansicht](adding-view.md)
-> [Nächstes Tutorial: Arbeiten mit SQL](working-with-sql.md)</span><span class="sxs-lookup"><span data-stu-id="fb05f-288">[Previous Adding a View](adding-view.md)
+> <span data-ttu-id="ede3b-288">[Vorheriges Tutorial: Hinzufügen einer Ansicht](adding-view.md)
+> [Nächstes Tutorial: Arbeiten mit SQL](working-with-sql.md)</span><span class="sxs-lookup"><span data-stu-id="ede3b-288">[Previous Adding a View](adding-view.md)
 [Next Working with SQL](working-with-sql.md)</span></span>
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-## <a name="add-a-data-model-class"></a><span data-ttu-id="fb05f-289">Hinzufügen einer Datenmodellklasse</span><span class="sxs-lookup"><span data-stu-id="fb05f-289">Add a data model class</span></span>
+## <a name="add-a-data-model-class"></a><span data-ttu-id="ede3b-289">Hinzufügen einer Datenmodellklasse</span><span class="sxs-lookup"><span data-stu-id="ede3b-289">Add a data model class</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-290">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-290">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-290">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-290">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="fb05f-291">Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*>**Hinzufügen** > **Klasse**.</span><span class="sxs-lookup"><span data-stu-id="fb05f-291">Right-click the *Models* folder > **Add** > **Class**.</span></span> <span data-ttu-id="fb05f-292">Nennen Sie die Klasse **Movie**.</span><span class="sxs-lookup"><span data-stu-id="fb05f-292">Name the class **Movie**.</span></span>
+<span data-ttu-id="ede3b-291">Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*>**Hinzufügen** > **Klasse**.</span><span class="sxs-lookup"><span data-stu-id="ede3b-291">Right-click the *Models* folder > **Add** > **Class**.</span></span> <span data-ttu-id="ede3b-292">Nennen Sie die Klasse **Movie**.</span><span class="sxs-lookup"><span data-stu-id="ede3b-292">Name the class **Movie**.</span></span>
 
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-293">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-293">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-293">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-293">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
-* <span data-ttu-id="fb05f-294">Fügen Sie zum Ordner *Modelle* eine Klasse mit dem Namen *Movie.cs* hinzu.</span><span class="sxs-lookup"><span data-stu-id="fb05f-294">Add a class to the *Models* folder named *Movie.cs*.</span></span>
+* <span data-ttu-id="ede3b-294">Fügen Sie zum Ordner *Modelle* eine Klasse mit dem Namen *Movie.cs* hinzu.</span><span class="sxs-lookup"><span data-stu-id="ede3b-294">Add a class to the *Models* folder named *Movie.cs*.</span></span>
 
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 [!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
 
 ---
 
-## <a name="scaffold-the-movie-model"></a><span data-ttu-id="fb05f-295">Erstellen des Gerüsts für das Filmmodell</span><span class="sxs-lookup"><span data-stu-id="fb05f-295">Scaffold the movie model</span></span>
+## <a name="scaffold-the-movie-model"></a><span data-ttu-id="ede3b-295">Erstellen des Gerüsts für das Filmmodell</span><span class="sxs-lookup"><span data-stu-id="ede3b-295">Scaffold the movie model</span></span>
 
-<span data-ttu-id="fb05f-296">In diesem Abschnitt wird das Gerüst für das Filmmodell erstellt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-296">In this section, the movie model is scaffolded.</span></span> <span data-ttu-id="fb05f-297">Mit dem Tool für den Gerüstbau werden Seiten für die Vorgänge „Create“ (Erstellen), „Read“ (Lesen), „Update“ (Aktualisieren) und „Delete“ (Löschen), kurz CRUD-Vorgänge, für das Filmmodell erstellt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-297">That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.</span></span>
+<span data-ttu-id="ede3b-296">In diesem Abschnitt wird das Gerüst für das Filmmodell erstellt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-296">In this section, the movie model is scaffolded.</span></span> <span data-ttu-id="ede3b-297">Mit dem Tool für den Gerüstbau werden Seiten für die Vorgänge „Create“ (Erstellen), „Read“ (Lesen), „Update“ (Aktualisieren) und „Delete“ (Löschen), kurz CRUD-Vorgänge, für das Filmmodell erstellt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-297">That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-298">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-298">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-298">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-298">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="fb05f-299">Klicken Sie im *Projektmappen-Explorer* mit der rechten Maustaste auf den Ordner **Controllers** und anschließend auf **Hinzufügen > Neues Gerüstelement**.</span><span class="sxs-lookup"><span data-stu-id="fb05f-299">In **Solution Explorer**, right-click the *Controllers* folder **> Add > New Scaffolded Item**.</span></span>
+<span data-ttu-id="ede3b-299">Klicken Sie im *Projektmappen-Explorer* mit der rechten Maustaste auf den Ordner **Controllers** und anschließend auf **Hinzufügen > Neues Gerüstelement**.</span><span class="sxs-lookup"><span data-stu-id="ede3b-299">In **Solution Explorer**, right-click the *Controllers* folder **> Add > New Scaffolded Item**.</span></span>
 
 ![Screenshot für oben genannten Schritt](adding-model/_static/add_controller21.png)
 
-<span data-ttu-id="fb05f-301">Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **MVC-Controller mit Ansichten unter Verwendung von Entity Framework > Hinzufügen** aus.</span><span class="sxs-lookup"><span data-stu-id="fb05f-301">In the **Add Scaffold** dialog, select **MVC Controller with views, using Entity Framework > Add**.</span></span>
+<span data-ttu-id="ede3b-301">Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **MVC-Controller mit Ansichten unter Verwendung von Entity Framework > Hinzufügen** aus.</span><span class="sxs-lookup"><span data-stu-id="ede3b-301">In the **Add Scaffold** dialog, select **MVC Controller with views, using Entity Framework > Add**.</span></span>
 
 ![Dialogfeld „Gerüst hinzufügen“](adding-model/_static/add_scaffold21.png)
 
-<span data-ttu-id="fb05f-303">Bearbeiten Sie das Dialogfeld **Controller hinzufügen**:</span><span class="sxs-lookup"><span data-stu-id="fb05f-303">Complete the **Add Controller** dialog:</span></span>
+<span data-ttu-id="ede3b-303">Bearbeiten Sie das Dialogfeld **Controller hinzufügen**:</span><span class="sxs-lookup"><span data-stu-id="ede3b-303">Complete the **Add Controller** dialog:</span></span>
 
-* <span data-ttu-id="fb05f-304">**Modellklasse:** *Movie (MvcMovie.Models)*</span><span class="sxs-lookup"><span data-stu-id="fb05f-304">**Model class:** *Movie (MvcMovie.Models)*</span></span>
-* <span data-ttu-id="fb05f-305">**Datenkontextklasse:** Wählen Sie das Symbol **+** aus, und fügen Sie den Standardtyp **MvcMovie.Models.MvcMovieContext** hinzu.</span><span class="sxs-lookup"><span data-stu-id="fb05f-305">**Data context class:** Select the **+** icon and add the default **MvcMovie.Models.MvcMovieContext**</span></span>
+* <span data-ttu-id="ede3b-304">**Modellklasse:** *Movie (MvcMovie.Models)*</span><span class="sxs-lookup"><span data-stu-id="ede3b-304">**Model class:** *Movie (MvcMovie.Models)*</span></span>
+* <span data-ttu-id="ede3b-305">**Datenkontextklasse:** Wählen Sie das Symbol **+** aus, und fügen Sie den Standardtyp **MvcMovie.Models.MvcMovieContext** hinzu.</span><span class="sxs-lookup"><span data-stu-id="ede3b-305">**Data context class:** Select the **+** icon and add the default **MvcMovie.Models.MvcMovieContext**</span></span>
 
 ![Datenkontext hinzufügen](adding-model/_static/dc.png)
 
-* <span data-ttu-id="fb05f-307">**Ansichten:** Belassen Sie den Standardwert der einzelnen Optionen aktiviert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-307">**Views:** Keep the default of each option checked</span></span>
-* <span data-ttu-id="fb05f-308">**Controllername:** Übernehmen Sie den Standardnamen *MoviesController*.</span><span class="sxs-lookup"><span data-stu-id="fb05f-308">**Controller name:** Keep the default *MoviesController*</span></span>
-* <span data-ttu-id="fb05f-309">Wählen Sie **Hinzufügen** aus.</span><span class="sxs-lookup"><span data-stu-id="fb05f-309">Select **Add**</span></span>
+* <span data-ttu-id="ede3b-307">**Ansichten:** Belassen Sie den Standardwert der einzelnen Optionen aktiviert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-307">**Views:** Keep the default of each option checked</span></span>
+* <span data-ttu-id="ede3b-308">**Controllername:** Übernehmen Sie den Standardnamen *MoviesController*.</span><span class="sxs-lookup"><span data-stu-id="ede3b-308">**Controller name:** Keep the default *MoviesController*</span></span>
+* <span data-ttu-id="ede3b-309">Wählen Sie **Hinzufügen** aus.</span><span class="sxs-lookup"><span data-stu-id="ede3b-309">Select **Add**</span></span>
 
 ![Dialogfeld „Controller hinzufügen“](adding-model/_static/add_controller2.png)
 
-<span data-ttu-id="fb05f-311">Visual Studio erstellt Folgendes:</span><span class="sxs-lookup"><span data-stu-id="fb05f-311">Visual Studio creates:</span></span>
+<span data-ttu-id="ede3b-311">Visual Studio erstellt Folgendes:</span><span class="sxs-lookup"><span data-stu-id="ede3b-311">Visual Studio creates:</span></span>
 
-* <span data-ttu-id="fb05f-312">Eine Entity Framework Core-[Datenbankkontext-Klasse](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)</span><span class="sxs-lookup"><span data-stu-id="fb05f-312">An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)</span></span>
-* <span data-ttu-id="fb05f-313">Einen Movies-Controller (*Controllers/MoviesController.cs*)</span><span class="sxs-lookup"><span data-stu-id="fb05f-313">A movies controller (*Controllers/MoviesController.cs*)</span></span>
-* Razor<span data-ttu-id="fb05f-314">-Ansichtsdateien für die Seiten „Erstellen“, „Löschen“, „Details“ „Bearbeiten“ und „Index“ (*Views/Movies/\*.cshtml*)</span><span class="sxs-lookup"><span data-stu-id="fb05f-314"> view files for Create, Delete, Details, Edit, and Index pages (*Views/Movies/\*.cshtml*)</span></span>
+* <span data-ttu-id="ede3b-312">Eine Entity Framework Core-[Datenbankkontext-Klasse](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)</span><span class="sxs-lookup"><span data-stu-id="ede3b-312">An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)</span></span>
+* <span data-ttu-id="ede3b-313">Einen Movies-Controller (*Controllers/MoviesController.cs*)</span><span class="sxs-lookup"><span data-stu-id="ede3b-313">A movies controller (*Controllers/MoviesController.cs*)</span></span>
+* <span data-ttu-id="ede3b-314">Razor-Ansichtsdateien für die Seiten „Erstellen“, „Löschen“, „Details“ „Bearbeiten“ und „Index“ (*Views/Movies/\*.cshtml*)</span><span class="sxs-lookup"><span data-stu-id="ede3b-314">Razor view files for Create, Delete, Details, Edit, and Index pages (*Views/Movies/\*.cshtml*)</span></span>
 
-<span data-ttu-id="fb05f-315">Die automatische Erstellung des Datenbankkontexts und der [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Aktionsmethoden (create, read, update and delete – Erstellen, Lesen, Aktualisieren und Löschen) und Ansichten wird als *Gerüstbau* bezeichnet.</span><span class="sxs-lookup"><span data-stu-id="fb05f-315">The automatic creation of the database context and [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*.</span></span>
+<span data-ttu-id="ede3b-315">Die automatische Erstellung des Datenbankkontexts und der [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Aktionsmethoden (create, read, update and delete – Erstellen, Lesen, Aktualisieren und Löschen) und Ansichten wird als *Gerüstbau* bezeichnet.</span><span class="sxs-lookup"><span data-stu-id="ede3b-315">The automatic creation of the database context and [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*.</span></span>
 
-# <a name="visual-studio-code"></a>[<span data-ttu-id="fb05f-316">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="fb05f-316">Visual Studio Code</span></span>](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[<span data-ttu-id="ede3b-316">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="ede3b-316">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* <span data-ttu-id="fb05f-317">Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).</span><span class="sxs-lookup"><span data-stu-id="fb05f-317">Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).</span></span>
-* <span data-ttu-id="fb05f-318">Installieren Sie das Gerüstbautool:</span><span class="sxs-lookup"><span data-stu-id="fb05f-318">Install the scaffolding tool:</span></span>
+* <span data-ttu-id="ede3b-317">Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).</span><span class="sxs-lookup"><span data-stu-id="ede3b-317">Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).</span></span>
+* <span data-ttu-id="ede3b-318">Installieren Sie das Gerüstbautool:</span><span class="sxs-lookup"><span data-stu-id="ede3b-318">Install the scaffolding tool:</span></span>
 
   ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* <span data-ttu-id="fb05f-319">Exportieren Sie unter Linux den Pfad des Gerüstbautools:</span><span class="sxs-lookup"><span data-stu-id="fb05f-319">On Linux, export the scaffold tool path:</span></span>
+* <span data-ttu-id="ede3b-319">Exportieren Sie unter Linux den Pfad des Gerüstbautools:</span><span class="sxs-lookup"><span data-stu-id="ede3b-319">On Linux, export the scaffold tool path:</span></span>
 
   ```console
     export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* <span data-ttu-id="fb05f-320">Führen Sie den folgenden Befehl aus:</span><span class="sxs-lookup"><span data-stu-id="fb05f-320">Run the following command:</span></span>
+* <span data-ttu-id="ede3b-320">Führen Sie den folgenden Befehl aus:</span><span class="sxs-lookup"><span data-stu-id="ede3b-320">Run the following command:</span></span>
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -501,16 +503,16 @@ return View(movie);
 
 <!-- Mac -------------------------->
 
-# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-321">Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-321">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-321">Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-321">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-* <span data-ttu-id="fb05f-322">Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).</span><span class="sxs-lookup"><span data-stu-id="fb05f-322">Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).</span></span>
-* <span data-ttu-id="fb05f-323">Installieren Sie das Gerüstbautool:</span><span class="sxs-lookup"><span data-stu-id="fb05f-323">Install the scaffolding tool:</span></span>
+* <span data-ttu-id="ede3b-322">Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).</span><span class="sxs-lookup"><span data-stu-id="ede3b-322">Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).</span></span>
+* <span data-ttu-id="ede3b-323">Installieren Sie das Gerüstbautool:</span><span class="sxs-lookup"><span data-stu-id="ede3b-323">Install the scaffolding tool:</span></span>
 
   ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* <span data-ttu-id="fb05f-324">Führen Sie den folgenden Befehl aus:</span><span class="sxs-lookup"><span data-stu-id="fb05f-324">Run the following command:</span></span>
+* <span data-ttu-id="ede3b-324">Führen Sie den folgenden Befehl aus:</span><span class="sxs-lookup"><span data-stu-id="ede3b-324">Run the following command:</span></span>
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -522,9 +524,9 @@ return View(movie);
 
 <!-- End of VS tabs                  -->
 
-<span data-ttu-id="fb05f-325">Wenn Sie die App ausführen und auf den Link **Mvc Movie** klicken, erhalten Sie eine Fehlermeldung wie die Folgende:</span><span class="sxs-lookup"><span data-stu-id="fb05f-325">If you run the app and click on the **Mvc Movie** link, you get an error similar to the following:</span></span>
+<span data-ttu-id="ede3b-325">Wenn Sie die App ausführen und auf den Link **Mvc Movie** klicken, erhalten Sie eine Fehlermeldung wie die Folgende:</span><span class="sxs-lookup"><span data-stu-id="ede3b-325">If you run the app and click on the **Mvc Movie** link, you get an error similar to the following:</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-326">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-326">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-326">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-326">Visual Studio</span></span>](#tab/visual-studio)
 
 ```
 An unhandled exception occurred while processing the request.
@@ -535,7 +537,7 @@ Login failed for user 'Rick'.
 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString
 ```
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-327">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-327">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-327">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-327">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
 ```
 An unhandled exception occurred while processing the request.
@@ -546,185 +548,185 @@ Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(int rc, sqlite3 db)
 
 ---
 
-<span data-ttu-id="fb05f-328">Sie müssen die Datenbank erstellen und verwenden dazu das EF Core-Feature [Migrationen](xref:data/ef-mvc/migrations).</span><span class="sxs-lookup"><span data-stu-id="fb05f-328">You need to create the database, and you use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to do that.</span></span> <span data-ttu-id="fb05f-329">Mit „Migrationen“ können Sie eine Datenbank erstellen, die mit Ihrem Datenmodell übereinstimmt, und das Datenbankschema aktualisieren, wenn sich Ihr Datenmodell ändert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-329">Migrations lets you create a database that matches your data model and update the database schema when your data model changes.</span></span>
+<span data-ttu-id="ede3b-328">Sie müssen die Datenbank erstellen und verwenden dazu das EF Core-Feature [Migrationen](xref:data/ef-mvc/migrations).</span><span class="sxs-lookup"><span data-stu-id="ede3b-328">You need to create the database, and you use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to do that.</span></span> <span data-ttu-id="ede3b-329">Mit „Migrationen“ können Sie eine Datenbank erstellen, die mit Ihrem Datenmodell übereinstimmt, und das Datenbankschema aktualisieren, wenn sich Ihr Datenmodell ändert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-329">Migrations lets you create a database that matches your data model and update the database schema when your data model changes.</span></span>
 
 <a name="pmc"></a>
 
-## <a name="initial-migration"></a><span data-ttu-id="fb05f-330">Anfängliche Migration</span><span class="sxs-lookup"><span data-stu-id="fb05f-330">Initial migration</span></span>
+## <a name="initial-migration"></a><span data-ttu-id="ede3b-330">Anfängliche Migration</span><span class="sxs-lookup"><span data-stu-id="ede3b-330">Initial migration</span></span>
 
-<span data-ttu-id="fb05f-331">In diesem Abschnitt werden die folgenden Aufgaben ausgeführt:</span><span class="sxs-lookup"><span data-stu-id="fb05f-331">In this section, the following tasks are completed:</span></span>
+<span data-ttu-id="ede3b-331">In diesem Abschnitt werden die folgenden Aufgaben ausgeführt:</span><span class="sxs-lookup"><span data-stu-id="ede3b-331">In this section, the following tasks are completed:</span></span>
 
-* <span data-ttu-id="fb05f-332">Fügen Sie eine anfängliche Migration hinzu.</span><span class="sxs-lookup"><span data-stu-id="fb05f-332">Add an initial migration.</span></span>
-* <span data-ttu-id="fb05f-333">Aktualisieren Sie die Datenbank mit der anfänglichen Migration.</span><span class="sxs-lookup"><span data-stu-id="fb05f-333">Update the database with the initial migration.</span></span>
+* <span data-ttu-id="ede3b-332">Fügen Sie eine anfängliche Migration hinzu.</span><span class="sxs-lookup"><span data-stu-id="ede3b-332">Add an initial migration.</span></span>
+* <span data-ttu-id="ede3b-333">Aktualisieren Sie die Datenbank mit der anfänglichen Migration.</span><span class="sxs-lookup"><span data-stu-id="ede3b-333">Update the database with the initial migration.</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-334">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-334">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-334">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-334">Visual Studio</span></span>](#tab/visual-studio)
 
-1. <span data-ttu-id="fb05f-335">Wählen Sie im Menü **Tools** **NuGet-Paket-Manager** > **Paket-Manager-Konsole** (PMC) aus.</span><span class="sxs-lookup"><span data-stu-id="fb05f-335">From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).</span></span>
+1. <span data-ttu-id="ede3b-335">Wählen Sie im Menü **Tools** **NuGet-Paket-Manager** > **Paket-Manager-Konsole** (PMC) aus.</span><span class="sxs-lookup"><span data-stu-id="ede3b-335">From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).</span></span>
 
    ![PMC-Menü](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
 
-1. <span data-ttu-id="fb05f-337">Geben Sie in der PMC die folgenden Befehle ein:</span><span class="sxs-lookup"><span data-stu-id="fb05f-337">In the PMC, enter the following commands:</span></span>
+1. <span data-ttu-id="ede3b-337">Geben Sie in der PMC die folgenden Befehle ein:</span><span class="sxs-lookup"><span data-stu-id="ede3b-337">In the PMC, enter the following commands:</span></span>
 
    ```powershell
    Add-Migration Initial
    Update-Database
    ```
 
-   <span data-ttu-id="fb05f-338">Mit dem Befehl `Add-Migration` wird Code generiert, um das anfängliche Datenbankschema zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-338">The `Add-Migration` command generates code to create the initial database schema.</span></span>
+   <span data-ttu-id="ede3b-338">Mit dem Befehl `Add-Migration` wird Code generiert, um das anfängliche Datenbankschema zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-338">The `Add-Migration` command generates code to create the initial database schema.</span></span>
 
-   <span data-ttu-id="fb05f-339">Das Datenbankschema basiert auf dem Modell, das in der Klasse `MvcMovieContext` angegeben ist.</span><span class="sxs-lookup"><span data-stu-id="fb05f-339">The database schema is based on the model specified in the `MvcMovieContext` class.</span></span> <span data-ttu-id="fb05f-340">Das `Initial`-Argument ist der Migrationsname.</span><span class="sxs-lookup"><span data-stu-id="fb05f-340">The `Initial` argument is the migration name.</span></span> <span data-ttu-id="fb05f-341">Es kann jeder Name verwendet werden, aber per Konvention wird ein Name verwendet, der die Migration beschreibt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-341">Any name can be used, but by convention, a name that describes the migration is used.</span></span> <span data-ttu-id="fb05f-342">Weitere Informationen finden Sie unter <xref:data/ef-mvc/migrations>.</span><span class="sxs-lookup"><span data-stu-id="fb05f-342">For more information, see <xref:data/ef-mvc/migrations>.</span></span>
+   <span data-ttu-id="ede3b-339">Das Datenbankschema basiert auf dem Modell, das in der Klasse `MvcMovieContext` angegeben ist.</span><span class="sxs-lookup"><span data-stu-id="ede3b-339">The database schema is based on the model specified in the `MvcMovieContext` class.</span></span> <span data-ttu-id="ede3b-340">Das `Initial`-Argument ist der Migrationsname.</span><span class="sxs-lookup"><span data-stu-id="ede3b-340">The `Initial` argument is the migration name.</span></span> <span data-ttu-id="ede3b-341">Es kann jeder Name verwendet werden, aber per Konvention wird ein Name verwendet, der die Migration beschreibt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-341">Any name can be used, but by convention, a name that describes the migration is used.</span></span> <span data-ttu-id="ede3b-342">Weitere Informationen finden Sie unter <xref:data/ef-mvc/migrations>.</span><span class="sxs-lookup"><span data-stu-id="ede3b-342">For more information, see <xref:data/ef-mvc/migrations>.</span></span>
 
-   <span data-ttu-id="fb05f-343">Mit dem Befehl `Update-Database` führen Sie die Methode `Up` in der Datei *Migrations/{time-stamp}_InitialCreate.cs* aus, mit der die Datenbank erstellt wird.</span><span class="sxs-lookup"><span data-stu-id="fb05f-343">The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.</span></span>
+   <span data-ttu-id="ede3b-343">Mit dem Befehl `Update-Database` führen Sie die Methode `Up` in der Datei *Migrations/{time-stamp}_InitialCreate.cs* aus, mit der die Datenbank erstellt wird.</span><span class="sxs-lookup"><span data-stu-id="ede3b-343">The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.</span></span>
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-344">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-344">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-344">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-344">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
 
-<span data-ttu-id="fb05f-345">Mit dem Befehl `ef migrations add InitialCreate` wird Code generiert, um das anfängliche Datenbankschema zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-345">The `ef migrations add InitialCreate` command generates code to create the initial database schema.</span></span>
+<span data-ttu-id="ede3b-345">Mit dem Befehl `ef migrations add InitialCreate` wird Code generiert, um das anfängliche Datenbankschema zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-345">The `ef migrations add InitialCreate` command generates code to create the initial database schema.</span></span>
 
-<span data-ttu-id="fb05f-346">Das Datenbankschema basiert auf dem Modell, das in der `MvcMovieContext`-Klasse (in der Datei *Data/MvcMovieContext.cs*) angegeben ist.</span><span class="sxs-lookup"><span data-stu-id="fb05f-346">The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file).</span></span> <span data-ttu-id="fb05f-347">Das `InitialCreate`-Argument ist der Migrationsname.</span><span class="sxs-lookup"><span data-stu-id="fb05f-347">The `InitialCreate` argument is the migration name.</span></span> <span data-ttu-id="fb05f-348">Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-348">Any name can be used, but by convention, a name is selected that describes the migration.</span></span>
+<span data-ttu-id="ede3b-346">Das Datenbankschema basiert auf dem Modell, das in der `MvcMovieContext`-Klasse (in der Datei *Data/MvcMovieContext.cs*) angegeben ist.</span><span class="sxs-lookup"><span data-stu-id="ede3b-346">The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file).</span></span> <span data-ttu-id="ede3b-347">Das `InitialCreate`-Argument ist der Migrationsname.</span><span class="sxs-lookup"><span data-stu-id="ede3b-347">The `InitialCreate` argument is the migration name.</span></span> <span data-ttu-id="ede3b-348">Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-348">Any name can be used, but by convention, a name is selected that describes the migration.</span></span>
 
 ---
 
-## <a name="examine-the-context-registered-with-dependency-injection"></a><span data-ttu-id="fb05f-349">Überprüfen des mit Dependency Injection registrierten Kontexts</span><span class="sxs-lookup"><span data-stu-id="fb05f-349">Examine the context registered with dependency injection</span></span>
+## <a name="examine-the-context-registered-with-dependency-injection"></a><span data-ttu-id="ede3b-349">Überprüfen des mit Dependency Injection registrierten Kontexts</span><span class="sxs-lookup"><span data-stu-id="ede3b-349">Examine the context registered with dependency injection</span></span>
 
-<span data-ttu-id="fb05f-350">ASP.NET Core wird mit [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) (Dependency Injection, DI) erstellt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-350">ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection).</span></span> <span data-ttu-id="fb05f-351">Dienste (z.B. der EF Core-Datenbankkontext) werden über DI beim Anwendungsstart registriert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-351">Services (such as the EF Core DB context) are registered with DI during application startup.</span></span> <span data-ttu-id="fb05f-352">Komponenten, die diese Dienste erfordern (z. B. Razor Pages), werden von diesen Diensten über Konstruktorparameter bereitgestellt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-352">Components that require these services (such as Razor Pages) are provided these services via constructor parameters.</span></span> <span data-ttu-id="fb05f-353">Der Konstruktorcode, der eine Datenbankkontext-Instanz abruft, wird später in diesem Tutorial erläutert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-353">The constructor code that gets a DB context instance is shown later in the tutorial.</span></span>
+<span data-ttu-id="ede3b-350">ASP.NET Core wird mit [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) (Dependency Injection, DI) erstellt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-350">ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection).</span></span> <span data-ttu-id="ede3b-351">Dienste (z.B. der EF Core-Datenbankkontext) werden über DI beim Anwendungsstart registriert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-351">Services (such as the EF Core DB context) are registered with DI during application startup.</span></span> <span data-ttu-id="ede3b-352">Komponenten, die diese Dienste erfordern (z. B. Razor Pages), werden von diesen Diensten über Konstruktorparameter bereitgestellt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-352">Components that require these services (such as Razor Pages) are provided these services via constructor parameters.</span></span> <span data-ttu-id="ede3b-353">Der Konstruktorcode, der eine Datenbankkontext-Instanz abruft, wird später in diesem Tutorial erläutert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-353">The constructor code that gets a DB context instance is shown later in the tutorial.</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="fb05f-354">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fb05f-354">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="ede3b-354">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ede3b-354">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="fb05f-355">Das Gerüstbautool hat automatisch einen Datenbankkontext erstellt und diesen mit dem DI-Container registriert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-355">The scaffolding tool automatically created a DB context and registered it with the DI container.</span></span>
+<span data-ttu-id="ede3b-355">Das Gerüstbautool hat automatisch einen Datenbankkontext erstellt und diesen mit dem DI-Container registriert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-355">The scaffolding tool automatically created a DB context and registered it with the DI container.</span></span>
 
-<span data-ttu-id="fb05f-356">Untersuchen Sie die folgende `Startup.ConfigureServices`-Methode.</span><span class="sxs-lookup"><span data-stu-id="fb05f-356">Examine the following `Startup.ConfigureServices` method.</span></span> <span data-ttu-id="fb05f-357">Die hervorgehobene Zeile wurde vom Gerüst hinzugefügt:</span><span class="sxs-lookup"><span data-stu-id="fb05f-357">The highlighted line was added by the scaffolder:</span></span>
+<span data-ttu-id="ede3b-356">Untersuchen Sie die folgende `Startup.ConfigureServices`-Methode.</span><span class="sxs-lookup"><span data-stu-id="ede3b-356">Examine the following `Startup.ConfigureServices` method.</span></span> <span data-ttu-id="ede3b-357">Die hervorgehobene Zeile wurde vom Gerüst hinzugefügt:</span><span class="sxs-lookup"><span data-stu-id="ede3b-357">The highlighted line was added by the scaffolder:</span></span>
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=14-15)]
 
-<span data-ttu-id="fb05f-358">Der `MvcMovieContext` koordiniert die EF Core-Funktionen (Create, Read, Update, Delete usw.) für das `Movie`-Modell.</span><span class="sxs-lookup"><span data-stu-id="fb05f-358">The `MvcMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model.</span></span> <span data-ttu-id="fb05f-359">Der Datenkontext (`MvcMovieContext`) wird aus [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) abgeleitet.</span><span class="sxs-lookup"><span data-stu-id="fb05f-359">The data context (`MvcMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext).</span></span> <span data-ttu-id="fb05f-360">Der Datenkontext gibt an, welche Entitäten im Datenmodell enthalten sind:</span><span class="sxs-lookup"><span data-stu-id="fb05f-360">The data context specifies which entities are included in the data model:</span></span>
+<span data-ttu-id="ede3b-358">Der `MvcMovieContext` koordiniert die EF Core-Funktionen (Create, Read, Update, Delete usw.) für das `Movie`-Modell.</span><span class="sxs-lookup"><span data-stu-id="ede3b-358">The `MvcMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model.</span></span> <span data-ttu-id="ede3b-359">Der Datenkontext (`MvcMovieContext`) wird aus [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) abgeleitet.</span><span class="sxs-lookup"><span data-stu-id="ede3b-359">The data context (`MvcMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext).</span></span> <span data-ttu-id="ede3b-360">Der Datenkontext gibt an, welche Entitäten im Datenmodell enthalten sind:</span><span class="sxs-lookup"><span data-stu-id="ede3b-360">The data context specifies which entities are included in the data model:</span></span>
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Data/MvcMovieContext.cs)]
 
-<span data-ttu-id="fb05f-361">Der vorangehende Code erstellt eine [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1)-Eigenschaft für die Entitätsmenge.</span><span class="sxs-lookup"><span data-stu-id="fb05f-361">The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set.</span></span> <span data-ttu-id="fb05f-362">In der Terminologie von Entity Framework entspricht eine Entitätenmenge in der Regel einer Datenbanktabelle.</span><span class="sxs-lookup"><span data-stu-id="fb05f-362">In Entity Framework terminology, an entity set typically corresponds to a database table.</span></span> <span data-ttu-id="fb05f-363">Entitäten entsprechen Zeilen in Tabellen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-363">An entity corresponds to a row in the table.</span></span>
+<span data-ttu-id="ede3b-361">Der vorangehende Code erstellt eine [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1)-Eigenschaft für die Entitätsmenge.</span><span class="sxs-lookup"><span data-stu-id="ede3b-361">The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set.</span></span> <span data-ttu-id="ede3b-362">In der Terminologie von Entity Framework entspricht eine Entitätenmenge in der Regel einer Datenbanktabelle.</span><span class="sxs-lookup"><span data-stu-id="ede3b-362">In Entity Framework terminology, an entity set typically corresponds to a database table.</span></span> <span data-ttu-id="ede3b-363">Entitäten entsprechen Zeilen in Tabellen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-363">An entity corresponds to a row in the table.</span></span>
 
-<span data-ttu-id="fb05f-364">Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-364">The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object.</span></span> <span data-ttu-id="fb05f-365">Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json*-Datei.</span><span class="sxs-lookup"><span data-stu-id="fb05f-365">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.</span></span>
+<span data-ttu-id="ede3b-364">Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-364">The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object.</span></span> <span data-ttu-id="ede3b-365">Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json*-Datei.</span><span class="sxs-lookup"><span data-stu-id="ede3b-365">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.</span></span>
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="fb05f-366">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="fb05f-366">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="ede3b-366">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="ede3b-366">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
-<span data-ttu-id="fb05f-367">Sie haben einen Datenbankkontext erstellt und diesen mit dem DI-Container registriert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-367">You created a DB context and registered it with the DI container.</span></span>
+<span data-ttu-id="ede3b-367">Sie haben einen Datenbankkontext erstellt und diesen mit dem DI-Container registriert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-367">You created a DB context and registered it with the DI container.</span></span>
 
 ---
 
 <a name="test"></a>
 
-### <a name="test-the-app"></a><span data-ttu-id="fb05f-368">Testen der App</span><span class="sxs-lookup"><span data-stu-id="fb05f-368">Test the app</span></span>
+### <a name="test-the-app"></a><span data-ttu-id="ede3b-368">Testen der App</span><span class="sxs-lookup"><span data-stu-id="ede3b-368">Test the app</span></span>
 
-* <span data-ttu-id="fb05f-369">Führen Sie die App aus, und fügen Sie `/Movies` an die URL im Browser an (`http://localhost:port/movies`).</span><span class="sxs-lookup"><span data-stu-id="fb05f-369">Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).</span></span>
+* <span data-ttu-id="ede3b-369">Führen Sie die App aus, und fügen Sie `/Movies` an die URL im Browser an (`http://localhost:port/movies`).</span><span class="sxs-lookup"><span data-stu-id="ede3b-369">Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).</span></span>
 
-<span data-ttu-id="fb05f-370">Wenn eine Datenbankausnahme auftritt, die der folgenden ähnelt:</span><span class="sxs-lookup"><span data-stu-id="fb05f-370">If you get a database exception similar to the following:</span></span>
+<span data-ttu-id="ede3b-370">Wenn eine Datenbankausnahme auftritt, die der folgenden ähnelt:</span><span class="sxs-lookup"><span data-stu-id="ede3b-370">If you get a database exception similar to the following:</span></span>
 
 ```console
 SqlException: Cannot open database "MvcMovieContext-GUID" requested by the login. The login failed.
 Login failed for user 'User-name'.
 ```
 
-<span data-ttu-id="fb05f-371">Sie haben den [Migrationsschritt](#pmc) verpasst.</span><span class="sxs-lookup"><span data-stu-id="fb05f-371">You missed the [migrations step](#pmc).</span></span>
+<span data-ttu-id="ede3b-371">Sie haben den [Migrationsschritt](#pmc) verpasst.</span><span class="sxs-lookup"><span data-stu-id="ede3b-371">You missed the [migrations step](#pmc).</span></span>
 
-* <span data-ttu-id="fb05f-372">Testen Sie den Link **Create** (Erstellen).</span><span class="sxs-lookup"><span data-stu-id="fb05f-372">Test the **Create** link.</span></span> <span data-ttu-id="fb05f-373">Geben Sie die Daten ein, und senden Sie sie.</span><span class="sxs-lookup"><span data-stu-id="fb05f-373">Enter and submit data.</span></span>
+* <span data-ttu-id="ede3b-372">Testen Sie den Link **Create** (Erstellen).</span><span class="sxs-lookup"><span data-stu-id="ede3b-372">Test the **Create** link.</span></span> <span data-ttu-id="ede3b-373">Geben Sie die Daten ein, und senden Sie sie.</span><span class="sxs-lookup"><span data-stu-id="ede3b-373">Enter and submit data.</span></span>
 
   > [!NOTE]
-  > <span data-ttu-id="fb05f-374">Sie können unter Umständen in das Feld `Price` keine Kommas als Dezimaltrennzeichen eingeben.</span><span class="sxs-lookup"><span data-stu-id="fb05f-374">You may not be able to enter decimal commas in the `Price` field.</span></span> <span data-ttu-id="fb05f-375">Zur Unterstützung der [jQuery-Validierung](https://jqueryvalidation.org/) für Gebietsschemas mit einer anderen Sprache als Englisch, in denen ein Komma („,“) als Dezimaltrennzeichen verwendet wird, und für Datums- und Uhrzeitformate, die nicht dem US-englischen Format entsprechen, muss die App globalisiert werden.</span><span class="sxs-lookup"><span data-stu-id="fb05f-375">To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized.</span></span> <span data-ttu-id="fb05f-376">Globalisierungsanweisungen finden Sie unter [GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).</span><span class="sxs-lookup"><span data-stu-id="fb05f-376">For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).</span></span>
+  > <span data-ttu-id="ede3b-374">Sie können unter Umständen in das Feld `Price` keine Kommas als Dezimaltrennzeichen eingeben.</span><span class="sxs-lookup"><span data-stu-id="ede3b-374">You may not be able to enter decimal commas in the `Price` field.</span></span> <span data-ttu-id="ede3b-375">Zur Unterstützung der [jQuery-Validierung](https://jqueryvalidation.org/) für Gebietsschemas mit einer anderen Sprache als Englisch, in denen ein Komma („,“) als Dezimaltrennzeichen verwendet wird, und für Datums- und Uhrzeitformate, die nicht dem US-englischen Format entsprechen, muss die App globalisiert werden.</span><span class="sxs-lookup"><span data-stu-id="ede3b-375">To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized.</span></span> <span data-ttu-id="ede3b-376">Globalisierungsanweisungen finden Sie unter [GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).</span><span class="sxs-lookup"><span data-stu-id="ede3b-376">For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).</span></span>
 
-* <span data-ttu-id="fb05f-377">Testen Sie die Links **Edit** (Bearbeiten), **Details** und **Delete** (Löschen).</span><span class="sxs-lookup"><span data-stu-id="fb05f-377">Test the **Edit**, **Details**, and **Delete** links.</span></span>
+* <span data-ttu-id="ede3b-377">Testen Sie die Links **Edit** (Bearbeiten), **Details** und **Delete** (Löschen).</span><span class="sxs-lookup"><span data-stu-id="ede3b-377">Test the **Edit**, **Details**, and **Delete** links.</span></span>
 
-<span data-ttu-id="fb05f-378">Überprüfen Sie die `Startup`-Klasse:</span><span class="sxs-lookup"><span data-stu-id="fb05f-378">Examine the `Startup` class:</span></span>
+<span data-ttu-id="ede3b-378">Überprüfen Sie die `Startup`-Klasse:</span><span class="sxs-lookup"><span data-stu-id="ede3b-378">Examine the `Startup` class:</span></span>
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=13-99)]
 
-<span data-ttu-id="fb05f-379">Der oberhalb hervorgehobene Code zeigt den Filmdatenbankkontext, der dem [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection)-Container hinzugefügt wird:</span><span class="sxs-lookup"><span data-stu-id="fb05f-379">The preceding highlighted code shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container:</span></span>
+<span data-ttu-id="ede3b-379">Der oberhalb hervorgehobene Code zeigt den Filmdatenbankkontext, der dem [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection)-Container hinzugefügt wird:</span><span class="sxs-lookup"><span data-stu-id="ede3b-379">The preceding highlighted code shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container:</span></span>
 
-* <span data-ttu-id="fb05f-380">`services.AddDbContext<MvcMovieContext>(options =>` gibt die zu verwendende Datenbank und die Verbindungszeichenfolge an.</span><span class="sxs-lookup"><span data-stu-id="fb05f-380">`services.AddDbContext<MvcMovieContext>(options =>` specifies the database to use and the connection string.</span></span>
-* <span data-ttu-id="fb05f-381">`=>` ist ein [Lambdaoperator](/dotnet/articles/csharp/language-reference/operators/lambda-operator).</span><span class="sxs-lookup"><span data-stu-id="fb05f-381">`=>` is a [lambda operator](/dotnet/articles/csharp/language-reference/operators/lambda-operator)</span></span>
+* <span data-ttu-id="ede3b-380">`services.AddDbContext<MvcMovieContext>(options =>` gibt die zu verwendende Datenbank und die Verbindungszeichenfolge an.</span><span class="sxs-lookup"><span data-stu-id="ede3b-380">`services.AddDbContext<MvcMovieContext>(options =>` specifies the database to use and the connection string.</span></span>
+* <span data-ttu-id="ede3b-381">`=>` ist ein [Lambdaoperator](/dotnet/articles/csharp/language-reference/operators/lambda-operator).</span><span class="sxs-lookup"><span data-stu-id="ede3b-381">`=>` is a [lambda operator](/dotnet/articles/csharp/language-reference/operators/lambda-operator)</span></span>
 
-<span data-ttu-id="fb05f-382">Öffnen Sie die Datei *Controllers/MoviesController.cs*, und überprüfen Sie den Konstruktor:</span><span class="sxs-lookup"><span data-stu-id="fb05f-382">Open the *Controllers/MoviesController.cs* file and examine the constructor:</span></span>
+<span data-ttu-id="ede3b-382">Öffnen Sie die Datei *Controllers/MoviesController.cs*, und überprüfen Sie den Konstruktor:</span><span class="sxs-lookup"><span data-stu-id="ede3b-382">Open the *Controllers/MoviesController.cs* file and examine the constructor:</span></span>
 
 <!-- l.. Make copy of Movies controller because we comment out the initial index method and update it later  -->
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
-<span data-ttu-id="fb05f-383">Der Konstruktor verwendet die [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) zum Einfügen des Datenbankkontexts (`MvcMovieContext`) in den Controller.</span><span class="sxs-lookup"><span data-stu-id="fb05f-383">The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller.</span></span> <span data-ttu-id="fb05f-384">Der Datenbankkontext wird in den einzelnen [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Methoden im Controller verwendet.</span><span class="sxs-lookup"><span data-stu-id="fb05f-384">The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.</span></span>
+<span data-ttu-id="ede3b-383">Der Konstruktor verwendet die [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) zum Einfügen des Datenbankkontexts (`MvcMovieContext`) in den Controller.</span><span class="sxs-lookup"><span data-stu-id="ede3b-383">The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller.</span></span> <span data-ttu-id="ede3b-384">Der Datenbankkontext wird in den einzelnen [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Methoden im Controller verwendet.</span><span class="sxs-lookup"><span data-stu-id="ede3b-384">The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.</span></span>
 
 <a name="strongly-typed-models-keyword-label"></a>
 <a name="strongly-typed-models-and-the--keyword"></a>
 
-## <a name="strongly-typed-models-and-the-model-keyword"></a><span data-ttu-id="fb05f-385">Stark typisierte Modelle und das Schlüsselwort @model</span><span class="sxs-lookup"><span data-stu-id="fb05f-385">Strongly typed models and the @model keyword</span></span>
+## <a name="strongly-typed-models-and-the-model-keyword"></a><span data-ttu-id="ede3b-385">Stark typisierte Modelle und das Schlüsselwort @model</span><span class="sxs-lookup"><span data-stu-id="ede3b-385">Strongly typed models and the @model keyword</span></span>
 
-<span data-ttu-id="fb05f-386">Weiter oben in diesem Tutorial haben Sie gesehen, wie ein Controller mithilfe des Wörterbuchs `ViewData` Daten oder Objekte an eine Ansicht übergeben kann.</span><span class="sxs-lookup"><span data-stu-id="fb05f-386">Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary.</span></span> <span data-ttu-id="fb05f-387">Das Wörterbuch `ViewData` ist ein dynamisches Objekt, das eine praktische Möglichkeit zur späten Bindung bietet, um Informationen an eine Ansicht zu übergeben.</span><span class="sxs-lookup"><span data-stu-id="fb05f-387">The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.</span></span>
+<span data-ttu-id="ede3b-386">Weiter oben in diesem Tutorial haben Sie gesehen, wie ein Controller mithilfe des Wörterbuchs `ViewData` Daten oder Objekte an eine Ansicht übergeben kann.</span><span class="sxs-lookup"><span data-stu-id="ede3b-386">Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary.</span></span> <span data-ttu-id="ede3b-387">Das Wörterbuch `ViewData` ist ein dynamisches Objekt, das eine praktische Möglichkeit zur späten Bindung bietet, um Informationen an eine Ansicht zu übergeben.</span><span class="sxs-lookup"><span data-stu-id="ede3b-387">The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.</span></span>
 
-<span data-ttu-id="fb05f-388">MVC bietet außerdem die Möglichkeit, stark typisierte Modellobjekte an eine Ansicht zu übergeben.</span><span class="sxs-lookup"><span data-stu-id="fb05f-388">MVC also provides the ability to pass strongly typed model objects to a view.</span></span> <span data-ttu-id="fb05f-389">Dieser stark typisierte Ansatz ermöglicht eine bessere Überprüfung Ihres Codes zur Kompilierzeit.</span><span class="sxs-lookup"><span data-stu-id="fb05f-389">This strongly typed approach enables better compile time checking of your code.</span></span> <span data-ttu-id="fb05f-390">Der Gerüstbaumechnismus hat diesen Ansatz (d.h. das Übergeben eines stark typisierten Modells) mit der `MoviesController`-Klasse und Ansichten genutzt, als die Methoden und Ansichten erstellt wurden.</span><span class="sxs-lookup"><span data-stu-id="fb05f-390">The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.</span></span>
+<span data-ttu-id="ede3b-388">MVC bietet außerdem die Möglichkeit, stark typisierte Modellobjekte an eine Ansicht zu übergeben.</span><span class="sxs-lookup"><span data-stu-id="ede3b-388">MVC also provides the ability to pass strongly typed model objects to a view.</span></span> <span data-ttu-id="ede3b-389">Dieser stark typisierte Ansatz ermöglicht eine bessere Überprüfung Ihres Codes zur Kompilierzeit.</span><span class="sxs-lookup"><span data-stu-id="ede3b-389">This strongly typed approach enables better compile time checking of your code.</span></span> <span data-ttu-id="ede3b-390">Der Gerüstbaumechnismus hat diesen Ansatz (d.h. das Übergeben eines stark typisierten Modells) mit der `MoviesController`-Klasse und Ansichten genutzt, als die Methoden und Ansichten erstellt wurden.</span><span class="sxs-lookup"><span data-stu-id="ede3b-390">The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.</span></span>
 
-<span data-ttu-id="fb05f-391">Untersuchen Sie die generierte `Details`-Methode in der Datei *Controllers/MoviesController.cs*:</span><span class="sxs-lookup"><span data-stu-id="fb05f-391">Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:</span></span>
+<span data-ttu-id="ede3b-391">Untersuchen Sie die generierte `Details`-Methode in der Datei *Controllers/MoviesController.cs*:</span><span class="sxs-lookup"><span data-stu-id="ede3b-391">Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:</span></span>
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
-<span data-ttu-id="fb05f-392">Der `id`-Parameter wird im Allgemeinen als Routendaten übergeben.</span><span class="sxs-lookup"><span data-stu-id="fb05f-392">The `id` parameter is generally passed as route data.</span></span> <span data-ttu-id="fb05f-393">`https://localhost:5001/movies/details/1` legt beispielsweise Folgendes fest:</span><span class="sxs-lookup"><span data-stu-id="fb05f-393">For example `https://localhost:5001/movies/details/1` sets:</span></span>
+<span data-ttu-id="ede3b-392">Der `id`-Parameter wird im Allgemeinen als Routendaten übergeben.</span><span class="sxs-lookup"><span data-stu-id="ede3b-392">The `id` parameter is generally passed as route data.</span></span> <span data-ttu-id="ede3b-393">`https://localhost:5001/movies/details/1` legt beispielsweise Folgendes fest:</span><span class="sxs-lookup"><span data-stu-id="ede3b-393">For example `https://localhost:5001/movies/details/1` sets:</span></span>
 
-* <span data-ttu-id="fb05f-394">Den Controller auf den Controller `movies` (das erste URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="fb05f-394">The controller to the `movies` controller (the first URL segment).</span></span>
-* <span data-ttu-id="fb05f-395">Die Aktion auf `details` (das zweite URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="fb05f-395">The action to `details` (the second URL segment).</span></span>
-* <span data-ttu-id="fb05f-396">Die ID auf 1 (das letzte URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="fb05f-396">The id to 1 (the last URL segment).</span></span>
+* <span data-ttu-id="ede3b-394">Den Controller auf den Controller `movies` (das erste URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="ede3b-394">The controller to the `movies` controller (the first URL segment).</span></span>
+* <span data-ttu-id="ede3b-395">Die Aktion auf `details` (das zweite URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="ede3b-395">The action to `details` (the second URL segment).</span></span>
+* <span data-ttu-id="ede3b-396">Die ID auf 1 (das letzte URL-Segment).</span><span class="sxs-lookup"><span data-stu-id="ede3b-396">The id to 1 (the last URL segment).</span></span>
 
-<span data-ttu-id="fb05f-397">Sie können die `id` auch mithilfe einer Abfragezeichenfolge übergeben:</span><span class="sxs-lookup"><span data-stu-id="fb05f-397">You can also pass in the `id` with a query string as follows:</span></span>
+<span data-ttu-id="ede3b-397">Sie können die `id` auch mithilfe einer Abfragezeichenfolge übergeben:</span><span class="sxs-lookup"><span data-stu-id="ede3b-397">You can also pass in the `id` with a query string as follows:</span></span>
 
 `https://localhost:5001/movies/details?id=1`
 
-<span data-ttu-id="fb05f-398">Der `id`-Parameter wird als [Nullable-Typ](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) für den Fall definiert, dass kein ID-Wert angegeben wird.</span><span class="sxs-lookup"><span data-stu-id="fb05f-398">The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in case an ID value isn't provided.</span></span>
+<span data-ttu-id="ede3b-398">Der `id`-Parameter wird als [Nullable-Typ](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) für den Fall definiert, dass kein ID-Wert angegeben wird.</span><span class="sxs-lookup"><span data-stu-id="ede3b-398">The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in case an ID value isn't provided.</span></span>
 
-<span data-ttu-id="fb05f-399">Ein [Lambdaausdruck](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) wird an `FirstOrDefaultAsync` übergeben, um Filmentitäten auszuwählen, die mit den Routendaten oder dem Wert der Abfragezeichenfolge übereinstimmen.</span><span class="sxs-lookup"><span data-stu-id="fb05f-399">A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to `FirstOrDefaultAsync` to select movie entities that match the route data or query string value.</span></span>
+<span data-ttu-id="ede3b-399">Ein [Lambdaausdruck](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) wird an `FirstOrDefaultAsync` übergeben, um Filmentitäten auszuwählen, die mit den Routendaten oder dem Wert der Abfragezeichenfolge übereinstimmen.</span><span class="sxs-lookup"><span data-stu-id="ede3b-399">A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to `FirstOrDefaultAsync` to select movie entities that match the route data or query string value.</span></span>
 
 ```csharp
 var movie = await _context.Movie
     .FirstOrDefaultAsync(m => m.Id == id);
 ```
 
-<span data-ttu-id="fb05f-400">Wenn ein Film gefunden wird, wird eine Instanz des `Movie`-Modells an die Ansicht `Details` übergeben:</span><span class="sxs-lookup"><span data-stu-id="fb05f-400">If a movie is found, an instance of the `Movie` model is passed to the `Details` view:</span></span>
+<span data-ttu-id="ede3b-400">Wenn ein Film gefunden wird, wird eine Instanz des `Movie`-Modells an die Ansicht `Details` übergeben:</span><span class="sxs-lookup"><span data-stu-id="ede3b-400">If a movie is found, an instance of the `Movie` model is passed to the `Details` view:</span></span>
 
 ```csharp
 return View(movie);
    ```
 
-<span data-ttu-id="fb05f-401">Untersuchen Sie den Inhalt der Datei *Views/Movies/Details.cshtml*:</span><span class="sxs-lookup"><span data-stu-id="fb05f-401">Examine the contents of the *Views/Movies/Details.cshtml* file:</span></span>
+<span data-ttu-id="ede3b-401">Untersuchen Sie den Inhalt der Datei *Views/Movies/Details.cshtml*:</span><span class="sxs-lookup"><span data-stu-id="ede3b-401">Examine the contents of the *Views/Movies/Details.cshtml* file:</span></span>
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
-<span data-ttu-id="fb05f-402">Durch Einschließen einer `@model`-Anweisung am Anfang der Ansichtsdatei können Sie den Typ des Objekts angeben, den die Ansicht erwartet.</span><span class="sxs-lookup"><span data-stu-id="fb05f-402">By including a `@model` statement at the top of the view file, you can specify the type of object that the view expects.</span></span> <span data-ttu-id="fb05f-403">Beim Erstellen des „Movie“-Controllers wurde die folgende `@model`-Anweisung automatisch am Anfang der Datei *Details.cshtml* hinzugefügt:</span><span class="sxs-lookup"><span data-stu-id="fb05f-403">When you created the movie controller, the following `@model` statement was automatically included at the top of the *Details.cshtml* file:</span></span>
+<span data-ttu-id="ede3b-402">Durch Einschließen einer `@model`-Anweisung am Anfang der Ansichtsdatei können Sie den Typ des Objekts angeben, den die Ansicht erwartet.</span><span class="sxs-lookup"><span data-stu-id="ede3b-402">By including a `@model` statement at the top of the view file, you can specify the type of object that the view expects.</span></span> <span data-ttu-id="ede3b-403">Beim Erstellen des „Movie“-Controllers wurde die folgende `@model`-Anweisung automatisch am Anfang der Datei *Details.cshtml* hinzugefügt:</span><span class="sxs-lookup"><span data-stu-id="ede3b-403">When you created the movie controller, the following `@model` statement was automatically included at the top of the *Details.cshtml* file:</span></span>
 
 ```cshtml
 @model MvcMovie.Models.Movie
 ```
 
-<span data-ttu-id="fb05f-404">Diese `@model`-Direktive ermöglicht Ihnen den Zugriff auf den Film, den der Controller an die Ansicht übergeben hat, indem ein stark typisiertes `Model`-Objekt verwendet wir.</span><span class="sxs-lookup"><span data-stu-id="fb05f-404">This `@model` directive allows you to access the movie that the controller passed to the view by using a `Model` object that's strongly typed.</span></span> <span data-ttu-id="fb05f-405">In der Ansicht *Details.cshtml* übergibt der Code jedes Filmfeld an die HTML-Hilfsprogramme `DisplayNameFor` und `DisplayFor` mit dem stark typisierten `Model`-Objekt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-405">For example, in the *Details.cshtml* view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object.</span></span> <span data-ttu-id="fb05f-406">Die Methoden `Create` und `Edit` und Ansichten übergeben außerdem ein `Movie`-Modelobjekt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-406">The `Create` and `Edit` methods and views also pass a `Movie` model object.</span></span>
+<span data-ttu-id="ede3b-404">Diese `@model`-Direktive ermöglicht Ihnen den Zugriff auf den Film, den der Controller an die Ansicht übergeben hat, indem ein stark typisiertes `Model`-Objekt verwendet wir.</span><span class="sxs-lookup"><span data-stu-id="ede3b-404">This `@model` directive allows you to access the movie that the controller passed to the view by using a `Model` object that's strongly typed.</span></span> <span data-ttu-id="ede3b-405">In der Ansicht *Details.cshtml* übergibt der Code jedes Filmfeld an die HTML-Hilfsprogramme `DisplayNameFor` und `DisplayFor` mit dem stark typisierten `Model`-Objekt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-405">For example, in the *Details.cshtml* view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object.</span></span> <span data-ttu-id="ede3b-406">Die Methoden `Create` und `Edit` und Ansichten übergeben außerdem ein `Movie`-Modelobjekt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-406">The `Create` and `Edit` methods and views also pass a `Movie` model object.</span></span>
 
-<span data-ttu-id="fb05f-407">Überprüfen Sie die Datei *Index.cshtml* und die `Index`-Methode im „Movies“-Controller.</span><span class="sxs-lookup"><span data-stu-id="fb05f-407">Examine the *Index.cshtml* view and the `Index` method in the Movies controller.</span></span> <span data-ttu-id="fb05f-408">Beachten Sie, wie der Code beim Aufrufen der `View`-Methode ein `List`-Objekt erstellt.</span><span class="sxs-lookup"><span data-stu-id="fb05f-408">Notice how the code creates a `List` object when it calls the `View` method.</span></span> <span data-ttu-id="fb05f-409">Der Code übergibt diese Liste `Movies` aus der Aktionsmethode `Index` an die Ansicht:</span><span class="sxs-lookup"><span data-stu-id="fb05f-409">The code passes this `Movies` list from the `Index` action method to the view:</span></span>
+<span data-ttu-id="ede3b-407">Überprüfen Sie die Datei *Index.cshtml* und die `Index`-Methode im „Movies“-Controller.</span><span class="sxs-lookup"><span data-stu-id="ede3b-407">Examine the *Index.cshtml* view and the `Index` method in the Movies controller.</span></span> <span data-ttu-id="ede3b-408">Beachten Sie, wie der Code beim Aufrufen der `View`-Methode ein `List`-Objekt erstellt.</span><span class="sxs-lookup"><span data-stu-id="ede3b-408">Notice how the code creates a `List` object when it calls the `View` method.</span></span> <span data-ttu-id="ede3b-409">Der Code übergibt diese Liste `Movies` aus der Aktionsmethode `Index` an die Ansicht:</span><span class="sxs-lookup"><span data-stu-id="ede3b-409">The code passes this `Movies` list from the `Index` action method to the view:</span></span>
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_index)]
 
-<span data-ttu-id="fb05f-410">Beim Erstellen des „Movies“-Controllers hat der Gerüstbau automatisch die folgende `@model`-Anweisung am Anfang der Datei *Index.cshtml* hinzugefügt:</span><span class="sxs-lookup"><span data-stu-id="fb05f-410">When you created the movies controller, scaffolding automatically included the following `@model` statement at the top of the *Index.cshtml* file:</span></span>
+<span data-ttu-id="ede3b-410">Beim Erstellen des „Movies“-Controllers hat der Gerüstbau automatisch die folgende `@model`-Anweisung am Anfang der Datei *Index.cshtml* hinzugefügt:</span><span class="sxs-lookup"><span data-stu-id="ede3b-410">When you created the movies controller, scaffolding automatically included the following `@model` statement at the top of the *Index.cshtml* file:</span></span>
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
 
-<span data-ttu-id="fb05f-411">Diese `@model`-Direktive ermöglicht Ihnen den Zugriff auf die Liste der Filme, die der Controller an die Ansicht übergeben hat, indem ein stark typisiertes `Model`-Objekt verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="fb05f-411">The `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed.</span></span> <span data-ttu-id="fb05f-412">In der Ansicht *Index.cshtml* durchläuft der Code z.B. die Filme mithilfe einer `foreach`-Anweisung für das stark typisierte `Model`-Objekt:</span><span class="sxs-lookup"><span data-stu-id="fb05f-412">For example, in the *Index.cshtml* view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:</span></span>
+<span data-ttu-id="ede3b-411">Diese `@model`-Direktive ermöglicht Ihnen den Zugriff auf die Liste der Filme, die der Controller an die Ansicht übergeben hat, indem ein stark typisiertes `Model`-Objekt verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="ede3b-411">The `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed.</span></span> <span data-ttu-id="ede3b-412">In der Ansicht *Index.cshtml* durchläuft der Code z.B. die Filme mithilfe einer `foreach`-Anweisung für das stark typisierte `Model`-Objekt:</span><span class="sxs-lookup"><span data-stu-id="ede3b-412">For example, in the *Index.cshtml* view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:</span></span>
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
-<span data-ttu-id="fb05f-413">Da das `Model`-Objekt stark typisiert ist (als ein `IEnumerable<Movie>`-Objekt), wird jedes Element in der Schleife als `Movie` typisiert.</span><span class="sxs-lookup"><span data-stu-id="fb05f-413">Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`.</span></span> <span data-ttu-id="fb05f-414">Neben anderen Vorteilen bedeutet dies, dass Sie eine Überprüfung des Codes zur Kompilierzeit erhalten:</span><span class="sxs-lookup"><span data-stu-id="fb05f-414">Among other benefits, this means that you get compile time checking of the code:</span></span>
+<span data-ttu-id="ede3b-413">Da das `Model`-Objekt stark typisiert ist (als ein `IEnumerable<Movie>`-Objekt), wird jedes Element in der Schleife als `Movie` typisiert.</span><span class="sxs-lookup"><span data-stu-id="ede3b-413">Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`.</span></span> <span data-ttu-id="ede3b-414">Neben anderen Vorteilen bedeutet dies, dass Sie eine Überprüfung des Codes zur Kompilierzeit erhalten:</span><span class="sxs-lookup"><span data-stu-id="ede3b-414">Among other benefits, this means that you get compile time checking of the code:</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="fb05f-415">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="fb05f-415">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="ede3b-415">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="ede3b-415">Additional resources</span></span>
 
-* [<span data-ttu-id="fb05f-416">Taghilfsprogramme</span><span class="sxs-lookup"><span data-stu-id="fb05f-416">Tag Helpers</span></span>](xref:mvc/views/tag-helpers/intro)
-* [<span data-ttu-id="fb05f-417">Globalisierung und Lokalisierung</span><span class="sxs-lookup"><span data-stu-id="fb05f-417">Globalization and localization</span></span>](xref:fundamentals/localization)
+* [<span data-ttu-id="ede3b-416">Taghilfsprogramme</span><span class="sxs-lookup"><span data-stu-id="ede3b-416">Tag Helpers</span></span>](xref:mvc/views/tag-helpers/intro)
+* [<span data-ttu-id="ede3b-417">Globalisierung und Lokalisierung</span><span class="sxs-lookup"><span data-stu-id="ede3b-417">Globalization and localization</span></span>](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
-> <span data-ttu-id="fb05f-418">[Vorheriges Tutorial: Hinzufügen einer Ansicht](adding-view.md)
-> [Nächstes Tutorial: Arbeiten mit einer Datenbank](working-with-sql.md)</span><span class="sxs-lookup"><span data-stu-id="fb05f-418">[Previous Adding a View](adding-view.md)
+> <span data-ttu-id="ede3b-418">[Vorheriges Tutorial: Hinzufügen einer Ansicht](adding-view.md)
+> [Nächstes Tutorial: Arbeiten mit einer Datenbank](working-with-sql.md)</span><span class="sxs-lookup"><span data-stu-id="ede3b-418">[Previous Adding a View](adding-view.md)
 [Next Working with a database](working-with-sql.md)</span></span>
 
 ::: moniker-end
