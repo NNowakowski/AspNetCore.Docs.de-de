@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/index
-ms.openlocfilehash: 560f25c9acabe2860bcaaddcdb42e2b15842a29d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a9f158bf875da75afbccc1a6d226bc842fa1c62c
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017076"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130508"
 ---
 # <a name="aspnet-core-middleware"></a>ASP.NET Core-Middleware
 
@@ -276,6 +276,7 @@ Die folgenden Middlewarekomponenten sind im Lieferumfang von ASP.NET Core enthal
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
+* Die [Lebensdauer und Registrierungsoptionen](xref:fundamentals/dependency-injection#lifetime-and-registration-options) enthalten ein vollständiges Beispiel der Middleware mit Diensten mit *bereichsbezogener*, *vorübergehender* und *Singletonlebensdauer*.
 * <xref:fundamentals/middleware/write>
 * <xref:test/middleware>
 * <xref:migration/http-modules>
