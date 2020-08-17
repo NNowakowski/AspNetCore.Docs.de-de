@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: cebfc88a8a8313bfd975001b50db6e41b6939aed
-ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
+ms.openlocfilehash: 10741cfc701bf261484b9e6c73a2347e2dd7083d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87819141"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019833"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Neuerungen in ASP.NET Core 3.0
 
@@ -402,7 +404,7 @@ Weitere Informationen finden Sie unter <xref:security/authentication/windowsauth
 
 Aus den Vorlagen für Webbenutzeroberflächen (Razor Pages, MVC mit Controller und Ansichten) wurde Folgendes entfernt:
 
-* Die Benutzeroberfläche für die Zustimmung zu Cookies ist nicht mehr enthalten. Informationen dazu, wie Sie die Zustimmung zu Cookies in einer aus einer ASP.NET Core 3.0-Vorlage generierten App aktivieren, finden Sie unter <xref:security/gdpr>.
+* Die Benutzeroberfläche für die Zustimmung zu cookies ist nicht mehr enthalten. Informationen dazu, wie Sie die Zustimmung zu cookies in einer aus einer ASP.NET Core 3.0-Vorlage generierten App aktivieren, finden Sie unter <xref:security/gdpr>.
 * Skripts und damit zusammenhängende statische Ressourcen werden jetzt als lokale Dateien referenziert, es werden keine CDNs mehr dafür verwendet. Weitere Informationen finden Sie unter [Scripts and related static assets are now referenced as local files instead of using CDNs based on the current environment (aspnet/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350) (Skripts und damit zusammenhängende statische Ressourcen werden jetzt als lokale Dateien referenziert, es werden keine CDNs basierend auf der aktuellen Umgebung mehr verwendet).
 
 Die Angular-Vorlage wurde auf Angular 8 aktualisiert.

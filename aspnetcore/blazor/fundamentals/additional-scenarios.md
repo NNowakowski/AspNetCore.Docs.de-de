@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: b32710e515d111b7dd6556f1db55082cd56a82b5
-ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
+ms.openlocfilehash: dbad91e46a95d9ab5ec62d66e0d9a18938ff4520
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87819001"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014463"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a>Hostingmodellkonfiguration für ASP.NET Core Blazor
 
@@ -32,7 +34,7 @@ Dieser Artikel behandelt die Hostingmodellkonfiguration.
 
 *Dieser Abschnitt gilt für Blazor WebAssembly.*
 
-So konfigurieren Sie den zugrunde liegenden SignalR-Client zum Senden von Anmeldeinformationen (z. B. Cookies oder HTTP-Authentifizierungsheader):
+So konfigurieren Sie den zugrunde liegenden SignalR-Client zum Senden von Anmeldeinformationen (z. B. cookie oder HTTP-Authentifizierungsheader):
 
 * Verwenden Sie <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A>, um <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> auf ursprungsübergreifende [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch)-Anforderungen festzulegen:
 
@@ -231,11 +233,9 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 
 Der Platzhalter `{ELEMENT ID}` ist die ID des HTML-Elements, das angezeigt werden soll.
 
-::: moniker range=">= aspnetcore-5.0"
-
 ## <a name="influence-html-head-tag-elements"></a>Beeinflussen von HTML-`<head>`-Tagelementen
 
-*Dieser Abschnitt gilt für Blazor WebAssembly und Blazor Server.*
+*Dieser Abschnitt gilt für das anstehende ASP.NET Core 5.0-Release von Blazor WebAssembly und Blazor Server.*
 
 Beim Rendern fügen die `Title`-, `Link`- und `Meta`-Komponenten Daten in den HTML-`<head>`-Tagelementen hinzu oder aktualisieren diese:
 
@@ -263,8 +263,6 @@ Wenn eine der Frameworkkomponenten in einer untergeordneten Komponente verwendet
 
 * Nach Anwendungszustand geändert werden kann. Ein hartcodiertes HTML-Tag kann nicht nach Anwendungszustand geändert werden.
 * Aus dem HTML-`<head>` entfernt wird, wenn die übergeordnete Komponente nicht mehr gerendert wird.
-
-::: moniker-end
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

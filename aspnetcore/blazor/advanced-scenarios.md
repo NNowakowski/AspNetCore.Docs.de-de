@@ -1,34 +1,36 @@
 ---
-title: Erweiterte ASP.NET Core-[Blazor-Szenarios
+title: Erweiterte ASP.NET Core-Blazor-Szenarios
 author: guardrex
-description: Informieren Sie sich über erweiterte Szenarios in [Blazor einschließlich der Integration manueller RenderTreeBuilder-Logik in eine App.
+description: Informieren Sie sich über erweiterte Szenarios in Blazor einschließlich der Integration manueller RenderTreeBuilder-Logik in eine App.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/18/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: bdea9f2fe5c552b56414bb49588733c8dc2a34db
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 4bd73acd821a8791d7f6cc93545edc2e39a6f2c7
+ms.sourcegitcommit: 68d03d1aee8906b53bda66f8f1e0747efc3007e6
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400218"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88051783"
 ---
-# <a name="aspnet-core-blazor-advanced-scenarios"></a>Erweiterte ASP.NET Core-[Blazor-Szenarios
+# <a name="aspnet-core-no-locblazor-advanced-scenarios"></a>Erweiterte ASP.NET Core-Blazor-Szenarios
 
 Von [Luke Latham](https://github.com/guardrex) und [Daniel Roth](https://github.com/danroth27)
 
-## <a name="blazor-server-circuit-handler"></a>[Blazor Server-Verbindungshandler
+## <a name="no-locblazor-server-circuit-handler"></a>Blazor Server-Verbindungshandler
 
-In [Blazor Server kann mithilfe von Code ein *Verbindungshandler* definiert werden, mit dem Code für Zustandsänderungen einer Benutzerverbindung ausgeführt werden kann. Ein Verbindungshandler wird durch das Ableiten von `CircuitHandler` und Registrieren der Klasse im Dienstcontainer der App implementiert. Im folgenden Beispiel eines Verbindungshandlers werden geöffnete [SignalR-Verbindungen nachverfolgt:
+In Blazor Server kann mithilfe von Code ein *Verbindungshandler* definiert werden, mit dem Code für Zustandsänderungen einer Benutzerverbindung ausgeführt werden kann. Ein Verbindungshandler wird durch das Ableiten von `CircuitHandler` und Registrieren der Klasse im Dienstcontainer der App implementiert. Im folgenden Beispiel eines Verbindungshandlers werden geöffnete SignalR-Verbindungen nachverfolgt:
 
 ```csharp
 using System.Collections.Generic;
@@ -70,7 +72,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Wenn die Methoden eines benutzerdefinierten Verbindungshandlers einen Ausnahmefehler auslösen, ist dieser Ausnahmefehler für die [Blazor Server-Verbindung schwerwiegend. Umschließen Sie den Code in einer oder mehreren [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch)-Anweisungen mit Fehlerbehandlung und -protokollierung, um Ausnahmen im Code oder in aufgerufenen Methoden eines Handlers zu tolerieren.
+Wenn die Methoden eines benutzerdefinierten Verbindungshandlers einen Ausnahmefehler auslösen, ist dieser Ausnahmefehler für die Blazor Server-Verbindung schwerwiegend. Umschließen Sie den Code in einer oder mehreren [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch)-Anweisungen mit Fehlerbehandlung und -protokollierung, um Ausnahmen im Code oder in aufgerufenen Methoden eines Handlers zu tolerieren.
 
 Wenn eine Verbindung beendet wird, weil ein Benutzer die Verbindung getrennt hat und das Framework den Verbindungsstatus bereinigt, gibt das Framework den DI-Bereich der Verbindung frei. Wenn der Bereich freigegeben wird, werden alle Dienste im Verbindungsbereich verworfen, die <xref:System.IDisposable?displayProperty=fullName> implementieren. Wenn ein DI-Dienst während der Freigabe einen Ausnahmefehler auslöst, protokolliert das Framework die Ausnahme.
 
@@ -95,7 +97,7 @@ Beachten Sie die folgende `PetDetails`-Komponente, die manuell in eine andere Ko
 }
 ```
 
-Im folgenden Beispiel generiert die Schleife in der `CreateComponent`-Methode drei `PetDetails`-Komponenten. Wenn Sie <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>-Methoden aufrufen, um die Komponenten (`OpenComponent` und `AddAttribute`) zu erstellen, sind die Sequenznummern Zeilennummern des Quellcodes. Der diff-Algorithmus von [Blazor basiert auf den Sequenznummern, die unterschiedlichen Codezeilen und nicht unterschiedlichen Aufrufen entsprechen. Hartcodieren Sie die Argumente für Sequenznummern, wenn Sie eine Komponente mit <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>-Methoden erstellen. **Die Verwendung einer Berechnung oder eines Leistungszählers zum Generieren der Sequenznummer kann zu schlechter Leistung führen.** Weitere Informationen finden Sie im Abschnitt [Auf Codezeilennummern und nicht auf die Ausführungsreihenfolge bezogene Sequenznummern](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order).
+Im folgenden Beispiel generiert die Schleife in der `CreateComponent`-Methode drei `PetDetails`-Komponenten. In <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>-Methoden mit einer Sequenznummer sind die Sequenznummern Zeilennummern des Quellcodes. Der diff-Algorithmus von Blazor basiert auf den Sequenznummern, die unterschiedlichen Codezeilen und nicht unterschiedlichen Aufrufen entsprechen. Hartcodieren Sie die Argumente für Sequenznummern, wenn Sie eine Komponente mit <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>-Methoden erstellen. **Die Verwendung einer Berechnung oder eines Leistungszählers zum Generieren der Sequenznummer kann zu schlechter Leistung führen.** Weitere Informationen finden Sie im Abschnitt [Auf Codezeilennummern und nicht auf die Ausführungsreihenfolge bezogene Sequenznummern](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order).
 
 `BuiltContent`-Komponente:
 
@@ -131,15 +133,15 @@ Im folgenden Beispiel generiert die Schleife in der `CreateComponent`-Methode dr
 ```
 
 > [!WARNING]
-> Die Typen in <xref:Microsoft.AspNetCore.Components.RenderTree> ermöglichen die Verarbeitung der *Ergebnisse* von Renderingvorgängen. Hierbei handelt es sich um interne Details der [Blazor-Frameworkimplementierung. Diese Typen sollten als *instabil* betrachtet werden und in zukünftigen Versionen geändert werden.
+> Die Typen in <xref:Microsoft.AspNetCore.Components.RenderTree> ermöglichen die Verarbeitung der *Ergebnisse* von Renderingvorgängen. Hierbei handelt es sich um interne Details der Blazor-Frameworkimplementierung. Diese Typen sollten als *instabil* betrachtet werden und in zukünftigen Versionen geändert werden.
 
 ### <a name="sequence-numbers-relate-to-code-line-numbers-and-not-execution-order"></a>Auf Codezeilennummern und nicht auf die Ausführungsreihenfolge bezogene Sequenznummern
 
-[Razor-Komponentendateien (`.razor`) werden stets kompiliert. Die Kompilierung stellt gegenüber der Interpretation von Code einen Vorteil dar, da der Kompilierungsschritt zum Einfügen von Informationen verwendet werden kann, die die App-Leistung zur Laufzeit erhöhen können.
+Razor-Komponentendateien (`.razor`) werden stets kompiliert. Die Kompilierung stellt gegenüber der Interpretation von Code einen Vorteil dar, da der Kompilierungsschritt zum Einfügen von Informationen verwendet werden kann, die die App-Leistung zur Laufzeit erhöhen können.
 
 Ein wichtiges Beispiel für diese Verbesserungen sind *Sequenznummern*. Sequenznummern geben der Laufzeit an, welche Ausgaben aus den unterschiedlichen und geordneten Codezeilen stammen. Diese Informationen werden von der Laufzeit verwendet, um effiziente und zeitlich lineare Strukturunterschiede zu generieren. Diese Methode ist viel schneller als es für einen allgemeinen diff-Strukturalgorithmus normalerweise möglich ist.
 
-Betrachten Sie die Datei der folgenden [Razor-Komponente (`.razor`):
+Betrachten Sie die Datei der folgenden Razor-Komponente (`.razor`):
 
 ```razor
 @if (someFlag)
@@ -221,18 +223,18 @@ Dies ist ein triviales Beispiel. In realistischeren Fällen mit komplexen und ti
 * Das Framework kann zur Laufzeit automatisch keine eigenen Sequenznummern erstellen, da die erforderlichen Informationen nicht vorhanden sind, es sei denn, sie werden zur Kompilierzeit aufgezeichnet.
 * Schreiben Sie keine langen Blöcke manuell implementierter <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>-Logik. Bevorzugen Sie `.razor`-Dateien, und ermöglichen Sie es dem Compiler, die Sequenznummern zu verarbeiten. Wenn Sie manuelle <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>-Logik nicht vermeiden können, teilen Sie lange Codeblöcke in kleinere Teile auf, die in <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenRegion%2A>/<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseRegion%2A>-Aufrufe eingebunden werden. Jede Region verfügt über einen eigenen separaten Bereich von Sequenznummern, sodass Sie in jeder Region von 0 (Null; oder von jeder anderen beliebigen Zahl) aus starten können.
 * Wenn Sequenznummern hartcodiert sind, erfordert der diff-Algorithmus nur, dass die Sequenznummern den Wert erhöhen. Die Anfangswerte und Lücken sind irrelevant. Eine legitime Option besteht darin, die Codezeilennummer als Sequenznummer zu verwenden oder von 0 (Null) aus zu starten und Werte in Einer- oder Hunderterschritten (oder einem beliebigen bevorzugten Intervall) zu erhöhen. 
-* [Blazor verwendet Sequenznummern, während andere Benutzeroberflächenframeworks diese nicht für Verzeichnisvergleiche verwenden. Das Vergleichen ist weitaus schneller, wenn Sequenznummern verwendet werden. Außerdem hat [Blazor den Vorteil eines Kompilierungsschritts, der Sequenznummern automatisch für Entwickler verarbeitet, die `.razor`-Dateien erstellen.
+* Blazor verwendet Sequenznummern, während andere Benutzeroberflächenframeworks diese nicht für Verzeichnisvergleiche verwenden. Das Vergleichen ist weitaus schneller, wenn Sequenznummern verwendet werden. Außerdem hat Blazor den Vorteil eines Kompilierungsschritts, der Sequenznummern automatisch für Entwickler verarbeitet, die `.razor`-Dateien erstellen.
 
-## <a name="perform-large-data-transfers-in-blazor-server-apps"></a>Ausführen umfangreicher Datenübertragungen in [Blazor Server-Apps
+## <a name="perform-large-data-transfers-in-no-locblazor-server-apps"></a>Ausführen umfangreicher Datenübertragungen in Blazor Server-Apps
 
-In einigen Szenarios müssen große Datenmengen zwischen JavaScript und [Blazorübertragen werden. In der Regel erfolgen große Datenübertragungen in den folgenden Fällen:
+In einigen Szenarios müssen große Datenmengen zwischen JavaScript und Blazorübertragen werden. In der Regel erfolgen große Datenübertragungen in den folgenden Fällen:
 
 * Dateisystem-APIs des Browsers werden für das Hochladen oder Herunterladen einer Datei verwendet.
 * Es ist eine Interaktion mit einer Drittanbieterbibliothek erforderlich.
 
-In [Blazor Server gibt es eine Einschränkung, um zu verhindern, dass einzelne große Nachrichten übergeben werden, die zu Leistungsproblemen führen können.
+In Blazor Server gibt es eine Einschränkung, um zu verhindern, dass einzelne große Nachrichten übergeben werden, die zu Leistungsproblemen führen können.
 
-Beachten Sie die folgenden Anleitungen, wenn Sie Code zum Übertragen von Daten zwischen JavaScript und [Blazor entwickeln:
+Beachten Sie die folgenden Anleitungen, wenn Sie Code zum Übertragen von Daten zwischen JavaScript und Blazor entwickeln:
 
 * Segmentieren Sie die Daten in kleinere Teile, und senden Sie die Datensegmente sequenziell, bis alle Daten vom Server empfangen wurden.
 * Ordnen Sie in JavaScript- und C#-Code keine großen Objekte zu.

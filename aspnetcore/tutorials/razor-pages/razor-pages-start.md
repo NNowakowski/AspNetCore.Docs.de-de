@@ -5,6 +5,8 @@ description: Diese Reihe von Tutorials zeigt, wie Sie Razor Pages in ASP.NET Cor
 ms.author: riande
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 77b230f14b4eef60d771daf8fe09288a9dd3c69c
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 5fb841de2fa9a04cf05aaf08f255041ee1952638
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212994"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021093"
 ---
-# <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Erste Schritte mit Razor Pages in ASP.NET Core
+# <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>Tutorial: Erste Schritte mit Razor Pages in ASP.NET Core
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -60,7 +62,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionsfähige Razor Pages-W
 
 ---
 
-## <a name="create-a-razor-pages-web-app"></a>Erstellen einer Razor Pages-Web-App
+## <a name="create-a-no-locrazor-pages-web-app"></a>Erstellen einer Razor Pages-Web-App
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -204,7 +206,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionsfähige Razor Pages-W
 
 ---
 
-## <a name="create-a-razor-pages-web-app"></a>Erstellen einer Razor Pages-Web-App
+## <a name="create-a-no-locrazor-pages-web-app"></a>Erstellen einer Razor Pages-Web-App
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -356,7 +358,7 @@ Enthält den Einstiegspunkt für das Programm. Weitere Informationen finden Sie 
 
 ### <a name="startupcs"></a>Startup.cs
 
-Enthält Code, mit dem das App-Verhalten konfiguriert wird, beispielsweise, ob die App Zustimmung für Cookies erfordert. Weitere Informationen finden Sie unter <xref:fundamentals/startup>.
+Enthält Code, mit dem das App-Verhalten konfiguriert wird, beispielsweise, ob die App Zustimmung für cookies erfordert. Weitere Informationen finden Sie unter <xref:fundamentals/startup>.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

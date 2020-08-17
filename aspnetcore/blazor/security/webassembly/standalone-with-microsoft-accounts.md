@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/08/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-microsoft-accounts
-ms.openlocfilehash: 58dd791718a820e1a326db309afcd173d73c667b
-ms.sourcegitcommit: f7873c02c1505c99106cbc708f37e18fc0a496d1
+ms.openlocfilehash: 8f48165e2501ea17de6d5cd540f1d6ff088d3173
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "86147696"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130274"
 ---
-# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-microsoft-accounts"></a>Sichern einer eigenständigen ASP.NET Core Blazor WebAssembly-App mit Microsoft-Konten
+# <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-microsoft-accounts"></a>Sichern einer eigenständigen ASP.NET Core Blazor WebAssembly-App mit Microsoft-Konten
 
 Von [Javier Calvarro Nelson](https://github.com/javiercn) und [Luke Latham](https://github.com/guardrex)
 
-Zum Erstellen einer eigenständigen Blazor WebAssembly-App, die [Microsoft-Konten mit Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) für die Authentifizierung verwendet:
+Zum Erstellen einer [eigenständigen -Blazor WebAssemblyApp](xref:blazor/hosting-models#blazor-webassembly), die [Microsoft-Konten mit Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) für die Authentifizierung verwendet:
 
 [Erstellen Sie einen AAD-Mandanten und eine Webanwendung](/azure/active-directory/develop/v2-overview)
 

@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/30/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: cb0a8737fb975db285986d18b995e488f09580e8
-ms.sourcegitcommit: 37f6f2e13ceb4eae268d20973d76e4b83acf6a24
+ms.openlocfilehash: 225916411550cc8e89c604e1426316843bb0ff52
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87526289"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014541"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Debuggen von ASP.NET Core Blazor WebAssembly
 
@@ -76,6 +78,10 @@ So debuggen Sie eine Blazor WebAssembly-App in Visual Studio:
 
 1. Erstellen Sie eine neue von ASP.NET Core gehostete Blazor WebAssembly-App.
 1. Drücken Sie <kbd>F5</kbd>, um die App im Debugger auszuführen.
+
+   > [!NOTE]
+   > Das **Starten ohne Debuggen** (<kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt.
+
 1. Legen Sie in `Pages/Counter.razor` einen Breakpoint in der `IncrementCount`-Methode fest.
 1. Rufen Sie die Registerkarte **`Counter`** auf, und klicken Sie auf die Schaltfläche zum Erreichen des Breakpoints:
 
@@ -116,10 +122,13 @@ Während Sie Ihre Blazor WebAssembly-App debuggen, können Sie auch Ihren Server
    Wenn Sie diese Benachrichtigung erhalten, führen Sie die folgenden Schritte aus:
 
    * Stellen Sie sicher, dass die aktuellste [C# für Visual Studio Code-Erweiterung](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) installiert ist. Öffnen Sie zur Überprüfung der installierten Erweiterungen in der Menüleiste die Option **Ansicht** > **Erweiterungen**, oder klicken Sie in der Seitenleiste **Aktivität** auf das Symbol **Erweiterungen**.
-   * Vergewissern Sie sich, dass das JavaScript-Vorschaudebuggen aktiviert ist. Öffnen Sie die Einstellungen über die Menüleiste (**Datei** > **Einstellungen** > **Einstellungen**). Führen Sie mithilfe der Schlüsselwörter `debug preview` eine Suche durch. Vergewissern Sie sich in den Suchergebnissen, dass das Kontrollkästchen **Debuggen > JavaScript: Vorschau verwenden** aktiviert ist.
+   * Vergewissern Sie sich, dass das JavaScript-Vorschaudebuggen aktiviert ist. Öffnen Sie die Einstellungen über die Menüleiste (**Datei** > **Einstellungen** > **Einstellungen**). Führen Sie mithilfe der Schlüsselwörter `debug preview` eine Suche durch. Vergewissern Sie sich in den Suchergebnissen, dass das Kontrollkästchen **Debuggen > JavaScript: Vorschau verwenden** aktiviert ist. Wenn die Option zum Aktivieren des Vorschaudebuggens nicht vorhanden ist, führen Sie entweder ein Upgrade auf die neueste VS Code-Version durch, oder installieren Sie die [JavaScript-Debuggererweiterung](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code-Versionen 1.46 oder früher).
    * Laden Sie das Fenster neu.
 
 1. Starten Sie das Debuggen mit der Tastenkombination <kbd>F5</kbd> oder dem Menü Element.
+
+   > [!NOTE]
+   > **Ohne Debuggen ausführen** (<kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt.
 
 1. Wenn Sie dazu aufgefordert werden, wählen Sie die Option **Blazor WebAssembly debuggen**, um das Debuggen zu starten.
 

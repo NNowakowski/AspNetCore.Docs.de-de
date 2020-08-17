@@ -1,32 +1,34 @@
 ---
-title: Erstellen progressiver Webanwendungen mit [Blazor WebAssembly für ASP.NET Core
+title: Erstellen progressiver Webanwendungen mit Blazor WebAssembly für ASP.NET Core
 author: guardrex
-description: Erfahren Sie, wie Sie eine [Blazor-basierte progressive Web-App (PWA) erstellen, die moderne Browserfeatures verwendet, um das Verhalten von Desktop-Apps anzunehmen.
+description: Erfahren Sie, wie Sie eine Blazor-basierte progressive Web-App (PWA) erstellen, die moderne Browserfeatures verwendet, um das Verhalten von Desktop-Apps anzunehmen.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 237a8fceb75ba724625f018cf94c8d5bc5acfdad
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 1c33a3abd2ebee60a4025d4598495d276663dc9b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402584"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014164"
 ---
-# <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Erstellen progressiver Webanwendungen mit [Blazor WebAssembly für ASP.NET Core
+# <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>Erstellen progressiver Webanwendungen mit Blazor WebAssembly für ASP.NET Core
 
 Von [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-Eine progressive Webanwendung (PWA) ist in der Regel eine Single-Page-Webanwendung (SPA), die mithilfe moderner Browser-APIs und -Funktionen das gleiche Verhalten wie eine Desktop-App aufweist. [Blazor WebAssembly ist eine auf Standards basierende clientseitige Web-App-Plattform, die beliebige Browser-APIs einschließlich der PWA-APIs verwenden kann, die für die folgenden Funktionen erforderlich sind:
+Eine progressive Webanwendung (PWA) ist in der Regel eine Single-Page-Webanwendung (SPA), die mithilfe moderner Browser-APIs und -Funktionen das gleiche Verhalten wie eine Desktop-App aufweist. Blazor WebAssembly ist eine auf Standards basierende clientseitige Web-App-Plattform, die beliebige Browser-APIs einschließlich der PWA-APIs verwenden kann, die für die folgenden Funktionen erforderlich sind:
 
 * Die Fähigkeit, unabhängig von der Netzwerkgeschwindigkeit, mit sofortigem Laden offline zu arbeiten
 * Ausführung in einem eigenen App-Fenster, nicht nur in einem Browserfenster
@@ -43,7 +45,7 @@ Solche Apps werden aus folgenden Gründen mit dem Wort *progressiv* beschrieben:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Aktivieren Sie das Kontrollkästchen **Progressive Web Application** (Progressive Web-App) beim Erstellen einer neuen **[Blazor WebAssembly-App** im Dialogfeld **Neues Projekt erstellen**:
+Aktivieren Sie das Kontrollkästchen **Progressive Web Application** (Progressive Web-App) beim Erstellen einer neuen **Blazor WebAssembly-App** im Dialogfeld **Neues Projekt erstellen**:
 
 ![Ausgewähltes Kontrollkästchen „Progressive Web Application“ im Dialogfeld „Neues Projekt erstellen“ von Visual Studio](progressive-web-app/_static/image1.png)
 
@@ -69,13 +71,13 @@ Die PWA kann optional für eine App konfiguriert werden, die über die gehostete
 
 Wenn Benutzer eine App aufrufen, die mithilfe der PWA-Vorlage erstellt wurde, können sie die App im Startmenü, Dock oder Startbildschirm des Betriebssystems installieren. Die Darstellung dieser Option hängt vom Browser des Benutzers ab. Bei Verwendung eines Chromium-basierten Desktopbrowsers wie Microsoft Edge oder Chrome wird die Schaltfläche **Hinzufügen** in der URL-Leiste angezeigt. Wenn der Benutzer auf **Hinzufügen** klickt, wird ein Dialogfeld zum Bestätigen angezeigt:
 
-![Dialogfeld zum Bestätigen in Google Chrome zeigt eine Schaltfläche zum Installieren für den Benutzer der MyBlazorPwa-App an](progressive-web-app/_static/image2.png)
+![Das Bestätigungsdialogfeld in Google Chrome zeigt dem Benutzer eine Schaltfläche zum Installieren der 'MyBlazorPwa'-App an.](progressive-web-app/_static/image2.png)
 
 Unter iOS können Besucher die PWA mithilfe der Schaltfläche **Teilen** von Safari und der zugehörigen Option **Zum Home-Bildschirm** installieren. In Chrome für Android sollten Benutzer auf die Schaltfläche **Menü** in der oberen rechten Ecke tippen und dann **Zum Startbildschirm hinzufügen** auswählen.
 
 Nach der Installation wird die App in einem eigenen Fenster ohne Adressleiste angezeigt:
 
-![Ausführung der MyBlazorPwa-App in Google Chrome ohne eine Adressleiste](progressive-web-app/_static/image3.png)
+![Ausführung der 'MyBlazorPwa'-App in Google Chrome ohne Adressleiste](progressive-web-app/_static/image3.png)
 
 Informationen zum Anpassen des Titels, des Farbschemas, des Symbols oder anderer Details des Fensters finden Sie in der Datei `manifest.json` im Verzeichnis `wwwroot` des Projekts. Das Schema dieser Datei wird durch Webstandards definiert. Weitere Informationen finden Sie unter [MDN Web Docs: Web-App-Manifest](https://developer.mozilla.org/docs/Web/Manifest).
 
@@ -87,7 +89,7 @@ Die Offlineausführung von Apps, die mit der PWA-Vorlagenoption erstellt wurden,
 > Die Entwicklungsunterstützung würde den üblichen Entwicklungszyklus beeinträchtigen, der das Vornehmen von Änderungen und Testen dieser umfasst. Daher ist die Offlineunterstützung nur für *veröffentlichte* Apps aktiviert. 
 
 > [!WARNING]
-> Wenn Sie eine offlinefähige PWA verteilen möchten, müssen Sie [einige wichtige Warnungen und Einschränkungen berücksichtigen](#caveats-for-offline-pwas). Diese Szenarios gelten allgemein für Offline-PWAs und sind nicht auf [Blazor beschränkt. Sie müssen diese Einschränkungen lesen und verstehen, bevor Sie Vermutungen über die Funktionsweise der offlinefähigen App anstellen.
+> Wenn Sie eine offlinefähige PWA verteilen möchten, müssen Sie [einige wichtige Warnungen und Einschränkungen berücksichtigen](#caveats-for-offline-pwas). Diese Szenarios gelten allgemein für Offline-PWAs und sind nicht auf Blazor beschränkt. Sie müssen diese Einschränkungen lesen und verstehen, bevor Sie Vermutungen über die Funktionsweise der offlinefähigen App anstellen.
 
 So erfahren Sie, wie die Offlineunterstützung funktioniert:
 
@@ -108,9 +110,9 @@ So erfahren Sie, wie die Offlineunterstützung funktioniert:
 
    ![Registerkarte „Netzwerk“ in den Entwicklertools von Google Chrome mit der Änderung des Dropdownfelds für den Browsermodus von „Online“ in „Offline“](progressive-web-app/_static/image6.png)
 
-Die Offlineunterstützung mit einem Service Worker ist ein Webstandard, der nicht spezifisch für [Blazor gilt. Weitere Informationen über Service Worker finden Sie unter [MDN Web Docs: Service Worker API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API). Weitere Informationen über gängige Nutzungsmuster für Service Worker finden Sie unter [Google Web: The Service Worker Lifecycle (Google Web: Service Worker-Lebenszyklus)](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle).
+Die Offlineunterstützung mit einem Service Worker ist ein Webstandard, der nicht spezifisch für Blazor gilt. Weitere Informationen über Service Worker finden Sie unter [MDN Web Docs: Service Worker API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API). Weitere Informationen über gängige Nutzungsmuster für Service Worker finden Sie unter [Google Web: The Service Worker Lifecycle (Google Web: Service Worker-Lebenszyklus)](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle).
 
-Die PWA-Vorlage von [Blazor erzeugt zwei Service-Worker-Dateien:
+Die PWA-Vorlage von Blazor erzeugt zwei Service-Worker-Dateien:
 
 * `wwwroot/service-worker.js`, die während der Entwicklung verwendet wird.
 * `wwwroot/service-worker.published.js`, die nach der Veröffentlichung der App verwendet wird.
@@ -139,7 +141,7 @@ Die Cache-First-Strategie hat folgende Vorteile:
 
 Sie können sich das Verhalten einer Offline-First-PWA wie das einer mobilen App vorstellen, die installiert werden kann. Die App wird unabhängig von der Netzwerkkonnektivität immer sofort gestartet, die installierte App-Logik stammt jedoch aus einer Zeitpunkt-Momentaufnahme, die möglicherweise nicht die neueste Version ist.
 
-Mit der [Blazor-PWA-Vorlage werden Apps erstellt, die immer automatisch versuchen, sich im Hintergrund zu aktualisieren, wenn sie vom Benutzer besucht werden und eine funktionsfähige Netzwerkverbindung besteht. Dies geschieht auf folgende Weise:
+Mit der Blazor-PWA-Vorlage werden Apps erstellt, die immer automatisch versuchen, sich im Hintergrund zu aktualisieren, wenn sie vom Benutzer besucht werden und eine funktionsfähige Netzwerkverbindung besteht. Dies geschieht auf folgende Weise:
 
 * Das Projekt generiert während der Kompilierung ein *Service Worker-Assetmanifest*. Das wird standardmäßig `service-worker-assets.js` genannt. Das Manifest führt alle statischen Ressourcen auf, die die App benötigt, um offline zu funktionieren, z. B. .NET-Assemblys, JavaScript-Dateien und CSS, einschließlich ihrer Inhaltshashs. Diese Ressourcenliste wird vom Service Worker geladen, damit er weiß, welche Ressourcen zwischengespeichert werden sollen.
 * Jedes Mal, wenn der Benutzer die App aufruft, fordert der Browser die Dateien `service-worker.js` und `service-worker-assets.js` im Hintergrund erneut an. Die Dateien werden Byte für Byte mit dem vorhandenen installierten Service Worker verglichen. Wenn der Server geänderte Inhalte für eine dieser Dateien zurückgibt, versucht der Service Worker, eine neue Version zu installieren.
@@ -147,24 +149,24 @@ Mit der [Blazor-PWA-Vorlage werden Apps erstellt, die immer automatisch versuche
 * Der Prozess wird erfolgreich abgeschlossen, wenn alle Ressourcen ohne Fehler geladen werden und alle Inhaltshashs übereinstimmen. Nach erfolgreicher Installation geht der neue Service Worker in den Zustand *waiting for activation* (Auf Aktivierung warten) über. Sobald der Benutzer die App schließt (keine Registerkarten oder Fenster der App verbleiben), wird der neue Service Worker *aktiv* und für nachfolgende Aufrufe der App verwendet. Der alte Service Worker und der zugehörige Cache werden gelöscht.
 * Wenn der Prozess nicht erfolgreich abgeschlossen wird, wird die neue Service Worker-Instanz verworfen. Der Updateprozess wird dann beim nächsten Aufruf durch den Benutzer wieder versucht. Dann sollte der Client im Idealfall über eine bessere Netzwerkverbindung verfügen, um die Anforderungen zu erfüllen.
 
-Sie können diesen Prozess anpassen, indem Sie die Service Worker-Logik bearbeiten. Keines der zuvor beschriebenen Verhalten gilt spezifisch für [Blazor, es handelt sich dabei lediglich um die Standardfunktionsweise der PWA-Vorlagenoption. Weitere Informationen finden Sie unter [MDN Web Docs: Service Worker API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API).
+Sie können diesen Prozess anpassen, indem Sie die Service Worker-Logik bearbeiten. Keines der zuvor beschriebenen Verhalten gilt spezifisch für Blazor, es handelt sich dabei lediglich um die Standardfunktionsweise der PWA-Vorlagenoption. Weitere Informationen finden Sie unter [MDN Web Docs: Service Worker API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API).
 
 ### <a name="how-requests-are-resolved"></a>Auflösen von Anforderungen
 
 Wie im Abschnitt [Cache-First-Abrufstrategie](#cache-first-fetch-strategy) beschrieben verwendet der Standard-Service Worker eine *Cache-First-Strategie*, d. h., er versucht zwischengespeicherte Inhalte bereitzustellen, wenn diese verfügbar sind. Wenn für eine bestimmte URL kein Inhalt zwischengespeichert ist, z. B., wenn Daten von einer Back-End-API angefordert werden, greif der Service Worker auf eine herkömmliche Netzwerkanforderung zurück. Die Netzwerkanforderung wird erfolgreich durchgeführt, wenn der Server erreichbar ist. Diese Logik ist in der `onFetch`-Funktion in der Datei `service-worker.published.js` implementiert.
 
-Wenn die [Razor-Komponenten der App Daten von Back-End-APIs anfordern müssen und Sie ein benutzerfreundliches Verfahren für fehlgeschlagene Anforderungen bei nicht verfügbarer Netzwerkverbindung anbieten möchten, können Sie die Logik innerhalb der App-Komponenten implementieren. Schließen Sie z. B. <xref:System.Net.Http.HttpClient>-Anforderungen in `try/catch` ein.
+Wenn die Razor-Komponenten der App Daten von Back-End-APIs anfordern müssen und Sie ein benutzerfreundliches Verfahren für fehlgeschlagene Anforderungen bei nicht verfügbarer Netzwerkverbindung anbieten möchten, können Sie die Logik innerhalb der App-Komponenten implementieren. Schließen Sie z. B. <xref:System.Net.Http.HttpClient>-Anforderungen in `try/catch` ein.
 
 ### <a name="support-server-rendered-pages"></a>Unterstützung von auf dem Server gerenderten Seiten
 
-Beachten Sie, was geschieht, wenn der Benutzer zuerst eine URL (z. B. `/counter`) oder einen anderen Deep-Link in der App aufruft. In diesen Fällen sollen keine Inhalte zurückgegeben werden, die als `/counter` zwischengespeichert sind. Stattdessen muss der Browser als `/index.html` zwischengespeicherte Inhalte laden, um die [Blazor WebAssembly-App zu starten. Diese anfänglichen Anforderungen werden als *Navigationsanforderungen* bezeichnet. Außerdem gibt es:
+Beachten Sie, was geschieht, wenn der Benutzer zuerst eine URL (z. B. `/counter`) oder einen anderen Deep-Link in der App aufruft. In diesen Fällen sollen keine Inhalte zurückgegeben werden, die als `/counter` zwischengespeichert sind. Stattdessen muss der Browser als `/index.html` zwischengespeicherte Inhalte laden, um die Blazor WebAssembly-App zu starten. Diese anfänglichen Anforderungen werden als *Navigationsanforderungen* bezeichnet. Außerdem gibt es:
 
 * `subresource`-Anforderungen für Bilder, Stylesheets oder andere Dateien.
 * `fetch/XHR`-Anforderungen für API-Daten.
 
 Der Standard-Service-Worker enthält eine spezielle Logik für Navigationsanforderungen. Der Service Worker löst die Anforderungen auf, indem er den zwischengespeicherten Inhalt unabhängig von der angeforderten URL für `/index.html` zurückgibt. Diese Logik ist in der Funktion `onFetch` in `service-worker.published.js` implementiert.
 
-Wenn die App über bestimmte URLs verfügt, die auf dem Server gerendertes HTML zurückgeben müssen, ohne `/index.html` aus dem Cache bereitzustellen, müssen Sie die Logik im Service Worker bearbeiten. Wenn alle URLs, die `/[Identity/` enthalten, als reguläre Onlineanforderungen an den Server behandelt werden müssen, bearbeiten Sie die `onFetch`-Logik von `service-worker.published.js`. Suchen Sie den folgenden Code:
+Wenn die App über bestimmte URLs verfügt, die auf dem Server gerendertes HTML zurückgeben müssen, ohne `/index.html` aus dem Cache bereitzustellen, müssen Sie die Logik im Service Worker bearbeiten. Wenn alle URLs, die `/Identity/` enthalten, als reguläre Onlineanforderungen an den Server behandelt werden müssen, bearbeiten Sie die `onFetch`-Logik von `service-worker.published.js`. Suchen Sie den folgenden Code:
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate';
@@ -174,14 +176,14 @@ const shouldServeIndexHtml = event.request.mode === 'navigate';
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate'
-    && !event.request.url.includes('/[Identity/');
+    && !event.request.url.includes('/Identity/');
 ```
 
 Wenn Sie dies nicht tun, fängt der Service Worker unabhängig von der Netzwerkkonnektivität Anforderungen für diese URLs ab und löst sie mithilfe von `/index.html` auf.
 
 ### <a name="control-asset-caching"></a>Steuern der Zwischenspeicherung von Ressourcen
 
-Wenn Ihr Projekt die MSBuild-Eigenschaft `ServiceWorkerAssetsManifest` definiert, erstellen die Buildtools von [Blazor ein Service Worker-Assetmanifest mit dem angegebenen Namen. Die PWA-Standardvorlage erzeugt eine Projektdatei, die die folgende Eigenschaft enthält:
+Wenn Ihr Projekt die MSBuild-Eigenschaft `ServiceWorkerAssetsManifest` definiert, erstellen die Buildtools von Blazor ein Service Worker-Assetmanifest mit dem angegebenen Namen. Die PWA-Standardvorlage erzeugt eine Projektdatei, die die folgende Eigenschaft enthält:
 
 ```xml
 <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
@@ -191,10 +193,10 @@ Die Datei wird in das Ausgabeverzeichnis `wwwroot` eingefügt, sodass sie vom Br
 
 Standardmäßig wird in diesem Manifest Folgendes aufgeführt:
 
-* Alle von [Blazor verwalteten Ressourcen, z. B. .NET-Assemblys und die .NET-WebAssembly-Runtimedateien, die für die Offlineausführung erforderlich sind
+* Alle von Blazor verwalteten Ressourcen, z. B. .NET-Assemblys und die .NET-WebAssembly-Runtimedateien, die für die Offlineausführung erforderlich sind
 * Alle Ressourcen für die Veröffentlichung im `wwwroot`-Verzeichnis, z. B. Bilder, Stylesheets und JavaScript-Dateien, einschließlich der statischen Webressourcen, die von externen Projekten und NuGet-Paketen bereitgestellt werden.
 
-Sie können steuern, welche dieser Ressourcen vom Service Worker abgerufen und zwischengespeichert werden, indem Sie die Logik in `onInstall` in `service-worker.published.js` bearbeiten. Der Service Worker ruft Dateien standardmäßig entsprechend der üblichen Erweiterungen für Webdateinamen ab und speichert diese zwischen, z. B. `.html`, `.css`, `.js` und `.wasm`, zuzüglich Dateitypen, die für die [Blazor WebAssembly (`.dll`, `.pdb`) typisch sind.
+Sie können steuern, welche dieser Ressourcen vom Service Worker abgerufen und zwischengespeichert werden, indem Sie die Logik in `onInstall` in `service-worker.published.js` bearbeiten. Der Service Worker ruft Dateien standardmäßig entsprechend der üblichen Erweiterungen für Webdateinamen ab und speichert diese zwischen, z. B. `.html`, `.css`, `.js` und `.wasm`, zuzüglich Dateitypen, die für die Blazor WebAssembly (`.dll`, `.pdb`) typisch sind.
 
 Definieren Sie zusätzliche `ItemGroup`-MSBuild-Einträge wie im folgenden Beispiel gezeigt, um zusätzliche Ressourcen einzufügen, die nicht im `wwwroot`-Verzeichnis der App vorhanden sind:
 
@@ -212,11 +214,11 @@ Die `AssetUrl`-Metadaten geben die zur Basis relative URL an, die der Browser be
 
 ## <a name="push-notifications"></a>Pushbenachrichtigungen
 
-Eine [Blazor WebAssembly-PWA kann wie jede andere PWA Pushbenachrichtigungen von einem Back-End-Server empfangen. Der Server kann jederzeit Pushbenachrichtigungen senden, auch wenn der Benutzer die App nicht aktiv verwendet. Beispielsweise können Pushbenachrichtigungen gesendet werden, wenn ein anderer Benutzer eine relevante Aktion ausführt.
+Eine Blazor WebAssembly-PWA kann wie jede andere PWA Pushbenachrichtigungen von einem Back-End-Server empfangen. Der Server kann jederzeit Pushbenachrichtigungen senden, auch wenn der Benutzer die App nicht aktiv verwendet. Beispielsweise können Pushbenachrichtigungen gesendet werden, wenn ein anderer Benutzer eine relevante Aktion ausführt.
 
-Der Mechanismus zum Senden einer Pushbenachrichtigung ist vollständig unabhängig von der [Blazor WebAssembly, da er vom Back-End-Server implementiert wird, und dieser kann eine beliebige Technologie verwenden. Wenn Sie Pushbenachrichtigungen von einem ASP.NET Core-Server senden möchten, sollten Sie [ein ähnliches Verfahren wie beim Blazing Pizza-Workshop](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#sending-push-notifications) verwenden.
+Der Mechanismus zum Senden einer Pushbenachrichtigung ist vollständig unabhängig von der Blazor WebAssembly, da er vom Back-End-Server implementiert wird, und dieser kann eine beliebige Technologie verwenden. Wenn Sie Pushbenachrichtigungen von einem ASP.NET Core-Server senden möchten, sollten Sie [ein ähnliches Verfahren wie beim Blazing Pizza-Workshop](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#sending-push-notifications) verwenden.
 
-Der Mechanismus zum Empfangen und Anzeigen einer Pushbenachrichtigung auf dem Client hängt nicht von der [Blazor WebAssembly ab, da er in der JavaScript-Datei vom Service Worker implementiert ist. Ein Beispiel finden Sie im [Verfahren des Blazing Pizza-Workshops](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#displaying-notifications).
+Der Mechanismus zum Empfangen und Anzeigen einer Pushbenachrichtigung auf dem Client hängt nicht von der Blazor WebAssembly ab, da er in der JavaScript-Datei vom Service Worker implementiert ist. Ein Beispiel finden Sie im [Verfahren des Blazing Pizza-Workshops](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#displaying-notifications).
 
 ## <a name="caveats-for-offline-pwas"></a>Einschränkungen für Offline-PWAs
 
@@ -232,7 +234,7 @@ Offlinefähige PWAs müssen zudem eine Reihe zusätzlicher Komplikationen bewäl
 
 ### <a name="offline-support-only-when-published"></a>Offlineunterstützung nur bei Veröffentlichung
 
-Während der Entwicklung möchten Sie Änderungen in der Regel sofort im Browser sehen, ohne einen Updateprozess im Hintergrund zu durchlaufen. Daher aktiviert die PWA-Vorlage von [Blazor die Offlineunterstützung nur, wenn die App veröffentlicht wird.
+Während der Entwicklung möchten Sie Änderungen in der Regel sofort im Browser sehen, ohne einen Updateprozess im Hintergrund zu durchlaufen. Daher aktiviert die PWA-Vorlage von Blazor die Offlineunterstützung nur, wenn die App veröffentlicht wird.
 
 Beim Erstellen eine offlinefähigen App reicht es nicht aus, die App in der Entwicklungsumgebung zu testen. Sie müssen die App im veröffentlichten Zustand testen, um zu verstehen, wie sie auf verschiedene Netzwerkbedingungen reagiert.
 
@@ -240,7 +242,7 @@ Beim Erstellen eine offlinefähigen App reicht es nicht aus, die App in der Entw
 
 Updates werden erst abgeschlossen, wenn der Benutzer die App auf allen Registerkarten verlassen hat. Nach der Bereitstellung eines Updates für die App, ruft der Browser die aktualisierten Service Worker-Dateien wie im Abschnitt [Hintergrundupdates](#background-updates) beschrieben ab, um den Updateprozess einzuleiten.
 
-Viele Entwickler wissen nicht, dass das Update nach seinem Abschluss **erst dann** wirksam wird, wenn die Anwendung auf allen Registerkarten vom Benutzer verlassen wurde. Es reicht **nicht** aus, die Registerkarte zu aktualisieren, auf der die App angezeigt wird, selbst wenn dies die einzige Registerkarte ist, auf der sie angezeigt wird. Bis Ihre App vollständig geschlossen wurde, weist der neue Service Worker den Zustand *waiting to activate* (Auf Aktivierung warten) auf. **Dies ist nicht auf [Blazor beschränkt, sondern ein Standardverhalten von Webplattformen.**
+Viele Entwickler wissen nicht, dass das Update nach seinem Abschluss **erst dann** wirksam wird, wenn die Anwendung auf allen Registerkarten vom Benutzer verlassen wurde. Es reicht **nicht** aus, die Registerkarte zu aktualisieren, auf der die App angezeigt wird, selbst wenn dies die einzige Registerkarte ist, auf der sie angezeigt wird. Bis Ihre App vollständig geschlossen wurde, weist der neue Service Worker den Zustand *waiting to activate* (Auf Aktivierung warten) auf. **Dies ist nicht auf Blazor beschränkt, sondern ein Standardverhalten von Webplattformen.**
 
 Dies bereitet häufig Entwicklern Probleme, die versuchen, Updates des Service Worker oder von offline zwischengespeicherten Ressourcen zu testen. Wenn Sie die Entwicklertools Ihres Browsers überprüfen, wird möglicherweise Folgendes angezeigt:
 
@@ -297,4 +299,4 @@ Die Beispiel-App [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) 
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
-* [Ursprungsübergreifende [SignalR-Aushandlung für die Authentifizierung](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
+* [Ursprungsübergreifende SignalR-Aushandlung für die Authentifizierung](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)

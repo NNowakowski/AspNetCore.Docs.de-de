@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/06/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/app-state
-ms.openlocfilehash: 30123e043a7c152b5719af8092b2ab42a70d2787
-ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
+ms.openlocfilehash: c05129c0f239fb28c83ab1c561dd910305eeb54b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/15/2020
-ms.locfileid: "86407618"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017635"
 ---
 # <a name="session-and-state-management-in-aspnet-core"></a>Sitzungs- und Zustandsverwaltung in ASP.NET Core
 
@@ -37,23 +39,23 @@ Zustände können mithilfe mehrerer Ansätze gespeichert werden. Die Ansätze we
 
 | Speicheransatz | Speichermechanismus |
 | ---------------- | ----------------- |
-| [Cookies](#cookies) | HTTP-Cookies. Schließt möglicherweise Daten ein, die mit serverseitigem App-Code gespeichert wurden. |
-| [Sitzungszustand](#session-state) | HTTP-Cookies und serverseitiger App-Code |
-| [TempData](#tempdata) | HTTP-Cookies oder Sitzungszustand |
+| [Cookies](#cookies) | HTTP-cookies. Schließt möglicherweise Daten ein, die mit serverseitigem App-Code gespeichert wurden. |
+| [Sitzungszustand](#session-state) | HTTP-cookies und serverseitiger App-Code |
+| [TempData](#tempdata) | HTTP-cookies oder Sitzungszustand |
 | [Abfragezeichenfolgen](#query-strings) | HTTP-Abfragezeichenfolgen |
 | [Verborgene Felder](#hidden-fields) | HTTP-Formularfelder |
 | [HttpContext.Items](#httpcontextitems) | Serverseitiger App-Code |
 | [Cache](#cache) | Serverseitiger App-Code |
 
-## <a name="cookies"></a>Cookies
+## <a name="no-loccookies"></a>Cookie
 
-Cookies speichern Daten anforderungsübergreifend. Da mit jeder Anforderung Cookies gesendet werden, sollte deren Größe auf ein Minimum begrenzt sein. Idealerweise sollte nur ein Bezeichner in einem Cookie gespeichert werden, während die Daten von der App gespeichert werden sollten. Die meisten Browser beschränken die Größe von Cookies auf 4096 Byte. Nur eine begrenzte Anzahl von Cookies ist für jede Domäne verfügbar.
+Cookies speichern Daten anforderungsübergreifend. Da mit jeder Anforderung cookies gesendet werden, sollte deren Größe auf ein Minimum begrenzt sein. Idealerweise sollte nur ein Bezeichner in einem cookie gespeichert werden, während die Daten von der App gespeichert werden sollten. Die meisten Browser beschränken die Größe von cookies auf 4096 Byte. Nur eine begrenzte Anzahl von cookies ist für jede Domäne verfügbar.
 
-Da Cookies manipuliert werden können, müssen sie von der App überprüft werden. Cookies können von Benutzern gelöscht werden und können auf Clients ablaufen. Cookies sind für gewöhnlich die dauerhafteste Form der Datenpersistenz auf dem Client.
+Da cookies manipuliert werden können, müssen sie von der App überprüft werden. Cookies können von Benutzern gelöscht werden und können auf Clients ablaufen. cookies sind für gewöhnlich die dauerhafteste Form der Datenpersistenz auf dem Client.
 
-Cookies werden häufig aus Personalisierungsgründen verwendet, wenn Inhalt für einen bekannten Benutzer angepasst wird. In den meisten Fällen wird der Benutzer nur identifiziert und nicht authentifiziert. Das Cookie kann den Benutzernamen, Kontonamen oder eine eindeutige Benutzer-ID wie die GUID speichern. Dann können Sie mit dem Cookie auf die persönlichen Einstellungen (z. B. die bevorzugte Farbe des Websitehintergrunds) des Benutzers zugreifen.
+Cookies werden häufig aus Personalisierungsgründen verwendet, wenn Inhalt für einen bekannten Benutzer angepasst wird. In den meisten Fällen wird der Benutzer nur identifiziert und nicht authentifiziert. Das cookie kann den Benutzernamen, Kontonamen oder eine eindeutige Benutzer-ID wie die GUID speichern. Dann können Sie mit dem cookie auf die persönlichen Einstellungen (z. B. die bevorzugte Farbe des Websitehintergrunds) des Benutzers zugreifen.
 
-Beachten Sie die [Europäische Datenschutz-Grundverordnung (DSGVO)](https://ec.europa.eu/info/law/law-topic/data-protection) beim Ausstellen von Cookies und beim Umgang mit Aspekten des Datenschutzes. Weitere In finden Sie unter [General Data Protection Regulation (GDPR) support in ASP.NET Core (DSGVO-Unterstützung in ASP.NET Core)](xref:security/gdpr).
+Beachten Sie die [Europäische Datenschutz-Grundverordnung (DSGVO)](https://ec.europa.eu/info/law/law-topic/data-protection) beim Ausstellen von cookies und beim Umgang mit Aspekten des Datenschutzes. Weitere In finden Sie unter [General Data Protection Regulation (GDPR) support in ASP.NET Core (DSGVO-Unterstützung in ASP.NET Core)](xref:security/gdpr).
 
 ## <a name="session-state"></a>Sitzungszustand
 
@@ -61,7 +63,7 @@ Der Sitzungszustand ist ein Szenario in ASP.NET Core zum Speichern von Benutzerd
 
 Sitzungen werden in [SignalRSignalR-Apps nicht unterstützt, da ein ](xref:signalr/index)[-Hub](xref:signalr/hubs) unabhängig vom HTTP-Kontext ausgeführt werden kann. Das kann z.B. passieren, wenn eine lange Abrufanforderung von einem Hub länger als die Lebensdauer des HTTP-Kontexts einer Anforderung offen gehalten wird.
 
-ASP.NET Core verwaltet den Sitzungszustand, indem ein Cookie an den Client übergeben wird, das die Sitzungs-ID enthält. Folgendes gilt für die Cookie-Sitzungs-ID:
+ASP.NET Core verwaltet den Sitzungszustand, indem ein cookie an den Client übergeben wird, das die Sitzungs-ID enthält. Die Sitzungscookie-ID:
 
 * Sie wird mit jeder Anforderung an die App gesendet.
 * Sie wird von der App zum Abrufen der Sitzungsdaten verwendet.
@@ -70,7 +72,7 @@ Der Sitzungszustand verhält sich wie folgt:
 
 * Das Sitzungscookie ist für den Browser spezifisch. Die Sitzungen werden nicht browserübergreifend geteilt.
 * Sitzungscookies werden gelöscht, wenn die Browsersitzung abläuft.
-* Wenn für eine abgelaufene Sitzung ein Cookie empfangen wird, wird eine neue Sitzung erstellt, die dasselbe Cookie verwendet.
+* Wenn für eine abgelaufene Sitzung ein cookie empfangen wird, wird eine neue Sitzung erstellt, die dasselbe cookie verwendet.
 * Leere Sitzungen werden nicht beibehalten. Für die Sitzung muss mindestens ein Wert festgelegt sein, damit die Sitzung anforderungsübergreifend beibehalten wird. Wenn eine Sitzung nicht beibehalten wird, wird eine neue Sitzungs-ID für jede neue Anforderung erzeugt.
 * Die App speichert Sitzungen für einen beschränkten Zeitraum nach der letzten Anforderung. Die App legt entweder ein Zeitlimit für die Sitzungen fest oder verwendet den Standardwert von 20 Minuten. Der Sitzungszustand ist ideal zum Speichern von Benutzerdaten:
   * Das ist spezifisch für eine bestimmte Sitzung.
@@ -126,17 +128,17 @@ Verwenden Sie <xref:Microsoft.AspNetCore.Builder.SessionOptions>, um Standardwer
 
 | Option | Beschreibung |
 | ------ | ----------- |
-| <xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie> | Bestimmt die Einstellungen, die zum Erstellen des Cookies verwendet wurden. Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name> ist <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName?displayProperty=nameWithType> (`.AspNetCore.Session`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.Path> ist <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath?displayProperty=nameWithType> (`/`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite> ist <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType> (`1`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> ist `true`. Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> ist `false`. |
-| <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> | `IdleTimeout` gibt an, wie lang die Sitzung sich im Leerlauf befinden darf, bevor die Inhalte verworfen werden. Jeder Zugriff auf eine Sitzung setzt das Zeitlimit zurück. Diese Einstellung gilt nur für den Inhalt der Sitzung und nicht für den Cookie. Der Standardwert beträgt 20 Minuten. |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie> | Bestimmt die Einstellungen, die zum Erstellen des cookies verwendet wurden. Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name> ist <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName?displayProperty=nameWithType> (`.AspNetCore.Session`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.Path> ist <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath?displayProperty=nameWithType> (`/`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite> ist <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType> (`1`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> ist `true`. Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> ist `false`. |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> | `IdleTimeout` gibt an, wie lang die Sitzung sich im Leerlauf befinden darf, bevor die Inhalte verworfen werden. Jeder Zugriff auf eine Sitzung setzt das Zeitlimit zurück. Diese Einstellung gilt nur für den Inhalt der Sitzung und nicht für das cookie. Der Standardwert beträgt 20 Minuten. |
 | <xref:Microsoft.AspNetCore.Builder.SessionOptions.IOTimeout> | Der maximale Zeitraum, in dem eine Sitzung aus dem Speicher geladen oder mithilfe eines Commits erneut in diesem hinterlegt werden kann. Diese Einstellung gilt möglicherweise nur für asynchrone Vorgänge. Dieses Zeitlimit kann mit <xref:System.Threading.Timeout.InfiniteTimeSpan> deaktiviert werden. Der Standardwert beträgt 1&#160;Minute. |
 
-Die Sitzung verwendet ein Cookie, um Anforderungen eines Browsers nachzuverfolgen und zu identifizieren. Standardmäßig wird das Cookie `.AspNetCore.Session` genannt und verwendet den Pfad von `/`. Da die Standardeinstellungen des Cookies keine Domäne festlegen, wird es dem clientseitigen Skript auf der Seite nicht zur Verfügung gestellt (da <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> standardmäßig auf `true` festgelegt ist).
+Die Sitzung verwendet ein cookie, um Anforderungen eines Browsers nachzuverfolgen und zu identifizieren. Standardmäßig wird das cookie `.AspNetCore.Session` genannt und verwendet den Pfad von `/`. Da die Standardeinstellungen des cookies keine Domäne festlegen, wird es dem clientseitigen Skript auf der Seite nicht zur Verfügung gestellt (da <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> standardmäßig auf `true` festgelegt ist).
 
-Verwenden Sie <xref:Microsoft.AspNetCore.Builder.SessionOptions>, um Standardwerte für Sitzungscookies zu überschreiben:
+Verwenden Sie <xref:Microsoft.AspNetCore.Builder.SessionOptions>, um Standardwerte für cookiesitzungen zu überschreiben.
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Startup2.cs?name=snippet1&highlight=5-10)]
 
-Die App verwendet die <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout>-Eigenschaft, um zu bestimmen, wie lange sich eine Sitzung im Leerlauf befinden darf, bevor ihre Inhalte im Cache des Servers verworfen werden. Diese Eigenschaft ist unabhängig vom Ablauf der Cookies. Jede Anforderung, die über die [Sitzungsmiddleware](xref:Microsoft.AspNetCore.Session.SessionMiddleware) übergeben wird, setzt das Zeitlimit zurück.
+Die App verwendet die <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout>-Eigenschaft, um zu bestimmen, wie lange sich eine Sitzung im Leerlauf befinden darf, bevor ihre Inhalte im Cache des Servers verworfen werden. Diese Eigenschaft ist unabhängig vom Ablauf der cookies. Jede Anforderung, die über die [Sitzungsmiddleware](xref:Microsoft.AspNetCore.Session.SessionMiddleware) übergeben wird, setzt das Zeitlimit zurück.
 
 Der Sitzungszustand ist *nicht sperrend*. Die letzte Anforderung überschreibt die erste, wenn zwei Anforderungen gleichzeitig versuchen, die Inhalte einer Sitzung zu bearbeiten. `Session` wird als *kohärente Sitzung* implementiert, d.h., dass alle Inhalte zusammen gespeichert werden. Wenn zwei Anforderungen unterschiedliche Sitzungswerte bearbeiten möchten, überschreibt die letzte Anforderung möglicherweise Anforderungen der ersten.
 
@@ -185,7 +187,7 @@ Im folgenden Beispiel wird dargestellt, wie ein serialisierbares Objekt mit der 
 ASP.NET Core macht die Razor Pages-[TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) oder Controller-<xref:Microsoft.AspNetCore.Mvc.Controller.TempData> verfügbar. Diese Eigenschaft speichert Daten, bis sie in einer anderen Anforderung gelesen werden. Mit den Methoden [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) und [Peek(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) können die Daten untersucht werden, ohne am Ende der Anforderung gelöscht zu werden. [Keep](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) markiert alle Elemente im Wörterbuch für die Aufbewahrung. `TempData` ist:
 
 * Nützlich für die Umleitung, wenn Daten für mehr als eine einzelne Anforderung erforderlich sind.
-* Wird von `TempData`-Anbietern durch Verwendung von Cookies oder des Sitzungszustands implementiert.
+* Wird von `TempData`-Anbietern durch Verwendung von cookies oder des Sitzungszustands implementiert.
 
 ## <a name="tempdata-samples"></a>TempData-Beispiele
 
@@ -211,19 +213,19 @@ Der folgende Code zeigt `TempData["Message"]` an, aber am Ende der Anforderung w
 
 ### <a name="tempdata-providers"></a>TempData-Anbieter
 
-Der cookiebasierte TempData-Anbieter wird standardmäßig verwendet, um TempData in Cookies zu speichern.
+Der cookiebasierte TempData-Anbieter wird standardmäßig verwendet, um TempData in cookies zu speichern.
 
-Die Cookiedaten werden mit <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> verschlüsselt, mit <xref:Microsoft.AspNetCore.WebUtilities.Base64UrlTextEncoder> codiert und dann segmentiert. Die maximale Cookiegröße beträgt aufgrund von Verschlüsselung und Segmentierung weniger als [4096 Bytes](http://www.faqs.org/rfcs/rfc2965.html). Die Cookiedaten werden nicht komprimiert, da es zu Sicherheitsproblemen kommen kann, wenn Daten verschlüsselt werden, z.B. durch [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit))- und [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit))-Angriffe. Weitere Informationen zum cookiebasierten TempData-Anbieter finden Sie unter <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>.
+Die cookiedaten werden mit <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> verschlüsselt, mit <xref:Microsoft.AspNetCore.WebUtilities.Base64UrlTextEncoder> codiert und dann segmentiert. Die maximale cookiegröße beträgt aufgrund von Verschlüsselung und Segmentierung weniger als [4096 Bytes](http://www.faqs.org/rfcs/rfc2965.html). Die cookiedaten werden nicht komprimiert, da es zu Sicherheitsproblemen kommen kann, wenn Daten verschlüsselt werden, z. B. durch [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit))- und [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit))-Angriffe. Weitere Informationen zum cookiebasierten TempData-Anbieter finden Sie unter <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>.
 
 ### <a name="choose-a-tempdata-provider"></a>Auswählen eines TempData-Anbieters
 
 Bevor Sie einen TempData-Anbieter auswählen, müssen Sie folgende Überlegungen anstellen:
 
 * Verwendet die App bereits den Sitzungszustand? Falls dies der Fall ist, hat die Verwendung des TempData-Anbieters für den Sitzungszustand abgesehen von der Größe der Daten keine zusätzlichen Auswirkungen auf die App.
-* Verwendet die App TempData nur selten für verhältnismäßig kleine Datenmengen bis zu 500 Bytes? Falls dies der Fall ist, entsteht durch das Cookie des TempData-Anbieters nur ein kleiner zusätzlicher Aufwand für jede Anforderung, die TempData enthält. Falls dies nicht der Fall ist, kann der Sitzungszustand des TempData-Anbieters nützlich sein, um Roundtrips für große Datenmengen für jede Anforderung durchzuführen, bis TempData verarbeitet wird.
-* Wird die App in einer Serverfarm auf mehreren Servern ausgeführt? Wenn dies der Fall ist, ist keine weitere Konfiguration erforderlich, um das Cookie des TempData-Anbieters außerhalb des Schutzes von Daten zu verwenden (siehe <xref:security/data-protection/introduction> und [Schlüsselspeicheranbieter](xref:security/data-protection/implementation/key-storage-providers)).
+* Verwendet die App TempData nur selten für verhältnismäßig kleine Datenmengen bis zu 500 Bytes? Falls dies der Fall ist, entsteht durch das cookie des TempData-Anbieters nur ein kleiner zusätzlicher Aufwand für jede Anforderung, die TempData enthält. Falls dies nicht der Fall ist, kann der Sitzungszustand des TempData-Anbieters nützlich sein, um Roundtrips für große Datenmengen für jede Anforderung durchzuführen, bis TempData verarbeitet wird.
+* Wird die App in einer Serverfarm auf mehreren Servern ausgeführt? Wenn dies der Fall ist, ist keine weitere Konfiguration erforderlich, um das cookie des TempData-Anbieters außerhalb des Schutzes von Daten zu verwenden (weitere Informationen finden Sie unter <xref:security/data-protection/introduction> und [Schlüsselspeicheranbieter](xref:security/data-protection/implementation/key-storage-providers)).
 
-Die meisten Webclients (z. B. Webbrowser) erzwingen Einschränkungen für die maximale Größe der Cookies und für die Gesamtzahl der Cookies. Wenn Sie das Cookie des TempData-Anbieters verwenden, sollten Sie überprüfen, ob die App [diese Einschränkungen](http://www.faqs.org/rfcs/rfc2965.html) überschreitet. Beachten Sie die Gesamtgröße der Daten. Rechnen Sie mit erhöhter Cookiegröße aufgrund von Verschlüsselung und Segmentierung.
+Die meisten Webclients (z. B. Webbrowser) erzwingen Einschränkungen für die maximale Größe der cookies und für die Gesamtzahl der cookies. Wenn Sie das cookie des TempData-Anbieters verwenden, sollten Sie überprüfen, ob die App [diese Einschränkungen](http://www.faqs.org/rfcs/rfc2965.html) überschreitet. Beachten Sie die Gesamtgröße der Daten. Rechnen Sie mit erhöhter cookiegröße aufgrund von Verschlüsselung und Segmentierung.
 
 ### <a name="configure-the-tempdata-provider"></a>Konfigurieren des TempData-Anbieters
 
@@ -284,7 +286,7 @@ Die Middleware für Sitzungen kann eine Sitzung nicht aufrechterhalten, wenn der
 
 Es wird empfohlen, nach Fehlern zu suchen, indem Sie `await feature.Session.CommitAsync` aufrufen, wenn die App mit dem Schreiben in die Sitzung fertig ist. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> löst eine Ausnahme aus, wenn der Sicherungsspeicher nicht verfügbar ist. Wenn `CommitAsync` fehlschlägt, kann die App die Ausnahme verarbeiten. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*> wird unter den gleichen Bedingungen ausgelöst, wenn der Sicherungsspeicher nicht verfügbar ist.
   
-## <a name="signalr-and-session-state"></a>SignalR und Sitzungszustand
+## <a name="no-locsignalr-and-session-state"></a>SignalR und Sitzungszustand
 
 SignalR-Apps dürfen nicht den Sitzungszustand verwenden, um Informationen zu speichern. SignalR-Apps können Informationen je nach Verbindungszustand in `Context.Items` im Hub speichern. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
@@ -307,24 +309,24 @@ Zustände können mithilfe mehrerer Ansätze gespeichert werden. Die Ansätze we
 
 | Speicheransatz | Speichermechanismus |
 | ---------------- | ----------------- |
-| [Cookies](#cookies) | HTTP-Cookies (schließt möglicherweise Daten ein, die mit serverseitigem App-Code gespeichert wurden) |
-| [Sitzungszustand](#session-state) | HTTP-Cookies und serverseitiger App-Code |
-| [TempData](#tempdata) | HTTP-Cookies oder Sitzungszustand |
+| [Cookies](#cookies) | HTTP-cookies schließen möglicherweise Daten ein, die mit serverseitigem App-Code gespeichert wurden. |
+| [Sitzungszustand](#session-state) | HTTP-cookies und serverseitiger App-Code |
+| [TempData](#tempdata) | HTTP-cookies oder Sitzungszustand |
 | [Abfragezeichenfolgen](#query-strings) | HTTP-Abfragezeichenfolgen |
 | [Verborgene Felder](#hidden-fields) | HTTP-Formularfelder |
 | [HttpContext.Items](#httpcontextitems) | Serverseitiger App-Code |
 | [Cache](#cache) | Serverseitiger App-Code |
 | [Abhängigkeitsinjektion](#dependency-injection) | Serverseitiger App-Code |
 
-## <a name="cookies"></a>Cookies
+## <a name="no-loccookies"></a>Cookie
 
-Cookies speichern Daten anforderungsübergreifend. Da mit jeder Anforderung Cookies gesendet werden, sollte deren Größe auf ein Minimum begrenzt sein. Idealerweise sollte nur ein Bezeichner in einem Cookie gespeichert werden, während die Daten von der App gespeichert werden sollten. Die meisten Browser beschränken die Größe von Cookies auf 4096 Byte. Nur eine begrenzte Anzahl von Cookies ist für jede Domäne verfügbar.
+Cookies speichern Daten anforderungsübergreifend. Da mit jeder Anforderung cookies gesendet werden, sollte deren Größe auf ein Minimum begrenzt sein. Idealerweise sollte nur ein Bezeichner in einem cookie gespeichert werden, während die Daten von der App gespeichert werden sollten. Die meisten Browser beschränken die Größe von cookies auf 4096 Byte. Nur eine begrenzte Anzahl von cookies ist für jede Domäne verfügbar.
 
-Da Cookies manipuliert werden können, müssen sie von der App überprüft werden. Cookies können von Benutzern gelöscht werden und können auf Clients ablaufen. Cookies sind für gewöhnlich die dauerhafteste Form der Datenpersistenz auf dem Client.
+Da cookies manipuliert werden können, müssen sie von der App überprüft werden. Cookies können von Benutzern gelöscht werden und können auf Clients ablaufen. cookies sind für gewöhnlich die dauerhafteste Form der Datenpersistenz auf dem Client.
 
-Cookies werden häufig aus Personalisierungsgründen verwendet, wenn Inhalt für einen bekannten Benutzer angepasst wird. In den meisten Fällen wird der Benutzer nur identifiziert und nicht authentifiziert. Das Cookie kann den Benutzernamen, Kontonamen oder eine eindeutige Benutzer-ID (z.B. die GUID) speichern. Dann können Sie mit dem Cookie auf die persönlichen Einstellungen (z.B. die bevorzugte Farbe des Websitehintergrunds) des Benutzers zugreifen.
+Cookies werden häufig aus Personalisierungsgründen verwendet, wenn Inhalt für einen bekannten Benutzer angepasst wird. In den meisten Fällen wird der Benutzer nur identifiziert und nicht authentifiziert. Das cookie kann den Benutzernamen, Kontonamen oder eine eindeutige Benutzer-ID wie die GUID speichern. Dann können Sie mit dem cookie auf die persönlichen Einstellungen (z. B. die bevorzugte Farbe des Websitehintergrunds) des Benutzers zugreifen.
 
-Beachten Sie die [Europäische Datenschutz-Grundverordnung (DSGVO)](https://ec.europa.eu/info/law/law-topic/data-protection) beim Ausstellen von Cookies und beim Umgang mit Aspekten des Datenschutzes. Weitere In finden Sie unter [General Data Protection Regulation (GDPR) support in ASP.NET Core (DSGVO-Unterstützung in ASP.NET Core)](xref:security/gdpr).
+Beachten Sie die [Europäische Datenschutz-Grundverordnung (DSGVO)](https://ec.europa.eu/info/law/law-topic/data-protection) beim Ausstellen von cookies und beim Umgang mit Aspekten des Datenschutzes. Weitere In finden Sie unter [General Data Protection Regulation (GDPR) support in ASP.NET Core (DSGVO-Unterstützung in ASP.NET Core)](xref:security/gdpr).
 
 ## <a name="session-state"></a>Sitzungszustand
 
@@ -333,18 +335,18 @@ Der Sitzungszustand ist ein Szenario in ASP.NET Core zum Speichern von Benutzerd
 > [!NOTE]
 > Sitzungen werden in [SignalRSignalR-Apps nicht unterstützt, da ein ](xref:signalr/index)[-Hub](xref:signalr/hubs) unabhängig vom HTTP-Kontext ausgeführt werden kann. Das kann z.B. passieren, wenn eine lange Abrufanforderung von einem Hub länger als die Lebensdauer des HTTP-Kontexts einer Anforderung offen gehalten wird.
 
-ASP.NET Core verwaltet den Sitzungszustand, indem ein Cookie an den Client übergeben wird, das die Sitzungs-ID enthält, die mit jeder Anforderung an den Server gesendet wird. Die App verwendet die Sitzungs-ID, um die Sitzungsdaten abzurufen.
+ASP.NET Core verwaltet den Sitzungszustand, indem ein cookie an den Client übergeben wird, das die Sitzungs-ID enthält, die mit jeder Anforderung an den Server gesendet wird. Die App verwendet die Sitzungs-ID, um die Sitzungsdaten abzurufen.
 
 Der Sitzungszustand verhält sich wie folgt:
 
 * Da das Sitzungscookie browserspezifisch ist, können Sitzungen nicht für mehrere Browser gleichzeitig verwendet werden.
 * Sitzungscookies werden gelöscht, wenn die Browsersitzung abläuft.
-* Wenn für eine abgelaufene Sitzung ein Cookie empfangen wird, wird eine neue Sitzung erstellt, die dasselbe Cookie verwendet.
+* Wenn für eine abgelaufene Sitzung ein cookie empfangen wird, wird eine neue Sitzung erstellt, die dasselbe cookie verwendet.
 * Leere Sitzungen werden nicht beibehalten. Die Sitzung muss mindestens einen Wert enthalten, damit die Sitzung anforderungsübergreifend beibehalten wird. Wenn eine Sitzung nicht beibehalten wird, wird eine neue Sitzungs-ID für jede neue Anforderung erzeugt.
 * Die App speichert Sitzungen für einen beschränkten Zeitraum nach der letzten Anforderung. Die App legt entweder ein Zeitlimit für die Sitzungen fest oder verwendet den Standardwert von 20 Minuten. Der Sitzungszustand eignet sich ideal zum Speichern von Benutzerdaten, die für eine bestimmte Sitzung zwar wichtig sind, die jedoch nicht dauerhaft sitzungsübergreifend gespeichert werden müssen.
 * Sitzungsdaten werden gelöscht, wenn die Implementierung von <xref:Microsoft.AspNetCore.Http.ISession.Clear%2A?displayProperty=nameWithType> aufgerufen wird oder wenn die Sitzung abläuft.
 * Es gibt kein Standardverfahren, wie App-Code darüber informiert wird, dass ein Clientbrowser geschlossen wurde oder dass ein Sitzungscookie gelöscht wurde oder auf dem Client abgelaufen ist.
-* Die Vorlagen für ASP.NET Core MVC- und Razor Pages bieten Unterstützung für die Datenschutz-Grundverordnung (DSGVO). Sitzungsstatuscookies werden nicht standardmäßig als wichtig markiert, sodass der Sitzungsstatus erst dann eine Funktion hat, wenn der Besucher der Website die Nachverfolgung zulässt. Weitere Informationen finden Sie unter <xref:security/gdpr#tempdata-provider-and-session-state-cookies-arent-essential>.
+* Die Vorlagen für ASP.NET Core MVC- und Razor Pages bieten Unterstützung für die Datenschutz-Grundverordnung (DSGVO). Sitzungsstatuscookie werden nicht standardmäßig als wichtig markiert, sodass der Sitzungsstatus erst dann eine Funktion hat, wenn der Besucher der Website die Nachverfolgung zulässt. Weitere Informationen finden Sie unter <xref:security/gdpr#tempdata-provider-and-session-state-cookies-arent-essential>.
 
 > [!WARNING]
 > Speichern Sie keine vertraulichen Daten im Sitzungszustand. Es besteht die Möglichkeit, dass der Benutzer seinen Browser nicht schließt oder die Sitzungscookies nicht löscht. Einige Browser behalten gültige Sitzungscookies browserfensterübergreifend bei. Eine Sitzung ist möglicherweise nicht nur auf einen Benutzer beschränkt, sodass der nächste Benutzer dasselbe Sitzungscookie verwendet.
@@ -386,17 +388,17 @@ Verwenden Sie <xref:Microsoft.AspNetCore.Builder.SessionOptions>, um Standardwer
 
 | Option | Beschreibung |
 | ------ | ----------- |
-| <xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie> | Bestimmt die Einstellungen, die zum Erstellen des Cookies verwendet wurden. Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name> ist <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName?displayProperty=nameWithType> (`.AspNetCore.Session`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.Path> ist <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath?displayProperty=nameWithType> (`/`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite> ist <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType> (`1`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> ist `true`. Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> ist `false`. |
-| <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> | `IdleTimeout` gibt an, wie lang die Sitzung sich im Leerlauf befinden darf, bevor die Inhalte verworfen werden. Jeder Zugriff auf eine Sitzung setzt das Zeitlimit zurück. Diese Einstellung gilt nur für den Inhalt der Sitzung, nicht für das Cookie. Der Standardwert beträgt 20 Minuten. |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie> | Bestimmt die Einstellungen, die zum Erstellen des cookies verwendet wurden. Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name> ist <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName?displayProperty=nameWithType> (`.AspNetCore.Session`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.Path> ist <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath?displayProperty=nameWithType> (`/`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite> ist <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType> (`1`). Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> ist `true`. Der Standardwert von <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> ist `false`. |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> | `IdleTimeout` gibt an, wie lang die Sitzung sich im Leerlauf befinden darf, bevor die Inhalte verworfen werden. Jeder Zugriff auf eine Sitzung setzt das Zeitlimit zurück. Diese Einstellung gilt nur für den Inhalt der Sitzung und nicht für das cookie. Der Standardwert beträgt 20 Minuten. |
 | <xref:Microsoft.AspNetCore.Builder.SessionOptions.IOTimeout> | Der maximale Zeitraum, in dem eine Sitzung aus dem Speicher geladen oder mithilfe eines Commits erneut in diesem hinterlegt werden kann. Diese Einstellung gilt möglicherweise nur für asynchrone Vorgänge. Dieses Zeitlimit kann mit <xref:System.Threading.Timeout.InfiniteTimeSpan> deaktiviert werden. Der Standardwert beträgt 1&#160;Minute. |
 
-Die Sitzung verwendet ein Cookie, um Anforderungen eines Browsers nachzuverfolgen und zu identifizieren. Standardmäßig wird das Cookie `.AspNetCore.Session` genannt und verwendet den Pfad von `/`. Da die Standardeinstellungen des Cookies keine Domäne festlegen, wird es dem clientseitigen Skript auf der Seite nicht zur Verfügung gestellt (da <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> standardmäßig auf `true` festgelegt ist).
+Die Sitzung verwendet ein cookie, um Anforderungen eines Browsers nachzuverfolgen und zu identifizieren. Standardmäßig wird das cookie `.AspNetCore.Session` genannt und verwendet den Pfad von `/`. Da die Standardeinstellungen des cookies keine Domäne festlegen, wird es dem clientseitigen Skript auf der Seite nicht zur Verfügung gestellt (da <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> standardmäßig auf `true` festgelegt ist).
 
-Verwenden Sie `SessionOptions`, um Standardwerte für Sitzungscookies zu überschreiben:
+Verwenden Sie `SessionOptions`, um Standardwerte für cookiesitzungen zu überschreiben.
 
 [!code-csharp[](app-state/samples_snapshot/2.x/SessionSample/Startup.cs?name=snippet1&highlight=14-19)]
 
-Die App verwendet die <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout>-Eigenschaft, um zu bestimmen, wie lange sich eine Sitzung im Leerlauf befinden darf, bevor ihre Inhalte im Cache des Servers verworfen werden. Diese Eigenschaft ist unabhängig vom Ablauf der Cookies. Jede Anforderung, die über die [Sitzungsmiddleware](xref:Microsoft.AspNetCore.Session.SessionMiddleware) übergeben wird, setzt das Zeitlimit zurück.
+Die App verwendet die <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout>-Eigenschaft, um zu bestimmen, wie lange sich eine Sitzung im Leerlauf befinden darf, bevor ihre Inhalte im Cache des Servers verworfen werden. Diese Eigenschaft ist unabhängig vom Ablauf der cookies. Jede Anforderung, die über die [Sitzungsmiddleware](xref:Microsoft.AspNetCore.Session.SessionMiddleware) übergeben wird, setzt das Zeitlimit zurück.
 
 Der Sitzungszustand ist *nicht sperrend*. Die letzte Anforderung überschreibt die erste, wenn zwei Anforderungen gleichzeitig versuchen, die Inhalte einer Sitzung zu bearbeiten. `Session` wird als *kohärente Sitzung* implementiert, d.h., dass alle Inhalte zusammen gespeichert werden. Wenn zwei Anforderungen unterschiedliche Sitzungswerte bearbeiten möchten, überschreibt die letzte Anforderung möglicherweise Anforderungen der ersten.
 
@@ -442,7 +444,7 @@ Im folgenden Beispiel wird dargestellt, wie Sie serialisierbare Objekte mit den 
 
 ## <a name="tempdata"></a>TempData
 
-ASP.NET Core macht die Razor Pages-[TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) oder Controller-<xref:Microsoft.AspNetCore.Mvc.Controller.TempData> verfügbar. Diese Eigenschaft speichert Daten, bis sie in einer anderen Anforderung gelesen werden. Mit den Methoden [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) und [Peek(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) können die Daten untersucht werden, ohne am Ende der Anforderung gelöscht zu werden. [Keep()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) markiert alle Elemente im Wörterbuch für die Aufbewahrung. `TempData` eignet sich besonders für die Weiterleitung, wenn Daten für mehr als eine Anforderung erforderlich sind. `TempData` wird von `TempData`-Anbietern durch Verwendung von Cookies oder des Sitzungszustands implementiert.
+ASP.NET Core macht die Razor Pages-[TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) oder Controller-<xref:Microsoft.AspNetCore.Mvc.Controller.TempData> verfügbar. Diese Eigenschaft speichert Daten, bis sie in einer anderen Anforderung gelesen werden. Mit den Methoden [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) und [Peek(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) können die Daten untersucht werden, ohne am Ende der Anforderung gelöscht zu werden. [Keep()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) markiert alle Elemente im Wörterbuch für die Aufbewahrung. `TempData` eignet sich besonders für die Weiterleitung, wenn Daten für mehr als eine Anforderung erforderlich sind. `TempData` wird von `TempData`-Anbietern durch Verwendung von cookies oder des Sitzungszustands implementiert.
 
 ## <a name="tempdata-samples"></a>TempData-Beispiele
 
@@ -468,20 +470,20 @@ Der folgende Code zeigt `TempData["Message"]` an, aber am Ende der Anforderung w
 
 ### <a name="tempdata-providers"></a>TempData-Anbieter
 
-Der cookiebasierte TempData-Anbieter wird standardmäßig verwendet, um TempData in Cookies zu speichern.
+Der cookiebasierte TempData-Anbieter wird standardmäßig verwendet, um TempData in cookies zu speichern.
 
-Die Cookiedaten werden mit <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> verschlüsselt, mit <xref:Microsoft.AspNetCore.WebUtilities.Base64UrlTextEncoder> codiert und dann segmentiert. Da das Cookie in Blöcke unterteilt wird, gilt die in ASP.NET Core 1.x gefundene Größenbeschränkung nicht für einzelne Cookies. Die Cookiedaten werden nicht komprimiert, da es zu Sicherheitsproblemen kommen kann, wenn Daten verschlüsselt werden, z.B. durch [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit))- und [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit))-Angriffe. Weitere Informationen zum cookiebasierten TempData-Anbieter finden Sie unter <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>.
+Die cookiedaten werden mit <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> verschlüsselt, mit <xref:Microsoft.AspNetCore.WebUtilities.Base64UrlTextEncoder> codiert und dann segmentiert. Da das cookie in Blöcke unterteilt wird, gilt die in ASP.NET Core 1.x gefundene Größenbeschränkung nicht für einzelne cookies. Die cookiedaten werden nicht komprimiert, da es zu Sicherheitsproblemen kommen kann, wenn Daten verschlüsselt werden, z. B. durch [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit))- und [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit))-Angriffe. Weitere Informationen zum cookiebasierten TempData-Anbieter finden Sie unter <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>.
 
 ### <a name="choose-a-tempdata-provider"></a>Auswählen eines TempData-Anbieters
 
 Bevor Sie einen TempData-Anbieter auswählen, müssen Sie folgende Überlegungen anstellen:
 
 1. Verwendet die App bereits den Sitzungszustand? Falls dies der Fall ist, hat die Verwendung des TempData-Anbieters abgesehen von der Größe der Daten keine zusätzlichen Auswirkungen auf die App.
-2. Verwendet die App TempData nur selten für verhältnismäßig kleine Datenmengen (bis zu 500 Bytes)? Falls dies der Fall ist, entsteht durch das Cookie des TempData-Anbieters nur ein kleiner zusätzlicher Aufwand für jede Anforderung, die TempData enthält. Falls dies nicht der Fall ist, kann der Sitzungszustand des TempData-Anbieters nützlich sein, um Roundtrips für große Datenmengen für jede Anforderung durchzuführen, bis TempData verarbeitet wird.
-3. Wird die App in einer Serverfarm auf mehreren Servern ausgeführt? Wenn dies der Fall ist, ist keine weitere Konfiguration erforderlich, um das Cookie des TempData-Anbieters außerhalb des Schutzes von Daten zu verwenden (siehe <xref:security/data-protection/introduction> und [Schlüsselspeicheranbieter](xref:security/data-protection/implementation/key-storage-providers)).
+2. Verwendet die App TempData nur selten für verhältnismäßig kleine Datenmengen (bis zu 500 Bytes)? Falls dies der Fall ist, entsteht durch das cookie des TempData-Anbieters nur ein kleiner zusätzlicher Aufwand für jede Anforderung, die TempData enthält. Falls dies nicht der Fall ist, kann der Sitzungszustand des TempData-Anbieters nützlich sein, um Roundtrips für große Datenmengen für jede Anforderung durchzuführen, bis TempData verarbeitet wird.
+3. Wird die App in einer Serverfarm auf mehreren Servern ausgeführt? Wenn dies der Fall ist, ist keine weitere Konfiguration erforderlich, um das cookie des TempData-Anbieters außerhalb des Schutzes von Daten zu verwenden (weitere Informationen finden Sie unter <xref:security/data-protection/introduction> und [Schlüsselspeicheranbieter](xref:security/data-protection/implementation/key-storage-providers)).
 
 > [!NOTE]
-> Die meisten Webclients (z.B. Webbrowser) erzwingen Einschränkungen für die maximale Größe der Cookies, für die Gesamtanzahl der Cookies oder für beides. Wenn Sie das Cookie des TempData-Anbieters verwenden, sollten Sie überprüfen, ob die App diese Einschränkungen überschreitet. Beachten Sie die Gesamtgröße der Daten. Rechnen Sie mit erhöhter Cookiegröße aufgrund von Verschlüsselung und Segmentierung.
+> Die meisten Webclients (z. B. Webbrowser) erzwingen Einschränkungen für die maximale Größe der cookies, für die Gesamtanzahl der cookies oder für beides. Wenn Sie das cookie des TempData-Anbieters verwenden, sollten Sie überprüfen, ob die App diese Einschränkungen überschreitet. Beachten Sie die Gesamtgröße der Daten. Rechnen Sie mit erhöhter cookiegröße aufgrund von Verschlüsselung und Segmentierung.
 
 ### <a name="configure-the-tempdata-provider"></a>Konfigurieren des TempData-Anbieters
 
@@ -595,7 +597,7 @@ Verwenden Sie [Dependency Injection](xref:fundamentals/dependency-injection), um
 
   Es wird empfohlen, nach Fehlern zu suchen, indem Sie `await feature.Session.CommitAsync();` über App-Code aufrufen, wenn die App mit dem Schreiben in die Sitzung fertig ist. `CommitAsync` löst eine Ausnahme aus, wenn der Sicherungsspeicher nicht verfügbar ist. Wenn `CommitAsync` fehlschlägt, kann die App die Ausnahme verarbeiten. `LoadAsync` wird unter den gleichen Bedingungen ausgelöst, wenn der Sicherungsspeicher nicht verfügbar ist.
   
-## <a name="signalr-and-session-state"></a>SignalR und Sitzungszustand
+## <a name="no-locsignalr-and-session-state"></a>SignalR und Sitzungszustand
 
 SignalR-Apps dürfen nicht den Sitzungszustand verwenden, um Informationen zu speichern. SignalR-Apps können Informationen je nach Verbindungszustand in `Context.Items` im Hub speichern. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 

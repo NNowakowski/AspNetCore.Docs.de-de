@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/18/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/write
-ms.openlocfilehash: aeebc7d5a7cbfaaab6d48b8da76d35c47c2c552b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 480120718959a364ce8008949c3b76c558c0e995
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407849"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130586"
 ---
 # <a name="write-custom-aspnet-core-middleware"></a>Schreiben von benutzerdefinierter ASP.NET Core-Middleware
 
@@ -83,6 +85,8 @@ public class CustomMiddleware
 }
 ```
 
+Die [Lebensdauer und Registrierungsoptionen](xref:fundamentals/dependency-injection#lifetime-and-registration-options) enthalten ein vollständiges Beispiel der Middleware mit Diensten mit *bereichsbezogener* Lebensdauer.
+
 ## <a name="middleware-extension-method"></a>Erweiterungsmethode für die Middleware
 
 Die folgende Erweiterungsmethode stellt die Middleware über <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> zur Verfügung:
@@ -95,6 +99,7 @@ Der folgende Code ruft die Methode von `Startup.Configure` auf:
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
+* Die [Lebensdauer und Registrierungsoptionen](xref:fundamentals/dependency-injection#lifetime-and-registration-options) enthalten ein vollständiges Beispiel der Middleware mit Diensten mit *bereichsbezogener* und *vorübergehender* Lebensdauer sowie *Singletonlebensdauer*.
 * <xref:fundamentals/middleware/index>
 * <xref:test/middleware>
 * <xref:migration/http-modules>

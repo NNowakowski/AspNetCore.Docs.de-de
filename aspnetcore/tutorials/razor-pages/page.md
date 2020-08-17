@@ -5,6 +5,8 @@ description: Dies ist Teil 3 der Tutorialreihe zu Razor Pages.
 ms.author: riande
 ms.date: 08/17/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: 898f3be045755a0ee14c738b6ffc104408ded7b6
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f8942e52b3b438817e3d1041a2c6b568eb662469
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407771"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020391"
 ---
-# <a name="part-3-scaffolded-razor-pages-in-aspnet-core"></a>Part 3: Gerüstbau mit Razor Pages in ASP.NET Core
+# <a name="part-3-scaffolded-no-locrazor-pages-in-aspnet-core"></a>Part 3: Gerüstbau mit Razor Pages in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -72,7 +74,7 @@ Die `@model`-Anweisung gibt den Typ des Modells an, das an die Razor-Seite weite
 
 ### <a name="the-layout-page"></a>Die Seite „Layout“
 
-Wählen Sie die Menülinks aus (**RazorPagesMovie**, **Home**, **Datenschutz**). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Pages/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Pages/Shared/_Layout.cshtml*.
+Wählen Sie die Menülinks aus ( **RazorMovie**, **Home**, **Datenschutz**). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Pages/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Pages/Shared/_Layout.cshtml*.
 
 Durch [Layout](xref:mvc/views/layout)-Vorlagen kann das HTML-Containerlayout:
 
@@ -153,7 +155,7 @@ Wenn es zu Modellfehlern kommt, wird das Formular mit allen bereitgestellten For
 
 Wenn keine Modellfehler auftreten, werden die Daten gespeichert und der Browser zur Indexseite umgeleitet.
 
-### <a name="the-create-razor-page"></a>Razor-Seite „Erstellen“
+### <a name="the-create-no-locrazor-page"></a>Razor-Seite „Erstellen“
 
 Betrachten Sie die Datei *Pages/Movies/Create.cshtml* der Razor-Seite:
 
@@ -263,7 +265,7 @@ Die `@model`-Anweisung gibt den Typ des Modells an, das an die Razor-Seite weite
 
 ### <a name="the-layout-page"></a>Die Seite „Layout“
 
-Wählen Sie die Menülinks aus (**RazorPagesMovie**, **Home**, **Datenschutz**). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Pages/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Pages/Shared/_Layout.cshtml*.
+Wählen Sie die Menülinks aus ( **RazorMovie**, **Home**, **Datenschutz**). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Pages/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Pages/Shared/_Layout.cshtml*.
 
 [Layout](xref:mvc/views/layout)-Vorlagen ermöglichen Ihnen, das HTML-Containerlayout Ihrer Website zentral anzugeben und dann auf mehrere Seiten Ihrer Website anzuwenden. Suchen Sie die Zeile `@RenderBody()`. `RenderBody` ist ein Platzhalter, bei dem alle seitenspezifischen Ansichten, die Sie erstellen, von der Layoutseite *umschlossen* angezeigt werden. Wenn Sie beispielsweise den Link **Privacy** auswählen, wird die Ansicht **Pages/Privacy.cshtml** in der `RenderBody`-Methode gerendert.
 
@@ -339,7 +341,7 @@ Wenn es zu Modellfehlern kommt, wird das Formular mit allen bereitgestellten For
 
 Wenn keine Modellfehler auftreten, werden die Daten gespeichert und der Browser zur Indexseite umgeleitet.
 
-### <a name="the-create-razor-page"></a>Razor-Seite „Erstellen“
+### <a name="the-create-no-locrazor-page"></a>Razor-Seite „Erstellen“
 
 Betrachten Sie die Datei *Pages/Movies/Create.cshtml* der Razor-Seite:
 

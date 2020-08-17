@@ -7,6 +7,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/09/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/http-requests
-ms.openlocfilehash: fb9001c06228b4290ca1e0c7cfb6b1338f431cd6
-ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
+ms.openlocfilehash: ef6ed0911c2615ea543b1c2cea31a9a453f0c604
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87444113"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017232"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Stellen von HTTP-Anforderungen mithilfe von IHttpClientFactory in ASP.NET Core
 
@@ -359,14 +361,14 @@ Diese Ansätze lösen die Ressourcenverwaltungsprobleme, die `IHttpClientFactory
 - `SocketsHttpHandler` gibt Verbindungen für `HttpClient`-Instanzen frei. Durch diese Freigabe wird die Erschöpfung von Sockets vermieden.
 - `SocketsHttpHandler` wechselt die Verbindungen anhand von `PooledConnectionLifetime`, um Probleme durch veraltetes DNS zu umgehen.
 
-### <a name="cookies"></a>Cookies
+### <a name="no-loccookies"></a>Cookie
 
-Die zusammengelegten `HttpMessageHandler`-Instanzen resultieren in der Freigabe von `CookieContainer`-Objekten. Die unerwartete Freigabe von `CookieContainer`-Objekten führt oft zu fehlerhaftem Code. Ziehen Sie für Apps, die Cookies erfordern, folgende Vorgehensweisen in Betracht:
+Die zusammengelegten `HttpMessageHandler`-Instanzen resultieren in der Freigabe von `CookieContainer`-Objekten. Die unerwartete Freigabe von `CookieContainer`-Objekten führt oft zu fehlerhaftem Code. Ziehen Sie für Apps, die cookies erfordern, folgende Vorgehensweisen in Betracht:
 
- - Deaktivieren der automatischen Cookieverarbeitung
+ - Deaktivieren der automatischen cookieverarbeitung
  - Vermeiden der Verwendung von `IHttpClientFactory`
 
-Rufen Sie <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> auf, um die automatische Cookieverarbeitung zu deaktivieren:
+Rufen Sie <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> auf, um die automatische cookieverarbeitung zu deaktivieren:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
@@ -677,14 +679,14 @@ Diese Ansätze lösen die Ressourcenverwaltungsprobleme, die `IHttpClientFactory
 - `SocketsHttpHandler` gibt Verbindungen für `HttpClient`-Instanzen frei. Durch diese Freigabe wird die Erschöpfung von Sockets vermieden.
 - `SocketsHttpHandler` wechselt die Verbindungen anhand von `PooledConnectionLifetime`, um Probleme durch veraltetes DNS zu umgehen.
 
-### <a name="cookies"></a>Cookies
+### <a name="no-loccookies"></a>Cookie
 
-Die zusammengelegten `HttpMessageHandler`-Instanzen resultieren in der Freigabe von `CookieContainer`-Objekten. Die unerwartete Freigabe von `CookieContainer`-Objekten führt oft zu fehlerhaftem Code. Ziehen Sie für Apps, die Cookies erfordern, folgende Vorgehensweisen in Betracht:
+Die zusammengelegten `HttpMessageHandler`-Instanzen resultieren in der Freigabe von `CookieContainer`-Objekten. Die unerwartete Freigabe von `CookieContainer`-Objekten führt oft zu fehlerhaftem Code. Ziehen Sie für Apps, die cookies erfordern, folgende Vorgehensweisen in Betracht:
 
- - Deaktivieren der automatischen Cookieverarbeitung
+ - Deaktivieren der automatischen cookieverarbeitung
  - Vermeiden der Verwendung von `IHttpClientFactory`
 
-Rufen Sie <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> auf, um die automatische Cookieverarbeitung zu deaktivieren:
+Rufen Sie <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> auf, um die automatische cookieverarbeitung zu deaktivieren:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
@@ -985,14 +987,14 @@ Diese Ansätze lösen die Ressourcenverwaltungsprobleme, die `IHttpClientFactory
 - `SocketsHttpHandler` gibt Verbindungen für `HttpClient`-Instanzen frei. Durch diese Freigabe wird die Erschöpfung von Sockets vermieden.
 - `SocketsHttpHandler` wechselt die Verbindungen anhand von `PooledConnectionLifetime`, um Probleme durch veraltetes DNS zu umgehen.
 
-### <a name="cookies"></a>Cookies
+### <a name="no-loccookies"></a>Cookie
 
-Die zusammengelegten `HttpMessageHandler`-Instanzen resultieren in der Freigabe von `CookieContainer`-Objekten. Die unerwartete Freigabe von `CookieContainer`-Objekten führt oft zu fehlerhaftem Code. Ziehen Sie für Apps, die Cookies erfordern, folgende Vorgehensweisen in Betracht:
+Die zusammengelegten `HttpMessageHandler`-Instanzen resultieren in der Freigabe von `CookieContainer`-Objekten. Die unerwartete Freigabe von `CookieContainer`-Objekten führt oft zu fehlerhaftem Code. Ziehen Sie für Apps, die cookies erfordern, folgende Vorgehensweisen in Betracht:
 
- - Deaktivieren der automatischen Cookieverarbeitung
+ - Deaktivieren der automatischen cookieverarbeitung
  - Vermeiden der Verwendung von `IHttpClientFactory`
 
-Rufen Sie <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> auf, um die automatische Cookieverarbeitung zu deaktivieren:
+Rufen Sie <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> auf, um die automatische cookieverarbeitung zu deaktivieren:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 

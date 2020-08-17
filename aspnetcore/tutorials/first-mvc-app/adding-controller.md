@@ -5,6 +5,8 @@ description: Dies ist Teil 2 der Tutorialreihe zu ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2017
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: 30272900b2ff19879921f1954a1c9b3eba203ca4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 46f8cbc5ef3d9fe00a5151160a9119f68a9fe572
+ms.sourcegitcommit: 68d03d1aee8906b53bda66f8f1e0747efc3007e6
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400452"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88051809"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Teil 2: Hinzufügen eines Controllers zu einer ASP.NET Core MVC-App
 
@@ -45,7 +47,7 @@ Wir behandeln diese Konzepte in dieser Tutorialreihe und zeigen Ihnen, wie Sie s
 * Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf **Controller > Hinzufügen > Controller**.
   ![Kontextmenü](adding-controller/_static/add_controller.png)
 
-* Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **MVC-Controller - leer** aus.
+* Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **-Controllerklasse – leer** aus.
 
   ![Hinzufügen und Benennen des MVC-Controllers](adding-controller/_static/ac.png)
 
@@ -62,7 +64,7 @@ Wählen Sie das **EXPLORER**-Symbol aus, klicken Sie dann bei gedrückter STRG-T
 Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf **Controller > Hinzufügen > Neue Datei**.
 ![Kontextmenü](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
-Wählen Sie **ASP.NET Core** und **MVC-Controller-Klasse** aus.
+Wählen Sie **ASP.NET Core** und **-Controllerklasse** aus.
 
 Nennen Sie den Controller **HelloWorldController**.
 

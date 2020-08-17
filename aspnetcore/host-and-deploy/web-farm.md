@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/web-farm
-ms.openlocfilehash: 13c4a8e287e4b62a1429f67fbe83ff5b0dc65f52
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 58409b5c47d71c96ece6f4ecfab6f18df47f798b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408278"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015438"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Hosten von ASP.NET Core in einer Webfarm
 
@@ -70,8 +72,8 @@ Die folgenden Szenarien erfordern keine zusätzliche Konfiguration, hängen jedo
 | -------- | ------------------- |
 | Authentifizierung | Schutz von Daten (siehe <xref:security/data-protection/configuration/overview>).<br><br>Weitere Informationen finden Sie unter <xref:security/authentication/cookie> und <xref:security/cookie-sharing>. |
 | Identity | Authentifizierung und Datenbankkonfiguration.<br><br>Weitere Informationen finden Sie unter <xref:security/authentication/identity>. |
-| Sitzung | Schutz von Daten (verschlüsselte Cookies) (siehe <xref:security/data-protection/configuration/overview>) und Zwischenspeichern (siehe <xref:performance/caching/distributed>).<br><br>Weitere Informationen finden Sie unter [Sitzungs- und Zustandsverwaltung: Sitzungszustand](xref:fundamentals/app-state#session-state). |
-| TempData | Schutz von Daten (verschlüsselte Cookies) (siehe <xref:security/data-protection/configuration/overview>) oder Sitzung (siehe [Sitzungs- und Zustandsverwaltung: Sitzungszustand](xref:fundamentals/app-state#session-state)).<br><br>Weitere Informationen finden Sie unter [Sitzungs- und Zustandsverwaltung: TempData](xref:fundamentals/app-state#tempdata). |
+| Sitzung | Schutz von Daten (verschlüsselte cookies) (siehe <xref:security/data-protection/configuration/overview>) und Zwischenspeichern (siehe <xref:performance/caching/distributed>)<br><br>Weitere Informationen finden Sie unter [Sitzungs- und Zustandsverwaltung: Sitzungszustand](xref:fundamentals/app-state#session-state). |
+| TempData | Schutz von Daten (verschlüsselte cookies) (siehe <xref:security/data-protection/configuration/overview>) oder Sitzung (siehe [Sitzungs- und Zustandsverwaltung: Sitzungszustand](xref:fundamentals/app-state#session-state)).<br><br>Weitere Informationen finden Sie unter [Sitzungs- und Zustandsverwaltung: TempData](xref:fundamentals/app-state#tempdata). |
 | Fälschungssicherheit | Schutz von Daten (siehe <xref:security/data-protection/configuration/overview>).<br><br>Weitere Informationen finden Sie unter <xref:security/anti-request-forgery>. |
 
 ## <a name="troubleshoot"></a>Problembehandlung
@@ -80,7 +82,7 @@ Die folgenden Szenarien erfordern keine zusätzliche Konfiguration, hängen jedo
 
 Wenn der Schutz von Daten oder Zwischenspeichern für eine Webfarmumgebung nicht konfiguriert wurde, treten beim Verarbeiten von Anforderungen zeitweilig Fehler auf. Dies geschieht, weil Knoten nicht dieselben Ressourcen teilen und Benutzeranforderungen nicht immer an denselben Knoten zurückgeleitet werden.
 
-Gehen Sie beispielsweise von einem Benutzer aus, der sich mithilfe der Cookieauthentifizierung in der App anmeldet. Der Benutzer meldet sich in der App auf einem Webfarmknoten an. Wenn seine nächste Anforderung auf demselben Knoten eintrifft, auf dem er sich angemeldet hat, kann die App das Authentifizierungscookie entschlüsseln und den Zugriff auf die App-Ressource gewähren. Wenn seine nächste Anforderung auf einem anderen Knoten eintrifft, kann die App das Authentifizierungscookie nicht auf dem Knoten entschlüsseln, auf dem der Benutzer angemeldet ist, und die Autorisierung für die angeforderte Ressource schlägt fehl.
+Gehen Sie beispielsweise von einem Benutzer aus, der sich mithilfe der cookieauthentifizierung bei der App anmeldet. Der Benutzer meldet sich in der App auf einem Webfarmknoten an. Wenn seine nächste Anforderung auf demselben Knoten eintrifft, auf dem er sich angemeldet hat, kann die App das Authentifizierungscookie entschlüsseln und den Zugriff auf die App-Ressource gewähren. Wenn seine nächste Anforderung auf einem anderen Knoten eintrifft, kann die App das Authentifizierungscookie nicht auf dem Knoten entschlüsseln, auf dem der Benutzer angemeldet ist, und die Autorisierung für die angeforderte Ressource schlägt fehl.
 
 Wenn eines der folgenden Symptome **zeitweilig** auftritt, ist das Problem in der Regel auf eine falsche Konfiguration zum Schutz von Daten oder zum Zwischenspeichern für eine Webfarmumgebung zurückgeführt:
 

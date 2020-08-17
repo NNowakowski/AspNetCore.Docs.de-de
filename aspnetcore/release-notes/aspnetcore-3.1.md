@@ -6,32 +6,34 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/12/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 92804d168381526100ddb8a368f71d201bd4cad9
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 68373c39461be896a52627e21577fdda89cbb661
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407667"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019587"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>Neuerungen in ASP.NET Core 3.1
 
 In diesem Artikel werden die wichtigsten Änderungen in ASP.NET Core 3.1 aufgezeigt und Links zur relevanten Dokumentation bereitgestellt.
 
-## <a name="partial-class-support-for-razor-components"></a>Unterstützung von partiellen Klassen für [Razor-Komponenten
+## <a name="partial-class-support-for-no-locrazor-components"></a>Unterstützung von partiellen Klassen für Razor-Komponenten
 
-[Razor-Komponenten werden nun als partielle Klassen generiert. Der Code für eine [Razor-Komponente kann nun mithilfe einer CodeBehind-Datei geschrieben werden, die als eine partielle Klasse definiert ist, anstatt den gesamten Code für die Komponente in einer einzelnen Datei zu definieren. Weitere Informationen finden Sie unter [Unterstützung von partiellen Klassen](xref:blazor/components/index#partial-class-support).
+Razor-Komponenten werden nun als partielle Klassen generiert. Der Code für eine Razor-Komponente kann nun mithilfe einer CodeBehind-Datei geschrieben werden, die als eine partielle Klasse definiert ist, anstatt den gesamten Code für die Komponente in einer einzelnen Datei zu definieren. Weitere Informationen finden Sie unter [Unterstützung von partiellen Klassen](xref:blazor/components/index#partial-class-support).
 
-## <a name="blazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>[Blazor-Komponententaghilfsprogramm und Übergeben von Parametern an Komponenten der obersten Ebene
+## <a name="no-locblazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>Blazor-Komponententaghilfsprogramm und Übergeben von Parametern an Komponenten der obersten Ebene
 
-In [Blazor mit ASP.NET Core 3.0 wurden Komponenten mithilfe eines HTML-Hilfsprogramms (`Html.RenderComponentAsync`) in Seiten und Ansichten gerendert. In ASP.NET Core 3.1 werden Komponenten mithilfe eines neuen Komponententaghilfsprogramms in Seiten oder Ansichten gerendert:
+In Blazor mit ASP.NET Core 3.0 wurden Komponenten mithilfe eines HTML-Hilfsprogramms (`Html.RenderComponentAsync`) in Seiten und Ansichten gerendert. In ASP.NET Core 3.1 werden Komponenten mithilfe eines neuen Komponententaghilfsprogramms in Seiten oder Ansichten gerendert:
 
 ```cshtml
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
@@ -39,7 +41,7 @@ In [Blazor mit ASP.NET Core 3.0 wurden Komponenten mithilfe eines HTML-Hilfspro
 
 Das HTML-Hilfsprogramm wird in ASP.NET Core 3.1 weiterhin unterstützt, jedoch wird die Verwendung des Komponententaghilfsprogramms empfohlen.
 
-[Blazor Server-Apps können nun während dem ersten Rendering Parameter an Komponenten der obersten Ebene übergeben. Zuvor konnten Sie Parameter nur an Komponenten der obersten Ebene mit [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static) übergeben. Ab diesem Release werden sowohl [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) als auch [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered) unterstützt. Alle festgelegten Parameterwerte werden als JSON serialisiert und sind in der ersten Antwort enthalten.
+Blazor Server-Apps können nun während dem ersten Rendering Parameter an Komponenten der obersten Ebene übergeben. Zuvor konnten Sie Parameter nur an Komponenten der obersten Ebene mit [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static) übergeben. Ab diesem Release werden sowohl [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) als auch [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered) unterstützt. Alle festgelegten Parameterwerte werden als JSON serialisiert und sind in der ersten Antwort enthalten.
 
 So können Sie eine `Counter`-Komponente beispielsweise mit einem Inkrement vorab rendern (`IncrementAmount`):
 
@@ -48,7 +50,7 @@ So können Sie eine `Counter`-Komponente beispielsweise mit einem Inkrement vora
     param-IncrementAmount="10" />
 ```
 
-Weitere Informationen finden Sie unter [Integrieren von Komponenten in [Razor-Seiten und MVC-Apps](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).
+Weitere Informationen finden Sie unter [Integrieren von Komponenten in Razor-Seiten und MVC-Apps](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).
 
 ## <a name="support-for-shared-queues-in-httpsys"></a>Unterstützung für freigegebene Warteschlangen in HTTP.sys
 
@@ -56,11 +58,11 @@ Weitere Informationen finden Sie unter [Integrieren von Komponenten in [Razor-Se
 
 [!code-csharp[](sample/Program.cs?name=snippet)]
 
-## <a name="breaking-changes-for-samesite-cookies"></a>Breaking Changes für SameSite-Cookies
+## <a name="breaking-changes-for-samesite-no-loccookies"></a>Breaking Changes für SameSite-cookies
 
-Das Verhalten von SameSite-Cookies wurde gemäß bevorstehender Browseränderungen geändert. Dies kann sich auf Authentifizierungsszenarios wie Azure AD, OpenIdConnect oder WsFederation auswirken. Weitere Informationen finden Sie unter <xref:security/samesite>.
+Das Verhalten von SameSite-cookies wurde gemäß bevorstehender Browseränderungen geändert. Dies kann sich auf Authentifizierungsszenarios wie Azure AD, OpenIdConnect oder WsFederation auswirken. Weitere Informationen finden Sie unter <xref:security/samesite>.
 
-## <a name="prevent-default-actions-for-events-in-blazor-apps"></a>Verhindern von Standardaktionen für Ereignisse in [Blazor-Apps
+## <a name="prevent-default-actions-for-events-in-no-locblazor-apps"></a>Verhindern von Standardaktionen für Ereignisse in Blazor-Apps
 
 Verwenden Sie das Direktivenattribut `@on{EVENT}:preventDefault`, um die Standardaktion für ein Ereignis zu verhindern. Im folgenden Beispiel wird die Standardaktion verhindert, welche das Zeichen eines Schlüssels im Textfeld anzeigt:
 
@@ -70,7 +72,7 @@ Verwenden Sie das Direktivenattribut `@on{EVENT}:preventDefault`, um die Standar
 
 Weitere Informationen finden Sie unter [Verhindern von Standardaktionen](xref:blazor/components/event-handling#prevent-default-actions).
 
-## <a name="stop-event-propagation-in-blazor-apps"></a>Beenden der Ereignisweitergabe in [Blazor-Apps
+## <a name="stop-event-propagation-in-no-locblazor-apps"></a>Beenden der Ereignisweitergabe in Blazor-Apps
 
 Verwenden Sie das Direktivenattribut `@on{EVENT}:stopPropagation`, um die Ereignisweitergabe zu beenden. Im folgenden Beispiel verhindert das Aktivieren des Kontrollkästchens die Weitergabe von Klickereignissen des untergeordneten `<div>`-Elements an das übergeordnete `<div>`-Element:
 
@@ -90,9 +92,9 @@ Verwenden Sie das Direktivenattribut `@on{EVENT}:stopPropagation`, um die Ereign
 
 Weitere Informationen finden Sie unter [Beenden der Ereignisweitergabe](xref:blazor/components/event-handling#stop-event-propagation).
 
-## <a name="detailed-errors-during-blazor-app-development"></a>Ausführliche Fehler bei der Entwicklung von [Blazor-Apps
+## <a name="detailed-errors-during-no-locblazor-app-development"></a>Ausführliche Fehler bei der Entwicklung von Blazor-Apps
 
-Wenn eine [Blazor-App während der Entwicklung nicht ordnungsgemäß funktioniert, erhalten Sie nun ausführliche Fehlerinformationen von der App, die Sie beim Beheben des Problems unterstützen. Wenn ein Fehler auftritt, zeigen [Blazor-Apps eine goldene Leiste am unteren Rand der Anzeige an:
+Wenn eine Blazor-App während der Entwicklung nicht ordnungsgemäß funktioniert, erhalten Sie nun ausführliche Fehlerinformationen von der App, die Sie beim Beheben des Problems unterstützen. Wenn ein Fehler auftritt, zeigen Blazor-Apps eine goldene Leiste am unteren Rand der Anzeige an:
 
 * Während der Entwicklung leitet die goldene Leiste Sie an die Browserkonsole weiter, in der die Ausnahme angezeigt wird.
 * In der Produktion benachrichtigt die goldene Leiste den Benutzer darüber, dass ein Fehler aufgetreten ist, und empfiehlt eine Aktualisierung des Browsers.

@@ -5,20 +5,22 @@ description: Erfahren Sie, wie ASP.NET Core Dienste und Middleware für das Loka
 ms.author: riande
 ms.date: 11/30/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 412cd7a39a0eed6800e15d235102ed367da5f746
-ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
+ms.openlocfilehash: 9fd68d3b412c2cef6125c657653f605689ca6e70
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793472"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017219"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalisierung und Lokalisierung in ASP.NET Core
 
@@ -75,7 +77,7 @@ Der Dienst `IViewLocalizer` gibt lokalisierte Zeichenfolgen für eine [Ansicht](
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Home/About.cshtml)]
 
-Die Standardimplementierung von `IViewLocalizer` sucht die Ressourcendatei über den Dateinamen der Ansicht. Es gibt keine Option zur Nutzung einer globalen freigegebenen Ressourcendatei. `ViewLocalizer` implementiert den Lokalisierer mithilfe von `IHtmlLocalizer`, damit [Razor die lokalisierte Zeichenfolge nicht HTML-codiert. Sie können Ressourcenzeichenfolgen parametrisieren, und `IViewLocalizer` codiert die Parameter mit HTML, aber nicht die Ressourcenzeichenfolgen. Sehen Sie sich das folgende [Razor-Markup an:
+Die Standardimplementierung von `IViewLocalizer` sucht die Ressourcendatei über den Dateinamen der Ansicht. Es gibt keine Option zur Nutzung einer globalen freigegebenen Ressourcendatei. `ViewLocalizer` implementiert den Lokalisierer mithilfe von `IHtmlLocalizer`, damit Razor die lokalisierte Zeichenfolge nicht HTML-codiert. Sie können Ressourcenzeichenfolgen parametrisieren, und `IViewLocalizer` codiert die Parameter mit HTML, aber nicht die Ressourcenzeichenfolgen. Sehen Sie sich das folgende Razor-Markup an:
 
 ```cshtml
 @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
@@ -163,7 +165,7 @@ Im Beispielprojekt legt die Methode `ConfigureServices` die `ResourcesPath`-Eige
 | Resources/Controllers.HomeController.fr.resx | Punkt  |
 | Resources/Controllers/HomeController.fr.resx  | Pfad |
 
-Ressourcendateien, die `@inject IViewLocalizer` in [Razor-Ansichten verwenden, folgen einem ähnlichen Muster. Die Ressourcendatei für eine Ansicht kann mit der Punkt- oder Pfadbenennung benannt werden. Ressourcendateien der [Razor-Ansicht imitieren den Pfad ihrer zugehörigen Ansichtsdatei. Wenn `ResourcesPath` zum Beispiel auf „Resources“ festgelegt wird, ist die französische Ressourcendatei, die der Ansicht *Views/Home/About.cshtml* zugeordnet ist, eine der folgenden zwei:
+Ressourcendateien, die `@inject IViewLocalizer` in Razor-Ansichten verwenden, folgen einem ähnlichen Muster. Die Ressourcendatei für eine Ansicht kann mit der Punkt- oder Pfadbenennung benannt werden. Ressourcendateien der Razor-Ansicht imitieren den Pfad ihrer zugehörigen Ansichtsdatei. Wenn `ResourcesPath` zum Beispiel auf „Resources“ festgelegt wird, ist die französische Ressourcendatei, die der Ansicht *Views/Home/About.cshtml* zugeordnet ist, eine der folgenden zwei:
 
 * Resources/Views/Home/About.fr.resx
 
@@ -247,7 +249,7 @@ Die Reihenfolge der Standardliste fängt bei den spezifischsten Anbietern an und
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Einige Apps verwenden eine Abfragezeichenfolge, um die [Kultur und Benutzeroberflächenkultur](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx) festzulegen. Bei Apps, die die Ansätze „Cookie“ oder „Accept-Language-Header“ verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
+Einige Apps verwenden eine Abfragezeichenfolge, um die [Kultur und Benutzeroberflächenkultur](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx) festzulegen. Bei Apps, die die Ansätze cookie oder Accept-Language-Header verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
 
    `http://localhost:5000/?culture=es-MX&ui-culture=es-MX`
 
@@ -257,13 +259,13 @@ Wenn Sie nur eine der beiden Abfragezeichenfolgen (`culture` oder `ui-culture`) 
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
 
-Produktions-Apps bieten oft einen Mechanismus zum Festlegen der Kultur mithilfe des ASP.NET Core-Kulturcookies. Verwenden Sie die Methode `MakeCookieValue` zum Erstellen eines Cookies.
+Produktions-Apps bieten oft einen Mechanismus zum Festlegen der Kultur mithilfe des ASP.NET Core-Kulturcookies. Verwenden Sie die Methode `MakeCookieValue` zum Erstellen eines cookies.
 
-`CookieRequestCultureProvider` `DefaultCookieName` gibt den Standardcookienamen zurück, der verwendet wird, um zu ermitteln, welche Kulturinformationen vom Benutzer bevorzugt werden. Der Standardname für Cookies ist `.AspNetCore.Culture`.
+`CookieRequestCultureProvider` `DefaultCookieName` gibt den Standardcookienamen zurück, mit dem ermittelt wird, welche Kulturinformationen der Benutzer bevorzugt. Der Standardcookiename lautet `.AspNetCore.Culture`.
 
-Das Cookieformat ist `c=%LANGCODE%|uic=%LANGCODE%`, wobei `c` für `Culture` steht und `uic` für `UICulture`, zum Beispiel:
+Das cookieformat ist `c=%LANGCODE%|uic=%LANGCODE%`, wobei `c` für `Culture` steht und `uic` für `UICulture`, zum Beispiel:
 
 ```
 c=en-UK|uic=en-US
@@ -334,7 +336,7 @@ Die Methode `SetLanguage` legt das Kulturcookie fest.
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
-Sie können *_SelectLanguagePartial.cshtml* dem Beispielcode für dieses Projekt nicht hinzufügen. Das Projekt **Localization.StarterWeb** auf [GitHub](https://github.com/aspnet/entropy) enthält Code, der `RequestLocalizationOptions` durch den Container von [Dependency Injection](dependency-injection.md) an eine[Razor-Teilansicht übermittelt.
+Sie können *_SelectLanguagePartial.cshtml* dem Beispielcode für dieses Projekt nicht hinzufügen. Das Projekt **Localization.StarterWeb** auf [GitHub](https://github.com/aspnet/entropy) enthält Code, der `RequestLocalizationOptions` durch den Container von [Dependency Injection](dependency-injection.md) an eineRazor-Teilansicht übermittelt.
 
 ## <a name="model-binding-route-data-and-query-strings"></a>Routendaten und Abfragezeichenfolgen für die Modellbindung
 
@@ -429,7 +431,7 @@ Der Dienst `IViewLocalizer` gibt lokalisierte Zeichenfolgen für eine [Ansicht](
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Home/About.cshtml)]
 
-Die Standardimplementierung von `IViewLocalizer` sucht die Ressourcendatei über den Dateinamen der Ansicht. Es gibt keine Option zur Nutzung einer globalen freigegebenen Ressourcendatei. `ViewLocalizer` implementiert den Lokalisierer mithilfe von `IHtmlLocalizer`, damit [Razor die lokalisierte Zeichenfolge nicht HTML-codiert. Sie können Ressourcenzeichenfolgen parametrisieren, und `IViewLocalizer` codiert die Parameter mit HTML, aber nicht die Ressourcenzeichenfolgen. Sehen Sie sich das folgende [Razor-Markup an:
+Die Standardimplementierung von `IViewLocalizer` sucht die Ressourcendatei über den Dateinamen der Ansicht. Es gibt keine Option zur Nutzung einer globalen freigegebenen Ressourcendatei. `ViewLocalizer` implementiert den Lokalisierer mithilfe von `IHtmlLocalizer`, damit Razor die lokalisierte Zeichenfolge nicht HTML-codiert. Sie können Ressourcenzeichenfolgen parametrisieren, und `IViewLocalizer` codiert die Parameter mit HTML, aber nicht die Ressourcenzeichenfolgen. Sehen Sie sich das folgende Razor-Markup an:
 
 ```cshtml
 @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
@@ -517,7 +519,7 @@ Im Beispielprojekt legt die Methode `ConfigureServices` die `ResourcesPath`-Eige
 | Resources/Controllers.HomeController.fr.resx | Punkt  |
 | Resources/Controllers/HomeController.fr.resx  | Pfad |
 
-Ressourcendateien, die `@inject IViewLocalizer` in [Razor-Ansichten verwenden, folgen einem ähnlichen Muster. Die Ressourcendatei für eine Ansicht kann mit der Punkt- oder Pfadbenennung benannt werden. Ressourcendateien der [Razor-Ansicht imitieren den Pfad ihrer zugehörigen Ansichtsdatei. Wenn `ResourcesPath` zum Beispiel auf „Resources“ festgelegt wird, ist die französische Ressourcendatei, die der Ansicht *Views/Home/About.cshtml* zugeordnet ist, eine der folgenden zwei:
+Ressourcendateien, die `@inject IViewLocalizer` in Razor-Ansichten verwenden, folgen einem ähnlichen Muster. Die Ressourcendatei für eine Ansicht kann mit der Punkt- oder Pfadbenennung benannt werden. Ressourcendateien der Razor-Ansicht imitieren den Pfad ihrer zugehörigen Ansichtsdatei. Wenn `ResourcesPath` zum Beispiel auf „Resources“ festgelegt wird, ist die französische Ressourcendatei, die der Ansicht *Views/Home/About.cshtml* zugeordnet ist, eine der folgenden zwei:
 
 * Resources/Views/Home/About.fr.resx
 
@@ -601,7 +603,7 @@ Die Reihenfolge der Standardliste fängt bei den spezifischsten Anbietern an und
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Einige Apps verwenden eine Abfragezeichenfolge, um die [Kultur und Benutzeroberflächenkultur](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx) festzulegen. Bei Apps, die die Ansätze „Cookie“ oder „Accept-Language-Header“ verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
+Einige Apps verwenden eine Abfragezeichenfolge, um die [Kultur und Benutzeroberflächenkultur](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx) festzulegen. Bei Apps, die die Ansätze cookie oder Accept-Language-Header verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
@@ -613,13 +615,13 @@ Wenn Sie nur eine der beiden Abfragezeichenfolgen (`culture` oder `ui-culture`) 
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
 
-Produktions-Apps bieten oft einen Mechanismus zum Festlegen der Kultur mithilfe des ASP.NET Core-Kulturcookies. Verwenden Sie die Methode `MakeCookieValue` zum Erstellen eines Cookies.
+Produktions-Apps bieten oft einen Mechanismus zum Festlegen der Kultur mithilfe des ASP.NET Core-Kulturcookies. Verwenden Sie die Methode `MakeCookieValue` zum Erstellen eines cookies.
 
-`CookieRequestCultureProvider` `DefaultCookieName` gibt den Standardcookienamen zurück, der verwendet wird, um zu ermitteln, welche Kulturinformationen vom Benutzer bevorzugt werden. Der Standardname für Cookies ist `.AspNetCore.Culture`.
+`CookieRequestCultureProvider` `DefaultCookieName` gibt den Standardcookienamen zurück, mit dem ermittelt wird, welche Kulturinformationen der Benutzer bevorzugt. Der Standardcookiename lautet `.AspNetCore.Culture`.
 
-Das Cookieformat ist `c=%LANGCODE%|uic=%LANGCODE%`, wobei `c` für `Culture` steht und `uic` für `UICulture`, zum Beispiel:
+Das cookieformat ist `c=%LANGCODE%|uic=%LANGCODE%`, wobei `c` für `Culture` steht und `uic` für `UICulture`, zum Beispiel:
 
 ```
 c=en-UK|uic=en-US
@@ -690,7 +692,7 @@ Die Methode `SetLanguage` legt das Kulturcookie fest.
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
-Sie können *_SelectLanguagePartial.cshtml* dem Beispielcode für dieses Projekt nicht hinzufügen. Das Projekt **Localization.StarterWeb** auf [GitHub](https://github.com/aspnet/entropy) enthält Code, der `RequestLocalizationOptions` durch den Container von [Dependency Injection](dependency-injection.md) an eine[Razor-Teilansicht übermittelt.
+Sie können *_SelectLanguagePartial.cshtml* dem Beispielcode für dieses Projekt nicht hinzufügen. Das Projekt **Localization.StarterWeb** auf [GitHub](https://github.com/aspnet/entropy) enthält Code, der `RequestLocalizationOptions` durch den Container von [Dependency Injection](dependency-injection.md) an eineRazor-Teilansicht übermittelt.
 
 ## <a name="model-binding-route-data-and-query-strings"></a>Routendaten und Abfragezeichenfolgen für die Modellbindung
 
@@ -784,7 +786,7 @@ Der Dienst `IViewLocalizer` gibt lokalisierte Zeichenfolgen für eine [Ansicht](
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Home/About.cshtml)]
 
-Die Standardimplementierung von `IViewLocalizer` sucht die Ressourcendatei über den Dateinamen der Ansicht. Es gibt keine Option zur Nutzung einer globalen freigegebenen Ressourcendatei. `ViewLocalizer` implementiert den Lokalisierer mithilfe von `IHtmlLocalizer`, damit [Razor die lokalisierte Zeichenfolge nicht HTML-codiert. Sie können Ressourcenzeichenfolgen parametrisieren, und `IViewLocalizer` codiert die Parameter mit HTML, aber nicht die Ressourcenzeichenfolgen. Sehen Sie sich das folgende [Razor-Markup an:
+Die Standardimplementierung von `IViewLocalizer` sucht die Ressourcendatei über den Dateinamen der Ansicht. Es gibt keine Option zur Nutzung einer globalen freigegebenen Ressourcendatei. `ViewLocalizer` implementiert den Lokalisierer mithilfe von `IHtmlLocalizer`, damit Razor die lokalisierte Zeichenfolge nicht HTML-codiert. Sie können Ressourcenzeichenfolgen parametrisieren, und `IViewLocalizer` codiert die Parameter mit HTML, aber nicht die Ressourcenzeichenfolgen. Sehen Sie sich das folgende Razor-Markup an:
 
 ```cshtml
 @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
@@ -872,7 +874,7 @@ Im Beispielprojekt legt die Methode `ConfigureServices` die `ResourcesPath`-Eige
 | Resources/Controllers.HomeController.fr.resx | Punkt  |
 | Resources/Controllers/HomeController.fr.resx  | Pfad |
 
-Ressourcendateien, die `@inject IViewLocalizer` in [Razor-Ansichten verwenden, folgen einem ähnlichen Muster. Die Ressourcendatei für eine Ansicht kann mit der Punkt- oder Pfadbenennung benannt werden. Ressourcendateien der [Razor-Ansicht imitieren den Pfad ihrer zugehörigen Ansichtsdatei. Wenn `ResourcesPath` zum Beispiel auf „Resources“ festgelegt wird, ist die französische Ressourcendatei, die der Ansicht *Views/Home/About.cshtml* zugeordnet ist, eine der folgenden zwei:
+Ressourcendateien, die `@inject IViewLocalizer` in Razor-Ansichten verwenden, folgen einem ähnlichen Muster. Die Ressourcendatei für eine Ansicht kann mit der Punkt- oder Pfadbenennung benannt werden. Ressourcendateien der Razor-Ansicht imitieren den Pfad ihrer zugehörigen Ansichtsdatei. Wenn `ResourcesPath` zum Beispiel auf „Resources“ festgelegt wird, ist die französische Ressourcendatei, die der Ansicht *Views/Home/About.cshtml* zugeordnet ist, eine der folgenden zwei:
 
 * Resources/Views/Home/About.fr.resx
 
@@ -956,7 +958,7 @@ Die Reihenfolge der Standardliste fängt bei den spezifischsten Anbietern an und
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Einige Apps verwenden eine Abfragezeichenfolge, um die [Kultur und Benutzeroberflächenkultur](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx) festzulegen. Bei Apps, die die Ansätze „Cookie“ oder „Accept-Language-Header“ verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
+Einige Apps verwenden eine Abfragezeichenfolge, um die [Kultur und Benutzeroberflächenkultur](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx) festzulegen. Bei Apps, die die Ansätze cookie oder Accept-Language-Header verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
@@ -968,13 +970,13 @@ Wenn Sie nur eine der beiden Abfragezeichenfolgen (`culture` oder `ui-culture`) 
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
 
-Produktions-Apps bieten oft einen Mechanismus zum Festlegen der Kultur mithilfe des ASP.NET Core-Kulturcookies. Verwenden Sie die Methode `MakeCookieValue` zum Erstellen eines Cookies.
+Produktions-Apps bieten oft einen Mechanismus zum Festlegen der Kultur mithilfe des ASP.NET Core-Kulturcookies. Verwenden Sie die Methode `MakeCookieValue` zum Erstellen eines cookies.
 
-`CookieRequestCultureProvider` `DefaultCookieName` gibt den Standardcookienamen zurück, der verwendet wird, um zu ermitteln, welche Kulturinformationen vom Benutzer bevorzugt werden. Der Standardname für Cookies ist `.AspNetCore.Culture`.
+`CookieRequestCultureProvider` `DefaultCookieName` gibt den Standardcookienamen zurück, mit dem ermittelt wird, welche Kulturinformationen der Benutzer bevorzugt. Der Standardcookiename lautet `.AspNetCore.Culture`.
 
-Das Cookieformat ist `c=%LANGCODE%|uic=%LANGCODE%`, wobei `c` für `Culture` steht und `uic` für `UICulture`, zum Beispiel:
+Das cookieformat ist `c=%LANGCODE%|uic=%LANGCODE%`, wobei `c` für `Culture` steht und `uic` für `UICulture`, zum Beispiel:
 
 ```
 c=en-UK|uic=en-US
@@ -1068,7 +1070,7 @@ Die Methode `SetLanguage` legt das Kulturcookie fest.
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
-Sie können *_SelectLanguagePartial.cshtml* dem Beispielcode für dieses Projekt nicht hinzufügen. Das Projekt **Localization.StarterWeb** auf [GitHub](https://github.com/aspnet/entropy) enthält Code, der `RequestLocalizationOptions` durch den Container von [Dependency Injection](dependency-injection.md) an eine[Razor-Teilansicht übermittelt.
+Sie können *_SelectLanguagePartial.cshtml* dem Beispielcode für dieses Projekt nicht hinzufügen. Das Projekt **Localization.StarterWeb** auf [GitHub](https://github.com/aspnet/entropy) enthält Code, der `RequestLocalizationOptions` durch den Container von [Dependency Injection](dependency-injection.md) an eineRazor-Teilansicht übermittelt.
 
 ## <a name="model-binding-route-data-and-query-strings"></a>Routendaten und Abfragezeichenfolgen für die Modellbindung
 

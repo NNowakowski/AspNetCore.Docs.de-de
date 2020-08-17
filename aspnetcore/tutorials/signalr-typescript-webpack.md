@@ -1,39 +1,41 @@
 ---
-title: Verwenden von ASP.NET Core [SignalR mit TypeScript und Webpack
+title: Verwenden von ASP.NET Core SignalR mit TypeScript und Webpack
 author: ssougnez
-description: In diesem Tutorial konfigurieren Sie Webpack zum Bündeln und Erstellen einer ASP.NET Core [SignalR-Web-App, deren Client in TypeScript geschrieben ist.
+description: In diesem Tutorial konfigurieren Sie Webpack zum Bündeln und Erstellen einer ASP.NET Core SignalR-Web-App, deren Client in TypeScript geschrieben ist.
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 02/10/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/signalr-typescript-webpack
-ms.openlocfilehash: 49d185ce941d5f8e841224e7de3b72b8350a1c47
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 48b59fea5da3872fb29cacd9edbedd14de9e602f
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407901"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019416"
 ---
-# <a name="use-aspnet-core-signalr-with-typescript-and-webpack"></a>Verwenden von ASP.NET Core [SignalR mit TypeScript und Webpack
+# <a name="use-aspnet-core-no-locsignalr-with-typescript-and-webpack"></a>Verwenden von ASP.NET Core SignalR mit TypeScript und Webpack
 
 Von [Sébastien Sougnez](https://twitter.com/ssougnez) und [Scott Addie](https://twitter.com/Scott_Addie)
 
-Mit [Webpack](https://webpack.js.org/) können Entwickler clientseitige Ressourcen einer Web-App bündeln und erstellen. In diesem Tutorial wird veranschaulicht, wie Webpack in einer ASP.NET Core [SignalR-Web-App verwendet wird, deren Client in [TypeScript](https://www.typescriptlang.org/) geschrieben ist.
+Mit [Webpack](https://webpack.js.org/) können Entwickler clientseitige Ressourcen einer Web-App bündeln und erstellen. In diesem Tutorial wird veranschaulicht, wie Webpack in einer ASP.NET Core SignalR-Web-App verwendet wird, deren Client in [TypeScript](https://www.typescriptlang.org/) geschrieben ist.
 
 In diesem Tutorial lernen Sie, wie die folgenden Aufgaben ausgeführt werden:
 
 > [!div class="checklist"]
-> * Aufbauen einer einfachen ASP.NET Core [SignalR-App
-> * Konfigurieren des [SignalR-TypeScript-Clients
+> * Aufbauen einer einfachen ASP.NET Core SignalR-App
+> * Konfigurieren des SignalR-TypeScript-Clients
 > * Konfigurieren einer Buildpipeline mithilfe von Webpack
-> * Konfigurieren des [SignalR-Servers
+> * Konfigurieren des SignalR-Servers
 > * Aktivieren der Kommunikation zwischen Client und Server
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
@@ -72,7 +74,7 @@ Konfigurieren Sie Visual Studio, damit in der Umgebungsvariable *PATH* nach NPM 
 Die Konfiguration von Visual Studio ist abgeschlossen.
 
 1. Verwenden Sie die Menüoption **Datei** > **Neu** > **Projekt**, und wählen Sie die Vorlage **ASP.NET Core-Web-App** aus. Klicken Sie auf **Weiter**.
-1. Benennen Sie das Projekt *SignalRWebPack*, und wählen Sie **Erstellen** aus.
+1. Benennen Sie das Projekt *SignalRWebPack*, und klicken Sie auf **Erstellen**.
 1. Wählen Sie in der Dropdownliste mit Zielframeworks *.NET Core* und in der Dropdownliste zur Auswahl des Frameworks *ASP.NET Core 3.1* aus. Wählen Sie die **leere** Vorlage und dann **Erstellen** aus.
 
 `Microsoft.TypeScript.MSBuild`-Paket zu Projekt hinzufügen:
@@ -155,7 +157,7 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
     Die vorangehende Datei konfiguriert die Webpack-Kompilierung. Zu beachtende Konfigurationsdetails:
 
     * Die Eigenschaft `output` überschreibt den Standardwert von *dist*. Das Bündel wird stattdessen an das Verzeichnis *wwwroot* ausgegeben.
-    * Das `resolve.extensions`-Array schließt *.js* ein, um den JavaScript-Code des [SignalR-Clients zu importieren.
+    * Das `resolve.extensions`-Array schließt *.js* ein, um den JavaScript-Code des SignalR-Clients zu importieren.
 
 1. Erstellen Sie ein neues *src*-Verzeichnis im Projektstamm, um die clientseitigen Ressourcen des Projekts zu speichern.
 
@@ -200,11 +202,11 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_UseSignalR&highlight=3)]
 
-1. Rufen Sie in `Startup.ConfigureServices` [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) auf.
+1. In `Startup.ConfigureServices`, rufen Sie [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) auf.
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_AddSignalR)]
 
-1. Erstellen Sie im Projektstamm *SignalRWebPack/* ein neues Verzeichnis namens *Hubs*, um den [SignalR-Hub zu speichern.
+1. Erstellen Sie im Projektstamm *SignalRWebPack/* ein neues Verzeichnis namens *Hubs*, um den SignalR-Hub zu speichern.
 
 1. Erstellen Sie mit dem folgenden Code den Hub *Hubs/ChatHub.cs*:
 
@@ -226,7 +228,7 @@ Die App stellt zurzeit ein Basisformular zum Senden von Nachrichten bereit, ist 
 
     Mit dem vorangestellten Komma wird Folgendes installiert:
 
-     * Der [[SignalR-TypeScript-Client](https://www.npmjs.com/package/@microsoft/signalr), mit dem der Client Nachrichten an den Server senden kann.
+     * Der [SignalR-TypeScript-Client](https://www.npmjs.com/package/@microsoft/signalr), mit dem der Client Nachrichten an den Server senden kann.
      * Die TypeScript-Typdefinitionen für Node.js, die die Überprüfung zur Kompilierzeit von Node.js-Typen ermöglichen
 
 1. Fügen Sie den hervorgehobenen Code in die Datei *src/index.ts* ein:
@@ -235,7 +237,7 @@ Die App stellt zurzeit ein Basisformular zum Senden von Nachrichten bereit, ist 
 
     Der vorangehende Code unterstützt das Empfangen von Nachrichten vom Server. Die Klasse `HubConnectionBuilder` erstellt einen neuen Generator für die Konfiguration der Serververbindung. Die Funktion `withUrl` konfiguriert die Hub-URL.
 
-    Mit [SignalR wird der Austausch von Nachrichten zwischen einem Client und einem Server ermöglicht. Jede Nachricht verfügt über einen spezifischen Namen. Beispielsweise können Nachrichten mit dem Namen `messageReceived` die Logik zum Anzeigen neuer Nachrichten im Nachrichtenbereich ausführen. Mit der `on`-Funktion kann eine spezifische Nachricht belauscht werden. Sie können auf eine beliebige Anzahl von Nachrichtennamen lauschen. Außerdem können Parameter an die Nachricht übergeben werden, z.B. der Name des Autors und der Inhalt der empfangenen Nachricht. Sobald der Client eine Nachricht empfängt, wird ein neues `div`-Element mit dem Namen des Autors und dem Inhalt der Nachricht im `innerHTML`-Attribut erstellt. Es wird dem Hauptelement `div` hinzugefügt, das die Nachrichten anzeigt.
+    Mit SignalR wird der Austausch von Nachrichten zwischen einem Client und einem Server ermöglicht. Jede Nachricht verfügt über einen spezifischen Namen. Beispielsweise können Nachrichten mit dem Namen `messageReceived` die Logik zum Anzeigen neuer Nachrichten im Nachrichtenbereich ausführen. Mit der `on`-Funktion kann eine spezifische Nachricht belauscht werden. Sie können auf eine beliebige Anzahl von Nachrichtennamen lauschen. Außerdem können Parameter an die Nachricht übergeben werden, z.B. der Name des Autors und der Inhalt der empfangenen Nachricht. Sobald der Client eine Nachricht empfängt, wird ein neues `div`-Element mit dem Namen des Autors und dem Inhalt der Nachricht im `innerHTML`-Attribut erstellt. Es wird dem Hauptelement `div` hinzugefügt, das die Nachrichten anzeigt.
 
 1. Da der Client nun dazu in der Lage ist, Nachrichten zu empfangen, konfigurieren Sie ihn zum Senden von Nachrichten. Fügen Sie den hervorgehobenen Code in die Datei *src/index.ts* ein:
 
@@ -328,7 +330,7 @@ Konfigurieren Sie Visual Studio, damit in der Umgebungsvariable *PATH* nach NPM 
 Die Konfiguration von Visual Studio ist abgeschlossen. Jetzt ist es an der Zeit, das Projekt zu erstellen.
 
 1. Verwenden Sie die Menüoption **Datei** > **Neu** > **Projekt**, und wählen Sie die Vorlage **ASP.NET Core-Web-App** aus.
-1. Benennen Sie das Projekt *SignalRWebPack*, und wählen Sie **Erstellen** aus.
+1. Benennen Sie das Projekt *SignalRWebPack*, und klicken Sie auf **Erstellen**.
 1. Wählen Sie in der Dropdownliste mit Zielframeworks *.NET Core* und in der Dropdownliste zur Auswahl des Frameworks *ASP.NET Core 2.2* aus. Wählen Sie die **leere** Vorlage und dann **Erstellen** aus.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
@@ -395,7 +397,7 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
     Die vorangehende Datei konfiguriert die Webpack-Kompilierung. Zu beachtende Konfigurationsdetails:
 
     * Die Eigenschaft `output` überschreibt den Standardwert von *dist*. Das Bündel wird stattdessen an das Verzeichnis *wwwroot* ausgegeben.
-    * Das `resolve.extensions`-Array schließt *.js* ein, um den JavaScript-Code des [SignalR-Clients zu importieren.
+    * Das `resolve.extensions`-Array schließt *.js* ein, um den JavaScript-Code des SignalR-Clients zu importieren.
 
 1. Erstellen Sie ein neues *src*-Verzeichnis im Projektstamm, um die clientseitigen Ressourcen des Projekts zu speichern.
 
@@ -436,7 +438,7 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
 
     Mit dem vorangehenden Code wird dem Server ermöglicht, die Datei *index.html* zu finden und bereitzustellen, unabhängig davon, ob der Benutzer die vollständige URL oder die Stamm-URL der Web-App eingibt.
 
-1. Rufen Sie in `Startup.ConfigureServices` [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) auf. Mit ihr werden die [SignalR-Dienste in das Projekt eingefügt.
+1. Rufen Sie [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) in `Startup.ConfigureServices` auf. Mit ihr werden die SignalR-Dienste in das Projekt eingefügt.
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_AddSignalR)]
 
@@ -444,7 +446,7 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_UseSignalR)]
 
-1. Erstellen Sie ein neues Verzeichnis namens *Hubs* am Projektstamm. Es dient als Speicherort des [SignalR-Hubs, der im nächsten Schritt erstellt wird.
+1. Erstellen Sie ein neues Verzeichnis namens *Hubs* am Projektstamm. Es dient als Speicherort des SignalR-Hubs, der im nächsten Schritt erstellt wird.
 
 1. Erstellen Sie mit dem folgenden Code den Hub *Hubs/ChatHub.cs*:
 
@@ -464,7 +466,7 @@ Derzeit zeigt die App ein einfaches Formular zum Senden von Nachrichten an. Es g
     npm install @aspnet/signalr
     ```
 
-    Der vorangehende Befehl installiert den [[SignalR-TypeScript-Client](https://www.npmjs.com/package/@microsoft/signalr), mit dem der Client Nachrichten an den Server senden kann.
+    Der vorangehende Befehl installiert den [SignalR-TypeScript-Client](https://www.npmjs.com/package/@microsoft/signalr), mit dem der Client Nachrichten an den Server senden kann.
 
 1. Fügen Sie den hervorgehobenen Code in die Datei *src/index.ts* ein:
 
@@ -472,7 +474,7 @@ Derzeit zeigt die App ein einfaches Formular zum Senden von Nachrichten an. Es g
 
     Der vorangehende Code unterstützt das Empfangen von Nachrichten vom Server. Die Klasse `HubConnectionBuilder` erstellt einen neuen Generator für die Konfiguration der Serververbindung. Die Funktion `withUrl` konfiguriert die Hub-URL.
 
-    Mit [SignalR wird der Austausch von Nachrichten zwischen einem Client und einem Server ermöglicht. Jede Nachricht verfügt über einen spezifischen Namen. Beispielsweise können Nachrichten mit dem Namen `messageReceived` die Logik zum Anzeigen neuer Nachrichten im Nachrichtenbereich ausführen. Mit der `on`-Funktion kann eine spezifische Nachricht belauscht werden. Sie können auf eine beliebige Anzahl von Nachrichtennamen lauschen. Außerdem können Parameter an die Nachricht übergeben werden, z.B. der Name des Autors und der Inhalt der empfangenen Nachricht. Sobald der Client eine Nachricht empfängt, wird ein neues `div`-Element mit dem Namen des Autors und dem Inhalt der Nachricht im `innerHTML`-Attribut erstellt. Die neue Nachricht wird dem Hauptelement `div` hinzugefügt, das die Nachrichten anzeigt.
+    Mit SignalR wird der Austausch von Nachrichten zwischen einem Client und einem Server ermöglicht. Jede Nachricht verfügt über einen spezifischen Namen. Beispielsweise können Nachrichten mit dem Namen `messageReceived` die Logik zum Anzeigen neuer Nachrichten im Nachrichtenbereich ausführen. Mit der `on`-Funktion kann eine spezifische Nachricht belauscht werden. Sie können auf eine beliebige Anzahl von Nachrichtennamen lauschen. Außerdem können Parameter an die Nachricht übergeben werden, z.B. der Name des Autors und der Inhalt der empfangenen Nachricht. Sobald der Client eine Nachricht empfängt, wird ein neues `div`-Element mit dem Namen des Autors und dem Inhalt der Nachricht im `innerHTML`-Attribut erstellt. Die neue Nachricht wird dem Hauptelement `div` hinzugefügt, das die Nachrichten anzeigt.
 
 1. Da der Client nun dazu in der Lage ist, Nachrichten zu empfangen, konfigurieren Sie ihn zum Senden von Nachrichten. Fügen Sie den hervorgehobenen Code in die Datei *src/index.ts* ein:
 

@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/5/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/httpcontext
-ms.openlocfilehash: d4512c9fa136e518fa0230c0cf9c607519eed6d8
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2b8ac1d6c6cdeee14b74c5b14206bff51982c711
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399451"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017245"
 ---
 # <a name="access-httpcontext-in-aspnet-core"></a>Zugreifen auf HttpContext in ASP.NET Core
 
 ASP.NET Core-Apps greifen über die <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>-Schnittstelle und ihrer Standardimplementierung <xref:Microsoft.AspNetCore.Http.HttpContextAccessor> auf `HttpContext` zu. `IHttpContextAccessor` muss nur verwendet werden, wenn Sie auf `HttpContext` innerhalb eines Diensts zugreifen müssen.
 
-## <a name="use-httpcontext-from-razor-pages"></a>Verwenden von HttpContext über Razor Pages
+## <a name="use-httpcontext-from-no-locrazor-pages"></a>Verwenden von HttpContext über Razor Pages
 
 Das <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> von Razor Pages stellt die <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext>-Eigenschaft zur Verfügung:
 
@@ -42,7 +44,7 @@ public class AboutModel : PageModel
 }
 ```
 
-## <a name="use-httpcontext-from-a-razor-view"></a>Verwenden von HttpContext über eine Razor-Ansicht
+## <a name="use-httpcontext-from-a-no-locrazor-view"></a>Verwenden von HttpContext über eine Razor-Ansicht
 
 Razor-Ansichten machen `HttpContext` direkt über die [RazorPage.Context](xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context)-Eigenschaft in der Ansicht verfügbar. Im folgenden Beispiel wird der aktuelle Benutzername in einer Intranet-App abgerufen, die die Windows-Authentifizierung verwendet:
 
@@ -173,6 +175,6 @@ public class EmailController : Controller
 }
 ```
 
-## <a name="blazor-and-shared-state"></a>Blazor und freigegebener Zustand
+## <a name="no-locblazor-and-shared-state"></a>Blazor und freigegebener Zustand
 
 [!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]

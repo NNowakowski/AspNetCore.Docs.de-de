@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 700370fd11a0df40a45c47e8c378d5bdd0c60009
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: cd6624d107fb19da92a7e58a747cc85e876a6ba4
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212697"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018636"
 ---
-# <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pages mit Entity Framework Core in ASP.NET Core – Tutorial 1 bis 8
+# <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pages mit Entity Framework Core in ASP.NET Core – Tutorial 1 bis 8
 
 Von [Tom Dykstra](https://github.com/tdykstra) und [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -498,7 +500,7 @@ Benutzer können Informationen zu den Studenten, Kursen und Dozenten abrufen. Im
 
 Der Benutzeroberflächenstil dieser Website ähnelt den durch die integrierten Vorlagen generierten Seiten. In diesem Tutorial geht es um EF Core mit Razor Pages, nicht um die Benutzeroberfläche.
 
-## <a name="create-the-contosouniversity-razor-pages-web-app"></a>Erstellen der Razor Pages-Web-App „ContosoUniversity“
+## <a name="create-the-contosouniversity-no-locrazor-pages-web-app"></a>Erstellen der Razor Pages-Web-App „ContosoUniversity“
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -673,7 +675,7 @@ Der folgende Code zeigt die aktualisierte *Program.cs*-Datei.
 
 ### <a name="test-the-app"></a>Testen der App
 
-Führen Sie die App aus, und akzeptieren Sie die Cookierichtlinie. Diese App bewahrt keine personenbezogenen Informationen auf. Weitere Informationen zur Cookierichtlinie finden Sie auf der Seite [EU General Data Protection Regulation (GDPR) support (Unterstützung für die Datenschutz-Grundverordnung (DSGVO) der EU)](xref:security/gdpr).
+Führen Sie die App aus, und akzeptieren Sie die cookierichtlinie. Diese App bewahrt keine personenbezogenen Informationen auf. Weitere Informationen zur cookierichtlinie finden Sie auf der Seite [EU General Data Protection Regulation (GDPR) support (Unterstützung für die Datenschutz-Grundverordnung (DSGVO) der EU)](xref:security/gdpr).
 
 * Klicken Sie auf den Link **Students** (Studenten) und anschließend auf **Neu erstellen**.
 * Testen Sie die Links „Edit“ (Bearbeiten), „Details“ und „Delete“ (Löschen).
