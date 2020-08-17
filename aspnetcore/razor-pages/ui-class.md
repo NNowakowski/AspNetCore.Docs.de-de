@@ -6,6 +6,8 @@ ms.author: riande
 ms.date: 01/25/2020
 ms.custom: mvc, seodec18
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: 1d37ebaa913a2815b79b16875049bbf91f9fb941
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 042ef8dcc7135e0c60baec972d405380d85a6a10
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404391"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019221"
 ---
-# <a name="create-reusable-ui-using-the-razor-class-library-project-in-aspnet-core"></a>Erstellen einer wiederverwendbaren Benutzeroberfläche mithilfe eines Razor-Klassenbibliotheksprojekts in ASP.NET Core
+# <a name="create-reusable-ui-using-the-no-locrazor-class-library-project-in-aspnet-core"></a>Erstellen einer wiederverwendbaren Benutzeroberfläche mithilfe eines Razor-Klassenbibliotheksprojekts in ASP.NET Core
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -31,13 +33,13 @@ Ansichten, Seiten, Controller, Seitenmodelle, [Razor-Komponenten](xref:blazor/co
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-## <a name="create-a-class-library-containing-razor-ui"></a>Erstellen einer Klassenbibliothek, die eine Razor-Benutzeroberfläche enthält
+## <a name="create-a-class-library-containing-no-locrazor-ui"></a>Erstellen einer Klassenbibliothek, die eine Razor-Benutzeroberfläche enthält
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Klicken Sie in Visual Studio auf **Neues Projekt erstellen**.
 * Klicken Sie auf **Razor-Klassenbibliothek** > **Weiter**.
-* Benennen Sie die Bibliothek (z. B. „RazorClassLib“), und klicken Sie auf **Erstellen**. Stellen Sie sicher, dass der Bibliotheksname nicht auf `.Views` endet, um zu verhindern, dass es zu einem Dateinamenkonflikt mit der generierten Ansichtsbibliothek kommt.
+* Benennen Sie die Bibliothek (z. B. RazorClassLib), und klicken Sie auf **Erstellen**. Stellen Sie sicher, dass der Bibliotheksname nicht auf `.Views` endet, um zu verhindern, dass es zu einem Dateinamenkonflikt mit der generierten Ansichtsbibliothek kommt.
 * Klicken Sie auf **Support pages and views** (Seiten und Ansichten unterstützen), wenn Ansichten unterstützt werden sollen. Standardmäßig werden nur Razor-Seiten unterstützt. Wählen Sie **Erstellen** aus.
 
 Die Vorlage der Razor-Klassenbibliothek (Razor Class Library, RCL) gilt standardmäßig für die Razor-Komponentenentwicklung. Mit der Option **Support pages and views** (Seiten und Ansichten unterstützen) werden Seiten und Ansichten unterstützt.
@@ -82,7 +84,7 @@ Erstellen Sie ein RCL-Projekt mit der folgenden Dateistruktur, um auf RCL-Inhalt
 * *RazorUIClassLib/Pages*
 * *RazorUIClassLib/Pages/Shared*
 
-Angenommen, *RazorUIClassLib/Pages/Shared* enthält zwei Teildateien: *_Header.cshtml* und *_Footer.cshtml*. Die `<partial>`-Tags könnten dann in der Datei *_Layout.cshtml* hinzugefügt werden:
+Nehmen Sie an, dass *RazorUIClassLib/Pages/Shared* zwei Teildateien enthält: *_Header.cshtml* und *_Footer.cshtml*. Die `<partial>`-Tags könnten dann in der Datei *_Layout.cshtml* hinzugefügt werden:
 
 ```cshtml
 <body>
@@ -198,13 +200,13 @@ Ansichten, Seiten, Controller, Seitenmodelle, [Razor-Komponenten](xref:blazor/co
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-## <a name="create-a-class-library-containing-razor-ui"></a>Erstellen einer Klassenbibliothek, die eine Razor-Benutzeroberfläche enthält
+## <a name="create-a-class-library-containing-no-locrazor-ui"></a>Erstellen einer Klassenbibliothek, die eine Razor-Benutzeroberfläche enthält
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Klicken Sie in Visual Studio im Menü **Datei** auf **Neu** > **Projekt**.
 * Wählen Sie **ASP.NET Core-Webanwendung** aus.
-* Geben Sie der Bibliothek einen Namen (z.B. „RazorClassLib“), und klicken Sie anschließend auf **OK**. Stellen Sie sicher, dass der Bibliotheksname nicht auf `.Views` endet, um zu verhindern, dass es zu einem Dateinamenkonflikt mit der generierten Ansichtsbibliothek kommt.
+* Benennen Sie die Bibliothek (z. B. RazorClassLib), und klicken Sie auf **OK**. Stellen Sie sicher, dass der Bibliotheksname nicht auf `.Views` endet, um zu verhindern, dass es zu einem Dateinamenkonflikt mit der generierten Ansichtsbibliothek kommt.
 * Überprüfen Sie, ob **ASP.NET Core 2.1** oder höher ausgewählt ist.
 * Klicken Sie auf **Razor-Klassenbibliothek** > **OK**.
 
@@ -235,7 +237,7 @@ Folgende Komponenten können auf die RCL verweisen:
 * NuGet-Pakete. Weitere Informationen finden Sie unter [Creating NuGet packages](/nuget/create-packages/creating-a-package) (Erstellen von NuGet-Paketen), [dotnet add package](/dotnet/core/tools/dotnet-add-package) und [Erstellen und Veröffentlichen eines NuGet-Pakets](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
 * *{ProjectName}.csproj*-Dateien. Weitere Informationen finden Sie unter [dotnet add reference](/dotnet/core/tools/dotnet-add-reference).
 
-## <a name="walkthrough-create-an-rcl-project-and-use-from-a-razor-pages-project"></a>Exemplarische Vorgehensweise: Erstellen eines RCL-Projekts und dessen Verwendung in einem Razor Pages-Projekt
+## <a name="walkthrough-create-an-rcl-project-and-use-from-a-no-locrazor-pages-project"></a>Exemplarische Vorgehensweise: Erstellen eines RCL-Projekts und dessen Verwendung in einem Razor Pages-Projekt
 
 Sie können das [vollständige Projekt](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) herunterladen und testen, anstatt es zu erstellen. Der Beispieldownload enthält zusätzlichen Code sowie Links, die das Testen des Projekts erleichtern. [In diesem GitHub-Issue](https://github.com/dotnet/AspNetCore.Docs/issues/6098) können Sie in Form von Kommentaren Feedback zu Unterschieden zwischen Beispieldownloads und ausführlichen Anleitungen geben.
 
@@ -275,7 +277,7 @@ Erstellen Sie das RCL-Projekt:
 
 * Klicken Sie in Visual Studio im Menü **Datei** auf **Neu** > **Projekt**.
 * Wählen Sie **ASP.NET Core-Webanwendung** aus.
-* Legen Sie als Namen für die App **RazorUIClassLib** fest, und klicken Sie auf >**OK**.
+* Legen Sie als Namen für die App **RazorUIClassLib** fest, und klicken Sie auf **OK**.
 * Überprüfen Sie, ob **ASP.NET Core 2.1** oder höher ausgewählt ist.
 * Klicken Sie auf **Razor-Klassenbibliothek** > **OK**.
 * Fügen Sie eine Razor-Datei für die Teilansicht namens *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* hinzu.
@@ -300,7 +302,7 @@ Die Datei *_ViewStart.cshtml* ist erforderlich, um das Layout des Razor Pages-Pr
 
 ---
 
-### <a name="add-razor-files-and-folders-to-the-project"></a>Hinzufügen von Razor-Dateien und -Ordnern zum Projekt
+### <a name="add-no-locrazor-files-and-folders-to-the-project"></a>Hinzufügen von Razor-Dateien und -Ordnern zum Projekt
 
 * Ersetzen Sie das Markup in *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* durch den folgenden Code:
 
@@ -326,7 +328,7 @@ Die Datei *_ViewStart.cshtml* ist erforderlich, um das Layout des Razor Pages-Pr
 
 Die Buildausgabe enthält *RazorUIClassLib.dll* und *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* enthält den kompilierten Razor-Inhalt.
 
-### <a name="use-the-razor-ui-library-from-a-razor-pages-project"></a>Verwenden der Razor-Benutzeroberflächenbibliothek über ein Razor Pages-Projekt
+### <a name="use-the-no-locrazor-ui-library-from-a-no-locrazor-pages-project"></a>Verwenden der Razor-Benutzeroberflächenbibliothek über ein Razor Pages-Projekt
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -340,9 +342,9 @@ Erstellen Sie die Razor Pages-Web-App:
 
 * Klicken Sie im **Projektmappen-Explorer** zuerst mit der rechten Maustaste auf **WebApp1** und anschließend auf **Als Startprojekt festlegen**.
 * Klicken Sie im **Projektmappen-Explorer** zuerst mit der rechten Maustaste auf **WebApp1** und anschließend auf **Buildabhängigkeiten** > **Projektabhängigkeiten**.
-* Aktivieren Sie für **WebApp1** die Abhängigkeit **RazorUIClassLib**.
+* Aktivieren Sie **RazorUIClassLib** als Abhängigkeit von **WebApp1**.
 * Klicken Sie im **Projektmappen-Explorer** zuerst mit der rechten Maustaste auf **WebApp1** und anschließend auf **Hinzufügen** > **Verweis**.
-* Aktivieren Sie im Dialogfeld **Verweis-Manager** das Kontrollkästchen neben **RazorUIClassLib**, und klicken Sie anschließend auf >**OK**.
+* Aktivieren Sie im Dialogfeld **Verweis-Manager** das Kontrollkästchen neben **UIClassLib, und klicken Sie auf OK.
 
 Führen Sie die App aus.
 
@@ -386,7 +388,7 @@ Erstellen Sie ein RCL-Projekt mit der folgenden Dateistruktur, um auf RCL-Inhalt
 * *RazorUIClassLib/Pages*
 * *RazorUIClassLib/Pages/Shared*
 
-Angenommen, *RazorUIClassLib/Pages/Shared* enthält zwei Teildateien: *_Header.cshtml* und *_Footer.cshtml*. Die `<partial>`-Tags könnten dann in der Datei *_Layout.cshtml* hinzugefügt werden:
+Nehmen Sie an, dass *RazorUIClassLib/Pages/Shared* zwei Teildateien enthält: *_Header.cshtml* und *_Footer.cshtml*. Die `<partial>`-Tags könnten dann in der Datei *_Layout.cshtml* hinzugefügt werden:
 
 ```cshtml
 <body>
