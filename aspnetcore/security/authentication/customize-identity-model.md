@@ -1,5 +1,5 @@
 ---
-title: IdentityModellanpassung in ASP.net Core
+title: Identity Modellanpassung in ASP.net Core
 author: ajcvickers
 description: In diesem Artikel wird beschrieben, wie Sie das zugrunde liegende Entity Framework Core Datenmodell für ASP.net Core anpassen Identity .
 ms.author: avickers
@@ -15,20 +15,20 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/customize_identity_model
-ms.openlocfilehash: 4e6d91de013755f1ae998e36481f4c3b659270ae
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7c325bbc96ad4a8c5e4686073266d730eb924c10
+ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022003"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88504670"
 ---
-# <a name="no-locidentity-model-customization-in-aspnet-core"></a>IdentityModellanpassung in ASP.net Core
+# <a name="no-locidentity-model-customization-in-aspnet-core"></a>Identity Modellanpassung in ASP.net Core
 
 Von [Arthur Vickers](https://github.com/ajcvickers)
 
-ASP.net Core Identity stellt ein Framework zum Verwalten und Speichern von Benutzerkonten in ASP.net Core-apps bereit. Identitywird Ihrem Projekt hinzugefügt, wenn **einzelne Benutzerkonten** als Authentifizierungsmechanismus ausgewählt werden. Standardmäßig Identity verwendet ein Entity Framework Core-Datenmodell (EF). In diesem Artikel wird beschrieben, wie Sie das Identity Modell anpassen.
+ASP.net Core Identity stellt ein Framework zum Verwalten und Speichern von Benutzerkonten in ASP.net Core-apps bereit. Identity wird Ihrem Projekt hinzugefügt, wenn **einzelne Benutzerkonten** als Authentifizierungsmechanismus ausgewählt werden. Standardmäßig Identity verwendet ein Entity Framework Core-Datenmodell (EF). In diesem Artikel wird beschrieben, wie Sie das Identity Modell anpassen.
 
-## <a name="no-locidentity-and-ef-core-migrations"></a>Identityund EF Core Migrationen
+## <a name="no-locidentity-and-ef-core-migrations"></a>Identity und EF Core Migrationen
 
 Bevor Sie das Modell untersuchen, sollten Sie verstehen, wie Identity mit [EF Core Migrationen](/ef/core/managing-schemas/migrations/) funktioniert, um eine Datenbank zu erstellen und zu aktualisieren. Auf der obersten Ebene lautet der Prozess wie folgt:
 
@@ -60,7 +60,7 @@ Wiederholen Sie die vorherigen Schritte, wenn Änderungen am Modell vorgenommen 
 
 Das Identity Modell besteht aus den folgenden Entitäts Typen.
 
-|Entitätstyp|BESCHREIBUNG                                                  |
+|Entitätstyp|Beschreibung                                                  |
 |-----------|-------------------------------------------------------------|
 |`User`     |Stellt den Benutzer dar.                                         |
 |`Role`     |Stellt eine Rolle dar.                                           |
@@ -82,7 +82,7 @@ Die [Entitäts Typen](#entity-types) stehen auf folgende Weise miteinander in Be
 
 ### <a name="default-model-configuration"></a>Standardmodell Konfiguration
 
-Identitydefiniert viele *Kontext Klassen* , die von [dbcontext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) erben, um das Modell zu konfigurieren und zu verwenden. Diese Konfiguration erfolgt mithilfe der [EF Core Code First fließende API](/ef/core/modeling/) in der [onmodelcreating](/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating) -Methode der Context-Klasse. Die Standardkonfiguration lautet wie folgt:
+Identity definiert viele *Kontext Klassen* , die von [dbcontext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) erben, um das Modell zu konfigurieren und zu verwenden. Diese Konfiguration erfolgt mithilfe der [EF Core Code First fließende API](/ef/core/modeling/) in der [onmodelcreating](/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating) -Methode der Context-Klasse. Die Standardkonfiguration lautet wie folgt:
 
 ```csharp
 builder.Entity<TUser>(b =>
@@ -207,7 +207,7 @@ builder.Entity<TUserRole>(b =>
 
 ### <a name="model-generic-types"></a>Generische Modelltypen
 
-Identitydefiniert CLR-Standardtypen ( [Common Language Runtime](/dotnet/standard/glossary#clr) ) für jeden der oben aufgeführten Entitäts Typen. Diese Typen verfügen alle über das Präfix *Identity* :
+Identity definiert CLR-Standardtypen ( [Common Language Runtime](/dotnet/standard/glossary#clr) ) für jeden der oben aufgeführten Entitäts Typen. Diese Typen verfügen alle über das Präfix *Identity* :
 
 * `IdentityUser`
 * `IdentityRole`
@@ -219,7 +219,7 @@ Identitydefiniert CLR-Standardtypen ( [Common Language Runtime](/dotnet/standard
 
 Anstatt diese Typen direkt zu verwenden, können die Typen als Basisklassen für die eigenen Typen der APP verwendet werden. Die `DbContext` von definierten Klassen Identity sind generisch, sodass verschiedene CLR-Typen für einen oder mehrere Entitäts Typen im Modell verwendet werden können. Diese generischen Typen ermöglichen auch das `User` Ändern des Primärschlüssel Datentyps (PK).
 
-Wenn Sie Identity mit der Unterstützung für-Rollen verwenden, sollte eine- <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext> Klasse verwendet werden. Zum Beispiel:
+Wenn Sie Identity mit der Unterstützung für-Rollen verwenden, sollte eine- <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext> Klasse verwendet werden. Beispiel:
 
 ```csharp
 // Uses all the built-in Identity types
@@ -367,8 +367,8 @@ services.AddIdentity<ApplicationUser>()
 
 In ASP.net Core 2,1 oder höher Identity wird als Razor Klassenbibliothek bereitgestellt. Weitere Informationen finden Sie unter <xref:security/authentication/scaffold-identity>. Folglich erfordert der vorangehende Code einen-Rückruf <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Wenn das Identity Gerüst zum Hinzufügen von Identity Dateien zum Projekt verwendet wurde, entfernen Sie den-Befehl `AddDefaultUI` . Weitere Informationen finden Sie unter:
 
-* [GerüstIdentity](xref:security/authentication/scaffold-identity)
-* [Hinzufügen, herunterladen und Löschen von benutzerdefinierten BenutzerdatenIdentity](xref:security/authentication/add-user-data)
+* [Gerüst Identity](xref:security/authentication/scaffold-identity)
+* [Hinzufügen, herunterladen und Löschen von benutzerdefinierten Benutzerdaten Identity](xref:security/authentication/add-user-data)
 
 ### <a name="change-the-primary-key-type"></a>Ändern des Primärschlüssel Typs
 
@@ -403,7 +403,7 @@ Führen Sie diese Schritte aus, um den PK-Typ zu ändern:
 
     ::: moniker-end
 
-    `Startup.ConfigureServices`muss aktualisiert werden, damit der generische Benutzer verwendet wird:
+    `Startup.ConfigureServices` muss aktualisiert werden, damit der generische Benutzer verwendet wird:
 
     ::: moniker range=">= aspnetcore-2.1"
 
@@ -434,7 +434,7 @@ Führen Sie diese Schritte aus, um den PK-Typ zu ändern:
 
     ::: moniker-end
 
-4. Wenn eine benutzerdefinierte `ApplicationUser` Klasse verwendet wird, aktualisieren Sie die-Klasse, um von zu erben `IdentityUser` . Zum Beispiel:
+4. Wenn eine benutzerdefinierte `ApplicationUser` Klasse verwendet wird, aktualisieren Sie die-Klasse, um von zu erben `IdentityUser` . Beispiel:
 
     ::: moniker range="<= aspnetcore-1.1"
 
@@ -502,7 +502,7 @@ Führen Sie diese Schritte aus, um den PK-Typ zu ändern:
 
     ::: moniker-end
 
-5. Wenn eine benutzerdefinierte `ApplicationRole` Klasse verwendet wird, aktualisieren Sie die-Klasse, um von zu erben `IdentityRole<TKey>` . Zum Beispiel:
+5. Wenn eine benutzerdefinierte `ApplicationRole` Klasse verwendet wird, aktualisieren Sie die-Klasse, um von zu erben `IdentityRole<TKey>` . Beispiel:
 
     [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationRole.cs?name=snippet_ApplicationRole&highlight=4)]
 
@@ -561,7 +561,7 @@ builder.Entity<TUser>(b =>
 });
 ```
 
-Der FK für diese Beziehung wird als- `UserClaim.UserId` Eigenschaft angegeben. `HasMany`und `WithOne` werden ohne Argumente aufgerufen, um die Beziehung ohne Navigations Eigenschaften zu erstellen.
+Der FK für diese Beziehung wird als- `UserClaim.UserId` Eigenschaft angegeben. `HasMany` und `WithOne` werden ohne Argumente aufgerufen, um die Beziehung ohne Navigations Eigenschaften zu erstellen.
 
 Fügen Sie eine Navigations Eigenschaft hinzu `ApplicationUser` , die `UserClaims` den Verweis auf den zugeordneten vom Benutzer ermöglicht:
 
@@ -741,11 +741,11 @@ public class ApplicationDbContext
 }
 ```
 
-Notizen:
+Hinweise:
 
 * Dieses Beispiel enthält auch die `UserRole` Join-Entität, die benötigt wird, um die m:n-Beziehung von Benutzern zu Rollen zu navigieren.
-* Denken Sie daran, die Typen der Navigations Eigenschaften zu ändern, um widerzuspiegeln, dass `ApplicationXxx` Typen jetzt anstelle von-Typen verwendet werden `IdentityXxx` .
-* Denken Sie daran, das `ApplicationXxx` in der generischen Definition zu verwenden `ApplicationContext` .
+* Denken Sie daran, die Typen der Navigations Eigenschaften zu ändern, um widerzuspiegeln, dass `Application{...}` Typen jetzt anstelle von-Typen verwendet werden `Identity{...}` .
+* Denken Sie daran, das `Application{...}` in der generischen Definition zu verwenden `ApplicationContext` .
 
 ### <a name="add-all-navigation-properties"></a>Alle Navigations Eigenschaften hinzufügen
 
@@ -951,7 +951,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ### <a name="map-to-a-different-schema"></a>Einem anderen Schema zuordnen
 
-Schemas können sich über Datenbankanbieter hinweg unterschiedlich verhalten. Für SQL Server werden standardmäßig alle Tabellen im *dbo* -Schema erstellt. Die Tabellen können in einem anderen Schema erstellt werden. Zum Beispiel:
+Schemas können sich über Datenbankanbieter hinweg unterschiedlich verhalten. Für SQL Server werden standardmäßig alle Tabellen im *dbo* -Schema erstellt. Die Tabellen können in einem anderen Schema erstellt werden. Beispiel:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
