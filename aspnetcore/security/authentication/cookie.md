@@ -1,11 +1,12 @@
 ---
-title: Verwenden der cookie Authentifizierung ohne ASP.net CoreIdentity
+title: Verwenden der cookie Authentifizierung ohne ASP.NET Core Identity
 author: rick-anderson
-description: Erfahren Sie, wie Sie die cookie Authentifizierung ohne ASP.net Core verwenden Identity .
+description: Erfahren Sie, wie Sie die cookie Authentifizierung ohne verwenden ASP.NET Core Identity .
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 02/11/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,20 +17,20 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: 325bc3dcd48517d93d5f6f2d56e92651c780d759
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2e9eb58837d74343d8de6903372146570b43f330
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021886"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627142"
 ---
-# <a name="use-no-loccookie-authentication-without-aspnet-core-no-locidentity"></a>Verwenden der cookie Authentifizierung ohne ASP.net CoreIdentity
+# <a name="use-no-loccookie-authentication-without-no-locaspnet-core-identity"></a>Verwenden der cookie Authentifizierung ohne ASP.NET Core Identity
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.net Core Identity ist ein vollständiger Authentifizierungs Anbieter mit vollem Funktionsumfang zum Erstellen und warten von Anmeldungen. Ein cookie -basierter Authentifizierungs Anbieter ohne ASP.net Core kann jedoch Identity verwendet werden. Weitere Informationen finden Sie unter <xref:security/authentication/identity>.
+ASP.NET Core Identity ist ein vollständiger Authentifizierungs Anbieter mit vollem Funktionsumfang zum Erstellen und warten von Anmeldungen. Allerdings cookie kann ein-basierter Authentifizierungs Anbieter ohne ASP.NET Core Identity verwendet werden. Weitere Informationen finden Sie unter <xref:security/authentication/identity>.
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
@@ -43,7 +44,7 @@ Erstellen Sie in der `Startup.ConfigureServices` -Methode die Authentifizierungs
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Startup.cs?name=snippet1)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>wird an `AddAuthentication` das Standard Authentifizierungsschema für die APP festgelegt. `AuthenticationScheme`ist nützlich, wenn mehrere Instanzen der Authentifizierung vorhanden sind cookie und Sie die [Autorisierung mit einem bestimmten Schema durch](xref:security/authorization/limitingidentitybyscheme)laufen möchten. Durch Festlegen `AuthenticationScheme` von auf [ Cookie authenticationdefaults. authenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) wird der Wert " Cookie s" für das Schema bereitstellt. Sie können einen beliebigen Zeichen folgen Wert angeben, der das Schema unterscheidet.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme> wird an `AddAuthentication` das Standard Authentifizierungsschema für die APP festgelegt. `AuthenticationScheme` ist nützlich, wenn mehrere Instanzen der Authentifizierung vorhanden sind cookie und Sie die [Autorisierung mit einem bestimmten Schema durch](xref:security/authorization/limitingidentitybyscheme)laufen möchten. Durch Festlegen `AuthenticationScheme` von auf [ Cookie authenticationdefaults. authenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) wird der Wert " Cookie s" für das Schema bereitstellt. Sie können einen beliebigen Zeichen folgen Wert angeben, der das Schema unterscheidet.
 
 Das Authentifizierungsschema der APP unterscheidet sich vom cookie Authentifizierungsschema der app. Wenn kein cookie Authentifizierungsschema für bereitgestellt <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> wird, verwendet es `CookieAuthenticationDefaults.AuthenticationScheme` (" Cookie s").
 
@@ -65,7 +66,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 ```
 
-## <a name="no-loccookie-policy-middleware"></a>CookieRichtlinien Middleware
+## <a name="no-loccookie-policy-middleware"></a>Cookie Richtlinien Middleware
 
 Die [ Cookie Richtlinien Middleware](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) ermöglicht cookie Richtlinien Funktionen. Beim Hinzufügen der Middleware zur APP-Verarbeitungs Pipeline ist die Reihenfolge vertraulich, dass &mdash; Sie nur die in der Pipeline registrierten Downstreamkomponenten betrifft.
 
@@ -92,7 +93,7 @@ Die Cookie Einstellung der Richtlinien Middleware für `MinimumSameSitePolicy` k
 | Samesitemode. Lax      | Samesitemode. None<br>Samesitemode. Lax<br>Samesitemode. Strict | Samesitemode. Lax<br>Samesitemode. Lax<br>Samesitemode. Strict |
 | Samesitemode. Strict   | Samesitemode. None<br>Samesitemode. Lax<br>Samesitemode. Strict | Samesitemode. Strict<br>Samesitemode. Strict<br>Samesitemode. Strict |
 
-## <a name="create-an-authentication-no-loccookie"></a>Erstellen einer Authentifizierungcookie
+## <a name="create-an-authentication-no-loccookie"></a>Erstellen einer Authentifizierung cookie
 
 Erstellen Sie eine, um eine zu erstellen cookie , die Benutzerinformationen enthält <xref:System.Security.Claims.ClaimsPrincipal> . Die Benutzerinformationen werden serialisiert und in gespeichert cookie . 
 
@@ -102,9 +103,9 @@ Erstellen <xref:System.Security.Claims.ClaimsIdentity> Sie mit allen erforderlic
 
 [!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
-`SignInAsync`erstellt eine verschlüsselte cookie und fügt Sie der aktuellen Antwort hinzu. Wenn `AuthenticationScheme` nicht angegeben ist, wird das Standardschema verwendet.
+`SignInAsync` erstellt eine verschlüsselte cookie und fügt Sie der aktuellen Antwort hinzu. Wenn `AuthenticationScheme` nicht angegeben ist, wird das Standardschema verwendet.
 
-<xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri>wird standardmäßig nur für einige bestimmte Pfade verwendet, z. b. für den Anmelde Pfad und die Abmelde Pfade. Weitere Informationen finden Sie in der [ Cookie authenticationhandler-Quelle](https://github.com/dotnet/aspnetcore/blob/f2e6e6ff334176540ef0b3291122e359c2106d1a/src/Security/Authentication/Cookies/src/CookieAuthenticationHandler.cs#L334).
+<xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri> wird standardmäßig nur für einige bestimmte Pfade verwendet, z. b. für den Anmelde Pfad und die Abmelde Pfade. Weitere Informationen finden Sie in der [ Cookie authenticationhandler-Quelle](https://github.com/dotnet/aspnetcore/blob/f2e6e6ff334176540ef0b3291122e359c2106d1a/src/Security/Authentication/Cookies/src/CookieAuthenticationHandler.cs#L334).
 
 ASP.net Core- [Datenschutz](xref:security/data-protection/using-data-protection) System wird für die Verschlüsselung verwendet. Konfigurieren Sie für eine APP, die auf mehreren Computern gehostet wird, den Lastenausgleich über apps oder eine Webfarm, den [Datenschutz](xref:security/data-protection/configuration/overview) so, dass derselbe Schlüsselbund und der APP-Bezeichner verwendet werden.
 
@@ -250,7 +251,7 @@ await HttpContext.SignInAsync(
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.net Core Identity ist ein vollständiger Authentifizierungs Anbieter mit vollem Funktionsumfang zum Erstellen und warten von Anmeldungen. Es kann jedoch ein cookie -basierter Authentifizierungs Authentifizierungs Anbieter ohne ASP.net Core Identity verwendet werden. Weitere Informationen finden Sie unter <xref:security/authentication/identity>.
+ASP.NET Core Identity ist ein vollständiger Authentifizierungs Anbieter mit vollem Funktionsumfang zum Erstellen und warten von Anmeldungen. Es kann jedoch ein cookie -basierter Authentifizierungs Authentifizierungs Anbieter ohne ASP.NET Core Identity verwendet werden. Weitere Informationen finden Sie unter <xref:security/authentication/identity>.
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
@@ -264,7 +265,7 @@ Erstellen Sie in der `Startup.ConfigureServices` -Methode den Authentifizierungs
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Startup.cs?name=snippet1)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>wird an `AddAuthentication` das Standard Authentifizierungsschema für die APP festgelegt. `AuthenticationScheme`ist nützlich, wenn mehrere Instanzen der Authentifizierung vorhanden sind cookie und Sie die [Autorisierung mit einem bestimmten Schema durch](xref:security/authorization/limitingidentitybyscheme)laufen möchten. Durch Festlegen `AuthenticationScheme` von auf [ Cookie authenticationdefaults. authenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) wird der Wert " Cookie s" für das Schema bereitstellt. Sie können einen beliebigen Zeichen folgen Wert angeben, der das Schema unterscheidet.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme> wird an `AddAuthentication` das Standard Authentifizierungsschema für die APP festgelegt. `AuthenticationScheme` ist nützlich, wenn mehrere Instanzen der Authentifizierung vorhanden sind cookie und Sie die [Autorisierung mit einem bestimmten Schema durch](xref:security/authorization/limitingidentitybyscheme)laufen möchten. Durch Festlegen `AuthenticationScheme` von auf [ Cookie authenticationdefaults. authenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) wird der Wert " Cookie s" für das Schema bereitstellt. Sie können einen beliebigen Zeichen folgen Wert angeben, der das Schema unterscheidet.
 
 Das Authentifizierungsschema der APP unterscheidet sich vom cookie Authentifizierungsschema der app. Wenn kein cookie Authentifizierungsschema für bereitgestellt <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> wird, verwendet es `CookieAuthenticationDefaults.AuthenticationScheme` (" Cookie s").
 
@@ -286,7 +287,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 ```
 
-## <a name="no-loccookie-policy-middleware"></a>CookieRichtlinien Middleware
+## <a name="no-loccookie-policy-middleware"></a>Cookie Richtlinien Middleware
 
 Die [ Cookie Richtlinien Middleware](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) ermöglicht cookie Richtlinien Funktionen. Beim Hinzufügen der Middleware zur APP-Verarbeitungs Pipeline ist die Reihenfolge vertraulich, dass &mdash; Sie nur die in der Pipeline registrierten Downstreamkomponenten betrifft.
 
@@ -313,7 +314,7 @@ Die Cookie Einstellung der Richtlinien Middleware für `MinimumSameSitePolicy` k
 | Samesitemode. Lax      | Samesitemode. None<br>Samesitemode. Lax<br>Samesitemode. Strict | Samesitemode. Lax<br>Samesitemode. Lax<br>Samesitemode. Strict |
 | Samesitemode. Strict   | Samesitemode. None<br>Samesitemode. Lax<br>Samesitemode. Strict | Samesitemode. Strict<br>Samesitemode. Strict<br>Samesitemode. Strict |
 
-## <a name="create-an-authentication-no-loccookie"></a>Erstellen einer Authentifizierungcookie
+## <a name="create-an-authentication-no-loccookie"></a>Erstellen einer Authentifizierung cookie
 
 Erstellen Sie eine, um eine zu erstellen cookie , die Benutzerinformationen enthält <xref:System.Security.Claims.ClaimsPrincipal> . Die Benutzerinformationen werden serialisiert und in gespeichert cookie . 
 
@@ -321,7 +322,7 @@ Erstellen <xref:System.Security.Claims.ClaimsIdentity> Sie mit allen erforderlic
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1)]
 
-`SignInAsync`erstellt eine verschlüsselte cookie und fügt Sie der aktuellen Antwort hinzu. Wenn `AuthenticationScheme` nicht angegeben ist, wird das Standardschema verwendet.
+`SignInAsync` erstellt eine verschlüsselte cookie und fügt Sie der aktuellen Antwort hinzu. Wenn `AuthenticationScheme` nicht angegeben ist, wird das Standardschema verwendet.
 
 ASP.net Core- [Datenschutz](xref:security/data-protection/using-data-protection) System wird für die Verschlüsselung verwendet. Konfigurieren Sie für eine APP, die auf mehreren Computern gehostet wird, den Lastenausgleich über apps oder eine Webfarm, den [Datenschutz](xref:security/data-protection/configuration/overview) so, dass derselbe Schlüsselbund und der APP-Bezeichner verwendet werden.
 
@@ -465,7 +466,7 @@ await HttpContext.SignInAsync(
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * <xref:security/authorization/limitingidentitybyscheme>
 * <xref:security/authorization/claims>

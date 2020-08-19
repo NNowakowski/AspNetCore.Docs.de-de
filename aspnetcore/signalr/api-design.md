@@ -1,5 +1,5 @@
 ---
-title: SignalRAPI-Entwurfs Überlegungen
+title: SignalR API-Entwurfs Überlegungen
 author: anurse
 description: Erfahren Sie, wie Sie SignalR APIs für die Kompatibilität zwischen verschiedenen Versionen Ihrer APP entwerfen.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/api-design
-ms.openlocfilehash: ef0285c611bd41d7fe686a4b370b6daae9be9174
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 4a838c3a051476bd3d281e133d08b643656ae3b7
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018987"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632901"
 ---
-# <a name="no-locsignalr-api-design-considerations"></a>SignalRAPI-Entwurfs Überlegungen
+# <a name="no-locsignalr-api-design-considerations"></a>SignalR API-Entwurfs Überlegungen
 
 Von [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
@@ -42,7 +43,7 @@ Der JavaScript-Client ruft diese Methode mit `invoke` wie folgt auf:
 
 [!code-typescript[CallWithOneParameter](api-design/sample/Samples.ts?name=CallWithOneParameter)]
 
-Wenn Sie später der Server Methode einen zweiten Parameter hinzufügen, wird dieser Parameterwert von älteren Clients nicht bereitgestellt. Zum Beispiel:
+Wenn Sie später der Server Methode einen zweiten Parameter hinzufügen, wird dieser Parameterwert von älteren Clients nicht bereitgestellt. Beispiel:
 
 [!code-csharp[ParameterBasedNewVersion](api-design/sample/Samples.cs?name=ParameterBasedNewVersion)]
 

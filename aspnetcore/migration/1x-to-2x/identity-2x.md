@@ -5,6 +5,7 @@ description: In diesem Artikel werden die häufigsten Schritte zum Migrieren ASP
 ms.author: scaddie
 ms.date: 06/21/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/1x-to-2x/identity-2x
-ms.openlocfilehash: 46f10df25235b532f188eda2a079aef71070cd6d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 63f2fadc328650063078339467e65c6b0e97a08e
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015289"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634318"
 ---
 # <a name="migrate-authentication-and-no-locidentity-to-aspnet-core-20"></a>Migrieren der Authentifizierung und Identity zu ASP.net Core 2,0
 
@@ -92,7 +93,7 @@ Im folgenden finden Sie 2,0 Migrations Anweisungen für jedes wichtige Authentif
 
 Wählen Sie eine der beiden folgenden Optionen aus, und nehmen Sie die erforderlichen Änderungen in *Startup.cs*vor:
 
-1. Verwenden cookie von s mitIdentity
+1. Verwenden cookie von s mit Identity
     - Ersetzen Sie `UseIdentity` durch `UseAuthentication` in der- `Configure` Methode:
 
         ```csharp
@@ -458,6 +459,6 @@ In 2,0-Projekten wird der Rückgabetyp in geändert `IList<AuthenticationScheme>
 
 <a name="additional-resources"></a>
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 Weitere Informationen finden Sie in der [Erörterung des Themas auth 2,0](https://github.com/aspnet/Security/issues/1338) auf GitHub.

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/ip-safelist
-ms.openlocfilehash: 75c1ea3a6087f89a200d1f73b1ff65080c819ccd
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 621be5351acb251335a42f57e8ea670af1b35a87
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021769"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634448"
 ---
 # <a name="client-ip-safelist-for-aspnet-core"></a>Client-IP-SafeList für ASP.net Core
 
@@ -32,7 +33,7 @@ In diesem Artikel werden drei Möglichkeiten beschrieben, wie Sie eine IP-Adress
 
 * Middleware zum Überprüfen der Remote-IP-Adresse für jede Anforderung.
 * MVC-Aktionsfilter zum Überprüfen der Remote-IP-Adresse von Anforderungen für bestimmte Controller oder Aktionsmethoden.
-* RazorSeiten Filter zum Überprüfen der Remote-IP-Adresse von Razor Seiten Anforderungen.
+* Razor Seiten Filter zum Überprüfen der Remote-IP-Adresse von Razor Seiten Anforderungen.
 
 In jedem Fall wird eine Zeichenfolge mit genehmigten Client-IP-Adressen in einer APP-Einstellung gespeichert. Die Middleware oder der Filter:
 
@@ -66,7 +67,7 @@ Die Middleware analysiert die Zeichenfolge in ein Array und sucht im Array nach 
 
 ## <a name="action-filter"></a>Aktionsfilter
 
-Wenn Sie die SafeList-gesteuerte Zugriffs Steuerung für bestimmte MVC-Controller oder Aktionsmethoden verwenden möchten, verwenden Sie einen Aktionsfilter. Zum Beispiel:
+Wenn Sie die SafeList-gesteuerte Zugriffs Steuerung für bestimmte MVC-Controller oder Aktionsmethoden verwenden möchten, verwenden Sie einen Aktionsfilter. Beispiel:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckActionFilter.cs?name=snippet_ClassOnly)]
 
@@ -101,9 +102,9 @@ In der Beispiel-APP wird der Aktionsfilter auf die Aktionsmethode des Controller
 
 * Ein anderes HTTP-Anforderungs Verb als Get, die `AdminSafeListMiddleware` Middleware überprüft die Client-IP-Adresse.
 
-## <a name="no-locrazor-pages-filter"></a>RazorSeiten Filter
+## <a name="no-locrazor-pages-filter"></a>Razor Seiten Filter
 
-Wenn Sie die SafeList-gesteuerte Zugriffs Steuerung für eine Razor pages-App verwenden möchten, verwenden Sie einen Razor Seiten Filter. Zum Beispiel:
+Wenn Sie die SafeList-gesteuerte Zugriffs Steuerung für eine Razor pages-App verwenden möchten, verwenden Sie einen Razor Seiten Filter. Beispiel:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 
@@ -128,7 +129,7 @@ dbug: ClientIpSafelistComponents.Filters.ClientIpCheckPageFilter[0]
       Remote IpAddress: ::1
 ```
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * <xref:fundamentals/middleware/index>
 * [Aktionsfilter](xref:mvc/controllers/filters#action-filters)

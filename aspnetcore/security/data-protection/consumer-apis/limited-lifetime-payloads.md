@@ -5,6 +5,7 @@ description: Erfahren Sie, wie Sie die Lebensdauer einer geschützten Nutzlast m
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/limited-lifetime-payloads
-ms.openlocfilehash: c7bc86cd42a725f21cf66187c033376a8c5a9e65
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: f76aca460c293b5f814ba10ee6c8ac68b3d147bb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014827"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634422"
 ---
 # <a name="limit-the-lifetime-of-protected-payloads-in-aspnet-core"></a>Beschränken der Lebensdauer geschützter Nutzlasten in ASP.net Core
 
@@ -32,7 +33,7 @@ Das Paket [Microsoft. aspnetcore. dataprotection. Extensions](https://www.nuget.
 
 Die `ITimeLimitedDataProtector` -Schnittstelle ist die Kernschnittstelle zum Schutz und zum Schutz von zeitlich begrenzten und selbst abgelaufenen Nutzlasten. Zum Erstellen einer Instanz von `ITimeLimitedDataProtector` benötigen Sie zunächst eine Instanz einer regulären [idataprotector](xref:security/data-protection/consumer-apis/overview) , die mit einem bestimmten Zweck erstellt wurde. Sobald die `IDataProtector` Instanz verfügbar ist, können `IDataProtector.ToTimeLimitedDataProtector` Sie die Erweiterungsmethode abrufen, um eine Schutzvorrichtung mit den integrierten Ablauf Funktionen zu erhalten.
 
-`ITimeLimitedDataProtector`macht die folgenden API-Oberflächen-und Erweiterungs Methoden verfügbar:
+`ITimeLimitedDataProtector` macht die folgenden API-Oberflächen-und Erweiterungs Methoden verfügbar:
 
 * Erstellungs Schutzvorrichtung (Zeichenfolge): itimelimiteddataprotector: Diese API ähnelt der vorhandenen `IDataProtectionProvider.CreateProtector` in, die verwendet werden kann, um [Zweck Ketten](xref:security/data-protection/consumer-apis/purpose-strings) aus einer Schutzvorrichtung mit eingeschränkter Stamm Zeit zu erstellen.
 
