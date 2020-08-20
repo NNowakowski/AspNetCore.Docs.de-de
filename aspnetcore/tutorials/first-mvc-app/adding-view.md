@@ -5,6 +5,7 @@ description: Dies ist Teil 3 der Tutorialreihe zu ASP.NET Core MVC.
 ms.author: riande
 ms.date: 8/04/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: 45ae6059e039ccfb4d835c615b660abc39251530
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 970cc1fe6e0a0e0204ddafec09c15db6fed9aa66
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021990"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629755"
 ---
 # <a name="part-3-add-a-view-to-an-aspnet-core-mvc-app"></a>Teil 3: Hinzufügen einer Ansicht zu einer ASP.NET Core MVC-App
 
