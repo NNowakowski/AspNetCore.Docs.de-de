@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
 ms.date: 07/16/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,16 +17,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 7a23f2b17cc8fb3a4989b9fddd5c128add13db5b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 54780e2d67c70d945fd875c41c8d6483aa358bbf
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021951"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627194"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Konfigurieren der Zertifikat Authentifizierung in ASP.net Core
 
-`Microsoft.AspNetCore.Authentication.Certificate`enthält eine-Implementierung, die der [Zertifikat Authentifizierung](https://tools.ietf.org/html/rfc5246#section-7.4.4) für ASP.net Core ähnelt. Die Zertifikatsauthentifizierung erfolgt auf der TLS-Ebene, lange bevor sie überhaupt zum ASP.NET Core gelangt. Genauer ist dies ein Authentifizierungs Handler, der das Zertifikat überprüft und dann ein Ereignis liefert, bei dem Sie dieses Zertifikat in eine auflösen können `ClaimsPrincipal` . 
+`Microsoft.AspNetCore.Authentication.Certificate` enthält eine-Implementierung, die der [Zertifikat Authentifizierung](https://tools.ietf.org/html/rfc5246#section-7.4.4) für ASP.net Core ähnelt. Die Zertifikatsauthentifizierung erfolgt auf der TLS-Ebene, lange bevor sie überhaupt zum ASP.NET Core gelangt. Genauer ist dies ein Authentifizierungs Handler, der das Zertifikat überprüft und dann ein Ereignis liefert, bei dem Sie dieses Zertifikat in eine auflösen können `ClaimsPrincipal` . 
 
 [Konfigurieren Sie den Server für die](#configure-your-server-to-require-certificates) Zertifikat Authentifizierung, also IIS, Kestrel, Azure-Web-Apps oder andere von Ihnen verwendete.
 
@@ -46,7 +47,7 @@ Fügen Sie in Ihrer Web-App einen Verweis auf das Paket [Microsoft. aspnetcore. 
 
 Wenn die Authentifizierung fehlschlägt, gibt dieser Handler `403 (Forbidden)` wie erwartet eine Antwort zurück `401 (Unauthorized)` . Der Grund dafür ist, dass die Authentifizierung während der anfänglichen TLS-Verbindung stattfinden soll. Bis zum Zeitpunkt, an dem der Handler erreicht wird, ist es zu spät. Es gibt keine Möglichkeit, die Verbindung von einer anonymen Verbindung mit einem Zertifikat zu aktualisieren.
 
-Fügen Sie außerdem `app.UseAuthentication();` die- `Startup.Configure` Methode hinzu. Andernfalls `HttpContext.User` wird nicht auf `ClaimsPrincipal` aus dem Zertifikat erstellt festgelegt. Zum Beispiel:
+Fügen Sie außerdem `app.UseAuthentication();` die- `Startup.Configure` Methode hinzu. Andernfalls `HttpContext.User` wird nicht auf `ClaimsPrincipal` aus dem Zertifikat erstellt festgelegt. Beispiel:
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -325,7 +326,7 @@ private static byte[] StringToByteArray(string hex)
 }
 ```
 
-Die- `Startup.Configure` Methode fügt dann die Middleware hinzu. `UseCertificateForwarding`wird aufgerufen, bevor der Aufruf von `UseAuthentication` und erfolgt `UseAuthorization` :
+Die- `Startup.Configure` Methode fügt dann die Middleware hinzu. `UseCertificateForwarding` wird aufgerufen, bevor der Aufruf von `UseAuthentication` und erfolgt `UseAuthorization` :
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -616,7 +617,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Die standardmäßige Cache Implementierung speichert die Ergebnisse im Arbeitsspeicher. Sie können Ihren eigenen Cache bereitstellen, indem `ICertificateValidationCache` Sie ihn mit Abhängigkeitsinjektion implementieren und registrieren. Beispielsweise `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
+Die standardmäßige Cache Implementierung speichert die Ergebnisse im Arbeitsspeicher. Sie können Ihren eigenen Cache bereitstellen, indem `ICertificateValidationCache` Sie ihn mit Abhängigkeitsinjektion implementieren und registrieren. Beispiel: `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
 
 ::: moniker-end
 
@@ -638,7 +639,7 @@ Der folgende Ansatz unterstützt optionale Client Zertifikate:
 
 * Richten Sie eine Bindung für die Domäne und die Unterdomäne ein:
   * Richten Sie z. b. Bindungen für `contoso.com` und ein `myClient.contoso.com` . Für den `contoso.com` Host ist kein Client Zertifikat erforderlich `myClient.contoso.com` .
-  * Weitere Informationen finden Sie unter:
+  * Weitere Informationen finden Sie unter
     * [Kestrel](/fundamentals/servers/kestrel):
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
@@ -654,4 +655,4 @@ Der folgende Ansatz unterstützt optionale Client Zertifikate:
 
 In [diesem GitHub-Diskussions](https://github.com/dotnet/AspNetCore.Docs/issues/18720) Problem können Sie Fragen, Kommentare und anderes Feedback zu optionalen Client Zertifikaten hinterlassen.
 
-&dagger;Servernamensanzeige (SNI) ist eine TLS-Erweiterung zum Einbeziehen einer virtuellen Domäne als Teil der SSL-Aushandlung. Dies bedeutet, dass der virtuelle Domänen Name oder ein Hostname zur Identifizierung des Netzwerk Endpunkts verwendet werden kann.
+&dagger; Servernamensanzeige (SNI) ist eine TLS-Erweiterung zum Einbeziehen einer virtuellen Domäne als Teil der SSL-Aushandlung. Dies bedeutet, dass der virtuelle Domänen Name oder ein Hostname zur Identifizierung des Netzwerk Endpunkts verwendet werden kann.

@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/conventions
-ms.openlocfilehash: e18a2096c3b9fa788ba2a9713d0f25c1e76af2db
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 425f1aaf1fa86f10d857c34e621c302f2db258e5
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019962"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626791"
 ---
 # <a name="use-web-api-conventions"></a>Verwenden von Web-API-Konventionen
 
@@ -83,7 +84,7 @@ Wenn die Standard-API-Konventionen Ihre Anforderungen nicht erfüllen, erstellen
 
 ### <a name="response-types"></a>Antworttypen
 
-Diese Methoden werden mit den Attributen `[ProducesResponseType]` oder `[ProducesDefaultResponseType]` versehen. Zum Beispiel:
+Diese Methoden werden mit den Attributen `[ProducesResponseType]` oder `[ProducesDefaultResponseType]` versehen. Beispiel:
 
 ```csharp
 public static class MyAppConventions
@@ -103,7 +104,7 @@ Sind keine spezielleren Metadatenattribute vorhanden, erzwingt ein Anwenden dies
 
 ### <a name="naming-requirements"></a>Benennungsanforderungen
 
-Die Attribute `[ApiConventionNameMatch]` und `[ApiConventionTypeMatch]` können auf die Konventionsmethode angewendet werden, die die Aktionen bestimmt, für die sie gelten. Zum Beispiel:
+Die Attribute `[ApiConventionNameMatch]` und `[ApiConventionTypeMatch]` können auf die Konventionsmethode angewendet werden, die die Aktionen bestimmt, für die sie gelten. Beispiel:
 
 ```csharp
 [ProducesResponseType(StatusCodes.Status200OK)]

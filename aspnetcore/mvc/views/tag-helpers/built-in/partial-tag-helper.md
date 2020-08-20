@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/06/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-ms.openlocfilehash: 5925594b5429f011a0694dbe14218211a52d6377
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 4a9f1958cd26bb57fcf3944aabacd57c470fb17e
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018454"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626947"
 ---
 # <a name="partial-tag-helper-in-aspnet-core"></a>Hilfsprogramm für Teiltags in ASP.NET Core
 
@@ -53,7 +54,7 @@ Das Modell *Product* wird in den Beispielen in diesem Dokument verwendet:
 
 Eine Auflistung der im Hilfsprogramm für Teiltags enthaltenen Attribute folgt.
 
-## <a name="name"></a>Name
+## <a name="name"></a>name
 
 Das `name`-Attribut ist erforderlich. Es gibt den Namen oder den Pfad der Teilansicht an, die gerendert werden soll. Wenn der Name einer Teilansicht bereitgestellt wird, wird der Prozess [Ansichtsermittlung](xref:mvc/views/overview#view-discovery) initiiert. Dieser Prozess wird umgangen, wenn ein expliziter Pfad bereitgestellt wird. Eine Übersicht über alle verfügbaren `name`-Werte finden Sie unter [Ermitteln von Teilansichten](xref:mvc/views/partial#partial-view-discovery).
 

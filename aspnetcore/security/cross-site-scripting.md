@@ -5,6 +5,7 @@ description: Erfahren Sie mehr über Cross-Site Scripting (XSS) und Techniken zu
 ms.author: riande
 ms.date: 10/02/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cross-site-scripting
-ms.openlocfilehash: 24fab313c3af30cfd4143ba29a33ba25bfcdf9a9
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ec8b321be08447ca634a1e28799f790f723f17d1
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021808"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625621"
 ---
 # <a name="prevent-cross-site-scripting-xss-in-aspnet-core"></a>Verhindern von Cross-Site Scripting (XSS) in ASP.net Core
 
@@ -42,7 +43,7 @@ XSS funktioniert auf der Basisebene, indem Sie die Anwendung in das Einfügen ei
 
 5. Vor dem Einfügen von nicht vertrauenswürdigen Daten in eine URL-Abfrage Zeichenfolge stellen Sie sicher, dass die URL
 
-## <a name="html-encoding-using-no-locrazor"></a>HTML-Codierung mithilfe vonRazor
+## <a name="html-encoding-using-no-locrazor"></a>HTML-Codierung mithilfe von Razor
 
 Die Razor Engine, die in MVC verwendet wird, codiert automatisch alle Ausgaben aus Variablen, es sei denn, Sie arbeiten wirklich hart, um dies zu verhindern. Dabei werden bei der Verwendung der-Direktive HTML-Attribut Codierungsregeln verwendet *@* . Da die HTML-Attribut Codierung eine supermenge der HTML-Codierung ist, bedeutet dies, dass Sie sich nicht darum kümmern müssen, ob Sie HTML-Codierung oder HTML-Attribut Codierung verwenden sollten. Sie müssen sicherstellen, dass Sie @ nur in einem HTML-Kontext verwenden, nicht, wenn Sie versuchen, nicht vertrauenswürdige Eingaben direkt in JavaScript einzufügen. Taghilfsprogramme codieren auch Eingaben, die Sie in tagparametern verwenden.
 
@@ -65,9 +66,9 @@ In dieser Ansicht wird der Inhalt der Variablen *untreudinput ausgegeben* . Dies
 >[!WARNING]
 > ASP.net Core MVC stellt eine- `HtmlString` Klasse bereit, die bei der Ausgabe nicht automatisch codiert wird. Dies sollte nie in Kombination mit nicht vertrauenswürdigen Eingaben verwendet werden, da dadurch ein XSS-Sicherheitsrisiko verfügbar gemacht wird.
 
-## <a name="javascript-encoding-using-no-locrazor"></a>JavaScript-Codierung mithilfe vonRazor
+## <a name="javascript-encoding-using-no-locrazor"></a>JavaScript-Codierung mithilfe von Razor
 
-Es kann vorkommen, dass Sie einen Wert in JavaScript einfügen möchten, um Ihre Ansicht zu verarbeiten. Es gibt hierbei zwei Möglichkeiten. Die sicherste Möglichkeit zum Einfügen von Werten besteht darin, den Wert in einem Daten Attribut eines Tags zu platzieren und ihn in JavaScript abzurufen. Zum Beispiel:
+Es kann vorkommen, dass Sie einen Wert in JavaScript einfügen möchten, um Ihre Ansicht zu verarbeiten. Es gibt hierbei zwei Möglichkeiten. Die sicherste Möglichkeit zum Einfügen von Werten besteht darin, den Wert in einem Daten Attribut eines Tags zu platzieren und ihn in JavaScript abzurufen. Beispiel:
 
 ```cshtml
 @{
@@ -176,7 +177,7 @@ public class HomeController : Controller
 
 ## <a name="encoding-url-parameters"></a>URL-Codierungs Parameter
 
-Wenn Sie eine URL-Abfrage Zeichenfolge mit nicht vertrauenswürdiger Eingabe als Wert erstellen möchten `UrlEncoder` , verwenden Sie, um den Wert zu codieren. Ein auf ein Objekt angewendeter
+Wenn Sie eine URL-Abfrage Zeichenfolge mit nicht vertrauenswürdiger Eingabe als Wert erstellen möchten `UrlEncoder` , verwenden Sie, um den Wert zu codieren. Beispiel:
 
 ```csharp
 var example = "\"Quoted Value with spaces and &\"";

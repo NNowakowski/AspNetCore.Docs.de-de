@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 04/17/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 8aa94bd1f33d1dd8ce8e7f50468ed60b4ccb2515
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 618bb60ea382437b2787adb814f319b1f0cea4ca
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019936"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626531"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Formatieren von Antwortdaten in Web-APIs in ASP.NET Core
 
@@ -145,7 +146,7 @@ services.AddControllers().AddJsonOptions(options =>
 });
 ```
 
-Optionen zur Ausgabeserialisierung können aktionsweise mithilfe von `JsonResult` konfiguriert werden. Zum Beispiel:
+Optionen zur Ausgabeserialisierung können aktionsweise mithilfe von `JsonResult` konfiguriert werden. Beispiel:
 
 ```csharp
 public IActionResult Get()
@@ -184,7 +185,7 @@ services.AddControllers().AddNewtonsoftJson(options =>
 });
 ```
 
-Optionen zur Ausgabeserialisierung können aktionsweise mithilfe von `JsonResult` konfiguriert werden. Zum Beispiel:
+Optionen zur Ausgabeserialisierung können aktionsweise mithilfe von `JsonResult` konfiguriert werden. Beispiel:
 
 ```csharp
 public IActionResult Get()
@@ -240,7 +241,7 @@ Einige besondere Fälle werden mithilfe von integrierten Formatierungsprogrammen
 
 Ohne den `StringOutputFormatter` formatiert der integrierte JSON-Formatierer `string`-Rückgabetypen. Wenn der integrierte JSON-Formatierer entfernt wird und ein XML-Formatierer verfügbar ist, formatiert der XML-Formatierer `string`-Rückgabetypen. Andernfalls geben `string`-Rückgabetypen `406 Not Acceptable` zurück.
 
-Ohne `HttpNoContentOutputFormatter` werden NULL-Objekte mithilfe des konfigurierten Formatierungsprogramms formatiert. Zum Beispiel:
+Ohne `HttpNoContentOutputFormatter` werden NULL-Objekte mithilfe des konfigurierten Formatierungsprogramms formatiert. Beispiel:
 
 * Der JSON-Formatierer gibt eine Antwort mit dem Text `null` zurück.
 * Der XML-Formatierer gibt ein leeres XML-Element mit festgelegtem Attribut `xsi:nil="true"` zurück.
@@ -252,7 +253,7 @@ Clients können in der URL ein bestimmtes Format anfordern, beispielsweise folge
 * In der Abfragezeichenfolge oder als Teil des Pfads.
 * Durch Verwendung einer formatspezifischen Dateierweiterung wie „.xml“ oder „.json“.
 
-Die Zuordnung des Anforderungspfads sollte in der Route angegeben werden, die die API verwendet. Zum Beispiel:
+Die Zuordnung des Anforderungspfads sollte in der Route angegeben werden, die die API verwendet. Beispiel:
 
 [!code-csharp[](./formatting/sample/Controllers/ProductsController.cs?name=snippet)]
 
