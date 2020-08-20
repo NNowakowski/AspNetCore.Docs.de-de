@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/middleware
-ms.openlocfilehash: 7e1463671323cddd2b95c03de994d497449d7884
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 43b0ef1dcbf6d0137b14be9e58eb056f06ae093d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019091"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633447"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>Zwischen Speicherungs Middleware für Antworten in ASP.net Core
 
@@ -47,7 +48,7 @@ Konfigurieren Sie die APP für die Verwendung der Middleware mit der- <xref:Micr
 [!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=17)]
 
 > [!WARNING]
-> <xref:Owin.CorsExtensions.UseCors%2A>muss vor <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> der Verwendung von [cors-Middleware](xref:security/cors)aufgerufen werden.
+> <xref:Owin.CorsExtensions.UseCors%2A> muss vor <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> der Verwendung von [cors-Middleware](xref:security/cors)aufgerufen werden.
 
 Die Beispiel-App Fügt Header zum Steuern der Zwischenspeicherung bei nachfolgenden Anforderungen hinzu:
 
@@ -149,10 +150,10 @@ Beim Testen und behandeln von Problemen zwischen Speicherungs Verhalten kann ein
 * Die Anforderungs Methode muss "Get" oder "Head" lauten.
 * In `Startup.Configure` muss die Zwischenspeicherung von Antwort Caching vor Middleware platziert werden, die Zwischenspeichern erfordert. Weitere Informationen finden Sie unter <xref:fundamentals/middleware/index>.
 * Der `Authorization` Header darf nicht vorhanden sein.
-* `Cache-Control`Header Parameter müssen gültig sein, und die Antwort muss markiert `public` und nicht gekennzeichnet sein `private` .
+* `Cache-Control` Header Parameter müssen gültig sein, und die Antwort muss markiert `public` und nicht gekennzeichnet sein `private` .
 * Der `Pragma: no-cache` Header darf nicht vorhanden sein, wenn der `Cache-Control` Header nicht vorhanden ist, da der Header `Cache-Control` den Header überschreibt, `Pragma` Wenn er vorhanden ist.
 * Der `Set-Cookie` Header darf nicht vorhanden sein.
-* `Vary`Header Parameter müssen gültig und nicht gleich sein `*` .
+* `Vary` Header Parameter müssen gültig und nicht gleich sein `*` .
 * Der `Content-Length` Header Wert (falls festgelegt) muss mit der Größe des Antwort Texts identisch sein.
 * <xref:Microsoft.AspNetCore.Http.Features.IHttpSendFileFeature>Wird nicht verwendet.
 * Die Antwort darf nicht veraltet sein, wie von der- `Expires` Header-und der `max-age` -und- `s-maxage` Cache Direktive angegeben.
@@ -162,7 +163,7 @@ Beim Testen und behandeln von Problemen zwischen Speicherungs Verhalten kann ein
 > [!NOTE]
 > Das antifälschungs System zum Erstellen von sicheren Token, um Angriffe durch Website übergreifende Anforderungs Fälschung (CSRF) zu verhindern, legt die `Cache-Control` -und- `Pragma` Header auf fest, `no-cache` sodass Antworten nicht zwischengespeichert werden. Informationen zum Deaktivieren von antifälschungstoken für HTML-Formularelemente finden Sie unter <xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration> .
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
@@ -293,10 +294,10 @@ Beim Testen und behandeln von Problemen zwischen Speicherungs Verhalten kann ein
 * Die Anforderungs Methode muss "Get" oder "Head" lauten.
 * In `Startup.Configure` muss die Zwischenspeicherung von Antwort Caching vor Middleware platziert werden, die Zwischenspeichern erfordert. Weitere Informationen finden Sie unter <xref:fundamentals/middleware/index>.
 * Der `Authorization` Header darf nicht vorhanden sein.
-* `Cache-Control`Header Parameter müssen gültig sein, und die Antwort muss markiert `public` und nicht gekennzeichnet sein `private` .
+* `Cache-Control` Header Parameter müssen gültig sein, und die Antwort muss markiert `public` und nicht gekennzeichnet sein `private` .
 * Der `Pragma: no-cache` Header darf nicht vorhanden sein, wenn der `Cache-Control` Header nicht vorhanden ist, da der Header `Cache-Control` den Header überschreibt, `Pragma` Wenn er vorhanden ist.
 * Der `Set-Cookie` Header darf nicht vorhanden sein.
-* `Vary`Header Parameter müssen gültig und nicht gleich sein `*` .
+* `Vary` Header Parameter müssen gültig und nicht gleich sein `*` .
 * Der `Content-Length` Header Wert (falls festgelegt) muss mit der Größe des Antwort Texts identisch sein.
 * <xref:Microsoft.AspNetCore.Http.Features.IHttpSendFileFeature>Wird nicht verwendet.
 * Die Antwort darf nicht veraltet sein, wie von der- `Expires` Header-und der `max-age` -und- `s-maxage` Cache Direktive angegeben.

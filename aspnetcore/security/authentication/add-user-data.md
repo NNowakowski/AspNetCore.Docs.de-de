@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 03/26/2020
 ms.custom: mvc, seodec18
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: d65974e9ff8e2f5be52ab79b063ed9d2dca557ea
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a71395e82ed15dae753888a438471495208a14da
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020859"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631848"
 ---
 # <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a>Hinzufügen, herunterladen und Löschen von benutzerdefinierten Benutzerdaten Identity in einem ASP.net Core Projekt
 
@@ -90,7 +91,7 @@ dotnet new webapp -o WebApp1
 * Klicken Sie in **Projektmappen-Explorer**mit der rechten Maustaste auf das Projekt, > **Add**  >  **Neues Gerüst Element**hinzufügen.
 * Wählen Sie im linken Bereich des Dialog Felds **Gerüst hinzufügen** die Option **Identity**  >  **Hinzufügen**aus.
 * Im Dialog **Feld Identity Hinzufügen** werden die folgenden Optionen angezeigt:
-  * Wählen Sie die vorhandene Layoutdatei aus *~/pages/Shared/_Layout. cshtml*
+  * Wählen Sie die vorhandene Layoutdatei aus  *~/pages/Shared/_Layout. cshtml*
   * Wählen Sie die folgenden zu über schreibenden Dateien aus:
     * **Konto/Registrierung**
     * **Konto/Verwaltung/Index**
@@ -244,7 +245,7 @@ Testen der App:
 > [!NOTE]
 > Dieser Abschnitt ist keine Erweiterung des vorherigen Tutorials. Informationen zum Anwenden der folgenden Schritte auf die APP, die mit dem Tutorial erstellt wurde, finden Sie in [diesem GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/18797).
 
-Zusätzliche Ansprüche können ASP.net Core Identity mithilfe der-Schnittstelle hinzugefügt werden `IUserClaimsPrincipalFactory<T>` . Diese Klasse kann der app in der-Methode hinzugefügt werden `Startup.ConfigureServices` . Fügen Sie die benutzerdefinierte Implementierung der-Klasse wie folgt hinzu:
+Zusätzliche Ansprüche können ASP.NET Core Identity mithilfe der-Schnittstelle hinzugefügt werden `IUserClaimsPrincipalFactory<T>` . Diese Klasse kann der app in der-Methode hinzugefügt werden `Startup.ConfigureServices` . Fügen Sie die benutzerdefinierte Implementierung der-Klasse wie folgt hinzu:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

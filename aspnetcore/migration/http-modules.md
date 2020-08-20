@@ -5,6 +5,7 @@ description: ''
 ms.author: riande
 ms.date: 12/07/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 92672b2d05ee6bbdfcf0255ae14529a5c28c41b7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8be09171991964540cd41a1324fb87503591151f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014983"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632173"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Migrieren von HTTP-Handlern und Modulen zu ASP.net Core Middleware
 
@@ -169,7 +170,7 @@ Eine Lösung besteht darin, die Pipeline für Anforderungen mit einer bestimmten
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=27-34)]
 
-`MapWhen`Diese Parameter werden von benötigt:
+`MapWhen` Diese Parameter werden von benötigt:
 
 1. Ein Lambda, das den annimmt `HttpContext` und zurückgibt, `true` Wenn die Anforderung den Branch nach unten durchlaufen soll. Dies bedeutet, dass Sie Anforderungen verzweigen können, die nicht nur auf Grundlage ihrer Erweiterung basieren, sondern auch auf Anforderungs Headern, Abfrage Zeichen folgen Parametern usw.
 
@@ -257,7 +258,7 @@ Sie haben bereits gesehen, dass die- `Invoke` Methode in der Middleware einen Pa
 public async Task Invoke(HttpContext context)
 ```
 
-`HttpContext`wurde in ASP.net Core erheblich geändert. In diesem Abschnitt wird gezeigt, wie die am häufigsten verwendeten Eigenschaften von [System. Web. HttpContext](/dotnet/api/system.web.httpcontext) in den neuen übersetzt werden `Microsoft.AspNetCore.Http.HttpContext` .
+`HttpContext` wurde in ASP.net Core erheblich geändert. In diesem Abschnitt wird gezeigt, wie die am häufigsten verwendeten Eigenschaften von [System. Web. HttpContext](/dotnet/api/system.web.httpcontext) in den neuen übersetzt werden `Microsoft.AspNetCore.Http.HttpContext` .
 
 ### <a name="httpcontext"></a>HttpContext
 
@@ -392,7 +393,7 @@ Die `SetCookies` Rückruf Methode würde wie folgt aussehen:
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Übersicht über HTTP-Handler und HTTP-Module](/iis/configuration/system.webserver/)
 * [Konfiguration](xref:fundamentals/configuration/index)

@@ -1,5 +1,5 @@
 ---
-title: Streaming in ASP.net Core verwendenSignalR
+title: Streaming in ASP.net Core verwenden SignalR
 author: bradygaster
 description: Erfahren Sie, wie Sie Daten zwischen dem Client und dem Server streamen.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/streaming
-ms.openlocfilehash: e0eabe711fd69e42bd9bfa5e03a92e1df780e4db
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 29748ebe24fea03415b5a01b21300433e3fbc0f0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022510"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634214"
 ---
-# <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>Streaming in ASP.net Core verwendenSignalR
+# <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>Streaming in ASP.net Core verwenden SignalR
 
 Von [Brennan](https://github.com/BrennanConroy) "a"
 
@@ -269,7 +270,7 @@ JavaScript-Clients wenden Server-zu-Client-Streamingmethoden auf Hubs mit an `co
 * Der Name der Hub-Methode. Im folgenden Beispiel lautet der Name der Hub-Methode `Counter` .
 * In der Hub-Methode definierte Argumente. Im folgenden Beispiel sind die Argumente eine Anzahl für die Anzahl der zu empfangenden Datenstrom Elemente und die Verzögerung zwischen streamingelementen.
 
-`connection.stream`Gibt einen zurück `IStreamResult` , der eine- `subscribe` Methode enthält. Übergeben `IStreamSubscriber` Sie einen an, `subscribe` und legen Sie die `next` `error` Rückrufe, und fest `complete` , um Benachrichtigungen vom Aufruf zu empfangen `stream` .
+`connection.stream` Gibt einen zurück `IStreamResult` , der eine- `subscribe` Methode enthält. Übergeben `IStreamSubscriber` Sie einen an, `subscribe` und legen Sie die `next` `error` Rückrufe, und fest `complete` , um Benachrichtigungen vom Aufruf zu empfangen `stream` .
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -303,7 +304,7 @@ Um den Stream zu beenden, wird aufgerufen `subject.complete()` .
 
 ### <a name="server-to-client-streaming"></a>Streaming zwischen Server und Client
 
-Der SignalR Java-Client verwendet die- `stream` Methode, um Streamingmethoden aufzurufen. `stream`Es werden drei oder mehr Argumente akzeptiert:
+Der SignalR Java-Client verwendet die- `stream` Methode, um Streamingmethoden aufzurufen. `stream` Es werden drei oder mehr Argumente akzeptiert:
 
 * Der erwartete Typ der streamelemente.
 * Der Name der Hub-Methode.
@@ -321,9 +322,9 @@ Die- `stream` Methode für `HubConnection` gibt einen Observable-Wert des Datens
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
-* [Hub](xref:signalr/hubs)
+* [Hubs](xref:signalr/hubs)
 * [.NET-Client](xref:signalr/dotnet-client)
 * [JavaScript-Client](xref:signalr/javascript-client)
 * [Veröffentlichen in Azure](xref:signalr/publish-to-azure-web-app)

@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 7d2d563eef60cb8eead95c6792bcac2cda16a859
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 9516410399ce69f1d69b09781b2530d052a11e7a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021340"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631874"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Zwischenspeichern von Antworten in ASP.net Core
 
@@ -99,7 +100,7 @@ Der <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> gibt die Parameter an
 > [!WARNING]
 > Deaktivieren Sie das Zwischenspeichern für Inhalte, die Informationen für authentifizierte Clients enthalten. Das Zwischenspeichern sollte nur für Inhalt aktiviert werden, der sich nicht auf der Grundlage der Identität eines Benutzers ändert, oder ob ein Benutzer angemeldet ist.
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys>variiert die gespeicherte Antwort anhand der Werte der angegebenen Liste von Abfrage Schlüsseln. Wenn ein einzelner Wert `*` bereitgestellt wird, variiert die Middleware mit den Antworten aller Parameter der Anforderungs Abfrage Zeichenfolge.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> variiert die gespeicherte Antwort anhand der Werte der angegebenen Liste von Abfrage Schlüsseln. Wenn ein einzelner Wert `*` bereitgestellt wird, variiert die Middleware mit den Antworten aller Parameter der Anforderungs Abfrage Zeichenfolge.
 
 Die [Middleware zum Zwischenspeichern von Antworten](xref:performance/caching/middleware) muss aktiviert sein, um die Eigenschaft festzulegen <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> . Andernfalls wird eine Lauf Zeit Ausnahme ausgelöst. Es gibt keinen entsprechenden HTTP-Header für die- <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> Eigenschaft. Die-Eigenschaft ist eine HTTP-Funktion, die von der zwischenware zum Zwischenspeichern von Antworten Damit die Middleware eine zwischengespeicherte Antwort bereitstellt, müssen die Abfrage Zeichenfolge und der Abfrage Zeichenfolgen-Wert mit einer vorherigen Anforderung identisch sein. Stellen Sie sich z. b. die Abfolge der in der folgenden Tabelle gezeigten Anforderungen und Ergebnisse vor.
 
@@ -132,14 +133,14 @@ Vary: User-Agent
 
 ### <a name="nostore-and-locationnone"></a>NoStore und Location. None
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>überschreibt die meisten anderen Eigenschaften. Wenn diese Eigenschaft auf festgelegt ist `true` , `Cache-Control` wird der-Header auf festgelegt `no-store` . Wenn <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> auf festgelegt ist `None` :
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> überschreibt die meisten anderen Eigenschaften. Wenn diese Eigenschaft auf festgelegt ist `true` , `Cache-Control` wird der-Header auf festgelegt `no-store` . Wenn <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> auf festgelegt ist `None` :
 
 * Für `Cache-Control` ist `no-store,no-cache` festgelegt.
 * Für `Pragma` ist `no-cache` festgelegt.
 
 Wenn <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> `false` den Wert <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> hat und den Wert `None` , `Cache-Control` und `Pragma` auf festgelegt ist `no-cache` .
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>wird in der Regel `true` für Fehlerseiten auf festgelegt. Die Cache2-Seite in der Beispiel-app erzeugt Antwortheader, die den Client anweisen, die Antwort nicht zu speichern.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> wird in der Regel `true` für Fehlerseiten auf festgelegt. Die Cache2-Seite in der Beispiel-app erzeugt Antwortheader, die den Client anweisen, die Antwort nicht zu speichern.
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache2.cshtml.cs?name=snippet)]
 
@@ -158,7 +159,7 @@ Um das Zwischenspeichern zu aktivieren, <xref:Microsoft.AspNetCore.Mvc.CacheProf
 
 `Location.Any`( `Cache-Control` festgelegt auf `public` ) gibt an, dass der Wert des *Clients oder eines beliebigen zwischen Proxys zwischen* gespeichert werden kann, einschließlich der Zwischenspeicherung von zwischen [Speichern](xref:performance/caching/middleware)
 
-`Location.Client`( `Cache-Control` festgelegt auf `private` ) gibt an, dass der Wert *nur vom Client* zwischengespeichert werden darf. Der Wert kann nicht zwischengespeichert werden, einschließlich der [Middleware](xref:performance/caching/middleware)zum Zwischenspeichern von Antworten.
+`Location.Client` ( `Cache-Control` festgelegt auf `private` ) gibt an, dass der Wert *nur vom Client* zwischengespeichert werden darf. Der Wert kann nicht zwischengespeichert werden, einschließlich der [Middleware](xref:performance/caching/middleware)zum Zwischenspeichern von Antworten.
 
 Cache Steuerungs Header bieten lediglich Anleitungen für Clients und Vermittler Proxys, wann und wie Antworten zwischengespeichert werden. Es gibt keine Garantie dafür, dass Clients und Proxys die [http 1,1-cachingspezifikation](https://tools.ietf.org/html/rfc7234)berücksichtigen. Die [Middleware zum Zwischenspeichern von Antworten](xref:performance/caching/middleware) folgt immer den durch die Spezifikation vorgegebenen Cache Regeln.
 
@@ -196,7 +197,7 @@ Das Cache4-Seiten Modell der Beispiel-App verweist auf das `Default30` Cache Pro
 
 <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>Kann angewendet werden auf:
 
-* RazorPages: Attribute können nicht auf Handlermethoden angewendet werden.
+* Razor Pages: Attribute können nicht auf Handlermethoden angewendet werden.
 * MVC-Controller.
 * MVC-Aktionsmethoden: Attribute auf Methoden Ebene überschreiben die in Attributen auf Klassenebene angegebenen Einstellungen.
 
@@ -206,7 +207,7 @@ Der resultierende Header, der für die Antwort auf die Cache4-Seite vom `Default
 Cache-Control: public,max-age=30
 ```
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Speichern von Antworten in Caches](https://tools.ietf.org/html/rfc7234#section-3)
 * [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)

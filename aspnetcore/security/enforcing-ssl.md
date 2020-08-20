@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 5dcdf50ff9f750e4966ed3bdf24a71b9f433240a
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 1cb2c2d18b717dc99c6ef4dac9954fef149c6deb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019000"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631562"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Erzwingen von HTTPS in ASP.net Core
 
@@ -39,7 +40,7 @@ Eine API kann verhindern, dass ein Client sensible Daten bei der ersten Anforder
 > [!WARNING]
 > ## <a name="api-projects"></a>API-Projekte
 >
-> Verwenden Sie **nicht** "Requirements [httpsattribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) " für Web-APIs, die vertrauliche Informationen erhalten. `RequireHttpsAttribute`verwendet HTTP-Statuscodes, um Browser von http zu HTTPS umzuleiten. API-Clients können Umleitungen von http zu HTTPS nicht verstehen oder darauf verweisen. Diese Clients senden möglicherweise Informationen über http. Web-APIs sollten folgende Aktionen ausführen:
+> Verwenden Sie **nicht** "Requirements [httpsattribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) " für Web-APIs, die vertrauliche Informationen erhalten. `RequireHttpsAttribute` verwendet HTTP-Statuscodes, um Browser von http zu HTTPS umzuleiten. API-Clients können Umleitungen von http zu HTTPS nicht verstehen oder darauf verweisen. Diese Clients senden möglicherweise Informationen über http. Web-APIs sollten folgende Aktionen ausführen:
 >
 > * Nicht an http lauschen.
 > * Schließen Sie die Verbindung mit dem Statuscode 400 (ungültige Anforderung), und verarbeiten Sie die Anforderung nicht.
@@ -55,7 +56,7 @@ Eine API kann verhindern, dass ein Client sensible Daten bei der ersten Anforder
 > [!WARNING]
 > ## <a name="api-projects"></a>API-Projekte
 >
-> Verwenden Sie **nicht** "Requirements [httpsattribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) " für Web-APIs, die vertrauliche Informationen erhalten. `RequireHttpsAttribute`verwendet HTTP-Statuscodes, um Browser von http zu HTTPS umzuleiten. API-Clients können Umleitungen von http zu HTTPS nicht verstehen oder darauf verweisen. Diese Clients senden möglicherweise Informationen über http. Web-APIs sollten folgende Aktionen ausführen:
+> Verwenden Sie **nicht** "Requirements [httpsattribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) " für Web-APIs, die vertrauliche Informationen erhalten. `RequireHttpsAttribute` verwendet HTTP-Statuscodes, um Browser von http zu HTTPS umzuleiten. API-Clients können Umleitungen von http zu HTTPS nicht verstehen oder darauf verweisen. Diese Clients senden möglicherweise Informationen über http. Web-APIs sollten folgende Aktionen ausführen:
 >
 > * Nicht an http lauschen.
 > * Schließen Sie die Verbindung mit dem Statuscode 400 (ungültige Anforderung), und verarbeiten Sie die Anforderung nicht.
@@ -234,7 +235,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="https-redirection-middleware-alternative-approach"></a>Alternativer Ansatz der HTTPS-Umleitungs Middleware
 
-Eine Alternative zur Verwendung der HTTPS-Umleitungs Middleware ( `UseHttpsRedirection` ) ist die Verwendung der URL-Umschreib enden Middleware ( `AddRedirectToHttps` ). `AddRedirectToHttps`kann auch den Statuscode und den Port festlegen, wenn die Umleitung ausgeführt wird. Weitere Informationen finden Sie unter [URL-Umschreib Ende Middleware](xref:fundamentals/url-rewriting).
+Eine Alternative zur Verwendung der HTTPS-Umleitungs Middleware ( `UseHttpsRedirection` ) ist die Verwendung der URL-Umschreib enden Middleware ( `AddRedirectToHttps` ). `AddRedirectToHttps` kann auch den Statuscode und den Port festlegen, wenn die Umleitung ausgeführt wird. Weitere Informationen finden Sie unter [URL-Umschreib Ende Middleware](xref:fundamentals/url-rewriting).
 
 Beim Umleiten an HTTPS ohne die Anforderung zusätzlicher Umleitungs Regeln empfiehlt sich die Verwendung der in diesem Thema beschriebenen HTTPS-Umleitungs Middleware ( `UseHttpsRedirection` ).
 
@@ -267,7 +268,7 @@ ASP.net Core 2,1 und höher implementiert hsts mit der- `UseHsts` Erweiterungsme
 
 ::: moniker-end
 
-`UseHsts`wird in der Entwicklung nicht empfohlen, da die hsts-Einstellungen durch Browser stark zwischen speicherbar sind. Standardmäßig `UseHsts` schließt die lokale Loopback Adresse aus.
+`UseHsts` wird in der Entwicklung nicht empfohlen, da die hsts-Einstellungen durch Browser stark zwischen speicherbar sind. Standardmäßig `UseHsts` schließt die lokale Loopback Adresse aus.
 
 Legen Sie für Produktionsumgebungen, die HTTPS zum ersten Mal implementieren, die anfängliche [hstsoptions. MaxAge](xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*) -Einstellung mithilfe einer der-Methoden auf einen kleinen Wert fest. <xref:System.TimeSpan> Legen Sie den Wert von Stunden auf nicht mehr als einen Tag fest, falls Sie die HTTPS-Infrastruktur auf http zurücksetzen müssen. Wenn Sie sicher sind, dass die Konfiguration der HTTPS-Konfiguration von der Bedeutung ist, erhöhen Sie den hsts- `max-age` Wert. ein häufig verwendeter Wert ist ein Jahr.
 
@@ -292,11 +293,11 @@ Der folgende Code
 * Legt den- `max-age` Parameter des- `Strict-Transport-Security` Headers explizit auf 60 Tage fest. Wenn nicht festgelegt, wird standardmäßig 30 Tage verwendet. Weitere Informationen finden Sie in der [max-age-Direktive](https://tools.ietf.org/html/rfc6797#section-6.1.1).
 * Fügt `example.com` der Liste der auszuschließenden Hosts hinzu.
 
-`UseHsts`schließt die folgenden Loopback Hosts aus:
+`UseHsts` schließt die folgenden Loopback Hosts aus:
 
-* `localhost`: Die IPv4-Loopback Adresse.
-* `127.0.0.1`: Die IPv4-Loopback Adresse.
-* `[::1]`: Die IPv6-Loopback Adresse.
+* `localhost` : Die IPv4-Loopback Adresse.
+* `127.0.0.1` : Die IPv4-Loopback Adresse.
+* `[::1]` : Die IPv6-Loopback Adresse.
 
 ## <a name="opt-out-of-httpshsts-on-project-creation"></a>Ausschließen von HTTPS/hsts bei der Projekt Erstellung
 
@@ -362,6 +363,14 @@ dotnet dev-certs https --help
 
 Weitere Informationen finden Sie im entsprechenden [GitHub-Issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
+<a name="ssl-linux"></a>
+
+## <a name="trust-https-certificate-on-linux"></a>Vertrauen des HTTPS-Zertifikats unter Linux
+
+<!-- Instructions to be updated by engineering team after 5.0 RTM. -->
+
+Anweisungen zu Linux finden Sie in der Dokumentation zur Distribution.
+
 <a name="wsl"></a>
 
 ## <a name="trust-https-certificate-from-windows-subsystem-for-linux"></a>Vertrauen des HTTPS-Zertifikats aus dem Windows-Subsystem für Linux
@@ -408,7 +417,7 @@ Mit den obigen Befehlen werden die meisten Browser Vertrauensstellungs Probleme 
 
 ### <a name="windows---certificate-not-trusted"></a>Windows-Zertifikat nicht vertrauenswürdig
 
-* Überprüfen Sie die Zertifikate im Zertifikat Speicher. Es muss ein `localhost` Zertifikat mit dem anzeigen `ASP.NET Core HTTPS development certificate` Amen unter `Current User > Personal > Certificates` und vorhanden sein.`Current User > Trusted root certification authorities > Certificates`
+* Überprüfen Sie die Zertifikate im Zertifikat Speicher. Es muss ein `localhost` Zertifikat mit dem anzeigen `ASP.NET Core HTTPS development certificate` Amen unter `Current User > Personal > Certificates` und vorhanden sein. `Current User > Trusted root certification authorities > Certificates`
 * Entfernen Sie alle gefundenen Zertifikate von persönlichen und vertrauenswürdigen Stamm Zertifizierungsstellen. Entfernen Sie das IIS Express localhost-Zertifikat **nicht** .
 * Führen Sie die folgenden Befehle aus:
 
@@ -439,7 +448,7 @@ Informationen zur Behandlung von Zertifikat Problemen mit Visual Studio finden [
 
 ### <a name="iis-express-ssl-certificate-used-with-visual-studio"></a>IIS Express SSL-Zertifikat, das mit Visual Studio verwendet wird.
 
-Um Probleme mit dem IIS Express Zertifikat zu beheben, wählen Sie im Visual Studio-Installer **Reparieren** aus. Weitere Informationen finden Sie in [diesem GitHub-Problem](https://github.com/dotnet/aspnetcore/issues/16892).
+Um Probleme mit dem IIS Express Zertifikat zu beheben, wählen Sie im Visual Studio-Installer **Reparieren** aus. Weitere Informationen finden Sie in [diesem GitHub-Issue](https://github.com/dotnet/aspnetcore/issues/16892).
 
 ## <a name="additional-information"></a>Zusätzliche Informationen
 

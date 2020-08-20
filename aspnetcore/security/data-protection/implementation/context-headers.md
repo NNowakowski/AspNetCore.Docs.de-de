@@ -5,6 +5,7 @@ description: Weitere Informationen zur Implementierung von ASP.net Core Datensch
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/context-headers
-ms.openlocfilehash: 572f930dbf78aaef1ed47d1a154b5ba56633b4f1
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2f07db4b7d8bca9f64aee5d60e88fc92dc8965eb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018818"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633707"
 ---
 # <a name="context-headers-in-aspnet-core"></a>Kontext Header in ASP.net Core
 
@@ -95,15 +96,15 @@ DB 6F D4 79 11 84 B9 96 09 2E E1 20 2F 36 E8 60
 
 Diese Kontext Kopfzeile ist der Fingerabdruck des authentifizierten Verschlüsselungsalgorithmus-Paars (AES-192-CBC-Verschlüsselung + HMACSHA256-Überprüfung). Die Komponenten, wie [oben](xref:security/data-protection/implementation/context-headers#data-protection-implementation-context-headers-cbc-components) beschrieben, lauten wie folgt:
 
-* der Marker`(00 00)`
+* der Marker `(00 00)`
 
-* die Länge des Blockchiffre Schlüssels`(00 00 00 18)`
+* die Länge des Blockchiffre Schlüssels `(00 00 00 18)`
 
-* Blockgröße für Blockchiffre`(00 00 00 10)`
+* Blockgröße für Blockchiffre `(00 00 00 10)`
 
-* die Länge des HMAC-Schlüssels`(00 00 00 20)`
+* die Länge des HMAC-Schlüssels `(00 00 00 20)`
 
-* die HMAC-Digest-Größe`(00 00 00 20)`
+* die HMAC-Digest-Größe `(00 00 00 20)`
 
 * die Blockchiffre-PRP `(F4 74 - DB 6F)` -Ausgabe und
 
@@ -140,15 +141,15 @@ Dies erzeugt den vollständigen Kontext Header, bei dem es sich um einen Fingera
 
 Die Komponenten unterbrechen wie folgt:
 
-* der Marker`(00 00)`
+* der Marker `(00 00)`
 
-* die Länge des Blockchiffre Schlüssels`(00 00 00 18)`
+* die Länge des Blockchiffre Schlüssels `(00 00 00 18)`
 
-* Blockgröße für Blockchiffre`(00 00 00 08)`
+* Blockgröße für Blockchiffre `(00 00 00 08)`
 
-* die Länge des HMAC-Schlüssels`(00 00 00 14)`
+* die Länge des HMAC-Schlüssels `(00 00 00 14)`
 
-* die HMAC-Digest-Größe`(00 00 00 14)`
+* die HMAC-Digest-Größe `(00 00 00 14)`
 
 * die Blockchiffre-PRP `(AB B1 - E1 0E)` -Ausgabe und
 
@@ -170,7 +171,7 @@ Der Kontext Header besteht aus den folgenden Komponenten:
 
 * [128 Bits] Das-Tag von `Enc_GCM (K_E, nonce, "")` , bei dem es sich um die Ausgabe des symmetrischen Blockchiffre Algorithmus handelt, wenn eine leere Zeichenfolge eingegeben wird und wobei Nonce ein 96-Bit-Vektor mit allen NULL-Werten ist.
 
-`K_E`wird unter Verwendung desselben Mechanismus wie im Szenario für die CBC-Verschlüsselung und HMAC-Authentifizierung abgeleitet. Da es hier keine Rolle gibt, `K_H` haben wir im Grunde `| K_H | = 0` , und der Algorithmus wird auf das folgende Formular reduziert.
+`K_E` wird unter Verwendung desselben Mechanismus wie im Szenario für die CBC-Verschlüsselung und HMAC-Authentifizierung abgeleitet. Da es hier keine Rolle gibt, `K_H` haben wir im Grunde `| K_H | = 0` , und der Algorithmus wird auf das folgende Formular reduziert.
 
 `K_E = SP800_108_CTR(prf = HMACSHA512, key = "", label = "", context = "")`
 
@@ -194,13 +195,13 @@ BE 45
 
 Die Komponenten unterbrechen wie folgt:
 
-* der Marker`(00 01)`
+* der Marker `(00 01)`
 
-* die Länge des Blockchiffre Schlüssels`(00 00 00 20)`
+* die Länge des Blockchiffre Schlüssels `(00 00 00 20)`
 
-* die Nonce-Größe`(00 00 00 0C)`
+* die Nonce-Größe `(00 00 00 0C)`
 
-* Blockgröße für Blockchiffre`(00 00 00 10)`
+* Blockgröße für Blockchiffre `(00 00 00 10)`
 
 * die authentifizierungstag Größe `(00 00 00 10)` und
 

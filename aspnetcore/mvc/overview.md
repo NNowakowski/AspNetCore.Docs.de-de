@@ -5,6 +5,7 @@ description: Informationen zu ASP.NET Core MVC als umfangreiches Framework zum E
 ms.author: riande
 ms.date: 02/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/overview
-ms.openlocfilehash: 64bee1966eff40e9057166adfafbf78d0cc5b6aa
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 29701506d9f6c1ff90081a548d524bc0deb65cda
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021444"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633616"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Übersicht über ASP.NET Core MVC
 
@@ -72,12 +73,12 @@ Zu ASP.NET Core MVC gehören folgende Elemente:
 * [Routing](#routing)
 * [Modellbindung](#model-binding)
 * [Modellvalidierung](#model-validation)
-* [Abhängigkeitsinjektion](../fundamentals/dependency-injection.md)
+* [Dependency Injection](../fundamentals/dependency-injection.md)
 * [Filter](#filters)
 * [Bereiche](#areas)
 * [Web-APIs](#web-apis)
 * [Prüfbarkeit](#testability)
-* [RazorAnzeige-Engine](#razor-view-engine)
+* [Razor Anzeige-Engine](#razor-view-engine)
 * [Stark typisierte Ansichten](#strongly-typed-views)
 * [Taghilfsprogramme](#tag-helpers)
 * [Komponenten anzeigen](#view-components)
@@ -151,7 +152,7 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
 
 Das Framework verarbeitet Validierungsanforderungsdaten sowohl auf dem Client als auch auf dem Server. Für Modelltypen angegebene Validierungslogik wird den gerenderten Ansichten als unaufdringliche Anmerkungen hinzugefügt und im Browser mit [jQuery Validation](https://jqueryvalidation.org/) erzwungen.
 
-### <a name="dependency-injection"></a>Abhängigkeitsinjektion
+### <a name="dependency-injection"></a>Dependency Injection
 
 ASP.NET Core verfügt über integrierte Unterstützung für [Dependency Injection ( DI)](../fundamentals/dependency-injection.md). In ASP.NET Core MVC können [Controller](controllers/dependency-injection.md) benötigte Dienste über ihre Konstruktoren anfordern. So wird das [Prinzip der expliziten Abhängigkeiten](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) befolgt.
 
@@ -196,9 +197,9 @@ Außerdem können Sie mit der Linkgenerierung Unterstützung für Hypermedia akt
 
 Durch die Verwendung von Schnittstellen und der Abhängigkeitsinjektion eignet sich das Framework besonders gut für Komponententests. Es enthält Features (wie etwa einen TestHost- und InMemory-Anbieter für Entity Framework), mit denen auch [Integrationstests](xref:test/integration-tests) schnell und einfach durchgeführt werden können. Weitere Informationen hierzu finden Sie unter [Testen der Controllerlogik](controllers/testing.md).
 
-### <a name="no-locrazor-view-engine"></a>RazorAnzeige-Engine
+### <a name="no-locrazor-view-engine"></a>Razor Anzeige-Engine
 
-[ASP.net Core MVC-Ansichten](views/overview.md) verwenden Sie die [ Razor Ansichts-Engine](views/razor.md) zum renderingansichten. Razorist eine kompakte, ausdrucksstarke und fließende Vorlagen Markup Sprache zum Definieren von Sichten mithilfe von eingebettetem c#-Code. Razorwird verwendet, um Webinhalte auf dem Server dynamisch zu generieren. Sie können Servercode sauber mit Inhalt und Code der Clientseite kombinieren.
+[ASP.net Core MVC-Ansichten](views/overview.md) verwenden Sie die [ Razor Ansichts-Engine](views/razor.md) zum renderingansichten. Razor ist eine kompakte, ausdrucksstarke und fließende Vorlagen Markup Sprache zum Definieren von Sichten mithilfe von eingebettetem c#-Code. Razor wird verwendet, um Webinhalte auf dem Server dynamisch zu generieren. Sie können Servercode sauber mit Inhalt und Code der Clientseite kombinieren.
 
 ```cshtml
 <ul>
@@ -212,7 +213,7 @@ Mithilfe der Razor Ansichts-Engine können Sie [Layouts](views/layout.md), [Teil
 
 ### <a name="strongly-typed-views"></a>Stark typisierte Ansichten
 
-RazorSichten in MVC können basierend auf dem Modell stark typisiert werden. Controller können ein stark typisiertes Modell an die Ansichten übergeben, um Typüberprüfung und IntelliSense-Unterstützung für Ihre Ansichten zu aktivieren.
+Razor Sichten in MVC können basierend auf dem Modell stark typisiert werden. Controller können ein stark typisiertes Modell an die Ansichten übergeben, um Typüberprüfung und IntelliSense-Unterstützung für Ihre Ansichten zu aktivieren.
 
 Die folgende Ansicht rendert beispielweise ein Modell vom Typ `IEnumerable<Product>`:
 

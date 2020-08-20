@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cookie-sharing
-ms.openlocfilehash: f4762871cbae77f690d8478e1342e0d53918eb51
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6ac808d11790ae27e82606b442ff215d95b93e41
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022198"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631367"
 ---
 # <a name="share-authentication-no-loccookies-among-aspnet-apps"></a>Freigeben von Authentifizierungs- cookie e unter ASP.net-apps
 
@@ -35,18 +36,18 @@ In den folgenden Beispielen:
 * Der Authentifizierungs cookie Name wird auf einen gemeinsamen Wert von festgelegt `.AspNet.SharedCookie` .
 * Der `AuthenticationType` wird `Identity.Application` entweder explizit oder standardmäßig auf festgelegt.
 * Ein allgemeiner App-Name wird verwendet, um dem Datenschutzsystem das Freigeben von Datenschutz Schlüsseln () zu ermöglichen `SharedCookieApp` .
-* `Identity.Application`wird als Authentifizierungsschema verwendet. Welches Schema verwendet wird, muss konsistent *innerhalb und in* den freigegebenen Apps verwendet werden, cookie entweder als Standardschema oder explizit festgelegt. Das Schema wird beim Verschlüsseln und Entschlüsseln von cookie s verwendet. Daher muss ein konsistentes Schema zwischen allen Apps verwendet werden.
+* `Identity.Application` wird als Authentifizierungsschema verwendet. Welches Schema verwendet wird, muss konsistent *innerhalb und in* den freigegebenen Apps verwendet werden, cookie entweder als Standardschema oder explizit festgelegt. Das Schema wird beim Verschlüsseln und Entschlüsseln von cookie s verwendet. Daher muss ein konsistentes Schema zwischen allen Apps verwendet werden.
 * Es wird ein allgemeiner Speicherort für den [Datenschutz Schlüssel](xref:security/data-protection/implementation/key-management) verwendet.
   * In ASP.net Core-apps <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> wird verwendet, um den Speicherort des Schlüssels festzulegen.
-  * In .NET Framework-apps Cookie verwendet die Authentifizierungs Middleware eine Implementierung von <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider> . `DataProtectionProvider`stellt Datenschutzdienste für die Verschlüsselung und Entschlüsselung von Authentifizierungs cookie Nutzlastdaten bereit. Die- `DataProtectionProvider` Instanz ist von dem Datenschutzsystem isoliert, das von anderen Teilen der APP verwendet wird. [Dataschutzprovider. Create (System. IO. Director yinfo, Action \<IDataProtectionBuilder> )](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) akzeptiert einen <xref:System.IO.DirectoryInfo> , um den Speicherort für den Datenschutz Schlüssel anzugeben.
-* `DataProtectionProvider`erfordert das nuget-Paket " [Microsoft. aspnetcore. dataprotection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) ":
+  * In .NET Framework-apps Cookie verwendet die Authentifizierungs Middleware eine Implementierung von <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider> . `DataProtectionProvider` stellt Datenschutzdienste für die Verschlüsselung und Entschlüsselung von Authentifizierungs cookie Nutzlastdaten bereit. Die- `DataProtectionProvider` Instanz ist von dem Datenschutzsystem isoliert, das von anderen Teilen der APP verwendet wird. [Dataschutzprovider. Create (System. IO. Director yinfo, Action \<IDataProtectionBuilder> )](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) akzeptiert einen <xref:System.IO.DirectoryInfo> , um den Speicherort für den Datenschutz Schlüssel anzugeben.
+* `DataProtectionProvider` erfordert das nuget-Paket " [Microsoft. aspnetcore. dataprotection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) ":
   * Verweisen Sie in ASP.net Core 2. x-apps auf das [Metapaket "Microsoft. aspnetcore. app](xref:fundamentals/metapackage-app)".
   * Fügen Sie in .NET Framework-apps einen Paket Verweis auf [Microsoft. aspnetcore. dataprotection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/)hinzu.
-* <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*>Legt den Namen der allgemeinen App fest.
+* <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> Legt den Namen der allgemeinen App fest.
 
-## <a name="share-authentication-no-loccookies-with-aspnet-core-no-locidentity"></a>Freigeben cookie von Authentifizierung s mit ASP.net CoreIdentity
+## <a name="share-authentication-no-loccookies-with-no-locaspnet-core-identity"></a>Freigeben cookie von Authentifizierung s mit ASP.NET Core Identity
 
-Wenn Sie ASP.net Core verwenden Identity :
+Folgendes ist bei Verwendung von ASP.NET Core Identity zu beachten:
 
 * Datenschutz Schlüssel und der App-Name müssen von den apps gemeinsam genutzt werden. In den folgenden Beispielen wird die-Methode mit einem allgemeinen Schlüssel Speicherort bereitgestellt <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> . Verwenden <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> Sie, um einen gemeinsamen freigegebenen APP-Namen ( `SharedCookieApp` in den folgenden Beispielen) zu konfigurieren. Weitere Informationen finden Sie unter <xref:security/data-protection/configuration/overview>.
 * Verwenden Sie die- <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie*> Erweiterungsmethode, um den Datenschutz Dienst für cookie s einzurichten.
@@ -64,9 +65,9 @@ services.ConfigureApplicationCookie(options => {
 });
 ```
 
-## <a name="share-authentication-no-loccookies-without-aspnet-core-no-locidentity"></a>Freigeben von Authentifizierung cookie s ohne ASP.net CoreIdentity
+## <a name="share-authentication-no-loccookies-without-no-locaspnet-core-identity"></a>Freigeben von Authentifizierung cookie s ohne ASP.NET Core Identity
 
-Wenn Sie cookie s direkt ohne ASP.net Core verwenden Identity , konfigurieren Sie den Datenschutz und die Authentifizierung in `Startup.ConfigureServices` . Im folgenden Beispiel wird der Authentifizierungstyp auf festgelegt `Identity.Application` :
+Wenn Sie cookie e direkt ohne verwenden ASP.NET Core Identity , konfigurieren Sie den Datenschutz und die Authentifizierung in `Startup.ConfigureServices` . Im folgenden Beispiel wird der Authentifizierungstyp auf festgelegt `Identity.Application` :
 
 ```csharp
 services.AddDataProtection()

@@ -1,11 +1,12 @@
 ---
-title: Unterschiede zwischen SignalR und ASP.net CoreSignalR
+title: Unterschiede zwischen SignalR und ASP.net Core SignalR
 author: bradygaster
-description: Unterschiede zwischen SignalR und ASP.net CoreSignalR
+description: Unterschiede zwischen SignalR und ASP.net Core SignalR
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.date: 11/21/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/version-differences
-ms.openlocfilehash: f52bf6c82cd5125e0905d9bcbda5dd5499d6455e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a8336a6c13c502f5a0fad150785cd9d484064618
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020040"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633005"
 ---
-# <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>Unterschiede zwischen ASP.net SignalR und ASP.net CoreSignalR
+# <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>Unterschiede zwischen ASP.net SignalR und ASP.net Core SignalR
 
 ASP.net Core SignalR ist nicht mit Clients oder Servern f체r ASP.NET kompatibel SignalR . In diesem Artikel werden die Features erl채utert, die in ASP.net Core entfernt oder ge채ndert wurden SignalR .
 
@@ -31,7 +32,7 @@ ASP.net Core SignalR ist nicht mit Clients oder Servern f체r ASP.NET kompatibel 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-|                      | ASP.NETSignalR | ASP.NET CoreSignalR |
+|                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
 | **Server-nuget-Paket** | [Microsoft. Aspnet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | Keine. Im gemeinsamen [Microsoft. aspnetcore. app](xref:fundamentals/metapackage-app) -Framework enthalten. |
 | **Client-nuget-Pakete** | [Microsoft. Aspnet. SignalR . Ent](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. Aspnet. SignalR . JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. aspnetcore. SignalR . Ent](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
@@ -44,7 +45,7 @@ ASP.net Core SignalR ist nicht mit Clients oder Servern f체r ASP.NET kompatibel 
 
 ::: moniker range="<= aspnetcore-2.2"
 
-|                      | ASP.NETSignalR | ASP.NET CoreSignalR |
+|                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
 | **Server-nuget-Paket** | [Microsoft. Aspnet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | [Microsoft. aspnetcore. app](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) (.net Core)<br>[Microsoft. aspnetcore.SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR/) (.NET Framework) |
 | **Client-nuget-Pakete** | [Microsoft. Aspnet. SignalR . Ent](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. Aspnet. SignalR . JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. aspnetcore. SignalR . Ent](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
@@ -279,18 +280,18 @@ ASP.net SignalR unterst체tzt SQL Server und redis. ASP.net Core SignalR unterst�
 
 ### <a name="aspnet"></a>ASP.NET
 
-* [SignalRhorizontales hochskalieren mit Azure Service Bus](/aspnet/signalr/overview/performance/scaleout-with-windows-azure-service-bus)
-* [SignalRhorizontales hochskalieren mit redis](/aspnet/signalr/overview/performance/scaleout-with-redis)
-* [SignalRhorizontales hochskalieren mit SQL Server](/aspnet/signalr/overview/performance/scaleout-with-sql-server)
+* [SignalR horizontales hochskalieren mit Azure Service Bus](/aspnet/signalr/overview/performance/scaleout-with-windows-azure-service-bus)
+* [SignalR horizontales hochskalieren mit redis](/aspnet/signalr/overview/performance/scaleout-with-redis)
+* [SignalR horizontales hochskalieren mit SQL Server](/aspnet/signalr/overview/performance/scaleout-with-sql-server)
 
 ### <a name="aspnet-core"></a>ASP.NET Core
 
 * [Azure- SignalR Dienst](/azure/azure-signalr/)
 * [Redis-Backplane](xref:signalr/redis-backplane)
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zus채tzliche Ressourcen
 
-* [Hub](xref:signalr/hubs)
+* [Hubs](xref:signalr/hubs)
 * [JavaScript-Client](xref:signalr/javascript-client)
 * [.NET-Client](xref:signalr/dotnet-client)
 * [Unterst체tzte Plattformen](xref:signalr/supported-platforms)

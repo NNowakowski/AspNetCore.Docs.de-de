@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.date: 04/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/ObjectPool
-ms.openlocfilehash: 1f57bc4662296333b3d2c659c057230548541b91
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6997dbfdd5c654e4a8b15a026fd3ec61d024f02d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020404"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632368"
 ---
 # <a name="object-reuse-with-objectpool-in-aspnet-core"></a>Wieder verwenden von Objekten mit Objectpool in ASP.net Core
 
 Von [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github.com/rynowak)und [Günther Foidl](https://github.com/gfoidl)
 
-<xref:Microsoft.Extensions.ObjectPool>ist Teil der ASP.net Core-Infrastruktur, die unterstützt, dass eine Gruppe von Objekten für die Wiederverwendung im Speicher beibehalten wird, anstatt die Garbage Collection der Objekte zuzulassen.
+<xref:Microsoft.Extensions.ObjectPool> ist Teil der ASP.net Core-Infrastruktur, die unterstützt, dass eine Gruppe von Objekten für die Wiederverwendung im Speicher beibehalten wird, anstatt die Garbage Collection der Objekte zuzulassen.
 
 Möglicherweise möchten Sie den Objekt Pool verwenden, wenn die verwalteten Objekte wie folgt lauten:
 
@@ -35,7 +36,7 @@ Möglicherweise möchten Sie den Objekt Pool verwenden, wenn die verwalteten Obj
 - Stellen Sie eine begrenzte Ressource dar.
 - Wird vorhersag Bar und häufig verwendet.
 
-Beispielsweise verwendet das ASP.net Core Framework den Objekt Pool an manchen Stellen, um Instanzen wiederzuverwenden <xref:System.Text.StringBuilder> . `StringBuilder`ordnet und verwaltet eigene Puffer zum Speichern von Zeichendaten. ASP.net Core werden regelmäßig verwendet `StringBuilder` , um Funktionen zu implementieren, und die Wiederverwendung bietet einen Leistungsvorteil.
+Beispielsweise verwendet das ASP.net Core Framework den Objekt Pool an manchen Stellen, um Instanzen wiederzuverwenden <xref:System.Text.StringBuilder> . `StringBuilder` ordnet und verwaltet eigene Puffer zum Speichern von Zeichendaten. ASP.net Core werden regelmäßig verwendet `StringBuilder` , um Funktionen zu implementieren, und die Wiederverwendung bietet einen Leistungsvorteil.
 
 Das Objekt Pooling verbessert nicht immer die Leistung:
 
@@ -45,18 +46,18 @@ Das Objekt Pooling verbessert nicht immer die Leistung:
 Verwenden Sie das Objekt Pooling nur, nachdem Sie Leistungsdaten mithilfe realistischer Szenarien für Ihre APP oder Bibliothek gesammelt haben.
 
 ::: moniker range="< aspnetcore-3.0"
-**Warnung: der `ObjectPool` implementiert nicht `IDisposable` . Es wird nicht empfohlen, es mit Typen zu verwenden, die eine Entsorgung benötigen.** `ObjectPool`in ASP.net Core 3,0 und höher unterstützt `IDisposable` .
+**Warnung: der `ObjectPool` implementiert nicht `IDisposable` . Es wird nicht empfohlen, es mit Typen zu verwenden, die eine Entsorgung benötigen.** `ObjectPool` in ASP.net Core 3,0 und höher unterstützt `IDisposable` .
 ::: moniker-end
 
 **Hinweis: die Anzahl der Objekte, die Sie zuordnen soll, wird von Objectpool nicht begrenzt, und die Anzahl der Objekte, die Sie beibehält, ist begrenzt.**
 
 ## <a name="concepts"></a>Konzepte
 
-<xref:Microsoft.Extensions.ObjectPool.ObjectPool`1>: die grundlegende Objekt Pool Abstraktion. Wird verwendet, um-Objekte zu erhalten und zurückzugeben.
+<xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> : die grundlegende Objekt Pool Abstraktion. Wird verwendet, um-Objekte zu erhalten und zurückzugeben.
 
-<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601>-Implementieren Sie diese, um anzupassen, wie ein Objekt erstellt wird und wie es *zurückgesetzt* wird, wenn es an den Pool zurückgegeben wird. Dies kann an einen Objekt Pool übermittelt werden, den Sie direkt erstellen... Noch
+<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> -Implementieren Sie diese, um anzupassen, wie ein Objekt erstellt wird und wie es *zurückgesetzt* wird, wenn es an den Pool zurückgegeben wird. Dies kann an einen Objekt Pool übermittelt werden, den Sie direkt erstellen... Noch
 
-<xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*>fungiert als Factory zum Erstellen von Objekt Pools.
+<xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*> fungiert als Factory zum Erstellen von Objekt Pools.
 <!-- REview, there is no ObjectPoolProvider<T> -->
 
 Der Objectpool kann in einer APP auf verschiedene Weise verwendet werden:
@@ -78,7 +79,7 @@ Wenn <xref:Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider> verwendet 
 Hinweis: nach dem verwerfen des Pools:
 
 * Durch Aufrufen von wird `Get` eine ausgelöst `ObjectDisposedException` .
-* `return`Gibt das angegebene Element frei.
+* `return` Gibt das angegebene Element frei.
 
 ::: moniker-end
 
@@ -92,7 +93,7 @@ Der folgende Code
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/Startup.cs?name=snippet)]
 
-Der folgende Code implementiert`BirthdayMiddleware`
+Der folgende Code implementiert `BirthdayMiddleware`
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet)]
 

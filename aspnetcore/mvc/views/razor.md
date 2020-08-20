@@ -5,6 +5,7 @@ description: Erfahren Sie mehr über Razor Markup Syntax zum Einbetten von Serve
 ms.author: riande
 ms.date: 02/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,18 +16,18 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: 4b418c53535965eae6b41f3297b0c6336fb993d5
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b62fcb685b1c6d0c504c685c600d0316b32d7f57
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020586"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632498"
 ---
-# <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>RazorSyntax Verweis für ASP.net Core
+# <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>Razor Syntax Verweis für ASP.net Core
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen)und [Dan vicarel](https://github.com/Rabadash8820)
 
-Razorist eine Markup Syntax zum Einbetten von Server basiertem Code in Webseiten. Die Razor Syntax besteht aus Razor Markup, c# und HTML. Dateien mit Razor der Dateierweiterung " *. cshtml* ". Razorwird auch in [ Razor Komponenten](xref:blazor/components/index) Dateien (*Razor*-Dateien) gefunden.
+Razor ist eine Markup Syntax zum Einbetten von Server basiertem Code in Webseiten. Die Razor Syntax besteht aus Razor Markup, c# und HTML. Dateien mit Razor der Dateierweiterung " *. cshtml* ". Razorwird auch in [ Razor Komponenten](xref:blazor/components/index) Dateien (*Razor*-Dateien) gefunden.
 
 ## <a name="rendering-html"></a>Rendern von HTML
 
@@ -34,7 +35,7 @@ Die Standard Razor Sprache ist HTML. Das Rendern von HTML aus Razor Markup unter
 
 ## <a name="no-locrazor-syntax"></a>Razor-Syntax
 
-Razorunterstützt c# und verwendet das `@` Symbol für den Übergang von HTML zu c#. Razorwertet c#-Ausdrücke aus und rendert Sie in der HTML-Ausgabe.
+Razor unterstützt c# und verwendet das `@` Symbol für den Übergang von HTML zu c#. Razor wertet c#-Ausdrücke aus und rendert Sie in der HTML-Ausgabe.
 
 Wenn auf ein `@` Symbol ein [ Razor reserviertes Schlüsselwort](#razor-reserved-keywords)folgt, wechselt es in Razor -spezifisches Markup. Andernfalls erfolgt der Übergang in normales C#.
 
@@ -157,9 +158,9 @@ Der Code rendert den folgenden HTML-Code:
 <span>Hello World</span>
 ```
 
-## <a name="no-locrazor-code-blocks"></a>RazorCode Blöcke
+## <a name="no-locrazor-code-blocks"></a>Razor Code Blöcke
 
-RazorCode Blöcke beginnen mit `@` und werden von eingeschlossen `{}` . Im Gegensatz zu Ausdrücken wird C#-Code in Codeblöcken nicht gerendert. Codeblöcke und Ausdrücke in einer Ansicht nutzen den gleichen Bereich und werden der Reihe nach definiert:
+Razor Code Blöcke beginnen mit `@` und werden von eingeschlossen `{}` . Im Gegensatz zu Ausdrücken wird C#-Code in Codeblöcken nicht gerendert. Codeblöcke und Ausdrücke in einer Ansicht nutzen den gleichen Bereich und werden der Reihe nach definiert:
 
 ```cshtml
 @{
@@ -257,7 +258,7 @@ Zusätzliche `@` Zeichen in einer Razor Datei können zu Compilerfehlern bei Anw
 
 Steuerungsstrukturen sind eine Erweiterung von Codeblöcken. Alle Aspekte von Codeblöcken (Übergang zu Markup, Inline-C#) gelten auch für die folgenden Strukturen:
 
-### <a name="conditionals-if-else-if-else-and-switch"></a>Bedingungen`@if, else if, else, and @switch`
+### <a name="conditionals-if-else-if-else-and-switch"></a>Bedingungen `@if, else if, else, and @switch`
 
 `@if` steuert, wann der Code ausgeführt wird:
 
@@ -302,7 +303,7 @@ Im folgenden Markup wird die Verwendung einer switch-Anweisung veranschaulicht:
 }
 ```
 
-### <a name="looping-for-foreach-while-and-do-while"></a>Schleifen`@for, @foreach, @while, and @do while`
+### <a name="looping-for-foreach-while-and-do-while"></a>Schleifen `@for, @foreach, @while, and @do while`
 
 Auf Vorlagen basierender HTML-Code kann mit Anweisungen zur Steuerung von Schleifen gerendert werden. So rendern Sie eine Liste mit Personen.
 
@@ -390,7 +391,7 @@ Die Behandlung von Ausnahmen ist vergleichbar mit C#:
 
 ### `@lock`
 
-Razorbietet die Möglichkeit, kritische Abschnitte mit Lock-Anweisungen zu schützen:
+Razor bietet die Möglichkeit, kritische Abschnitte mit Lock-Anweisungen zu schützen:
 
 ```cshtml
 @lock (SomeLock)
@@ -401,7 +402,7 @@ Razorbietet die Möglichkeit, kritische Abschnitte mit Lock-Anweisungen zu schü
 
 ### <a name="comments"></a>Kommentare
 
-Razorunterstützt c#-und HTML-Kommentare:
+Razor unterstützt c#-und HTML-Kommentare:
 
 ```cshtml
 @{
@@ -417,7 +418,7 @@ Der Code rendert den folgenden HTML-Code:
 <!-- HTML comment -->
 ```
 
-RazorKommentare werden vom Server entfernt, bevor die Webseite gerendert wird. Razorverwendet `@*  *@` , um Kommentare zu begrenzen. Der folgende Code ist auskommentiert, damit vom Server kein Markup gerendert wird:
+Razor Kommentare werden vom Server entfernt, bevor die Webseite gerendert wird. Razor verwendet `@*  *@` , um Kommentare zu begrenzen. Der folgende Code ist auskommentiert, damit vom Server kein Markup gerendert wird:
 
 ```cshtml
 @*
@@ -431,7 +432,7 @@ RazorKommentare werden vom Server entfernt, bevor die Webseite gerendert wird. R
 
 ## <a name="directives"></a>Anweisungen
 
-Razor-Anweisungen werden durch implizite Ausdrücke mit reservierten Schlüsselwörtern nach dem- `@` Symbol dargestellt. Eine Anweisung ändert in der Regel die Analyse einer Ansicht oder aktiviert unterschiedliche Funktionen.
+Razor -Anweisungen werden durch implizite Ausdrücke mit reservierten Schlüsselwörtern nach dem- `@` Symbol dargestellt. Eine Anweisung ändert in der Regel die Analyse einer Ansicht oder aktiviert unterschiedliche Funktionen.
 
 RazorWenn Sie verstehen, wie Code für eine Sicht generiert, ist es einfacher, die Funktionsweise von Anweisungen zu verstehen.
 
@@ -497,7 +498,7 @@ Verwenden Sie in- [ Razor Komponenten](xref:blazor/components/index), `@code` `@
 
 ::: moniker-end
 
-Zum Beispiel:
+Beispiel:
 
 [!code-cshtml[](razor/sample/Views/Home/Contact6.cshtml)]
 
@@ -637,7 +638,7 @@ Die generierte Klasse erbt von `RazorPage<dynamic>`:
 public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
 ```
 
-Razormacht eine `Model` Eigenschaft für den Zugriff auf das an die Ansicht über gegebene Modell verfügbar:
+Razor macht eine `Model` Eigenschaft für den Zugriff auf das an die Ansicht über gegebene Modell verfügbar:
 
 ```cshtml
 <div>The Login Email: @Model.Email</div>
@@ -662,7 +663,7 @@ Für das Razor Beispiel "Pages" in der folgenden Tabelle:
 * *Pages/_ViewImports.cshtml* enthält `@namespace Hello.World`.
 * Jede Seite weist `Hello.World` als Stamm ihres Namespace auf.
 
-| Seite                                        | Namespace                             |
+| Page                                        | Namespace                             |
 | ------------------------------------------- | ------------------------------------- |
 | *Pages/index. cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
@@ -674,7 +675,7 @@ Wenn mehrere Importdateien über eine `@namespace`-Anweisung verfügen, wird die
 
 Wenn der Ordner *EvenMorePages* im Beispiel oben eine Importdatei mit `@namespace Another.Planet` enthält (oder die Datei *Pages/MorePages/EvenMorePages/Page.cshtml*`@namespace Another.Planet` enthält), finden Sie das Ergebnis in der folgenden Tabelle.
 
-| Seite                                        | Namespace               |
+| Page                                        | Namespace               |
 | ------------------------------------------- | ----------------------- |
 | *Pages/index. cshtml*                        | `Hello.World`           |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
@@ -719,7 +720,7 @@ In- [ Razor Komponenten](xref:blazor/components/index) `@using` steuert auch, we
 
 ## <a name="directive-attributes"></a>Direktivenattribute
 
-RazorDirektivenattribute werden durch implizite Ausdrücke mit reservierten Schlüsselwörtern nach dem- `@` Symbol dargestellt. Ein direktivenattribut ändert in der Regel die Art und Weise, in der ein Element analysiert wird, oder unterstützt
+Razor Direktivenattribute werden durch implizite Ausdrücke mit reservierten Schlüsselwörtern nach dem- `@` Symbol dargestellt. Ein direktivenattribut ändert in der Regel die Art und Weise, in der ein Element analysiert wird, oder unterstützt
 
 ### `@attributes`
 
@@ -737,7 +738,7 @@ Die Datenbindung in-Komponenten wird mit dem `@bind`-Attribut erreicht. Weitere 
 
 *Dieses Szenario gilt nur für Razor Komponenten (Razor).*
 
-Razorstellt Funktionen für die Ereignis Behandlung für-Komponenten bereit. Weitere Informationen finden Sie unter <xref:blazor/components/event-handling>.
+Razor stellt Funktionen für die Ereignis Behandlung für-Komponenten bereit. Weitere Informationen finden Sie unter <xref:blazor/components/event-handling>.
 
 ::: moniker-end
 
@@ -781,7 +782,7 @@ Die `@typeparam`-Anweisung deklariert einen generischen Typparameter für die ge
 
 ## <a name="templated-no-locrazor-delegates"></a>Auf Vorlagen basierende Delegaten Razor
 
-Razormithilfe von Vorlagen können Sie einen UI-Code Ausschnitt im folgenden Format definieren:
+Razor mithilfe von Vorlagen können Sie einen UI-Code Ausschnitt im folgenden Format definieren:
 
 ```cshtml
 @<tag>...</tag>
@@ -890,19 +891,19 @@ Die folgenden drei Anweisungen gehören zu den [Taghilfsprogrammen](xref:mvc/vie
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Entfernt zuvor hinzugefügte Taghilfsprogramme aus einer Ansicht. |
 | [`@tagHelperPrefix`](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Gibt ein Tagpräfix an, um Unterstützung für Taghilfsprogramme zu aktivieren und ihre Verwendung explizit zu machen. |
 
-## <a name="no-locrazor-reserved-keywords"></a>Razorreservierte Schlüsselwörter
+## <a name="no-locrazor-reserved-keywords"></a>Razor reservierte Schlüsselwörter
 
-### <a name="no-locrazor-keywords"></a>RazorKeywords
+### <a name="no-locrazor-keywords"></a>Razor Keywords
 
-* `page`(Erfordert ASP.net Core 2,1 oder höher)
+* `page` (Erfordert ASP.net Core 2,1 oder höher)
 * `namespace`
 * `functions`
 * `inherits`
 * `model`
 * `section`
-* `helper`(Wird zurzeit nicht von ASP.net Core unterstützt)
+* `helper` (Wird zurzeit nicht von ASP.net Core unterstützt)
 
-RazorSchlüsselwörter werden mit Escapezeichen versehen `@(Razor Keyword)` (z `@(functions)` . b.).
+Razor Schlüsselwörter werden mit Escapezeichen versehen `@(Razor Keyword)` (z `@(functions)` . b.).
 
 ### <a name="c-no-locrazor-keywords"></a>C#- Razor Schlüsselwörter
 
@@ -923,7 +924,7 @@ RazorSchlüsselwörter werden mit Escapezeichen versehen `@(Razor Keyword)` (z `
 
 C# Razor -Schlüsselwörter müssen mit einem doppelten Escapezeichen versehen werden `@(@C# Razor Keyword)` (z `@(@case)` . b.). Der erste schützt `@` den Razor Parser. Das zweite `@` dient als Escapezeichen für den C#-Parser.
 
-### <a name="reserved-keywords-not-used-by-no-locrazor"></a>Reservierte Schlüsselwörter werden von nicht verwendetRazor
+### <a name="reserved-keywords-not-used-by-no-locrazor"></a>Reservierte Schlüsselwörter werden von nicht verwendet Razor
 
 * `class`
 
@@ -1001,10 +1002,10 @@ Die Razor Ansichts-Engine führt Suchvorgänge bei der Suche nach Groß-und Klei
 Entwicklern wird empfohlen, sich bei der Groß-/Kleinschreibung von Datei- und Verzeichnisnamen an der Schreibweise folgender Begriffe zu orientieren:
 
 * Bereichs-, Controller- und Aktionsnamen
-* RazorSeiten.
+* Razor Seiten.
 
 Durch Überprüfung der Groß-/Kleinschreibung wird sichergestellt, dass die entsprechenden Ansichten für die Bereitstellungen unabhängig von dem zugrunde liegenden Dateisystem gefunden werden.
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 [Einführung in ASP.net-Webprogrammierung mithilfe Razor von Die Syntax](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) bietet viele Beispiele für die Programmierung mit Razor Syntax.

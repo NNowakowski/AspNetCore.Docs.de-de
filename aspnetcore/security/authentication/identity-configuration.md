@@ -1,11 +1,12 @@
 ---
-title: Konfigurieren von ASP.net CoreIdentity
+title: Konfigurieren von ASP.NET Core Identity
 author: AdrienTorris
-description: Verstehen Identity Sie ASP.net Core Standardwerte, und erfahren Sie, wie Sie Identity Eigenschaften für die Verwendung von benutzerdefinierten Werten konfigurieren.
+description: Verstehen ASP.NET Core Identity Sie die Standardwerte, und erfahren Sie, wie Sie Identity Eigenschaften zur Verwendung benutzerdefinierter Werte konfigurieren.
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,22 +17,22 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-configuration
-ms.openlocfilehash: b7f6eaba1a0e819a077e3d63b4f997e75b8cd317
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ae4a2eb9d95339651c3810a9f8489d703d73a3fe
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020599"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632680"
 ---
-# <a name="configure-aspnet-core-no-locidentity"></a>Konfigurieren von ASP.net CoreIdentity
+# <a name="configure-no-locaspnet-core-identity"></a>Konfigurieren von ASP.NET Core Identity
 
-In ASP.net Core werden Identity Standardwerte für Einstellungen wie Kenn Wort Richtlinie, Sperrung und cookie Konfiguration verwendet. Diese Einstellungen können in der-Klasse überschrieben werden `Startup` .
+ASP.NET Core Identity in werden Standardwerte für Einstellungen wie Kenn Wort Richtlinie, Sperrung und cookie Konfiguration verwendet. Diese Einstellungen können in der-Klasse überschrieben werden `Startup` .
 
-## <a name="no-locidentity-options"></a>IdentityOptionen
+## <a name="no-locidentity-options"></a>Identity Optionen
 
-Die [ Identity options](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) -Klasse stellt die Optionen dar, die verwendet werden können, um das System zu konfigurieren Identity . `IdentityOptions`muss **nach** dem Aufrufen von oder festgelegt werden `AddIdentity` `AddDefaultIdentity` .
+Die [ Identity options](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) -Klasse stellt die Optionen dar, die verwendet werden können, um das System zu konfigurieren Identity . `IdentityOptions` muss **nach** dem Aufrufen von oder festgelegt werden `AddIdentity` `AddDefaultIdentity` .
 
-### <a name="claims-no-locidentity"></a>ClaimsIdentity
+### <a name="claims-no-locidentity"></a>Claims Identity
 
 [ Identity Optionen. Claims Identity ](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.claimsidentity) gibt die [Anspruchs Identity Optionen](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions) mit den Eigenschaften an, die in der folgenden Tabelle aufgeführt sind.
 
@@ -137,7 +138,7 @@ Weitere Informationen finden Sie unter [ Cookie authenticationoptions](/dotnet/a
 
 ## <a name="password-hasher-options"></a>Optionen für Kennwort Hasher
 
-<xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions>Ruft Optionen für Kenn Wort Hashwert ab und legt Sie fest.
+<xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions> Ruft Optionen für Kenn Wort Hashwert ab und legt Sie fest.
 
 | Option | BESCHREIBUNG |
 | ------ | ----------- |

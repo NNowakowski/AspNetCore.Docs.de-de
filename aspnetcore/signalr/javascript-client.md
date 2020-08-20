@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/08/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: e6feeb0009034d9ea92f09c44ed0ca882d80fe1b
-ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
+ms.openlocfilehash: 7b11172df902f0d6a26f357755f33c78e7f8d1ff
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88504761"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631419"
 ---
 # <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.net Core SignalR JavaScript-Client
 
@@ -316,7 +317,7 @@ Eine reale Implementierung würde einen exponentiellen Backoff verwenden oder ei
 * [JavaScript-API-Referenz](/javascript/api/?view=signalr-js-latest)
 * [JavaScript-Tutorial](xref:tutorials/signalr)
 * [WebPack und typescript-Tutorial](xref:tutorials/signalr-typescript-webpack)
-* [Hub](xref:signalr/hubs)
+* [Hubs](xref:signalr/hubs)
 * [.NET-Client](xref:signalr/dotnet-client)
 * [Veröffentlichen in Azure](xref:signalr/publish-to-azure-web-app)
 * [Cross-Origin-Anforderungen (cors)](xref:security/cors)

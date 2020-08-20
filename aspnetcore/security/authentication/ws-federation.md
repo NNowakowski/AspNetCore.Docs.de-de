@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/16/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/ws-federation
-ms.openlocfilehash: e303679190a7d7f42d8525541cec031ba090fd7a
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8a593efd799e900483d0337a06e02c3558b63bfb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022302"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634084"
 ---
 # <a name="authenticate-users-with-ws-federation-in-aspnet-core"></a>Authentifizieren von Benutzern mit dem WS-Verbund in ASP.net Core
 
@@ -61,7 +62,7 @@ Standardmäßig wird die neue Middleware:
 
 * Klicken Sie im restlichen Assistenten auf **weiter** , und **Schließen** Sie am Ende.
 
-* ASP.net Core Identity erfordert einen **namens-ID** -Anspruch. Fügen Sie eine aus dem Dialogfeld " **Anspruchs Regeln bearbeiten** " hinzu:
+* ASP.NET Core Identity erfordert einen **namens-ID** -Anspruch. Fügen Sie eine aus dem Dialogfeld " **Anspruchs Regeln bearbeiten** " hinzu:
 
 ![Anspruchsregeln bearbeiten](ws-federation/_static/EditClaimRules.png)
 
@@ -86,13 +87,13 @@ Standardmäßig wird die neue Middleware:
 
 ![Azure Active Directory: Endpunkte](ws-federation/_static/AadFederationMetadataDocument.png)
 
-* Navigieren Sie zur neuen App-Registrierung. Klicken Sie auf **API**verfügbar machen. Klicken Sie auf Anwendungs-ID-URI **Satz**  >  **Speichern**. Notieren Sie sich den **Anwendungs-ID-URI**. Dies sind die WS-Verbund-Middleware `Wtrealm` :
+* Navigieren Sie zur neuen App-Registrierung. Klicken Sie auf **API**verfügbar machen. Klicken Sie auf Anwendungs-ID-URI **Satz**  >  **Speichern**. Notieren Sie sich den  **Anwendungs-ID-URI**. Dies sind die WS-Verbund-Middleware `Wtrealm` :
 
 ![Azure Active Directory: Eigenschaften der APP-Registrierung](ws-federation/_static/AadAppIdUri.png)
 
-## <a name="use-ws-federation-without-aspnet-core-no-locidentity"></a>Verwenden von WS-Federation ohne ASP.net CoreIdentity
+## <a name="use-ws-federation-without-no-locaspnet-core-identity"></a>Verwenden von WS-Federation ohne ASP.NET Core Identity
 
-Die WS-Verbund-Middleware kann ohne verwendet werden Identity . Zum Beispiel:
+Die WS-Verbund-Middleware kann ohne verwendet werden Identity . Beispiel:
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
 ::: moniker-end
@@ -101,7 +102,7 @@ Die WS-Verbund-Middleware kann ohne verwendet werden Identity . Zum Beispiel:
 [!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
 ::: moniker-end
 
-## <a name="add-ws-federation-as-an-external-login-provider-for-aspnet-core-no-locidentity"></a>Fügen Sie den WS-Verbund als externen Anmelde Anbieter für ASP.net CoreIdentity
+## <a name="add-ws-federation-as-an-external-login-provider-for-no-locaspnet-core-identity"></a>Fügen Sie den WS-Verbund als externen Anmelde Anbieter für hinzu. ASP.NET Core Identity
 
 * Fügen Sie eine Abhängigkeit von [Microsoft. aspnetcore. Authentication. wsfederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) zum Projekt hinzu.
 * WS-Verbund hinzufügen zu `Startup.ConfigureServices` :

@@ -5,6 +5,7 @@ description: Erfahren Sie, wie Sie mit dem Migrieren eines ASP.NET MVC-Projekts 
 ms.author: wpickett
 ms.date: 06/18/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/mvc
-ms.openlocfilehash: 17f2a2532c58c3796835328260231d63f8fb2e40
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: cd1a7ff57d911f96f0adfe4b548fa80ec844886d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015048"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632238"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Migrating from ASP.NET MVC to ASP.NET Core MVC (Migrieren von ASP.NET MVC zu ASP.NET Core MVC)
 
@@ -108,7 +109,7 @@ Weitere Informationen finden Sie unter <xref:mvc/controllers/actions> und <xref:
 Jeder Controller Endpunkt kann getestet werden, aber Layout und Stile werden später im Dokument behandelt.
 
 1. Führen Sie die ASP.net Core-App aus.
-1. Rufen Sie die gerenderten Sichten aus dem Browser auf der laufenden ASP.net Core-App auf, indem Sie die aktuelle Portnummer durch die im ASP.net Core Projekt verwendete Portnummer ersetzen. Beispielsweise `https://localhost:44375/home/about`.
+1. Rufen Sie die gerenderten Sichten aus dem Browser auf der laufenden ASP.net Core-App auf, indem Sie die aktuelle Portnummer durch die im ASP.net Core Projekt verwendete Portnummer ersetzen. Beispiel: `https://localhost:44375/home/about`.
 
 ## <a name="migrate-static-content"></a>Migrieren statischer Inhalte
 
@@ -230,7 +231,7 @@ Erstellen Sie eine neue *leere* ASP.net Core Web-App mit dem gleichen Namen wie 
 
 * Wenn .net Core als Ziel verwendet wird, wird standardmäßig auf das [Metapaket Microsoft. aspnetcore. app](xref:fundamentals/metapackage-app) verwiesen. Dieses Paket enthält Pakete, die häufig von MVC-Apps verwendet werden. Wenn Sie .NET Framework adressieren, müssen Paket Verweise einzeln in der Projektdatei aufgelistet werden.
 
-`Microsoft.AspNetCore.Mvc`ist das ASP.net Core MVC-Framework. `Microsoft.AspNetCore.StaticFiles`ist der statische Datei Handler. ASP.net Core-apps entscheiden sich explizit für Middleware, z. b. für die Betreuung statischer Dateien. Weitere Informationen finden Sie im Artikel zu [statischen Dateien](xref:fundamentals/static-files).
+`Microsoft.AspNetCore.Mvc` ist das ASP.net Core MVC-Framework. `Microsoft.AspNetCore.StaticFiles` ist der statische Datei Handler. ASP.net Core-apps entscheiden sich explizit für Middleware, z. b. für die Betreuung statischer Dateien. Weitere Informationen finden Sie im Artikel zu [statischen Dateien](xref:fundamentals/static-files).
 
 * Öffnen Sie die Datei *Startup.cs* , und ändern Sie den Code so, dass er dem folgenden entspricht:
 
@@ -290,7 +291,7 @@ Die folgende Funktionalität erfordert eine Migration von dem Beispiel ASP.NET M
 
 ## <a name="controllers-and-views"></a>Controller und Ansichten
 
-* Kopieren Sie jede Methode aus ASP.NET MVC `HomeController` in die neue `HomeController` . In ASP.NET MVC lautet der Rückgabetyp der Controller Aktionsmethode der integrierten Vorlage " [Action result](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx);". in ASP.net Core MVC wird stattdessen die Aktionsmethode zurückgegeben `IActionResult` . `ActionResult`implementiert `IActionResult` , sodass es nicht erforderlich ist, den Rückgabetyp der Aktionsmethoden zu ändern.
+* Kopieren Sie jede Methode aus ASP.NET MVC `HomeController` in die neue `HomeController` . In ASP.NET MVC lautet der Rückgabetyp der Controller Aktionsmethode der integrierten Vorlage " [Action result](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx);". in ASP.net Core MVC wird stattdessen die Aktionsmethode zurückgegeben `IActionResult` . `ActionResult` implementiert `IActionResult` , sodass es nicht erforderlich ist, den Rückgabetyp der Aktionsmethoden zu ändern.
 
 * Kopieren Sie die Ansichts Dateien " *about. cshtml*", " *Contact. cshtml*" und " *Index. cshtml* " Razor vom ASP.NET-MVC-Projekt in das ASP.net Core-Projekt.
 
@@ -298,7 +299,7 @@ Die folgende Funktionalität erfordert eine Migration von dem Beispiel ASP.NET M
 
 Die Layoutdatei und-Stile wurden noch nicht migriert, sodass die gerenderten Sichten nur den Inhalt der Ansichts Dateien enthalten. Die von der Layoutdatei generierten `About` `Contact` Verknüpfungen für die Ansichten und sind noch nicht verfügbar.
 
-Rufen Sie die gerenderten Sichten aus dem Browser auf der laufenden ASP.net Core-App auf, indem Sie die aktuelle Portnummer durch die im ASP.net Core-Projekt verwendete Portnummer ersetzen. Beispiel: `https://localhost:44375/home/about`
+Rufen Sie die gerenderten Sichten aus dem Browser auf der laufenden ASP.net Core-App auf, indem Sie die aktuelle Portnummer durch die im ASP.net Core-Projekt verwendete Portnummer ersetzen. Beispiel: `https://localhost:44375/home/about`.
 
 ![Kontaktseite](mvc/_static/contact-page.png)
 
@@ -371,7 +372,7 @@ Es gibt viele Probleme, die eine HTTP 500-Fehlermeldung verursachen können, die
 
 ASP.net Core konvertiert nicht behandelte Ausnahmen in HTTP 500-Fehler Antworten. Normalerweise werden Fehlerdetails nicht in diese Antworten eingeschlossen, um das Offenlegen von potenziell sensiblen Informationen über den Server zu verhindern. Weitere Informationen finden Sie auf der [Seite Entwickler Ausnahme](xref:fundamentals/error-handling#developer-exception-page).
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * <xref:blazor/index>
 * <xref:mvc/views/tag-helpers/intro>
@@ -416,7 +417,7 @@ Erstellen Sie eine neue *leere* ASP.net Core Web-App mit dem gleichen Namen wie 
 
 * Wenn .net Core als Ziel verwendet wird, wird standardmäßig auf das [Metapaket Microsoft. aspnetcore. app](xref:fundamentals/metapackage-app) verwiesen. Dieses Paket enthält Pakete, die häufig von MVC-Apps verwendet werden. Wenn Sie .NET Framework adressieren, müssen Paket Verweise einzeln in der Projektdatei aufgelistet werden.
 
-`Microsoft.AspNetCore.Mvc`ist das ASP.net Core MVC-Framework. `Microsoft.AspNetCore.StaticFiles`ist der statische Datei Handler. ASP.net Core-apps entscheiden sich explizit für Middleware, z. b. für die Betreuung statischer Dateien. Weitere Informationen finden Sie im Artikel zu [statischen Dateien](xref:fundamentals/static-files).
+`Microsoft.AspNetCore.Mvc` ist das ASP.net Core MVC-Framework. `Microsoft.AspNetCore.StaticFiles` ist der statische Datei Handler. ASP.net Core-apps entscheiden sich explizit für Middleware, z. b. für die Betreuung statischer Dateien. Weitere Informationen finden Sie im Artikel zu [statischen Dateien](xref:fundamentals/static-files).
 
 * Öffnen Sie die Datei *Startup.cs* , und ändern Sie den Code so, dass er dem folgenden entspricht:
 
@@ -476,7 +477,7 @@ Die folgende Funktionalität erfordert eine Migration von dem Beispiel ASP.NET M
 
 ## <a name="controllers-and-views"></a>Controller und Ansichten
 
-* Kopieren Sie jede Methode aus ASP.NET MVC `HomeController` in die neue `HomeController` . In ASP.NET MVC lautet der Rückgabetyp der Controller Aktionsmethode der integrierten Vorlage " [Action result](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx);". in ASP.net Core MVC wird stattdessen die Aktionsmethode zurückgegeben `IActionResult` . `ActionResult`implementiert `IActionResult` , sodass es nicht erforderlich ist, den Rückgabetyp der Aktionsmethoden zu ändern.
+* Kopieren Sie jede Methode aus ASP.NET MVC `HomeController` in die neue `HomeController` . In ASP.NET MVC lautet der Rückgabetyp der Controller Aktionsmethode der integrierten Vorlage " [Action result](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx);". in ASP.net Core MVC wird stattdessen die Aktionsmethode zurückgegeben `IActionResult` . `ActionResult` implementiert `IActionResult` , sodass es nicht erforderlich ist, den Rückgabetyp der Aktionsmethoden zu ändern.
 
 * Kopieren Sie die Ansichts Dateien " *about. cshtml*", " *Contact. cshtml*" und " *Index. cshtml* " Razor vom ASP.NET-MVC-Projekt in das ASP.net Core-Projekt.
 
@@ -484,7 +485,7 @@ Die folgende Funktionalität erfordert eine Migration von dem Beispiel ASP.NET M
 
 Die Layoutdatei und-Stile wurden noch nicht migriert, sodass die gerenderten Sichten nur den Inhalt der Ansichts Dateien enthalten. Die von der Layoutdatei generierten `About` `Contact` Verknüpfungen für die Ansichten und sind noch nicht verfügbar.
 
-* Rufen Sie die gerenderten Sichten aus dem Browser auf der laufenden ASP.net Core-App auf, indem Sie die aktuelle Portnummer durch die im ASP.net Core-Projekt verwendete Portnummer ersetzen. Beispiel: `https://localhost:44375/home/about`
+* Rufen Sie die gerenderten Sichten aus dem Browser auf der laufenden ASP.net Core-App auf, indem Sie die aktuelle Portnummer durch die im ASP.net Core-Projekt verwendete Portnummer ersetzen. Beispiel: `https://localhost:44375/home/about`.
 
 ![Kontaktseite](mvc/_static/contact-page.png)
 
