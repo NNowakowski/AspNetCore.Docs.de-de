@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/02/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/jsonpatch
-ms.openlocfilehash: 09da557d678889ba16abe6f9af40ae1b33583d8b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e57c5185323305ccbef7960653c9174931e45d75
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022367"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635397"
 ---
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JsonPatch in ASP.NET Core-Web-API
 
@@ -36,7 +37,7 @@ In diesem Artikel wird erläutert, wie JSON Patch-Anforderungen in einer ASP.NET
 Führen Sie die folgenden Schritte aus, um die JSON-Patchunterstützung in der APP zu aktivieren:
 
 1. Installieren Sie das [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) nuget-Paket.
-1. Aktualisieren Sie die- `Startup.ConfigureServices` Methode des Projekts, um aufzurufen <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> . Zum Beispiel:
+1. Aktualisieren Sie die- `Startup.ConfigureServices` Methode des Projekts, um aufzurufen <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> . Beispiel:
 
     ```csharp
     services
@@ -52,7 +53,7 @@ Führen Sie die folgenden Schritte aus, um die JSON-Patchunterstützung in der A
 
 ## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a>JSON Patch, addnewtonweichjson und System.Text.Js
 
-`AddNewtonsoftJson`ersetzt die `System.Text.Json` -basierten Eingabe-und Ausgabe Formatierer, die zum Formatieren des **gesamten** JSON-Inhalts verwendet werden. Um Unterstützung für JSON-Patch mithilfe von hinzuzufügen und `Newtonsoft.Json` die anderen Formatierer unverändert zu lassen, aktualisieren Sie die-Methode des Projekts `Startup.ConfigureServices` wie folgt:
+`AddNewtonsoftJson` ersetzt die `System.Text.Json` -basierten Eingabe-und Ausgabe Formatierer, die zum Formatieren des **gesamten** JSON-Inhalts verwendet werden. Um Unterstützung für JSON-Patch mithilfe von hinzuzufügen und `Newtonsoft.Json` die anderen Formatierer unverändert zu lassen, aktualisieren Sie die-Methode des Projekts `Startup.ConfigureServices` wie folgt:
 
 [!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet)]
 
@@ -112,7 +113,7 @@ Die Änderungen, die durch Anwenden eines JSON-Patch-Dokuments auf eine Ressourc
 
 ## <a name="path-syntax"></a>Pfadsyntax
 
-Die [path](https://tools.ietf.org/html/rfc6901)-Eigenschaft eines Vorgangsobjekts weist Schrägstriche zwischen Ebenen auf. Beispielsweise `"/address/zipCode"`.
+Die [path](https://tools.ietf.org/html/rfc6901)-Eigenschaft eines Vorgangsobjekts weist Schrägstriche zwischen Ebenen auf. Beispiel: `"/address/zipCode"`.
 
 Nullbasierte Indizes werden verwendet, um Arrayelemente anzugeben. Das erste Element des `addresses`-Arrays wäre bei `/addresses/0`. Bis `add` zum Ende eines Arrays verwenden Sie einen Bindestrich ( `-` ) anstelle einer Indexnummer: `/addresses/-` .
 
@@ -120,7 +121,7 @@ Nullbasierte Indizes werden verwendet, um Arrayelemente anzugeben. Das erste Ele
 
 Die folgende Tabelle zeigt unterstützt Vorgänge gemäß der [JSON Patch-Spezifikation](https://tools.ietf.org/html/rfc6902):
 
-|Vorgang  | Hinweise |
+|Vorgang  | Notizen |
 |-----------|--------------------------------|
 | `add`     | Hinzufügen einer Eigenschaft oder eines Arrayelements. Für vorhandene Eigenschaft: set value.|
 | `remove`  | Entfernen einer Eigenschaft oder eines Arrayelements. |
@@ -258,7 +259,7 @@ Um das Beispiel zu testen, führen Sie die App aus, und senden Sie HTTP-Anforder
 * Header: `Content-Type: application/json-patch+json`
 * Text: Kopieren Sie eine der JSON-patchdokumentbeispiele, und fügen Sie Sie aus dem *JSON* -Projektordner ein.
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [IETF RFC 5789 PATCH-Methodenspezifikation](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON Patch-Spezifikation](https://tools.ietf.org/html/rfc6902)
@@ -324,7 +325,7 @@ Die Änderungen, die durch Anwenden eines JSON Patch-Dokuments auf eine Ressourc
 
 ## <a name="path-syntax"></a>Pfadsyntax
 
-Die [path](https://tools.ietf.org/html/rfc6901)-Eigenschaft eines Vorgangsobjekts weist Schrägstriche zwischen Ebenen auf. Beispielsweise `"/address/zipCode"`.
+Die [path](https://tools.ietf.org/html/rfc6901)-Eigenschaft eines Vorgangsobjekts weist Schrägstriche zwischen Ebenen auf. Beispiel: `"/address/zipCode"`.
 
 Nullbasierte Indizes werden verwendet, um Arrayelemente anzugeben. Das erste Element des `addresses`-Arrays wäre bei `/addresses/0`. Zum `add` ans Ende eines Arrays verwenden Sie einen Bindestrich (-) anstelle einer Indexnummer: `/addresses/-`.
 
@@ -332,7 +333,7 @@ Nullbasierte Indizes werden verwendet, um Arrayelemente anzugeben. Das erste Ele
 
 Die folgende Tabelle zeigt unterstützt Vorgänge gemäß der [JSON Patch-Spezifikation](https://tools.ietf.org/html/rfc6902):
 
-|Vorgang  | Hinweise |
+|Vorgang  | Notizen |
 |-----------|--------------------------------|
 | `add`     | Hinzufügen einer Eigenschaft oder eines Arrayelements. Für vorhandene Eigenschaft: set value.|
 | `remove`  | Entfernen einer Eigenschaft oder eines Arrayelements. |
@@ -470,7 +471,7 @@ Um das Beispiel zu testen, führen Sie die App aus, und senden Sie HTTP-Anforder
 * Header: `Content-Type: application/json-patch+json`
 * Text: Kopieren Sie eine der JSON-patchdokumentbeispiele, und fügen Sie Sie aus dem *JSON* -Projektordner ein.
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [IETF RFC 5789 PATCH-Methodenspezifikation](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON Patch-Spezifikation](https://tools.ietf.org/html/rfc6902)

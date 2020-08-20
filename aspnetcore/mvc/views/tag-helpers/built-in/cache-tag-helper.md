@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: 7d2ff774b7654993e2cd9b126db252f81a3032d3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b1cab7ab8b491529ee4208d92fb30082be795eda
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018753"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635059"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Cache-Taghilfsprogramm im ASP.NET Core MVC
 
@@ -47,7 +48,7 @@ Im folgenden Razor Markup wird das aktuelle Datum zwischengespeichert:
 | --------------- | --------------- | ------- |
 | Boolean         | `true`, `false` | `true`  |
 
-`enabled` legt fest, ob der Inhalt zwischengespeichert wird, der vom Cache-Taghilfsprogramm eingeschlossen wird. Der Standardwert ist `true`. Wenn diese Option auf `false` festgelegt ist, wird die gerenderte Ausgabe **nicht** zwischengespeichert.
+`enabled` legt fest, ob der Inhalt zwischengespeichert wird, der vom Cache-Taghilfsprogramm eingeschlossen wird. Der Standardwert lautet `true`. Wenn diese Option auf `false` festgelegt ist, wird die gerenderte Ausgabe **nicht** zwischengespeichert.
 
 Beispiel:
 
@@ -75,7 +76,7 @@ Im folgenden Beispiel werden die Inhalte des Cache-Taghilfsprogramms bis zum 29.
 
 ### <a name="expires-after"></a>expires-after
 
-| Attributtyp | Beispiel                      | Standardwert    |
+| Attributtyp | Beispiel                      | Standard    |
 | -------------- | ---------------------------- | ---------- |
 | `TimeSpan`     | `@TimeSpan.FromSeconds(120)` | 20 Minuten |
 
@@ -171,9 +172,9 @@ routes.MapRoute(
 | -------------- | -------------------------------------------------------------------------------- |
 | String         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
-`vary-by-cookie`akzeptiert eine durch Trennzeichen getrennte Liste von cookie Namen, die eine Cache Aktualisierung auslöst, wenn sich die cookie Werte ändern.
+`vary-by-cookie` akzeptiert eine durch Trennzeichen getrennte Liste von cookie Namen, die eine Cache Aktualisierung auslöst, wenn sich die cookie Werte ändern.
 
-Im folgenden Beispiel wird die, die cookie mit ASP.net Core verknüpft ist, überwacht Identity . Wenn ein Benutzer authentifiziert wird, löst eine Änderung in Identity cookie eine Cache Aktualisierung aus:
+Im folgenden Beispiel wird der cookie zugeordnet, der zugeordnet ist ASP.NET Core Identity . Wenn ein Benutzer authentifiziert wird, löst eine Änderung in Identity cookie eine Cache Aktualisierung aus:
 
 ```cshtml
 <cache vary-by-cookie=".AspNetCore.Identity.Application">

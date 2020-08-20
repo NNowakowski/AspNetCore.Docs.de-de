@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/response-compression
-ms.openlocfilehash: 1dd931d0ee654b888814df8a0d0675d32b5c3a20
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b8947e3c3c4f634fbd838c22ff60799257143480
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020963"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634994"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Antwort Komprimierung in ASP.net Core
 
@@ -52,7 +53,7 @@ Normalerweise kann jede nicht System intern komprimierte Antwort von der Antwort
 
 Wenn ein Client komprimierte Inhalte verarbeiten kann, muss der Client den Server über seine Funktionen informieren, indem er die- `Accept-Encoding` Kopfzeile mit der Anforderung sendet. Wenn ein Server komprimierten Inhalt sendet, muss er Informationen in der Kopfzeile enthalten, in der `Content-Encoding` die komprimierte Antwort codiert wird. In der folgenden Tabelle sind die von der Middleware unterstützten Inhalts Codierungs Bezeichnungen aufgeführt.
 
-| `Accept-Encoding`Header Werte | Unterstützte Middleware | BESCHREIBUNG |
+| `Accept-Encoding` Header Werte | Unterstützte Middleware | BESCHREIBUNG |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Ja (Standard)        | [Brotli-komprimiertes Datenformat](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | Nein                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
@@ -109,9 +110,9 @@ public class Startup
 }
 ```
 
-Notizen:
+Hinweise:
 
-* `app.UseResponseCompression`muss vor einer beliebigen Middleware aufgerufen werden, die Antworten komprimiert. Weitere Informationen finden Sie unter <xref:fundamentals/middleware/index#middleware-order>.
+* `app.UseResponseCompression` muss vor einer beliebigen Middleware aufgerufen werden, die Antworten komprimiert. Weitere Informationen finden Sie unter <xref:fundamentals/middleware/index#middleware-order>.
 * Verwenden Sie ein Tool wie z. b. " [fddler](https://www.telerik.com/fiddler)", " [Firebug](https://getfirebug.com/)" oder " [Postman](https://www.getpostman.com/) ", um den `Accept-Encoding` Anforderungs Header festzulegen und die Antwortheader, die Größe und den Text
 
 Senden Sie eine Anforderung an die Beispiel-App ohne den `Accept-Encoding` -Header, und beobachten Sie, dass die Antwort nicht komprimiert ist. Der `Content-Encoding` -Header und der- `Vary` Header sind in der Antwort nicht vorhanden.
@@ -261,7 +262,7 @@ Verwenden Sie ein Tool wie z. b. " [fddler](https://www.telerik.com/fiddler)", "
 * Die Anforderung darf den-Header nicht enthalten `Content-Range` .
 * Die Anforderung muss das unsichere Protokoll (http) verwenden, es sei denn, das sichere Protokoll (HTTPS) ist in den Optionen der Middleware für die Antwort Komprimierung konfiguriert. *Beachten Sie die [oben beschriebene](#compression-with-secure-protocol) Gefahr beim Aktivieren der Komprimierung von sicherem Inhalt.*
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
@@ -298,7 +299,7 @@ Normalerweise kann jede nicht System intern komprimierte Antwort von der Antwort
 
 Wenn ein Client komprimierte Inhalte verarbeiten kann, muss der Client den Server über seine Funktionen informieren, indem er die- `Accept-Encoding` Kopfzeile mit der Anforderung sendet. Wenn ein Server komprimierten Inhalt sendet, muss er Informationen in der Kopfzeile enthalten, in der `Content-Encoding` die komprimierte Antwort codiert wird. In der folgenden Tabelle sind die von der Middleware unterstützten Inhalts Codierungs Bezeichnungen aufgeführt.
 
-| `Accept-Encoding`Header Werte | Unterstützte Middleware | BESCHREIBUNG |
+| `Accept-Encoding` Header Werte | Unterstützte Middleware | BESCHREIBUNG |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Ja (Standard)        | [Brotli-komprimiertes Datenformat](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | Nein                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
@@ -355,9 +356,9 @@ public class Startup
 }
 ```
 
-Notizen:
+Hinweise:
 
-* `app.UseResponseCompression`muss vor einer beliebigen Middleware aufgerufen werden, die Antworten komprimiert. Weitere Informationen finden Sie unter <xref:fundamentals/middleware/index#middleware-order>.
+* `app.UseResponseCompression` muss vor einer beliebigen Middleware aufgerufen werden, die Antworten komprimiert. Weitere Informationen finden Sie unter <xref:fundamentals/middleware/index#middleware-order>.
 * Verwenden Sie ein Tool wie z. b. " [fddler](https://www.telerik.com/fiddler)", " [Firebug](https://getfirebug.com/)" oder " [Postman](https://www.getpostman.com/) ", um den `Accept-Encoding` Anforderungs Header festzulegen und die Antwortheader, die Größe und den Text
 
 Senden Sie eine Anforderung an die Beispiel-App ohne den `Accept-Encoding` -Header, und beobachten Sie, dass die Antwort nicht komprimiert ist. Der `Content-Encoding` -Header und der- `Vary` Header sind in der Antwort nicht vorhanden.
@@ -506,7 +507,7 @@ Verwenden Sie ein Tool wie z. b. " [fddler](https://www.telerik.com/fiddler)", "
 * Die Anforderung darf den-Header nicht enthalten `Content-Range` .
 * Die Anforderung muss das unsichere Protokoll (http) verwenden, es sei denn, das sichere Protokoll (HTTPS) ist in den Optionen der Middleware für die Antwort Komprimierung konfiguriert. *Beachten Sie die [oben beschriebene](#compression-with-secure-protocol) Gefahr beim Aktivieren der Komprimierung von sicherem Inhalt.*
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
@@ -543,7 +544,7 @@ Normalerweise kann jede nicht System intern komprimierte Antwort von der Antwort
 
 Wenn ein Client komprimierte Inhalte verarbeiten kann, muss der Client den Server über seine Funktionen informieren, indem er die- `Accept-Encoding` Kopfzeile mit der Anforderung sendet. Wenn ein Server komprimierten Inhalt sendet, muss er Informationen in der Kopfzeile enthalten, in der `Content-Encoding` die komprimierte Antwort codiert wird. In der folgenden Tabelle sind die von der Middleware unterstützten Inhalts Codierungs Bezeichnungen aufgeführt.
 
-| `Accept-Encoding`Header Werte | Unterstützte Middleware | BESCHREIBUNG |
+| `Accept-Encoding` Header Werte | Unterstützte Middleware | BESCHREIBUNG |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Nein                   | [Brotli-komprimiertes Datenformat](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | Nein                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
@@ -600,9 +601,9 @@ public class Startup
 }
 ```
 
-Notizen:
+Hinweise:
 
-* `app.UseResponseCompression`muss vor einer beliebigen Middleware aufgerufen werden, die Antworten komprimiert. Weitere Informationen finden Sie unter <xref:fundamentals/middleware/index#middleware-order>.
+* `app.UseResponseCompression` muss vor einer beliebigen Middleware aufgerufen werden, die Antworten komprimiert. Weitere Informationen finden Sie unter <xref:fundamentals/middleware/index#middleware-order>.
 * Verwenden Sie ein Tool wie z. b. " [fddler](https://www.telerik.com/fiddler)", " [Firebug](https://getfirebug.com/)" oder " [Postman](https://www.getpostman.com/) ", um den `Accept-Encoding` Anforderungs Header festzulegen und die Antwortheader, die Größe und den Text
 
 Senden Sie eine Anforderung an die Beispiel-App ohne den `Accept-Encoding` -Header, und beobachten Sie, dass die Antwort nicht komprimiert ist. Der `Content-Encoding` -Header und der- `Vary` Header sind in der Antwort nicht vorhanden.
@@ -711,7 +712,7 @@ Verwenden Sie ein Tool wie z. b. " [fddler](https://www.telerik.com/fiddler)", "
 * Die Anforderung darf den-Header nicht enthalten `Content-Range` .
 * Die Anforderung muss das unsichere Protokoll (http) verwenden, es sei denn, das sichere Protokoll (HTTPS) ist in den Optionen der Middleware für die Antwort Komprimierung konfiguriert. *Beachten Sie die [oben beschriebene](#compression-with-secure-protocol) Gefahr beim Aktivieren der Komprimierung von sicherem Inhalt.*
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>

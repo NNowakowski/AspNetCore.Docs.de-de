@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 05/26/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: 4888de6ad55037be540cb62b6e4f02878e2b57ab
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e3e46f8050ba87c3108885341675c9d2a2cb7847
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014814"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635163"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Migrieren von ASP.net-Web-API zu ASP.net Core
 
@@ -146,7 +147,7 @@ Konfigurieren Sie das Routing wie folgt:
 
 Führen Sie das migrierte Projekt aus, und navigieren Sie zu `/api/products` . Es wird eine vollständige Liste der drei Produkte angezeigt. Navigieren Sie zu `/api/products/1`. Das erste Produkt wird angezeigt.
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
@@ -205,7 +206,7 @@ In ASP.net Core MVC ist das Attribut Routing standardmäßig enthalten, wenn <xr
 
 ## <a name="migrate-models-and-controllers"></a>Migrieren von Modellen und Controllern
 
-Der folgende Code zeigt das `ProductsController` Update für ASP.net Core:[!code-csharp[](webapi/sample/2.x/ProductsApp/Controllers/ProductsController.cs)]
+Der folgende Code zeigt das `ProductsController` Update für ASP.net Core: [!code-csharp[](webapi/sample/2.x/ProductsApp/Controllers/ProductsController.cs)]
 
 Aktualisieren Sie das- `ProductsController` ASP.net Core:
 
@@ -272,7 +273,7 @@ Zu den in enthaltenen Kompatibilitäts Features `Microsoft.AspNetCore.Mvc.WebApi
 * Erweitert die Modell Bindung, sodass Controller Aktionen Parameter des Typs annehmen können `HttpRequestMessage` .
 * Fügt nachrichtenformatierer hinzu, sodass Aktionen Ergebnisse vom Typ zurückgeben können `HttpResponseMessage` .
 * Fügt zusätzliche Antwort Methoden hinzu, die von Web-API 2-Aktionen verwendet werden können, um Antworten zu erfüllen:
-  * `HttpResponseMessage`ger
+  * `HttpResponseMessage` ger
     * `CreateResponse<T>`
     * `CreateErrorResponse`
   * Aktions Ergebnis Methoden:

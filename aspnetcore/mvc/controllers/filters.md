@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 11d0c514dd15e787224510991ffb81680c9fc479
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7134344abb5bc724aceb9a2adb117b3749435f55
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019341"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634851"
 ---
 # <a name="filters-in-aspnet-core"></a>Filter in ASP.NET Core
 
@@ -290,7 +291,7 @@ Der `AddHeader`-Filter wird daher nie für die `SomeResource`-Aktion ausgeführt
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
 
-## <a name="dependency-injection"></a>Abhängigkeitsinjektion
+## <a name="dependency-injection"></a>Dependency Injection
 
 Filter können nach Typ oder Instanz hinzugefügt werden. Wenn eine Instanz hinzugefügt wird, wird diese Instanz für jede Anforderung verwendet. Wenn ein Typ hinzugefügt wird, ist der Filter typaktiviert. Ein typaktivierter Filter bedeutet Folgendes:
 
@@ -408,7 +409,7 @@ Beispiele für Ressourcenfilter:
 
 ## <a name="action-filters"></a>Aktionsfilter
 
-Aktionsfilter gelten **nicht** für Razor Seiten. Razor-Seiten unterstützen <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> und <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Weitere Informationen finden Sie unter [Filtermethoden für Razor Pages](xref:razor-pages/filter).
+Aktionsfilter gelten **nicht** für Razor Seiten. Razor -Seiten unterstützen <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> und <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Weitere Informationen finden Sie unter [Filtermethoden für Razor Pages](xref:razor-pages/filter).
 
 Für Aktionsfilter gilt:
 
@@ -822,7 +823,7 @@ Der `AddHeader`-Filter wird daher nie für die `SomeResource`-Aktion ausgeführt
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1,9)]
 
-## <a name="dependency-injection"></a>Abhängigkeitsinjektion
+## <a name="dependency-injection"></a>Dependency Injection
 
 Filter können nach Typ oder Instanz hinzugefügt werden. Wenn eine Instanz hinzugefügt wird, wird diese Instanz für jede Anforderung verwendet. Wenn ein Typ hinzugefügt wird, ist der Filter typaktiviert. Ein typaktivierter Filter bedeutet Folgendes:
 
@@ -942,7 +943,7 @@ Beispiele für Ressourcenfilter:
 ## <a name="action-filters"></a>Aktionsfilter
 
 > [!IMPORTANT]
-> Aktionsfilter gelten **nicht** für Razor Seiten. Razor-Seiten unterstützen <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> und <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Weitere Informationen finden Sie unter [Filtermethoden für Razor Pages](xref:razor-pages/filter).
+> Aktionsfilter gelten **nicht** für Razor Seiten. Razor -Seiten unterstützen <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> und <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Weitere Informationen finden Sie unter [Filtermethoden für Razor Pages](xref:razor-pages/filter).
 
 Für Aktionsfilter gilt:
 

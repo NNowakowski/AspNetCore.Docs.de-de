@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 04/06/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 0d99c5881b1ca786287d8643c82cab6a3f98f988
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 94ae9e52ed99c3fe8e7044f474cdf5b702dc5adf
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019858"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634461"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Bewährte Methoden für die ASP.net Core Leistung
 
@@ -195,12 +196,12 @@ Der vorangehende Code deserialisiert den Anforderungs Text asynchron in ein c#-O
 ## <a name="prefer-readformasync-over-requestform"></a>"Read Form Async" über "Request. Form" bevorzugen
 
 Verwenden Sie `HttpContext.Request.ReadFormAsync` anstelle von `HttpContext.Request.Form`.
-`HttpContext.Request.Form`kann nur mit den folgenden Bedingungen sicher gelesen werden:
+`HttpContext.Request.Form` kann nur mit den folgenden Bedingungen sicher gelesen werden:
 
 * Das Formular wurde durch einen-Rückruf gelesen `ReadFormAsync` , und
-* Der zwischengespeicherte Formular Wert wird gelesen mithilfe von.`HttpContext.Request.Form`
+* Der zwischengespeicherte Formular Wert wird gelesen mithilfe von. `HttpContext.Request.Form`
 
-Gehen Sie nicht wie folgt vor **:** Im folgenden Beispiel wird verwendet `HttpContext.Request.Form` .  `HttpContext.Request.Form`verwendet [Sync über Async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
+Gehen Sie nicht wie folgt vor **:** Im folgenden Beispiel wird verwendet `HttpContext.Request.Form` .  `HttpContext.Request.Form` verwendet [Sync über Async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ) und kann zu einem Thread Pool-Hunger führen.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet1)]
@@ -229,7 +230,7 @@ Das naive Speichern eines großen Anforderungs-oder Antwort Texts in einem einze
 
 ## <a name="working-with-a-synchronous-data-processing-api"></a>Arbeiten mit einer synchronen Datenverarbeitungs-API
 
-Wenn Sie ein Serialisierungsprogramm/Deserialisierungsprogramm verwenden, das nur synchrone Lese-und Schreibvorgänge unterstützt (z. b. [JSON.net](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
+Wenn Sie ein Serialisierungsprogramm/Deserialisierungsprogramm verwenden, das nur synchrone Lese-und Schreibvorgänge unterstützt (z. b.  [JSON.net](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
 
 * Puffert die Daten asynchron in den Arbeitsspeicher, bevor Sie an das Serialisierungsprogramm/Deserialisierungsprogramm übergeben werden.
 
@@ -261,7 +262,7 @@ Der vorangehende Code erfasst häufig einen NULL-Wert oder einen falschen Wert `
 
 ## <a name="do-not-access-httpcontext-from-multiple-threads"></a>Nicht auf "HttpContext" aus mehreren Threads zugreifen
 
-`HttpContext`ist *nicht* Thread sicher. Der `HttpContext` parallele Zugriff von mehreren Threads kann zu nicht definiertem Verhalten wie z. b. hängen, abstürzen und Daten Beschädigung führen.
+`HttpContext` ist *nicht* Thread sicher. Der `HttpContext` parallele Zugriff von mehreren Threads kann zu nicht definiertem Verhalten wie z. b. hängen, abstürzen und Daten Beschädigung führen.
 
 Gehen Sie nicht wie folgt vor **:** Im folgenden Beispiel werden drei parallele Anforderungen erstellt, und der eingehende Anforderungs Pfad wird vor und nach der ausgehenden HTTP-Anforderung protokolliert. Der Zugriff auf den Anforderungs Pfad erfolgt über mehrere Threads, die möglicherweise parallel erfolgen.
 
@@ -273,7 +274,7 @@ Gehen Sie nicht wie folgt vor **:** Im folgenden Beispiel werden drei parallele 
 
 ## <a name="do-not-use-the-httpcontext-after-the-request-is-complete"></a>Verwenden Sie HttpContext nicht, wenn die Anforderung erfüllt ist.
 
-`HttpContext`ist nur gültig, solange eine aktive HTTP-Anforderung in der ASP.net Core Pipeline vorhanden ist. Die gesamte ASP.net Core Pipeline ist eine asynchrone Kette von Delegaten, die jede Anforderung ausführt. Wenn die `Task` von dieser Kette zurückgegebene abgeschlossen wird, wird der wieder verwendet `HttpContext` .
+`HttpContext` ist nur gültig, solange eine aktive HTTP-Anforderung in der ASP.net Core Pipeline vorhanden ist. Die gesamte ASP.net Core Pipeline ist eine asynchrone Kette von Delegaten, die jede Anforderung ausführt. Wenn die `Task` von dieser Kette zurückgegebene abgeschlossen wird, wird der wieder verwendet `HttpContext` .
 
 Gehen Sie nicht wie folgt vor **:** Im folgenden Beispiel `async void` wird verwendet, wodurch die HTTP-Anforderung durchgeführt wird, wenn die erste `await` erreicht wird:
 
@@ -313,7 +314,7 @@ Gehen Sie nicht wie folgt vor **:** Im folgenden Beispiel wird gezeigt, dass das
 
 **Führen Sie Folgendes aus:** Im folgenden Beispiel wird Folgendes veranschaulicht:
 
-* Fügt ein ein <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory> , um einen Bereich im Hintergrund Arbeits Element zu erstellen. `IServiceScopeFactory`ist ein Singleton.
+* Fügt ein ein <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory> , um einen Bereich im Hintergrund Arbeits Element zu erstellen. `IServiceScopeFactory` ist ein Singleton.
 * Erstellt einen neuen Abhängigkeits einschleusungs Bereich im Hintergrund Thread.
 * Verweist auf nichts vom Controller.
 * Erfasst nicht `ContosoDbContext` aus der eingehenden Anforderung.

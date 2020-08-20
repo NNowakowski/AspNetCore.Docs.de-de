@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/27/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/introduction
-ms.openlocfilehash: 6f3cec83c9af5ec6e820db4a15061eddac613f36
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ab850fa8afbee9d2664868937362388a03374908
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022172"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634695"
 ---
 # <a name="introduction-to-aspnet-core-no-locsignalr"></a>Einführung in ASP.NET Core SignalR
 
@@ -37,7 +38,7 @@ Gute Kandidaten für SignalR :
 * Apps für die Zusammenarbeit. Whiteboard-Apps und Software für Teambesprechungen sind Beispiele für Apps für die Zusammenarbeit.
 * Apps, für die Benachrichtigungen benötigt werden. Soziale Netzwerke, E-Mail, Chat, Games, Reisehinweise und viele andere Arten von Apps nutzen Benachrichtigungen.
 
-SignalRstellt eine API zum Erstellen von [Remote Prozedur aufrufen (RPC)](https://wikipedia.org/wiki/Remote_procedure_call)für Server-zu-Client bereit. Die RPCs wenden JavaScript-Funktionen auf Clients aus dem serverseitigen .net Core-Code an.
+SignalR stellt eine API zum Erstellen von [Remote Prozedur aufrufen (RPC)](https://wikipedia.org/wiki/Remote_procedure_call)für Server-zu-Client bereit. Die RPCs wenden JavaScript-Funktionen auf Clients aus dem serverseitigen .net Core-Code an.
 
 Im folgenden sind einige Features von SignalR für ASP.net Core aufgeführt:
 
@@ -50,25 +51,25 @@ Die Quelle wird in einem [ SignalR Repository auf GitHub](https://github.com/dot
 
 ## <a name="transports"></a>Transportprotokolle
 
-SignalRunterstützt die folgenden Verfahren für die Verarbeitung der Echtzeitkommunikation (in der Reihenfolge des ordnungsgemäßen Fallbacks):
+SignalR unterstützt die folgenden Verfahren für die Verarbeitung der Echtzeitkommunikation (in der Reihenfolge des ordnungsgemäßen Fallbacks):
 
 * [WebSockets](https://tools.ietf.org/html/rfc7118)
 * Vom Server gesendete Ereignisse
 * Langer Abruf
 
-SignalRwählt automatisch die beste Transportmethode aus, die sich innerhalb der Funktionen des Servers und des Clients befindet.
+SignalR wählt automatisch die beste Transportmethode aus, die sich innerhalb der Funktionen des Servers und des Clients befindet.
 
 ## <a name="hubs"></a>Hubs
 
-SignalRverwendet *Hubs* für die Kommunikation zwischen Clients und Servern.
+SignalR verwendet *Hubs* für die Kommunikation zwischen Clients und Servern.
 
-Ein Hub ist eine Pipeline auf hoher Ebene, die es einem Client und einem Server ermöglicht, Methoden untereinander aufzurufen. SignalRverarbeitet die Verteilung über die Computer Grenzen hinweg automatisch, sodass Clients Methoden auf dem Server aufrufen können und umgekehrt. Sie können stark typisierte Parameter an Methoden übergeben, die die Modell Bindung ermöglichen. SignalRstellt zwei integrierte Hub-Protokolle bereit: ein auf JSON basierendes Text Protokoll und ein auf [messagepack](https://msgpack.org/)basierendes binäres Protokoll.  Im Allgemeinen erstellt messagepack kleinere Nachrichten im Vergleich zu JSON. Ältere Browser müssen [XHR Level 2](https://caniuse.com/#feat=xhr2) unterstützen, um Unterstützung für das messagepack-Protokoll bereitzustellen.
+Ein Hub ist eine Pipeline auf hoher Ebene, die es einem Client und einem Server ermöglicht, Methoden untereinander aufzurufen. SignalR verarbeitet die Verteilung über die Computer Grenzen hinweg automatisch, sodass Clients Methoden auf dem Server aufrufen können und umgekehrt. Sie können stark typisierte Parameter an Methoden übergeben, die die Modell Bindung ermöglichen. SignalR stellt zwei integrierte Hub-Protokolle bereit: ein auf JSON basierendes Text Protokoll und ein auf [messagepack](https://msgpack.org/)basierendes binäres Protokoll.  Im Allgemeinen erstellt messagepack kleinere Nachrichten im Vergleich zu JSON. Ältere Browser müssen [XHR Level 2](https://caniuse.com/#feat=xhr2) unterstützen, um Unterstützung für das messagepack-Protokoll bereitzustellen.
 
 Hubs wenden Client seitigen Code an, indem Sie Nachrichten senden, die den Namen und die Parameter der Client seitigen Methode enthalten. Objekte, die als Methoden Parameter gesendet werden, werden mithilfe des konfigurierten Protokolls deserialisiert. Der Client versucht, den Namen einer Methode im Client seitigen Code zuzuordnen. Wenn der Client eine Entsprechung findet, ruft er die-Methode auf und übergibt die deserialisierten Parameterdaten an ihn.
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Beginnen Sie mit der SignalR ASP.net Core](xref:tutorials/signalr)
 * [Unterstützte Plattformen](xref:signalr/supported-platforms)
-* [Hub](xref:signalr/hubs)
+* [Hubs](xref:signalr/hubs)
 * [JavaScript-Client](xref:signalr/javascript-client)

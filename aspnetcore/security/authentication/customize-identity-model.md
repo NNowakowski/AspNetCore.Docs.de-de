@@ -1,10 +1,11 @@
 ---
 title: Identity Modellanpassung in ASP.net Core
 author: ajcvickers
-description: In diesem Artikel wird beschrieben, wie Sie das zugrunde liegende Entity Framework Core Datenmodell für ASP.net Core anpassen Identity .
+description: In diesem Artikel wird beschrieben, wie das zugrunde liegende Entity Framework Core Datenmodell für angepasst wird ASP.NET Core Identity .
 ms.author: avickers
 ms.date: 07/01/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,18 +16,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/customize_identity_model
-ms.openlocfilehash: 7c325bbc96ad4a8c5e4686073266d730eb924c10
-ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
+ms.openlocfilehash: 71f532aa00c2afeeb0d6b93c01cb6a1fbd0a686c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88504670"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634305"
 ---
 # <a name="no-locidentity-model-customization-in-aspnet-core"></a>Identity Modellanpassung in ASP.net Core
 
 Von [Arthur Vickers](https://github.com/ajcvickers)
 
-ASP.net Core Identity stellt ein Framework zum Verwalten und Speichern von Benutzerkonten in ASP.net Core-apps bereit. Identity wird Ihrem Projekt hinzugefügt, wenn **einzelne Benutzerkonten** als Authentifizierungsmechanismus ausgewählt werden. Standardmäßig Identity verwendet ein Entity Framework Core-Datenmodell (EF). In diesem Artikel wird beschrieben, wie Sie das Identity Modell anpassen.
+ASP.NET Core Identity stellt ein Framework zum Verwalten und Speichern von Benutzerkonten in ASP.net Core-apps bereit. Identity wird Ihrem Projekt hinzugefügt, wenn **einzelne Benutzerkonten** als Authentifizierungsmechanismus ausgewählt werden. Standardmäßig Identity verwendet ein Entity Framework Core-Datenmodell (EF). In diesem Artikel wird beschrieben, wie Sie das Identity Modell anpassen.
 
 ## <a name="no-locidentity-and-ef-core-migrations"></a>Identity und EF Core Migrationen
 
@@ -60,7 +61,7 @@ Wiederholen Sie die vorherigen Schritte, wenn Änderungen am Modell vorgenommen 
 
 Das Identity Modell besteht aus den folgenden Entitäts Typen.
 
-|Entitätstyp|Beschreibung                                                  |
+|Entitätstyp|BESCHREIBUNG                                                  |
 |-----------|-------------------------------------------------------------|
 |`User`     |Stellt den Benutzer dar.                                         |
 |`Role`     |Stellt eine Rolle dar.                                           |
@@ -365,7 +366,7 @@ services.AddIdentity<ApplicationUser>()
         .AddDefaultUI();
 ```
 
-In ASP.net Core 2,1 oder höher Identity wird als Razor Klassenbibliothek bereitgestellt. Weitere Informationen finden Sie unter <xref:security/authentication/scaffold-identity>. Folglich erfordert der vorangehende Code einen-Rückruf <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Wenn das Identity Gerüst zum Hinzufügen von Identity Dateien zum Projekt verwendet wurde, entfernen Sie den-Befehl `AddDefaultUI` . Weitere Informationen finden Sie unter:
+In ASP.net Core 2,1 oder höher Identity wird als Razor Klassenbibliothek bereitgestellt. Weitere Informationen finden Sie unter <xref:security/authentication/scaffold-identity>. Folglich erfordert der vorangehende Code einen-Rückruf <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Wenn das Identity Gerüst zum Hinzufügen von Identity Dateien zum Projekt verwendet wurde, entfernen Sie den-Befehl `AddDefaultUI` . Weitere Informationen finden Sie unter
 
 * [Gerüst Identity](xref:security/authentication/scaffold-identity)
 * [Hinzufügen, herunterladen und Löschen von benutzerdefinierten Benutzerdaten Identity](xref:security/authentication/add-user-data)

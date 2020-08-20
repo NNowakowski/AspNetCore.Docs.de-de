@@ -5,6 +5,7 @@ description: Erfahren Sie, wie Sie eine ASP.net Core-App mit e-Mail-Bestätigung
 ms.author: riande
 ms.date: 03/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 7016c2c1997d961f4b3d3cf513fc1769bd65247b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 57607390e7d5e58df9f27437faecd57504ad64df
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021613"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635371"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Account confirmation and password recovery in ASP.NET Core (Kontobestätigung und Kennwortwiederherstellung in ASP.NET Core)
 
@@ -52,7 +53,7 @@ dotnet run
 
 Führen Sie die APP aus, wählen Sie den Link **registrieren** aus, und registrieren Sie einen Benutzer. Nach der Registrierung werden Sie zur Seite an weitergeleitet, `/Identity/Account/RegisterConfirmation` die einen Link zum Simulieren einer e-Mail-Bestätigung enthält:
 
-* Wählen Sie den `Click here to confirm your account` Link aus.
+* Klicken Sie auf den Link `Click here to confirm your account` (Zentralisierte Protokollierung).
 * Wählen Sie den **Anmelde** Link aus, und melden Sie sich mit denselben Anmelde Informationen an.
 * Wählen Sie den `Hello YourEmail@provider.com!` Link aus, der Sie zur Seite umleitet `/Identity/Account/Manage/PersonalData` .
 * Wählen Sie auf der linken Seite die Registerkarte **persönliche Daten** aus, und klicken Sie dann auf **Löschen**.
@@ -69,7 +70,7 @@ Erstellen Sie eine Klasse zum Abrufen des Schlüssels für sichere e-Mails. Erst
 
 #### <a name="configure-sendgrid-user-secrets"></a>Konfigurieren von sendgrid-Benutzer Geheimnissen
 
-Legen Sie `SendGridUser` und `SendGridKey` mit dem [Secret-Manager-Tool](xref:security/app-secrets)fest. Zum Beispiel:
+Legen Sie `SendGridUser` und `SendGridKey` mit dem [Secret-Manager-Tool](xref:security/app-secrets)fest. Beispiel:
 
 ```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
@@ -237,7 +238,7 @@ Das Aktivieren der Konto Bestätigung auf einem Standort mit Benutzern sperrt al
 
 [.Net Core 2,2 SDK oder höher](https://dotnet.microsoft.com/download/dotnet-core)
 
-## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>Erstellen einer Web-App und eines GerüstsIdentity
+## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>Erstellen einer Web-App und eines Gerüsts Identity
 
 Führen Sie die folgenden Befehle aus, um eine Web-App mit Authentifizierung zu erstellen.
 
@@ -273,11 +274,11 @@ Es wird empfohlen, die e-Mail-Adresse einer neuen Benutzerregistrierung zu best�
 
 In der Regel möchten Sie, dass neue Benutzerdaten an Ihrer Website veröffentlichen, bevor Sie eine bestätigte e-Mail-Adresse haben.
 
-Aktualisieren `Startup.ConfigureServices` Sie, um eine bestätigte e-Mail anzufordern:
+Aktualisieren `Startup.ConfigureServices`  Sie, um eine bestätigte e-Mail anzufordern:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=8-11)]
 
-`config.SignIn.RequireConfirmedEmail = true;`verhindert, dass registrierte Benutzer sich anmelden, bis Ihre e-Mail-Nachricht bestätigt wird.
+`config.SignIn.RequireConfirmedEmail = true;` verhindert, dass registrierte Benutzer sich anmelden, bis Ihre e-Mail-Nachricht bestätigt wird.
 
 ### <a name="configure-email-provider"></a>E-Mail-Anbieter
 
@@ -289,7 +290,7 @@ Erstellen Sie eine Klasse zum Abrufen des Schlüssels für sichere e-Mails. Erst
 
 #### <a name="configure-sendgrid-user-secrets"></a>Konfigurieren von sendgrid-Benutzer Geheimnissen
 
-Legen Sie `SendGridUser` und `SendGridKey` mit dem [Secret-Manager-Tool](xref:security/app-secrets)fest. Zum Beispiel:
+Legen Sie `SendGridUser` und `SendGridKey` mit dem [Secret-Manager-Tool](xref:security/app-secrets)fest. Beispiel:
 
 ```console
 C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT

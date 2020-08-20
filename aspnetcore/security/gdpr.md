@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/gdpr
-ms.openlocfilehash: 6392a22e316f903da18cd1a91d1eb779d8dde1b3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 35a12cb8d2a9617e51d886e798cff5ee60b0a8ad
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020014"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634708"
 ---
 # <a name="eu-general-data-protection-regulation-gdpr-support-in-aspnet-core"></a>Unterstützung der EU-Datenschutz-Grundverordnung (dsgvo) in ASP.net Core
 
@@ -67,7 +68,7 @@ Mit der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspne
 
 ## <a name="aspnet-core-gdpr-support-in-template-generated-code"></a>ASP.net Core dsgvo-Unterstützung in Vorlagen generiertem Code
 
-RazorSeiten und MVC-Projekte, die mit den Projektvorlagen erstellt wurden, enthalten die folgende dsgvo-Unterstützung:
+Razor Seiten und MVC-Projekte, die mit den Projektvorlagen erstellt wurden, enthalten die folgende dsgvo-Unterstützung:
 
 * [ Cookie Policyoptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) und [use Cookie Policy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) werden in der- `Startup` Klasse festgelegt.
 * Die [Teilansicht](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)" * \_ Cookie Zustimmung partial. cshtml* ". Eine **Accept** -Schaltfläche ist in dieser Datei enthalten. Wenn der Benutzer auf die Schaltfläche " **annehmen** " klickt, wird die Zustimmung zum Store cookie s bereitgestellt.
@@ -124,7 +125,7 @@ Wählen Sie den Benutzernamen aus, und wählen Sie dann **persönliche Daten**au
 
 ![Seite "persönliche Daten verwalten"](gdpr/_static/pd.png)
 
-Notizen:
+Hinweise:
 
 * Informationen zum Generieren des `Account/Manage` Codes finden Sie unter [ Identity Gerüstbau ](xref:security/authentication/scaffold-identity).
 * Die Links zum **Löschen** und **herunterladen** wirken sich nur auf die Standard Identitätsdaten aus. Apps, die benutzerdefinierte Benutzerdaten erstellen, müssen erweitert werden, um die benutzerdefinierten Benutzerdaten zu löschen/herunterzuladen. Weitere Informationen finden Sie unter [hinzufügen, herunterladen und Löschen von benutzerdefinierten Identity Benutzerdaten in ](xref:security/authentication/add-user-data).
@@ -142,20 +143,20 @@ Einige Datenbanken und Speicher Mechanismen ermöglichen die Verschlüsselung ru
 * Ist die einfachste und sicherste Option.
 * Ermöglicht der Datenbank die Verwaltung von Schlüsseln und Verschlüsselung.
 
-Zum Beispiel:
+Beispiel:
 
 * Microsoft SQL und Azure SQL bieten [transparent Data Encryption](/sql/relational-databases/security/encryption/transparent-data-encryption) (TDE).
 * [Die Datenbank wird von SQL Azure standardmäßig verschlüsselt.](https://azure.microsoft.com/updates/newly-created-azure-sql-databases-encrypted-by-default/)
 * [Azure-blobdateien,-Dateien,-Tabellen und-Queue Storage werden standardmäßig verschlüsselt](https://azure.microsoft.com/blog/announcing-default-encryption-for-azure-blobs-files-table-and-queue-storage/).
 
-Bei Datenbanken, die keine integrierte Verschlüsselung im Ruhezustand bereitstellen, können Sie die Datenträger Verschlüsselung möglicherweise verwenden, um denselben Schutz zu gewährleisten. Zum Beispiel:
+Bei Datenbanken, die keine integrierte Verschlüsselung im Ruhezustand bereitstellen, können Sie die Datenträger Verschlüsselung möglicherweise verwenden, um denselben Schutz zu gewährleisten. Beispiel:
 
 * [BitLocker für Windows Server](/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server)
 * Linux:
   * [ecryptfs](https://launchpad.net/ecryptfs)
   * [EncFS](https://github.com/vgough/encfs)Ein.
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Microsoft.com/GDPR](https://www.microsoft.com/trustcenter/Privacy/GDPR)
 * [Dsgvo: Hinzufügen einer Schaltfläche zum Widerrufen der Zustimmung in ASP.net Core](https://www.joeaudette.com/blog/2018/08/28/gdpr---adding-a-revoke-consent-button-in-aspnet-core)

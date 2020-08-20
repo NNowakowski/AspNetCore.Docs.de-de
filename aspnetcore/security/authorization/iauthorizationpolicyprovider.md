@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/14/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/iauthorizationpolicyprovider
-ms.openlocfilehash: 724b1f065e83302137d920fe4e0e2b381be505b7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2d231440847270b3b2fe47fbe29359f494900292
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022133"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635202"
 ---
 # <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>Benutzerdefinierte Autorisierungs Richtlinien Anbieter, die iauthorizationpolicyprovider in ASP.net Core verwenden 
 
@@ -39,7 +40,7 @@ Beispiele für Szenarien, in denen ein benutzerdefinierter [iauthorizationpolicy
 
 ## <a name="customize-policy-retrieval"></a>Anpassen des Richtlinien Abrufs
 
-ASP.net Core-Apps verwenden eine Implementierung der- `IAuthorizationPolicyProvider` Schnittstelle zum Abrufen von Autorisierungs Richtlinien. Standardmäßig ist [defaultauthorizationpolicyprovider](/dotnet/api/microsoft.aspnetcore.authorization.defaultauthorizationpolicyprovider) registriert und wird verwendet. `DefaultAuthorizationPolicyProvider`gibt Richtlinien aus der in einem-Befehl zurück `AuthorizationOptions` `IServiceCollection.AddAuthorization` .
+ASP.net Core-Apps verwenden eine Implementierung der- `IAuthorizationPolicyProvider` Schnittstelle zum Abrufen von Autorisierungs Richtlinien. Standardmäßig ist [defaultauthorizationpolicyprovider](/dotnet/api/microsoft.aspnetcore.authorization.defaultauthorizationpolicyprovider) registriert und wird verwendet. `DefaultAuthorizationPolicyProvider` gibt Richtlinien aus der in einem-Befehl zurück `AuthorizationOptions` `IServiceCollection.AddAuthorization` .
 
 Passen Sie dieses Verhalten an, indem Sie eine andere `IAuthorizationPolicyProvider` Implementierung im Container für die [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) der APP registrieren. 
 
@@ -101,7 +102,7 @@ Das benutzerdefinierte vereinfacht das `MinimumAgeAuthorizeAttribute` anfordern 
 Bei Verwendung `MinimumAgeAuthorizationAttribute` von folgen die Namen der Autorisierungs Richtlinien dem Muster `"MinimumAge" + Age` , sodass die benutzerdefinierte `IAuthorizationPolicyProvider` Autorisierungs Richtlinien generieren soll:
 
 * Das Alter wird anhand des Richtlinien namens verarbeitet.
-* Verwenden `AuthorizationPolicyBuilder` von zum Erstellen eines neuen`AuthorizationPolicy`
+* Verwenden `AuthorizationPolicyBuilder` von zum Erstellen eines neuen `AuthorizationPolicy`
 * In diesem und den folgenden Beispielen wird davon ausgegangen, dass der Benutzer über eine authentifiziert wird cookie . `AuthorizationPolicyBuilder`Muss entweder mit mindestens einem Autorisierungs Schema Namen erstellt werden oder immer erfolgreich sein. Andernfalls gibt es keine Informationen zum Bereitstellen einer Herausforderung für den Benutzer, und es wird eine Ausnahme ausgelöst.
 * Hinzufügen von Anforderungen zur Richtlinie basierend auf dem Alter mit `AuthorizationPolicyBuilder.AddRequirements` . In anderen Szenarien können Sie `RequireClaim` `RequireRole` stattdessen, oder verwenden `RequireUserName` .
 

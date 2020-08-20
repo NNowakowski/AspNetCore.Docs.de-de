@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-components
-ms.openlocfilehash: 0c952502d58744bbbe06c92f51bd51bd547fb8ae
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 32ae699c4ef501096a9c4ab7bca6673139910f02
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020950"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635085"
 ---
 # <a name="view-components-in-aspnet-core"></a>Ansichtskomponenten in ASP.NET Core
 
@@ -52,7 +53,7 @@ Ansichtskomponenten wurden für wiederverwendbare Renderinglogik entwickelt, die
 
 Eine Ansichtskomponenten besteht aus zwei Teilen: der Klasse (normalerweise von [ViewComponent](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponent) abgeleitet) und dem von dieser Klasse zurückgegebenen Ergebnis (normalerweise eine Ansicht). Eine Ansichtskomponente kann, ähnlich wie Controller, ein POCO sein. Die meisten Entwickler sollten jedoch von den Methoden und Eigenschaften, die von `ViewComponent` abgeleitet werden, Gebrauch machen.
 
-Wenn Sie überlegen, ob Ansichts Komponenten die Spezifikationen einer APP erfüllen, erwägen Sie stattdessen die Verwendung von- Razor Komponenten. RazorKomponenten kombinieren auch Markup mit c#-Code, um wiederverwendbare UI-Einheiten zu schaffen RazorKomponenten sind für Entwickler Produktivität konzipiert, wenn Sie Client seitige Benutzeroberflächen Logik und Komposition bereitstellen. Weitere Informationen finden Sie unter <xref:blazor/components/index>.
+Wenn Sie überlegen, ob Ansichts Komponenten die Spezifikationen einer APP erfüllen, erwägen Sie stattdessen die Verwendung von- Razor Komponenten. Razor Komponenten kombinieren auch Markup mit c#-Code, um wiederverwendbare UI-Einheiten zu schaffen Razor Komponenten sind für Entwickler Produktivität konzipiert, wenn Sie Client seitige Benutzeroberflächen Logik und Komposition bereitstellen. Weitere Informationen finden Sie unter <xref:blazor/components/index>.
 
 ## <a name="creating-a-view-component"></a>Erstellen einer Ansichtskomponente
 
@@ -353,6 +354,6 @@ Jeder Parameter in einer Ansichtskomponente ist ein erforderliches Attribut. Wei
 * Das Markup des ViewComponent-Elements wird nicht gerendert.
 * Es werden keine Fehler ausgelöst.
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Dependency Injection in Ansichten](xref:mvc/views/dependency-injection)
