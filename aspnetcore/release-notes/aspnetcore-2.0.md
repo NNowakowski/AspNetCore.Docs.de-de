@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.0
-ms.openlocfilehash: 1ec51bf054f1f0d60ed27ee280f436e6d4c8c4b0
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 9d8c33ef10825baa212466fe683d4c1dc582f7eb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021195"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632459"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Neuigkeiten in ASP.NET Core 2.0
 
@@ -130,7 +131,7 @@ Weitere Informationen zum Status der geplanten Dokumentation finden Sie unter [G
 
 ASP.NET Core diente standardmäßig bei der HTML-Codierung von Inhalten immer als Unterstützung. Mit der neuen Version wird jedoch ein weiterer Schritt gemacht, um websiteübergreifende Anforderungsfälschungen (XSRF) zu verhindern. ASP.NET Core gibt nun standardmäßig Fälschungssicherheitstoken aus und validiert diese ohne zusätzliche Konfiguration auf POST-Aktionsformularen und -Seiten.
 
-Weitere Informationen finden Sie unter [Preventing Cross-Site Request Forgery (XSRF/CSRF) attacks (Verhindern von websiteübergreifenden Anforderungsfälschungen (XSRF/CSRF))](xref:security/anti-request-forgery).
+Weitere Informationen finden Sie unter <xref:security/anti-request-forgery>.
 
 ## <a name="automatic-precompilation"></a>Automatisches Vorkompilieren
 

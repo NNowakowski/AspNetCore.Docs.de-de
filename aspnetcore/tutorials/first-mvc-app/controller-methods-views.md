@@ -5,6 +5,7 @@ description: Dies ist Teil 6 der Tutorialreihe zum Hinzufügen eines Modells zu 
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: b5b54adb1d86e4ab982647dc8207839cc9afdac9
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 07b67cd7c267c39b99277114b73642b5caa3e312
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021067"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632836"
 ---
 # <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>Teil 6: Controllermethoden und Ansichten in ASP.NET Core
 
@@ -110,7 +111,7 @@ Das `ValidateAntiForgeryToken`-Attribut wird verwendet, um [die Fälschung einer
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
 
-Das [Hilfsprogramm für Formulartags](xref:mvc/views/working-with-forms) generiert ein ausgeblendetes Fälschungssicherheitstoken, das mit dem von `[ValidateAntiForgeryToken]` generierten Fälschungssicherheitstoken in der `Edit`-Methode des Movies-Controllers übereinstimmen muss. Weitere Informationen finden Sie unter [Antianforderungsfälschung](xref:security/anti-request-forgery).
+Das [Hilfsprogramm für Formulartags](xref:mvc/views/working-with-forms) generiert ein ausgeblendetes Fälschungssicherheitstoken, das mit dem von `[ValidateAntiForgeryToken]` generierten Fälschungssicherheitstoken in der `Edit`-Methode des Movies-Controllers übereinstimmen muss. Weitere Informationen finden Sie unter <xref:security/anti-request-forgery>.
 
 Die `HttpGet Edit`-Methode verwendet den `ID`-Parameter eines Films, sucht den Film mit der `FindAsync`-Methode von Entity Framework, und gibt den ausgewählten Film an die Bearbeitungsansicht zurück. Wenn ein Film nicht gefunden werden kann, wird `NotFound` (HTTP 404) zurückgegeben.
 
@@ -161,7 +162,7 @@ Alle `HttpGet`-Methoden im Movie-Controller folgen einem ähnlichen Muster. Sie 
 * [Globalisierung und Lokalisierung](xref:fundamentals/localization)
 * [Einführung in Taghilfsprogramme](xref:mvc/views/tag-helpers/intro)
 * [Erstellen von Taghilfsprogrammen](xref:mvc/views/tag-helpers/authoring)
-* [Antianforderungsfälschung](xref:security/anti-request-forgery)
+* <xref:security/anti-request-forgery>
 * Schützen Sie Ihre Domänencontroller vor [zu vielen Angaben](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application)
 * [ViewModels](https://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/)
 * [Hilfsprogramm für Formulartags](xref:mvc/views/working-with-forms)
