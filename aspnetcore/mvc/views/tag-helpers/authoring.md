@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: d40b37a4ca8acf57b662124597a8ebc3b90bffd2
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: c1891b8093c5a4c1599cd3c4ed4e5e60e2fd13e8
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018165"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629001"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Erstellen von Taghilfsprogrammen in ASP.NET Core
 
@@ -41,7 +42,7 @@ Bei einem Taghilfsprogramm handelt es sich um eine Klasse, die die `ITagHelper`-
 
 ## <a name="a-minimal-tag-helper"></a>Ein Taghilfsprogramm mit den mindestens erforderlichen Elementen
 
-In diesem Beispiel wird erläutert, wie Sie ein Taghilfsprogramm schreiben, das ein Update für ein E-Mail-Tag ausführt. Zum Beispiel:
+In diesem Beispiel wird erläutert, wie Sie ein Taghilfsprogramm schreiben, das ein Update für ein E-Mail-Tag ausführt. Beispiel:
 
 ```html
 <email>Support</email>
@@ -234,7 +235,7 @@ Außerdem können Sie `[HtmlTargetElement]` verwenden, um den Namen des angeziel
    >
    > [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?range=18-18)]
    >
-   > Razorweiß, `info` dass es sich bei dem Attribut um eine Klasse, nicht um eine Zeichenfolge handelt und Sie c#-Code schreiben möchten. Alle Attribute von Taghilfsprogrammen, die keine Zeichenfolgen darstellen, sollten ohne das Zeichen `@` geschrieben werden.
+   > Razor weiß, `info` dass es sich bei dem Attribut um eine Klasse, nicht um eine Zeichenfolge handelt und Sie c#-Code schreiben möchten. Alle Attribute von Taghilfsprogrammen, die keine Zeichenfolgen darstellen, sollten ohne das Zeichen `@` geschrieben werden.
 
 1. Führen Sie die App aus, und navigieren Sie zur Ansicht „Info“, um die Websiteinformationen zu sehen.
 

@@ -5,6 +5,7 @@ description: Erfahren Sie, wie man gängige Layouts verwendet, Anweisungen von m
 ms.author: riande
 ms.date: 07/30/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: 4d5032f02db28341d7781dd57d58d776636fd16d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 308e567e0480f83972ab7a55c7b957af83a164fd
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020443"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630691"
 ---
 # <a name="layout-in-aspnet-core"></a>Layout in ASP.NET Core
 
@@ -34,7 +35,7 @@ Seiten und Ansichten beinhalten häufig sowohl visuelle als auch programmgesteue
 
 In diesem Dokument werden die Layouts für die beiden unterschiedlichen Ansätze zum ASP.net Core MVC erläutert: Razor Seiten und Controller mit Ansichten. In diesem Thema sind die Unterschiede minimal:
 
-* RazorSeiten befinden sich im Ordner *pages* .
+* Razor Seiten befinden sich im Ordner *pages* .
 * Controller mit Ansichten verwenden einen Ordner namens *Views* für Ansichten.
 
 ## <a name="what-is-a-layout"></a>Was ist ein Layout?
@@ -47,7 +48,7 @@ Oft verwendete HTML-Strukturen wie Skripts und Stylesheets werden auch häufig v
 
 Gemäß Konvention ist *_Layout.cshtml* das Standardlayout für eine ASP.NET Core-App. Für neue ASP.NET Core-Projekte, die mit den Vorlagen erstellt wurden, sind folgende Layoutdateien vorhanden:
 
-* RazorSeiten: *pages/Shared/_Layout. cshtml*
+* Razor Seiten: *pages/Shared/_Layout. cshtml*
 
   ![Ordner „Pages“ im Projektmappen-Explorer](layout/_static/rp-web-project-views.png)
 
@@ -63,7 +64,7 @@ Der folgende Code zeigt die Layoutdatei für eine Vorlage, die mit dem Projekt m
 
 ## <a name="specifying-a-layout"></a>Festlegen eines Layouts
 
-RazorSichten verfügen über eine- `Layout` Eigenschaft. Durch Festlegen dieser Eigenschaft wird das Layout der jeweiligen Ansicht bestimmt:
+Razor Sichten verfügen über eine- `Layout` Eigenschaft. Durch Festlegen dieser Eigenschaft wird das Layout der jeweiligen Ansicht bestimmt:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/_ViewStart.cshtml?highlight=2)]
 

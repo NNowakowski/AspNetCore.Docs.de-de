@@ -7,6 +7,7 @@ ms.author: rick-anderson
 ms.custom: mvc
 ms.date: 03/17/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/mfa
-ms.openlocfilehash: 4538030b4ce6aba6c78edb69cf44fc5812ddff76
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 048d88a121d0a4a7ab3d3adee9b426b95fd68a80
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017856"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629586"
 ---
 # <a name="multi-factor-authentication-in-aspnet-core"></a>Multi-Factor Authentication in ASP.net Core
 
@@ -33,7 +34,7 @@ Die mehrstufige Authentifizierung (Multi-Factor Authentication, MFA) ist ein Pro
 In diesem Artikel werden die folgenden Bereiche behandelt:
 
 * Was ist MFA und welche MFA-Flows werden empfohlen?
-* Konfigurieren von MFA für Verwaltungs Seiten mithilfe von ASP.net CoreIdentity
+* Konfigurieren von MFA für Verwaltungs Seiten mithilfe von ASP.NET Core Identity
 * MFA-Anmelde Anforderung an OpenID Connect-Server senden
 * Erzwingen, dass ASP.net Core OpenID Connect-Client MFA erfordert
 
@@ -45,7 +46,7 @@ Die zweistufige Authentifizierung (2FA) ist wie eine Teilmenge der MFA, aber der
 
 ### <a name="mfa-totp-time-based-one-time-password-algorithm"></a>MFA TOTP (zeitbasierter Algorithmus für einmal Kennwort)
 
-MFA mit TOTP ist eine unterstützte Implementierung mit ASP.net Core Identity . Dies kann in Verbindung mit jeder kompatiblen Authentifikator-App verwendet werden, einschließlich:
+MFA mit TOTP ist eine unterstützte Implementierung mit ASP.NET Core Identity . Dies kann in Verbindung mit jeder kompatiblen Authentifikator-App verwendet werden, einschließlich:
 
 * Microsoft Authenticator-App
 * Google Authenticator-App
@@ -71,9 +72,9 @@ MFA mit SMS erhöht die Sicherheit im Vergleich zur Kenn Wort Authentifizierung 
 
 [NIST-Richtlinien](https://pages.nist.gov/800-63-3/sp800-63b.html)
 
-## <a name="configure-mfa-for-administration-pages-using-aspnet-core-no-locidentity"></a>Konfigurieren von MFA für Verwaltungs Seiten mithilfe von ASP.net CoreIdentity
+## <a name="configure-mfa-for-administration-pages-using-no-locaspnet-core-identity"></a>Konfigurieren von MFA für Verwaltungs Seiten mithilfe von ASP.NET Core Identity
 
-MFA kann für Benutzer erzwungen werden, um auf sensible Seiten innerhalb einer ASP.net Core- Identity App zuzugreifen. Dies kann bei apps nützlich sein, bei denen unterschiedliche Zugriffsebenen für die unterschiedlichen Identitäten vorhanden sind. Beispielsweise können Benutzer die Profildaten möglicherweise mithilfe einer Kenn Wort Anmeldung anzeigen, aber ein Administrator muss MFA verwenden, um auf die Verwaltungs Seiten zuzugreifen.
+MFA kann für Benutzer erzwungen werden, um auf sensible Seiten innerhalb einer ASP.NET Core Identity App zuzugreifen. Dies kann bei apps nützlich sein, bei denen unterschiedliche Zugriffsebenen für die unterschiedlichen Identitäten vorhanden sind. Beispielsweise können Benutzer die Profildaten möglicherweise mithilfe einer Kenn Wort Anmeldung anzeigen, aber ein Administrator muss MFA verwenden, um auf die Verwaltungs Seiten zuzugreifen.
 
 ### <a name="extend-the-login-with-an-mfa-claim"></a>Erweitern der Anmeldung mit einem MFA-Anspruch
 
@@ -304,9 +305,9 @@ public void ConfigureServices(IServiceCollection services)
     });
 ```
 
-### <a name="example-openid-connect-no-locidentityserver-4-server-with-aspnet-core-no-locidentity"></a>Beispiel für einen OpenID Connect Identity Server 4-Server mit ASP.net CoreIdentity
+### <a name="example-openid-connect-no-locidentityserver-4-server-with-no-locaspnet-core-identity"></a>Beispiel für einen OpenID Connect Identity Server 4-Server mit ASP.NET Core Identity
 
-Auf dem OpenID Connect-Server, der mithilfe von ASP.net Core Identity mit MVC-Ansichten implementiert wird, wird eine neue Ansicht mit dem Namen " *ErrorEnable2FA. cshtml* " erstellt. Die Ansicht:
+Auf dem OpenID Connect-Server, der mithilfe ASP.NET Core Identity von mit MVC-Ansichten implementiert wird, wird eine neue Ansicht mit dem Namen *ErrorEnable2FA. cshtml* erstellt. Die Ansicht:
 
 * Zeigt an, ob die Identity von einer APP stammt, die MFA erfordert, aber der Benutzer diese in nicht aktiviert hat Identity .
 * Informiert den Benutzer und fügt einen Link hinzu, um diesen zu aktivieren.
@@ -329,7 +330,7 @@ You can enable MFA to login here:
 
 In der- `Login` Methode wird die Implementierung der- `IIdentityServerInteractionService` Schnittstelle `_interaction` verwendet, um auf die OpenID Connect-Anforderungs Parameter zuzugreifen. Der Zugriff auf den- `acr_values` Parameter erfolgt mithilfe der- `AcrValues` Eigenschaft. Da der Client diese mit `mfa` Set gesendet hat, kann dies aktiviert werden.
 
-Wenn MFA erforderlich ist und für den Benutzer in ASP.net Core Identity MFA aktiviert ist, wird die Anmeldung fortgesetzt. Wenn für den Benutzer keine MFA aktiviert ist, wird der Benutzer zur benutzerdefinierten Ansicht *ErrorEnable2FA. cshtml*umgeleitet. Anschließend ASP.net Core Identity den Benutzer signiert.
+Wenn MFA erforderlich ist und für den Benutzer in ASP.NET Core Identity MFA aktiviert ist, wird die Anmeldung fortgesetzt. Wenn für den Benutzer keine MFA aktiviert ist, wird der Benutzer zur benutzerdefinierten Ansicht *ErrorEnable2FA. cshtml*umgeleitet. ASP.NET Core IdentitySigniert den Benutzer dann in.
 
 ```csharp
 //
@@ -410,7 +411,7 @@ public async Task<IActionResult> ExternalLoginCallback(
 Wenn der Benutzer bereits angemeldet ist, wird die Client-App:
 
 * Überprüft weiterhin den `amr` Anspruch.
-* Die MFA kann mit einem Link zur ASP.net Core Ansicht eingerichtet werden Identity .
+* Die MFA kann mit einem Link zur Ansicht eingerichtet werden ASP.NET Core Identity .
 
 ![acr_values-1](mfa/_static/acr_values-1.png)
 
@@ -433,7 +434,7 @@ Ein `AuthorizationHandler` ist implementiert, das den `amr` -Anspruch verwendet 
 
 Der zurückgegebene Wert hängt von der Authentifizierung der Identität und der OpenID Connect-Server Implementierung ab.
 
-Der `AuthorizationHandler` verwendet die `RequireMfa` Anforderung und überprüft den `amr` Anspruch. Der OpenID Connect-Server kann Identity mit Server4 mit ASP.net Core implementiert werden Identity . Wenn ein Benutzer sich mit TOTP anmeldet, `amr` wird der Anspruch mit einem MFA-Wert zurückgegeben. Wenn eine andere OpenID Connect-Server Implementierung oder ein anderer MFA-Typ verwendet wird, `amr` kann der Anspruch einen anderen Wert aufweisen. Der Code muss erweitert werden, um dies ebenfalls zu akzeptieren.
+Der `AuthorizationHandler` verwendet die `RequireMfa` Anforderung und überprüft den `amr` Anspruch. Der OpenID Connect-Server kann Identity mit Server4 mit implementiert werden ASP.NET Core Identity . Wenn ein Benutzer sich mit TOTP anmeldet, `amr` wird der Anspruch mit einem MFA-Wert zurückgegeben. Wenn eine andere OpenID Connect-Server Implementierung oder ein anderer MFA-Typ verwendet wird, `amr` kann der Anspruch einen anderen Wert aufweisen. Der Code muss erweitert werden, um dies ebenfalls zu akzeptieren.
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -577,7 +578,7 @@ Alternativ können Sie sich mit OTP anmelden, indem Sie Folgendes verwenden Iden
 
 ![require_mfa_oidc_01.png](mfa/_static/require_mfa_oidc_01.png)
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Aktivieren der QR-Code Generierung für TOTP Authenticator-apps in ASP.net Core](xref:security/authentication/identity-enable-qrcodes)
 * [Optionen für die kennwortlose Authentifizierung für Azure Active Directory](/azure/active-directory/authentication/concept-authentication-passwordless)

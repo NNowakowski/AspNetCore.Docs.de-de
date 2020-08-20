@@ -5,6 +5,7 @@ description: Erfahren Sie, wie Sie die QR-Codegenerierung für TOTP Authenticato
 ms.author: riande
 ms.date: 08/14/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-enable-qrcodes
-ms.openlocfilehash: 4ccfd83c273f7179ac26b075eb33f138e724b967
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e61aa925262fc9fe25c7bb2d37958cfaa308aeaf
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019559"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630795"
 ---
 # <a name="enable-qr-code-generation-for-totp-authenticator-apps-in-aspnet-core"></a>Aktivieren der QR-Code Generierung für TOTP Authenticator-apps in ASP.net Core
 
@@ -42,7 +43,7 @@ Die zweistufige Authentifizierung erfolgt nicht mithilfe eines externen Authenti
 
 In diesen Anweisungen wird *qrcode.js* aus dem Repository verwendet https://davidshimjs.github.io/qrcodejs/ .
 
-* Laden Sie die [JavaScript-Bibliothekqrcode.js](https://davidshimjs.github.io/qrcodejs/) in den `wwwroot\lib` Ordner in Ihrem Projekt herunter.
+* Laden Sie die [ JavaScript-Bibliothekqrcode.js](https://davidshimjs.github.io/qrcodejs/) in den `wwwroot\lib` Ordner in Ihrem Projekt herunter.
 
 ::: moniker-end
 
@@ -128,8 +129,8 @@ Sie können die QR-Code Bibliothek durch Ihre bevorzugte Bibliothek ersetzen. De
 
 Die korrekt formatierte URL für den QR-Code ist in verfügbar:
 
-* `AuthenticatorUri`-Eigenschaft des Modells.
-* `data-url`-Eigenschaft im- `qrCodeData` Element.
+* `AuthenticatorUri` -Eigenschaft des Modells.
+* `data-url` -Eigenschaft im- `qrCodeData` Element.
 
 ## <a name="totp-client-and-server-time-skew"></a>TOTP-Client-und Serverzeit Abweichung
 

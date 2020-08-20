@@ -1,5 +1,5 @@
 ---
-title: Protokollierung und Diagnose in ASP.net CoreSignalR
+title: Protokollierung und Diagnose in ASP.net Core SignalR
 author: anurse
 description: Erfahren Sie, wie Sie Diagnoseinformationen aus Ihrer ASP.net Core- SignalR App erfassen.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: devx-track-csharp, signalr
 ms.date: 06/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 922b2ca0aa7933e1010db7ca319631766ffbf753
-ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
+ms.openlocfilehash: 649398a3868117b2e7f3358aa25544c99cc625b3
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88130534"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631341"
 ---
-# <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Protokollierung und Diagnose in ASP.net CoreSignalR
+# <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Protokollierung und Diagnose in ASP.net Core SignalR
 
 Von [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
@@ -37,7 +38,7 @@ Dieser Artikel enthält Anleitungen zum Sammeln von Diagnoseinformationen aus Ih
 
 Da SignalR Teil ASP.net Core ist, wird das ASP.net Core Protokollierungs System verwendet. In der Standardkonfiguration protokolliert nur wenige SignalR Informationen, aber dies kann konfiguriert werden. In der Dokumentation zur [ASP.NET Core-Protokollierung](xref:fundamentals/logging/index#configuration) finden Sie weitere Informationen zum Konfigurieren der ASP.NET Core-Protokollierung.
 
-SignalRverwendet zwei Kategorien von Kategorien:
+SignalR verwendet zwei Kategorien von Kategorien:
 
 * `Microsoft.AspNetCore.SignalR`: Bei Protokollen im Zusammenhang mit hubprotokollen, beim Aktivieren von Hubs, beim Aufrufen von Methoden und anderen hubbezogenen Aktivitäten.
 * `Microsoft.AspNetCore.Http.Connections`: Bei Protokollen, die sich auf Transporte beziehen, wie z. b. websockets, langes abrufen, vom Server gesendete Ereignisse und Low-Level- SignalR Infrastrukturen.
@@ -65,7 +66,7 @@ Wie Sie auf serverseitige Protokolle zugreifen können, hängt von der Ausführu
 
 ### <a name="as-a-console-app-outside-iis"></a>Als Konsolen-App außerhalb von IIS
 
-Wenn die Ausführung in einer Konsolen-App stattfindet, sollte die [Konsolenprotokollierung](xref:fundamentals/logging/index#console) standardmäßig aktiviert sein. SignalRdie Protokolle werden in der-Konsole angezeigt.
+Wenn die Ausführung in einer Konsolen-App stattfindet, sollte die [Konsolenprotokollierung](xref:fundamentals/logging/index#console) standardmäßig aktiviert sein. SignalR die Protokolle werden in der-Konsole angezeigt.
 
 ### <a name="within-iis-express-from-visual-studio"></a>In IIS Express aus Visual Studio
 
@@ -131,7 +132,7 @@ Sie können Protokolle auch so konfigurieren, dass Sie zum Fenster **Ausgabe** i
 
 ### <a name="other-logging-providers"></a>Andere Protokollierungs Anbieter
 
-SignalRunterstützt andere Protokollierungs Anbieter wie serilog, seq, nlog oder ein beliebiges anderes Protokollierungs System, das in integriert ist `Microsoft.Extensions.Logging` . Wenn Ihr Protokollierungs System ein bereitstellt `ILoggerProvider` , können Sie es mit folgenden Aktionen registrieren `AddProvider` :
+SignalR unterstützt andere Protokollierungs Anbieter wie serilog, seq, nlog oder ein beliebiges anderes Protokollierungs System, das in integriert ist `Microsoft.Extensions.Logging` . Wenn Ihr Protokollierungs System ein bereitstellt `ILoggerProvider` , können Sie es mit folgenden Aktionen registrieren `AddProvider` :
 
 [!code-csharp[](diagnostics/net-client-custom-log.cs?highlight=6)]
 
@@ -220,9 +221,9 @@ Sie können Diagnose Dateien an GitHub-Probleme anfügen, indem Sie Sie so umben
 
 Metriken sind eine Darstellung von Daten Messungen in Zeitintervallen. Beispielsweise Anforderungen pro Sekunde. Metrikdaten ermöglichen eine Überwachung des Zustands einer APP auf hoher Ebene. .NET-gRPC-Metriken werden mithilfe von <xref:System.Diagnostics.Tracing.EventCounter> ausgegeben.
 
-### <a name="no-locsignalr-server-metrics"></a>SignalRservermetriken
+### <a name="no-locsignalr-server-metrics"></a>SignalR servermetriken
 
-SignalRservermetriken werden auf der <xref:Microsoft.AspNetCore.Http.Connections> Ereignis Quelle gemeldet.
+SignalR servermetriken werden auf der <xref:Microsoft.AspNetCore.Http.Connections> Ereignis Quelle gemeldet.
 
 | Name                    | BESCHREIBUNG                 |
 |-------------------------|-----------------------------|

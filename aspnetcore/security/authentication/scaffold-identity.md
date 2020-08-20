@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/1/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: 4404a5513d9dc989e50c904f3e7863de59991939
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 09535f41d15b90fa5e50eb1f22f6aecef0530f0c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022328"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629560"
 ---
 # <a name="scaffold-no-locidentity-in-aspnet-core-projects"></a>Gerüst Identity in ASP.net Core Projekten
 
@@ -30,7 +31,7 @@ Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.net Core stellt [ASP.net Core Identity ](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Anwendungen, die einschließen, Identity können das Gerüsten anwenden, um den Quellcode, der in der Identity Razor Klassenbibliothek (RCL) enthalten ist, selektiv hinzuzufügen. Sie sollten Quellcode generieren, um den Code und das Verhalten ändern zu können. Sie können das Gerüst beispielsweise anweisen, den bei der Registrierung verwendeten Code zu generieren. Generierter Code hat Vorrang vor dem gleichen Code in der Razor-Klassenbibliothek Identity. Informationen zum vollständigen Zugriff auf die Benutzeroberfläche und zur Verwendung der Standard-RCL finden Sie im Abschnitt [Erstellen der vollständigen Identity Benutzeroberflächen Quelle](#full).
+ASP.net Core [ASP.NET Core Identity](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Anwendungen, die einschließen, Identity können das Gerüsten anwenden, um den Quellcode, der in der Identity Razor Klassenbibliothek (RCL) enthalten ist, selektiv hinzuzufügen. Sie sollten Quellcode generieren, um den Code und das Verhalten ändern zu können. Sie können das Gerüst beispielsweise anweisen, den bei der Registrierung verwendeten Code zu generieren. Generierter Code hat Vorrang vor dem gleichen Code in der Razor-Klassenbibliothek Identity. Informationen zum vollständigen Zugriff auf die Benutzeroberfläche und zur Verwendung der Standard-RCL finden Sie im Abschnitt [Erstellen der vollständigen Identity Benutzeroberflächen Quelle](#full).
 
 Anwendungen, die **keine** -Authentifizierung einschließen, können das Gerüst zum Hinzufügen des RCL- Identity Pakets anwenden. Sie können Code der Klassenbibliothek Identity auswählen, der generiert werden soll.
 
@@ -197,7 +198,7 @@ Identitywird in *Areas/ Identity / Identity HostingStartup.cs*konfiguriert. Weit
 Token können an-Komponenten übermittelt werden:
 
 * Wenn Authentifizierungs Token bereitgestellt und in der Authentifizierung gespeichert werden cookie , können Sie an-Komponenten übermittelt werden.
-* RazorKomponenten können nicht `HttpContext` direkt verwenden. Daher gibt es keine Möglichkeit, ein [Anti-Request-fälschungstoken (XSRF)](xref:security/anti-request-forgery) zu erhalten, um an Identity den Abmelde Endpunkt in bereitzustellen `/Identity/Account/Logout` . Ein XSRF-Token kann an-Komponenten übermittelt werden.
+* Razor Komponenten können nicht `HttpContext` direkt verwenden. Daher gibt es keine Möglichkeit, ein [Anti-Request-fälschungstoken (XSRF)](xref:security/anti-request-forgery) zu erhalten, um an Identity den Abmelde Endpunkt in bereitzustellen `/Identity/Account/Logout` . Ein XSRF-Token kann an-Komponenten übermittelt werden.
 
 Weitere Informationen finden Sie unter <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
@@ -416,7 +417,7 @@ In diesem Abschnitt wird gezeigt, wie Sie die Registerseite deaktivieren, aber d
 
 So deaktivieren Sie die Benutzerregistrierung:
 
-* Gerüstbau Identity . Schließen Sie Account. Register, Account. Login und Account. registerconfirmation ein. Zum Beispiel:
+* Gerüstbau Identity . Schließen Sie Account. Register, Account. Login und Account. registerconfirmation ein. Beispiel:
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
@@ -482,7 +483,7 @@ Ein ähnlicher Ansatz kann in Produktionsszenarien befolgt werden.
 
 Informationen zum Verhindern der Veröffentlichung statischer Identity Assets im Webstamm finden Sie unter <xref:security/authentication/identity#prevent-publish-of-static-identity-assets> .
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Änderungen am Authentifizierungscode in ASP.net Core 2,1 und höher](xref:migration/20_21#changes-to-authentication-code)
 
@@ -490,7 +491,7 @@ Informationen zum Verhindern der Veröffentlichung statischer Identity Assets im
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.net Core 2,1 und höher [ASP.net Core Identity ](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Anwendungen, die einschließen, Identity können das Gerüsten anwenden, um den Quellcode, der in der Identity Razor Klassenbibliothek (RCL) enthalten ist, selektiv hinzuzufügen. Sie sollten Quellcode generieren, um den Code und das Verhalten ändern zu können. Sie können das Gerüst beispielsweise anweisen, den bei der Registrierung verwendeten Code zu generieren. Generierter Code hat Vorrang vor dem gleichen Code in der Razor-Klassenbibliothek Identity. Informationen zum vollständigen Zugriff auf die Benutzeroberfläche und zur Verwendung der Standard-RCL finden Sie im Abschnitt [Erstellen einer vollständigen identitätsquelle](#full)für die Identität.
+ASP.net Core 2,1 und höher stellt [ASP.NET Core Identity](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Anwendungen, die einschließen, Identity können das Gerüsten anwenden, um den Quellcode, der in der Identity Razor Klassenbibliothek (RCL) enthalten ist, selektiv hinzuzufügen. Sie sollten Quellcode generieren, um den Code und das Verhalten ändern zu können. Sie können das Gerüst beispielsweise anweisen, den bei der Registrierung verwendeten Code zu generieren. Generierter Code hat Vorrang vor dem gleichen Code in der Razor-Klassenbibliothek Identity. Informationen zum vollständigen Zugriff auf die Benutzeroberfläche und zur Verwendung der Standard-RCL finden Sie im Abschnitt [Erstellen einer vollständigen identitätsquelle](#full)für die Identität.
 
 Anwendungen, die **keine** -Authentifizierung einschließen, können das Gerüst zum Hinzufügen des RCL- Identity Pakets anwenden. Sie können Code der Klassenbibliothek Identity auswählen, der generiert werden soll.
 
@@ -669,7 +670,7 @@ Wenn <xref:Microsoft.AspNetCore.Identity.PasswordOptions> in konfiguriert `Start
 
 So deaktivieren Sie die Benutzerregistrierung:
 
-* Gerüstbau Identity . Schließen Sie Account. Register, Account. Login und Account. registerconfirmation ein. Zum Beispiel:
+* Gerüstbau Identity . Schließen Sie Account. Register, Account. Login und Account. registerconfirmation ein. Beispiel:
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
@@ -731,7 +732,7 @@ Der folgende Code zeigt, wie Sie einen Benutzer hinzufügen:
 
 Ein ähnlicher Ansatz kann in Produktionsszenarien befolgt werden.
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Änderungen am Authentifizierungscode in ASP.net Core 2,1 und höher](xref:migration/20_21#changes-to-authentication-code)
 

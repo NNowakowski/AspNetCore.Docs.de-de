@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/extensibility/key-management
-ms.openlocfilehash: 5f55b56bd35a583e1f078a5a281788b68412e4f7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 797df457a5584233043210e9ba2657b7fd7f3893
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021691"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631003"
 ---
 # <a name="key-management-extensibility-in-aspnet-core"></a>Erweiterbarkeit der Schlüsselverwaltung in ASP.net Core
 
@@ -73,7 +74,7 @@ Die- `IKeyManager` Schnittstelle stellt ein Objekt dar, das für die Speicherung
 
 Der `XmlKeyManager` -Typ ist die in-Box konkrete Implementierung von `IKeyManager` . Es bietet mehrere nützliche Funktionen, einschließlich Schlüssel Hinterlegung und Verschlüsselung von Schlüsseln im Ruhezustand. Schlüssel in diesem System werden als XML-Elemente (insbesondere [XElement](/dotnet/csharp/programming-guide/concepts/linq/xelement-class-overview)) dargestellt.
 
-`XmlKeyManager`hängt von verschiedenen anderen Komponenten im Rahmen der Erfüllung der Aufgaben ab:
+`XmlKeyManager` hängt von verschiedenen anderen Komponenten im Rahmen der Erfüllung der Aufgaben ab:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -81,9 +82,9 @@ Der `XmlKeyManager` -Typ ist die in-Box konkrete Implementierung von `IKeyManage
 
 * `IXmlRepository`, der steuert, wo Schlüssel im Speicher gespeichert werden.
 
-* `IXmlEncryptor`[optional], mit dem Schlüssel im Ruhezustand verschlüsselt werden können.
+* `IXmlEncryptor` [optional], mit dem Schlüssel im Ruhezustand verschlüsselt werden können.
 
-* `IKeyEscrowSink`[optional], die Schlüssel Hinterlegungs Dienste bereitstellt.
+* `IKeyEscrowSink` [optional], die Schlüssel Hinterlegungs Dienste bereitstellt.
 
 ::: moniker-end
 
@@ -91,9 +92,9 @@ Der `XmlKeyManager` -Typ ist die in-Box konkrete Implementierung von `IKeyManage
 
 * `IXmlRepository`, der steuert, wo Schlüssel im Speicher gespeichert werden.
 
-* `IXmlEncryptor`[optional], mit dem Schlüssel im Ruhezustand verschlüsselt werden können.
+* `IXmlEncryptor` [optional], mit dem Schlüssel im Ruhezustand verschlüsselt werden können.
 
-* `IKeyEscrowSink`[optional], die Schlüssel Hinterlegungs Dienste bereitstellt.
+* `IKeyEscrowSink` [optional], die Schlüssel Hinterlegungs Dienste bereitstellt.
 
 ::: moniker-end
 
@@ -125,7 +126,7 @@ In der Implementierung von `CreateNewKey` wird die- `IAuthenticatedEncryptorConf
 
 *Schlüssel Abruf/getallkeys*
 
-In der Implementierung von `GetAllKeys` werden die XML-Dokumente, die Schlüssel und widerrufen darstellen, aus der zugrunde liegenden gelesen `IXmlRepository` . Wenn diese Dokumente verschlüsselt sind, werden Sie vom System automatisch entschlüsselt. `XmlKeyManager`erstellt die entsprechenden- `IAuthenticatedEncryptorDescriptorDeserializer` Instanzen, um die Dokumente wieder in Instanzen zu deserialisieren `IAuthenticatedEncryptorDescriptor` , die anschließend in einzelne Instanzen umschließt werden `IKey` . Diese Auflistung von- `IKey` Instanzen wird an den Aufrufer zurückgegeben.
+In der Implementierung von `GetAllKeys` werden die XML-Dokumente, die Schlüssel und widerrufen darstellen, aus der zugrunde liegenden gelesen `IXmlRepository` . Wenn diese Dokumente verschlüsselt sind, werden Sie vom System automatisch entschlüsselt. `XmlKeyManager` erstellt die entsprechenden- `IAuthenticatedEncryptorDescriptorDeserializer` Instanzen, um die Dokumente wieder in Instanzen zu deserialisieren `IAuthenticatedEncryptorDescriptor` , die anschließend in einzelne Instanzen umschließt werden `IKey` . Diese Auflistung von- `IKey` Instanzen wird an den Aufrufer zurückgegeben.
 
 Weitere Informationen zu den einzelnen XML-Elementen finden Sie im [Dokument Schlüsselspeicher Format](xref:security/data-protection/implementation/key-storage-format#data-protection-implementation-key-storage-format).
 

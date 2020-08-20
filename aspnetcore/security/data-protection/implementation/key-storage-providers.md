@@ -5,6 +5,7 @@ description: Erfahren Sie mehr über die wichtigsten Speicher Anbieter in ASP.ne
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: d54e8078180ce978b550963a03c0d4fdc6e9b12e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: fb21f7d4d784451096db5c420f2ffd4532c2b490
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021457"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631328"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Schlüsselspeicher Anbieter in ASP.net Core
 
@@ -120,7 +121,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker-end
 
-Weitere Informationen finden Sie unter den folgenden Themen:
+Weitere Informationen finden Sie in den folgenden Themen:
 
 * [Stackexchange. redis connectionmultiplexer](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/Basics.md)
 * [Azure Redis Cache](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache#connect-to-the-cache)
@@ -183,7 +184,7 @@ dotnet ef database update --context MyKeysContext
 
 ---
 
-`MyKeysContext`ist der, der `DbContext` im vorangehenden Codebeispiel definiert wurde. Wenn Sie einen `DbContext` mit einem anderen Namen verwenden, ersetzen Sie den `DbContext` Namen durch `MyKeysContext` .
+`MyKeysContext` ist der, der `DbContext` im vorangehenden Codebeispiel definiert wurde. Wenn Sie einen `DbContext` mit einem anderen Namen verwenden, ersetzen Sie den `DbContext` Namen durch `MyKeysContext` .
 
 Die `DataProtectionKeys` Klasse/Entität übernimmt die Struktur, die in der folgenden Tabelle gezeigt wird.
 

@@ -5,6 +5,7 @@ description: Enthält Links zu den Authentifizierungs Beispielen im ASP.net Core
 ms.author: riande
 ms.date: 01/31/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/samples
-ms.openlocfilehash: 71e614eb3d91e8425ec430d775b8a0163dc7258f
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 290c956b2035e47e5b34dba15fbec665461dd94a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017791"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630743"
 ---
 # <a name="authentication-samples-for-aspnet-core"></a>Authentifizierungs Beispiele für ASP.net Core
 
@@ -31,7 +32,7 @@ Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 Das [ASP.net Core-Repository](https://github.com/dotnet/AspNetCore) enthält die folgenden Authentifizierungs Beispiele im Ordner " *aspnetcore/src/Security/Samples* ":
 
 * [Transformation von Ansprüchen](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/ClaimsTransformation)
-* [CookieGenehmigung](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Cookies)
+* [Cookie Genehmigung](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Cookies)
 * [Benutzerdefinierter Richtlinien Anbieter-iauthorizationpolicyprovider](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider)
 * [Dynamische Authentifizierungs Schemas und-Optionen](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/DynamicSchemes)
 * [Externe Ansprüche](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Identity.ExternalClaims)
@@ -52,7 +53,7 @@ Das [ASP.net Core-Repository](https://github.com/dotnet/AspNetCore) enthält die
 Das [ASP.net Core-Repository](https://github.com/dotnet/AspNetCore) enthält die folgenden Authentifizierungs Beispiele im Ordner " *aspnetcore/src/Security/Samples* ":
 
 * [Transformation von Ansprüchen](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/ClaimsTransformation)
-* [CookieGenehmigung](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Cookies)
+* [Cookie Genehmigung](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Cookies)
 * [Benutzerdefinierter Richtlinien Anbieter-iauthorizationpolicyprovider](https://github.com/dotnet/AspNetCore/tree/2.1.3/src/Security/samples/CustomPolicyProvider)
 * [Dynamische Authentifizierungs Schemas und-Optionen](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/DynamicSchemes)
 * [Externe Ansprüche](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Identity.ExternalClaims)

@@ -5,6 +5,7 @@ description: Erfahren Sie mehr über Bereiche, ein Feature von ASP.NET MVC, das 
 ms.author: riande
 ms.date: 03/21/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/areas
-ms.openlocfilehash: af765eebfa8bfd147bd3b721508b5794d15d64a7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 033b57f5406d0344347b2f787fa2b2fbb2da8604
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018441"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630249"
 ---
 # <a name="areas-in-aspnet-core"></a>Bereiche in ASP.NET Core
 
@@ -66,20 +67,20 @@ Stellen Sie sich eine App vor, die zwei logische Gruppen hat, *Produkte* und *Di
 * Projektname
   * Bereiche
     * Produkte
-      * Controllers
+      * Controller
         * HomeController.cs
         * ManageController.cs
       * Sichten
-        * -Startseite
+        * Startseite
           * Index.cshtml
         * Verwalten
           * Index.cshtml
           * About.cshtml
     * Dienste
-      * Controllers
+      * Controller
         * HomeController.cs
       * Sichten
-        * -Startseite
+        * Startseite
           * Index.cshtml
 
 Während das vorherige Layout typisch ist, wenn Bereiche verwendet werden, müssen nur die Ansichtsdateien diese Ordnerstruktur verwenden. Die Ansichtsermittlung sucht nach einer passenden Bereichsansichtsdatei im folgenden Ordner:
@@ -101,7 +102,7 @@ Bereichs Controller werden mit dem [ &lbrack; Area &rbrack; ](xref:Microsoft.Asp
 
 ### <a name="add-area-route"></a>Hinzufügen einer Bereichsroute
 
-Bereichs Routen verwenden normalerweise [herkömmliches Routing](xref:mvc/controllers/routing#cr) anstelle von [Attribut Routing](xref:mvc/controllers/routing#ar). Beim herkömmlichen Routing ist die Reihenfolge wichtig. Routen mit Bereichen werden im Allgemeinen früher in der Routentabelle aufgeführt als die spezifischeren Routen ohne Bereich.
+Bereichs Routen verwenden normalerweise  [herkömmliches Routing](xref:mvc/controllers/routing#cr) anstelle von [Attribut Routing](xref:mvc/controllers/routing#ar). Beim herkömmlichen Routing ist die Reihenfolge wichtig. Routen mit Bereichen werden im Allgemeinen früher in der Routentabelle aufgeführt als die spezifischeren Routen ohne Bereich.
 
 `{area:...}` kann als Token in Routenvorlagen verwendet werden, wenn der URL-Raum in allen Bereichen einheitlich ist:
 
@@ -210,7 +211,7 @@ Betrachten Sie den Bereich *Services* des Beispielcodes, der keine *_ViewImports
 Im obenstehenden Markup:
 
 * Der vollqualifizierte Domänenname muss verwendet werden, um das Modell anzugeben (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
-* [Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) werden aktiviert durch`@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+* [Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) werden aktiviert durch `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 Im Beispieldownload enthält der Bereich „Products“ die folgende *_ViewImports.cshtml*-Datei:
 
@@ -268,20 +269,20 @@ Stellen Sie sich eine App vor, die zwei logische Gruppen hat, *Produkte* und *Di
 * Projektname
   * Bereiche
     * Produkte
-      * Controllers
+      * Controller
         * HomeController.cs
         * ManageController.cs
       * Sichten
-        * -Startseite
+        * Startseite
           * Index.cshtml
         * Verwalten
           * Index.cshtml
           * About.cshtml
     * Dienste
-      * Controllers
+      * Controller
         * HomeController.cs
       * Sichten
-        * -Startseite
+        * Startseite
           * Index.cshtml
 
 Während das vorherige Layout typisch ist, wenn Bereiche verwendet werden, müssen nur die Ansichtsdateien diese Ordnerstruktur verwenden. Die Ansichtsermittlung sucht nach einer passenden Bereichsansichtsdatei im folgenden Ordner:
@@ -399,7 +400,7 @@ Betrachten Sie den Bereich *Services* des Beispielcodes, der keine *_ViewImports
 Im obenstehenden Markup:
 
 * Der vollqualifizierte Domänenname muss verwendet werden, um das Modell anzugeben (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
-* [Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) werden aktiviert durch`@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+* [Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) werden aktiviert durch `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 Im Beispieldownload enthält der Bereich „Products“ die folgende *_ViewImports.cshtml*-Datei:
 

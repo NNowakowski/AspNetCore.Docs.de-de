@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: 09df67657c9b6e4e59d6a1379bf801c289028819
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: c409eaaf07109d363581ee7d61dc76521d6818d0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020937"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630665"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Speicherverwaltung und Garbage Collection (GC) in ASP.net Core
 
 Von [Sébastien Ros](https://github.com/sebastienros) und [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Die Speicherverwaltung ist auch in verwalteten Frameworks wie .net Komplex. Das analysieren und verstehen von Speicherproblemen kann eine Herausforderung darstellen. Dieser Artikel:
+Die Speicherverwaltung ist auch in verwalteten Frameworks wie .net Komplex. Das analysieren und verstehen von Speicherproblemen kann eine Herausforderung darstellen. Inhalt dieses Artikels
 
 * Wurde von vielen *Speicherlecks* und *GC* -Fehlern motiviert. Die meisten dieser Probleme sind darauf zurückzuführen, dass Sie nicht verstehen, wie die Arbeitsspeicher Nutzung in .net Core funktioniert, oder nicht verstehen, wie Sie gemessen wird.
 * Veranschaulicht die problematische Speicher Verwendung und schlägt alternative Ansätze vor.
@@ -291,7 +292,7 @@ Die folgenden Links zeigen die ASP.net Core Methode zum Beibehalten von Objekten
 * [Responsecaching/Streams/streamutilities. cs](https://github.com/dotnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
 * [Responsecaching/memoryresponsecache. cs](https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55)
 
-Weitere Informationen finden Sie unter:
+Weitere Informationen finden Sie unter
 
 * [Large Object Heap wurde aufgedeckt.](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
 * [Großer Objekt Heap](/dotnet/standard/garbage-collection/large-object-heap)
@@ -305,9 +306,9 @@ Die falsche Verwendung von <xref:System.Net.Http.HttpClient> kann zu einem Resso
 
 Erfahrene .NET-Entwickler wissen, dass für Objekte aufgerufen werden muss <xref:System.IDisposable.Dispose*> , die implementieren <xref:System.IDisposable> . Das Verwerfen von Objekten, die implementieren, `IDisposable` führt in der Regel zu einem kompromittierten oder kompromittierten Systemressourcen.
 
-`HttpClient`implementiert `IDisposable` , sollte jedoch bei jedem Aufruf **nicht** verworfen werden. Stattdessen `HttpClient` sollte wieder verwendet werden.
+`HttpClient` implementiert `IDisposable` , sollte jedoch bei jedem Aufruf **nicht** verworfen werden. Stattdessen `HttpClient` sollte wieder verwendet werden.
 
-Der folgende Endpunkt erstellt eine neue-Instanz und gibt diese `HttpClient` bei jeder Anforderung aus:
+Der folgende Endpunkt erstellt eine neue-Instanz und gibt diese  `HttpClient` bei jeder Anforderung aus:
 
 ```csharp
 [HttpGet("httpclient1")]
@@ -402,7 +403,7 @@ So richten Sie die Entsorgung des-Objekts ein:
 * Kapseln Sie das gepoolte Array in ein verwerfbares Objekt.
 * Registrieren Sie das in einem Pool zusammengefasste Objekt mit [HttpContext. Response. registerforverwerfen](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose*).
 
-`RegisterForDispose`übernimmt das Aufrufen von `Dispose` für das Zielobjekt, sodass es nur freigegeben wird, wenn die HTTP-Anforderung beendet ist.
+`RegisterForDispose` übernimmt das Aufrufen von `Dispose` für das Zielobjekt, sodass es nur freigegeben wird, wenn die HTTP-Anforderung beendet ist.
 
 ```csharp
 private static ArrayPool<byte> _arrayPool = ArrayPool<byte>.Create();
@@ -442,7 +443,7 @@ Das Anwenden derselben Last wie die nicht in einem Pool zusammengefasste Version
 
 Der Hauptunterschied besteht darin, dass Bytes zugeordnet werden, was zu einer wesentlich geringeren Auflistung der Generation 0 gehört.
 
-## <a name="additional-resources"></a>Weitere Ressourcen
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Garbage Collection](/dotnet/standard/garbage-collection/)
 * [Grundlegendes zu verschiedenen GC-Modi mit neben läufigkeits Schnellansicht](https://blogs.msdn.microsoft.com/seteplia/2017/01/05/understanding-different-gc-modes-with-concurrency-visualizer/)

@@ -1,5 +1,5 @@
 ---
-title: Sicherheitsüberlegungen in ASP.net CoreSignalR
+title: Sicherheitsüberlegungen in ASP.net Core SignalR
 author: bradygaster
 description: Erfahren Sie, wie Sie die Authentifizierung und Autorisierung in ASP.net Core verwenden SignalR .
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/security
-ms.openlocfilehash: e004899e334738f723cb98638cb31de8d314a830
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 12293c5cb3dc49d505225f1b44e824e9273cfffc
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022471"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630990"
 ---
-# <a name="security-considerations-in-aspnet-core-no-locsignalr"></a>Sicherheitsüberlegungen in ASP.net CoreSignalR
+# <a name="security-considerations-in-aspnet-core-no-locsignalr"></a>Sicherheitsüberlegungen in ASP.net Core SignalR
 
 Von [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
@@ -32,10 +33,10 @@ Dieser Artikel enthält Informationen zum Sichern von SignalR .
 
 ## <a name="cross-origin-resource-sharing"></a>Cross-Origin Resource Sharing
 
-[Cross-Origin Resource Sharing (cors)](https://www.w3.org/TR/cors/) kann verwendet werden, um Ursprungs übergreifende SignalR Verbindungen im Browser zuzulassen. Wenn JavaScript-Code in einer anderen Domäne als der APP gehostet wird SignalR , muss [cors-Middleware](xref:security/cors) aktiviert werden, damit JavaScript eine Verbindung mit der App herstellen kann SignalR . Lassen Sie Ursprungs übergreifende Anforderungen nur von vertrauenswürdigen Domänen zu. Zum Beispiel:
+[Cross-Origin Resource Sharing (cors)](https://www.w3.org/TR/cors/) kann verwendet werden, um Ursprungs übergreifende SignalR Verbindungen im Browser zuzulassen. Wenn JavaScript-Code in einer anderen Domäne als der APP gehostet wird SignalR , muss [cors-Middleware](xref:security/cors) aktiviert werden, damit JavaScript eine Verbindung mit der App herstellen kann SignalR . Lassen Sie Ursprungs übergreifende Anforderungen nur von vertrauenswürdigen Domänen zu. Beispiel:
 
-* Ihre Website wird gehostet auf`http://www.example.com`
-* Ihre SignalR App wird gehostet auf`http://signalr.example.com`
+* Ihre Website wird gehostet auf `http://www.example.com`
+* Ihre SignalR App wird gehostet auf `http://signalr.example.com`
 
 Cors sollte in der APP so konfiguriert werden SignalR , dass Sie nur den Ursprung zulässt `www.example.com` .
 
@@ -122,7 +123,7 @@ Das verfügbar machen `ConnectionId` von kann zu böswilligem Identitätswechsel
 
 ## <a name="access-token-logging"></a>Protokollierung von Zugriffs Token
 
-Wenn websockets oder vom Server gesendete Ereignisse verwendet werden, sendet der Browser Client das Zugriffs Token in der Abfrage Zeichenfolge. Der Empfang des Zugriffs Tokens über eine Abfrage Zeichenfolge ist im Allgemeinen sicher, wenn der Standard Header verwendet wird `Authorization` . Verwenden Sie immer HTTPS, um eine sichere End-to-End-Verbindung zwischen dem Client und dem Server sicherzustellen. Viele Webserver protokollieren die URL für jede Anforderung, einschließlich der Abfrage Zeichenfolge. Durch das Protokollieren der URLs kann das Zugriffs Token protokolliert werden. ASP.net Core protokolliert standardmäßig die URL für jede Anforderung, die die Abfrage Zeichenfolge enthält. Zum Beispiel:
+Wenn websockets oder vom Server gesendete Ereignisse verwendet werden, sendet der Browser Client das Zugriffs Token in der Abfrage Zeichenfolge. Der Empfang des Zugriffs Tokens über eine Abfrage Zeichenfolge ist im Allgemeinen sicher, wenn der Standard Header verwendet wird `Authorization` . Verwenden Sie immer HTTPS, um eine sichere End-to-End-Verbindung zwischen dem Client und dem Server sicherzustellen. Viele Webserver protokollieren die URL für jede Anforderung, einschließlich der Abfrage Zeichenfolge. Durch das Protokollieren der URLs kann das Zugriffs Token protokolliert werden. ASP.net Core protokolliert standardmäßig die URL für jede Anforderung, die die Abfrage Zeichenfolge enthält. Beispiel:
 
 ```
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
@@ -137,7 +138,7 @@ Ausnahmemeldungen werden generell als vertrauliche Daten angesehen, die nicht f�
 
 ## <a name="buffer-management"></a>Pufferverwaltung
 
-SignalRverwendet Verbindungs Puffer für eingehende und ausgehende Nachrichten. Standardmäßig SignalR beschränkt diese Puffer auf 32 KB. Die größte Nachricht, die ein Client oder Server senden kann, ist 32 KB. Der maximale Arbeitsspeicher, der von einer Verbindung für Nachrichten belegt wird, beträgt 32 KB. Wenn die Nachrichten immer kleiner als 32 KB sind, können Sie den Grenzwert verringern:
+SignalR verwendet Verbindungs Puffer für eingehende und ausgehende Nachrichten. Standardmäßig SignalR beschränkt diese Puffer auf 32 KB. Die größte Nachricht, die ein Client oder Server senden kann, ist 32 KB. Der maximale Arbeitsspeicher, der von einer Verbindung für Nachrichten belegt wird, beträgt 32 KB. Wenn die Nachrichten immer kleiner als 32 KB sind, können Sie den Grenzwert verringern:
 
 * Verhindert, dass ein Client eine größere Nachricht senden kann.
 * Der Server muss niemals große Puffer zuordnen, um Nachrichten zu akzeptieren.
@@ -149,7 +150,7 @@ Wenn die Nachrichten größer als 32 KB sind, können Sie den Grenzwert erhöhen
 
 Es gibt Grenzwerte für eingehende und ausgehende Nachrichten. beide können für das [httpconnectiondispatcheroptions](xref:signalr/configuration#configure-server-options) -Objekt konfiguriert werden, das in konfiguriert ist `MapHub` :
 
-* `ApplicationMaxBufferSize`stellt die maximale Anzahl von Bytes vom Client dar, die der Server puffert. Wenn der Client versucht, eine Nachricht zu senden, die über diesen Grenzwert hinausgeht, wird die Verbindung möglicherweise geschlossen.
-* `TransportMaxBufferSize`stellt die maximale Anzahl von Bytes dar, die vom Server gesendet werden können. Wenn der Server versucht, eine Nachricht (einschließlich Rückgabewerte von hubmethoden) zu senden, die größer als dieser Grenzwert ist, wird eine Ausnahme ausgelöst.
+* `ApplicationMaxBufferSize` stellt die maximale Anzahl von Bytes vom Client dar, die der Server puffert. Wenn der Client versucht, eine Nachricht zu senden, die über diesen Grenzwert hinausgeht, wird die Verbindung möglicherweise geschlossen.
+* `TransportMaxBufferSize` stellt die maximale Anzahl von Bytes dar, die vom Server gesendet werden können. Wenn der Server versucht, eine Nachricht (einschließlich Rückgabewerte von hubmethoden) zu senden, die größer als dieser Grenzwert ist, wird eine Ausnahme ausgelöst.
 
 Durch Festlegen des Limits auf wird `0` der Grenzwert deaktiviert. Durch das Entfernen des Limits kann ein Client eine beliebige Größe einer Nachricht senden. Böswillige Clients, die große Nachrichten senden, können dazu führen, dass mehr Speicherplatz zugewiesen Durch eine übermäßige Speicherauslastung kann die Anzahl gleichzeitiger Verbindungen erheblich reduziert werden.

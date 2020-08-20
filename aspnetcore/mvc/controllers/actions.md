@@ -5,6 +5,7 @@ description: ''
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/actions
-ms.openlocfilehash: 05985acb559f63eb5f1d9854041be737291a3809
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 9542a7c0fd16c00f46ee69c5873878a7c70ef626
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019910"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630327"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Verarbeiten von Anforderungen mit Controllern in ASP.NET Core MVC
 
@@ -71,7 +72,7 @@ Es ist kein `Content-Type`-HTTP-Antwortheader beinhaltet, da der Antworttext kei
 
 Innerhalb dieser Kategorie gibt es wiederum zwei Ergebnistypen: Redirect (Umleiten) oder HTTP-Statuscode.
 
-* **HTTP-Status Code**
+* **HTTP-Statuscode**
 
     Dieser Typ gibt einen HTTP-Statuscode zurück. Beispiele für Hilfsmethoden dieses Typs sind `BadRequest`, `NotFound` und `Ok`. `return BadRequest();` erzeugt beispielsweise bei der Ausführung den Statuscode 400. Wenn Methoden wie `BadRequest`, `NotFound` und `Ok` überladen werden, gelten sie nicht länger als HTTP-Statuscode-Antwortdienste, da eine Inhaltsaushandlung stattfindet.
 
@@ -87,7 +88,7 @@ Die meisten Hilfsmethoden in dieser Kategorie beinhalten eine `ContentType`-Eige
 
 Innerhalb dieser Kategorie gibt es wiederum zwei Ergebnistypen: [View](xref:mvc/views/overview) (Ansicht) und [Formatted Response](xref:web-api/advanced/formatting) (Formatierte Antwort).
 
-* **Anzeigen**
+* **Ansicht**
 
     Dieser Typ gibt eine Ansicht zurück, die ein Modell zum Rendern von HTML verwendet. `return View(customer);` übergibt beispielsweise zur Datenbindung ein Modell an die Ansicht.
 

@@ -1,11 +1,12 @@
 ---
-title: Benutzerdefinierte Speicher Anbieter für ASP.net CoreIdentity
+title: Benutzerdefinierte Speicher Anbieter für ASP.NET Core Identity
 author: ardalis
-description: Erfahren Sie, wie Sie benutzerdefinierte Speicher Anbieter für ASP.net Core konfigurieren Identity .
+description: Erfahren Sie, wie Sie benutzerdefinierte Speicher Anbieter für konfigurieren ASP.NET Core Identity .
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/23/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,24 +17,24 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-custom-storage-providers
-ms.openlocfilehash: 27f6130742e25e07d4b908973e1ebf26288fdbfd
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a8414efeece1afd55d0f30d232ef360d0a21714c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021535"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630132"
 ---
-# <a name="custom-storage-providers-for-aspnet-core-no-locidentity"></a>Benutzerdefinierte Speicher Anbieter für ASP.net CoreIdentity
+# <a name="custom-storage-providers-for-no-locaspnet-core-identity"></a>Benutzerdefinierte Speicher Anbieter für ASP.NET Core Identity
 
 Von [Steve Smith](https://ardalis.com/)
 
-ASP.net Core Identity ist ein erweiterbares System, mit dem Sie einen benutzerdefinierten Speicher Anbieter erstellen und mit Ihrer APP verbinden können. In diesem Thema wird beschrieben, wie ein angepasster Speicher Anbieter für ASP.net Core erstellt wird Identity . Es behandelt die wichtigsten Konzepte zum Erstellen eines eigenen Speicher Anbieters, aber keine schrittweise exemplarische Vorgehensweise.
+ASP.NET Core Identity ist ein erweiterbares System, mit dem Sie einen benutzerdefinierten Speicher Anbieter erstellen und mit Ihrer APP verbinden können. In diesem Thema wird beschrieben, wie ein angepasster Speicher Anbieter für erstellt wird ASP.NET Core Identity . Es behandelt die wichtigsten Konzepte zum Erstellen eines eigenen Speicher Anbieters, aber keine schrittweise exemplarische Vorgehensweise.
 
 [Beispiel anzeigen oder von GitHub herunterladen](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity-custom-storage-providers/sample/CustomIdentityProviderSample).
 
 ## <a name="introduction"></a>Einführung
 
-Standardmäßig speichert das ASP.net Core Identity Systembenutzer Informationen in einer SQL Server Datenbank mithilfe Entity Framework Core. Bei vielen apps funktioniert dieser Ansatz gut. Es empfiehlt sich jedoch, einen anderen Persistenzmechanismus oder ein anderes Datenschema zu verwenden. Zum Beispiel:
+Standardmäßig speichert das ASP.NET Core Identity Systembenutzer Informationen in einer SQL Server-Datenbank mithilfe Entity Framework Core. Bei vielen apps funktioniert dieser Ansatz gut. Es empfiehlt sich jedoch, einen anderen Persistenzmechanismus oder ein anderes Datenschema zu verwenden. Beispiel:
 
 * Sie verwenden [Azure Table Storage](/azure/storage/) oder einen anderen Datenspeicher.
 * Die Datenbanktabellen haben eine andere Struktur. 
@@ -41,7 +42,7 @@ Standardmäßig speichert das ASP.net Core Identity Systembenutzer Informationen
 
 In jedem dieser Fälle können Sie einen benutzerdefinierten Anbieter für den Speichermechanismus schreiben und den Anbieter in Ihre APP einbinden.
 
-ASP.net Core Identity ist in Projektvorlagen in Visual Studio mit der Option "einzelne Benutzerkonten" enthalten.
+ASP.NET Core Identity ist in Projektvorlagen in Visual Studio mit der Option "einzelne Benutzerkonten" enthalten.
 
 Wenn Sie die .net Core-CLI verwenden, fügen Sie Folgendes hinzu `-au Individual` :
 
@@ -49,9 +50,9 @@ Wenn Sie die .net Core-CLI verwenden, fügen Sie Folgendes hinzu `-au Individual
 dotnet new mvc -au Individual
 ```
 
-## <a name="the-aspnet-core-no-locidentity-architecture"></a>Die ASP.net Core- Identity Architektur
+## <a name="the-no-locaspnet-core-identity-architecture"></a>Die ASP.NET Core Identity Architektur
 
-ASP.net Core Identity besteht aus Klassen, die als Manager und Stores bezeichnet werden. *Manager* sind Klassen, die von einem App-Entwickler zum Ausführen von Vorgängen verwendet werden, z. b. das Erstellen eines Identity Benutzers. *Stores* sind Klassen auf niedrigerer Ebene, die angeben, wie Entitäten, z. b. Benutzer und Rollen, beibehalten werden. Filialen befolgen das Repository-Muster und sind eng mit dem Persistenzmechanismus verknüpft. Manager sind von Geschäften entkoppelt, d. h. Sie können den Persistenzmechanismus ersetzen, ohne den Anwendungscode zu ändern (mit Ausnahme der Konfiguration).
+ASP.NET Core Identity besteht aus Klassen, die als Manager und Stores bezeichnet werden. *Manager* sind Klassen, die von einem App-Entwickler zum Ausführen von Vorgängen verwendet werden, z. b. das Erstellen eines Identity Benutzers. *Stores* sind Klassen auf niedrigerer Ebene, die angeben, wie Entitäten, z. b. Benutzer und Rollen, beibehalten werden. Filialen befolgen das Repository-Muster und sind eng mit dem Persistenzmechanismus verknüpft. Manager sind von Geschäften entkoppelt, d. h. Sie können den Persistenzmechanismus ersetzen, ohne den Anwendungscode zu ändern (mit Ausnahme der Konfiguration).
 
 Im folgenden Diagramm wird gezeigt, wie eine Web-App mit den Managern interagiert, während Stores mit der Datenzugriffs Ebene interagieren.
 
@@ -63,9 +64,9 @@ Beim Erstellen einer neuen Instanz von `UserManager` oder `RoleManager` Geben Si
 
 [Neukonfigurieren der App zur Verwendung des neuen Speicher Anbieters](#reconfigure-app-to-use-a-new-storage-provider) zeigt, wie Sie `UserManager` und `RoleManager` mit einem angepassten Speicher instanziieren.
 
-## <a name="aspnet-core-no-locidentity-stores-data-types"></a>ASP.net Core Identity speichert Datentypen
+## <a name="no-locaspnet-core-identity-stores-data-types"></a>ASP.NET Core Identity speichert Datentypen
 
-[ASP.net Core Identity ](https://github.com/aspnet/identity) Datentypen werden in den folgenden Abschnitten ausführlich beschrieben:
+[ASP.NET Core Identity](https://github.com/aspnet/identity) Datentypen werden in den folgenden Abschnitten ausführlich beschrieben:
 
 ### <a name="users"></a>Benutzer
 
@@ -85,11 +86,11 @@ Autorisierungs Gruppen für Ihre Website. Enthält die Rollen-ID und den Rollenn
 
 ## <a name="the-data-access-layer"></a>Die Datenzugriffs Ebene
 
-In diesem Thema wird davon ausgegangen, dass Sie mit dem Persistenzmechanismus vertraut sind, den Sie verwenden werden, und wie Sie Entitäten für diesen Mechanismus erstellen. In diesem Thema wird nicht erläutert, wie die-Depots oder Datenzugriffsklassen erstellt werden. Es enthält einige Vorschläge zu Entwurfsentscheidungen bei der Arbeit mit ASP.net Core Identity .
+In diesem Thema wird davon ausgegangen, dass Sie mit dem Persistenzmechanismus vertraut sind, den Sie verwenden werden, und wie Sie Entitäten für diesen Mechanismus erstellen. In diesem Thema wird nicht erläutert, wie die-Depots oder Datenzugriffsklassen erstellt werden. Es enthält einige Vorschläge zu Entwurfsentscheidungen bei der Arbeit mit ASP.NET Core Identity .
 
-Beim Entwerfen der Datenzugriffs Ebene für einen angepassten Speicher Anbieter haben Sie viel Freiheit. Sie müssen nur Persistenzmechanismen für Funktionen erstellen, die Sie in Ihrer APP verwenden möchten. Wenn Sie z. b. keine Rollen in der App verwenden, müssen Sie keinen Speicher für Rollen oder Benutzer Rollen Zuordnungen erstellen. Ihre Technologie und vorhandene Infrastruktur benötigen möglicherweise eine Struktur, die sich stark von der Standard Implementierung ASP.net Core unterscheidet Identity . In der Datenzugriffs Ebene stellen Sie die Logik bereit, um mit der Struktur der Speicher Implementierung zu arbeiten.
+Beim Entwerfen der Datenzugriffs Ebene für einen angepassten Speicher Anbieter haben Sie viel Freiheit. Sie müssen nur Persistenzmechanismen für Funktionen erstellen, die Sie in Ihrer APP verwenden möchten. Wenn Sie z. b. keine Rollen in der App verwenden, müssen Sie keinen Speicher für Rollen oder Benutzer Rollen Zuordnungen erstellen. Ihre Technologie und vorhandene Infrastruktur erfordern möglicherweise eine Struktur, die sich stark von der Standard Implementierung von unterscheidet ASP.NET Core Identity . In der Datenzugriffs Ebene stellen Sie die Logik bereit, um mit der Struktur der Speicher Implementierung zu arbeiten.
 
-Die Datenzugriffs Ebene stellt die Logik bereit, um die Daten aus ASP.net Core Identity in einer Datenquelle zu speichern. Die Datenzugriffs Ebene für Ihren benutzerdefinierten Speicher Anbieter kann die folgenden Klassen enthalten, um Benutzer-und Rollen Informationen zu speichern.
+Die Datenzugriffs Ebene stellt die Logik bereit, um die Daten aus ASP.NET Core Identity in einer Datenquelle zu speichern. Die Datenzugriffs Ebene für Ihren benutzerdefinierten Speicher Anbieter kann die folgenden Klassen enthalten, um Benutzer-und Rollen Informationen zu speichern.
 
 ### <a name="context-class"></a>Context-Klasse
 
@@ -179,7 +180,7 @@ In der- `UserStore` Klasse verwenden Sie die Datenzugriffsklassen, die Sie erste
 * **Iqueryableuserstore ist**  
  Die [ &lt; tuser &gt; -Schnittstelle iqueryableuserstore](/dotnet/api/microsoft.aspnetcore.identity.iqueryableuserstore-1) definiert die Elemente, die Sie implementieren, um einen abfragbaren Benutzerspeicher bereitzustellen.
 
-Sie implementieren nur die Schnittstellen, die in Ihrer APP benötigt werden. Zum Beispiel:
+Sie implementieren nur die Schnittstellen, die in Ihrer APP benötigt werden. Beispiel:
 
 ```csharp
 public class UserStore : IUserStore<IdentityUser>,
@@ -247,5 +248,5 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="references"></a>References
 
-* [Benutzerdefinierte Speicher Anbieter für ASP.NET 4. xIdentity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
-* [ASP.net Core Identity ](https://github.com/dotnet/AspNetCore/tree/master/src/Identity): dieses Repository enthält Links zu von der Community verwalteten Speicheranbietern.
+* [Benutzerdefinierte Speicher Anbieter für ASP.NET 4. x Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
+* [ASP.NET Core Identity](https://github.com/dotnet/AspNetCore/tree/master/src/Identity): Dieses Repository enthält Links zu von der Community verwalteten Speicheranbietern.

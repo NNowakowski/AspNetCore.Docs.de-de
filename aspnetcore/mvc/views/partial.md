@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 826d7cf96d95ee7eb98b0f05a233401a1e3bff33
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7a370042520adfe5b06784b76acf41a81eb2c72d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020833"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630626"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Verwenden von Teilansichten in ASP.NET Core
 
@@ -147,7 +148,7 @@ Wenn eine Dateierweiterung vorhanden ist, verweist das Hilfsprogramm für Teilta
 
 Im folgende Beispiel wird aus dem Stammverzeichnis der App auf eine Teilansicht verwiesen. Pfade, die mit einer Tilde und einem Schrägstrich (`~/`) oder einem Schrägstrich (`/`) beginnen, verweisen auf den Stamm der App:
 
-**RazorSeiten**
+**Razor Seiten**
 
 ```cshtml
 <partial name="~/Pages/Folder/_PartialName.cshtml" />
@@ -189,7 +190,7 @@ Im folgende Beispiel wird aus dem Stammverzeichnis der App auf eine Teilansicht 
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**RazorSeiten**
+**Razor Seiten**
 
 ```cshtml
 @await Html.PartialAsync("~/Pages/Folder/_PartialName.cshtml")
@@ -240,7 +241,7 @@ Wenn auf eine Teilansicht anhand des Namens ohne eine Dateierweiterung verwiesen
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**RazorSeiten**
+**Razor Seiten**
 
 1. Der Ordner der aktuell ausgeführten Seite
 1. Der Verzeichnisgraph über dem Ordner der Seite
@@ -296,7 +297,7 @@ Außerdem können Sie ein Modell an eine Teilansicht übergeben. Das Modell kann
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**RazorSeiten**
+**Razor Seiten**
 
 Das folgende Markup in der Beispiel-App stammt von der Seite *Pages/ArticlesRP/ReadRP.cshtml*. Diese Seite enthält zwei Teilansichten. Die zweite Teilansicht übergibt ein Modell und `ViewData` an die Teilansicht. Die `ViewDataDictionary`-Konstruktorüberladung wird verwendet, um ein neues `ViewData`-Wörterbuch zu übergeben, während das vorhandene `ViewData`-Wörterbuch beibehalten wird.
 
