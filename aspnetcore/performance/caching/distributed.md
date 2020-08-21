@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/distributed
-ms.openlocfilehash: a25cbaf9a4e7dc5f1bd3706d01f409208a39aaa3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 0d27206412a098f4ea749ec10189bf24d2322de1
+ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626726"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88712479"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>Verteiltes Zwischenspeichern in ASP.net Core
 
@@ -116,16 +116,13 @@ Die Beispiel-App implementiert in <xref:Microsoft.Extensions.Caching.SqlServer.S
 
 ### <a name="distributed-redis-cache"></a>Verteilte redis Cache
 
-[Redis](https://redis.io/) ist ein Open Source-Datenspeicher im Arbeitsspeicher, der häufig als verteilter Cache verwendet wird. Sie können redis lokal verwenden, und Sie können eine [Azure redis Cache](https://azure.microsoft.com/services/cache/) für eine in Azure gehostete ASP.net Core-App konfigurieren.
+[Redis](https://redis.io/) ist ein Open Source-Datenspeicher im Arbeitsspeicher, der häufig als verteilter Cache verwendet wird.  Sie können eine [Azure redis Cache](https://azure.microsoft.com/services/cache/) für eine in Azure gehostete ASP.net Core-App konfigurieren und eine Azure redis Cache für die lokale Entwicklung verwenden.
 
-Eine App konfiguriert die Cache Implementierung mithilfe einer- <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> Instanz ( <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache*> ) in einer nicht-Entwicklungsumgebung in `Startup.ConfigureServices` :
+Eine App konfiguriert die Cache Implementierung mithilfe einer- <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> Instanz ( <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache*> ).
 
-[!code-csharp[](distributed/samples/3.x/DistCacheSample/Startup.cs?name=snippet_AddStackExchangeRedisCache)]
+Weitere Informationen finden Sie unter [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview).
 
-So installieren Sie redis auf dem lokalen Computer:
-
-1. Installieren Sie das [Chocolatey redis-Paket](https://chocolatey.org/packages/redis-64/).
-1. Führen Sie `redis-server` an einer Eingabeaufforderung aus.
+In [diesem GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/19542) finden Sie eine Erläuterung zu alternativen Ansätzen für einen lokalen redis Cache.
 
 ### <a name="distributed-ncache-cache"></a>Verteilter NCache-Cache
 
@@ -544,4 +541,3 @@ Wenn SQL Server als Sicherungs Speicher für verteilte Caches verwendet wird, ka
 * <xref:host-and-deploy/web-farm>
 
 ::: moniker-end
- 

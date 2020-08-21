@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: a1bac04944d9671df3f804a9724c9f0fd6f1fb27
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: edacded5df4d5f4819b3657bc7eff99e6d96d394
+ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633629"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88712544"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Cloudauthentifizierung mit Azure Active Directory B2C in ASP.net Core
 
@@ -172,5 +172,5 @@ Nun, da die ASP.net Core-App für die Verwendung von Azure AD B2C für die Authe
 * [Aktivieren Sie Multi-Factor Authentication](/azure/active-directory-b2c/active-directory-b2c-reference-mfa).
 * Konfigurieren Sie zusätzliche Identitäts Anbieter wie [Microsoft](/azure/active-directory-b2c/active-directory-b2c-setup-msa-app), [Facebook](/azure/active-directory-b2c/active-directory-b2c-setup-fb-app), [Google](/azure/active-directory-b2c/active-directory-b2c-setup-goog-app), [Amazon](/azure/active-directory-b2c/active-directory-b2c-setup-amzn-app), [Twitter](/azure/active-directory-b2c/active-directory-b2c-setup-twitter-app)und andere.
 * [Verwenden Sie die Azure AD Graph-API](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-graph-dotnet) , um zusätzliche Benutzerinformationen, wie z. b. die Gruppenmitgliedschaft, aus dem Azure AD B2C-Mandanten abzurufen.
-* [Sichern einer ASP.net Core-Web-API mithilfe von Azure AD B2C](https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapi/).
+* [So sichern Sie eine Web-API, die mit ASP.net Core erstellt wurde, mithilfe des Azure AD B2C](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2/tree/master/4-WebApp-your-API/4-2-B2C).
 * [Tutorial: Gewähren des Zugriffs auf eine ASP.net-Web-API mithilfe von Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-web-api-dotnet).
