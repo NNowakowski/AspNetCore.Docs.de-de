@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/02/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 4dc9040b9410304eb33e5df7c47db2f9a42152d3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ba9fe3c0149679fa5760c0c9214cd426f1804c31
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88013995"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626453"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Schützen von Blazor Server-Apps von ASP.NET Core
 
@@ -62,7 +63,7 @@ Zulässige Authentifizierungswerte (`{AUTHENTICATION}`) werden in der folgenden 
 | Authentifizierungsmechanismus | Beschreibung |
 | ------------------------ | ----------- |
 | `None` (Standardwert)         | Keine Authentifizierung |
-| `Individual`             | In der App mit ASP.NET Core-Identität gespeicherte Benutzer Identity |
+| `Individual`             | In der App mit ASP.NET Core Identity gespeicherte Benutzer |
 | `IndividualB2C`          | In [Azure AD B2C](xref:security/authentication/azure-ad-b2c) gespeicherte Benutzer |
 | `SingleOrg`              | Organisationsauthentifizierung für einen einzelnen Mandanten |
 | `MultiOrg`               | Organisationsauthentifizierung für mehrere Mandanten |
@@ -81,7 +82,7 @@ Weitere Informationen finden Sie im Befehl [`dotnet new`](/dotnet/core/tools/dot
 
 1. Wählen Sie im Schritt **Konfigurieren Ihrer neuen Blazor Server-App** in der Dropdownliste **Authentifizierung** die Option **Individual Authentication (in-app)** (Individuelle Authentifizierung [in der App]) aus.
 
-1. Die Anwendung wird für einzelne Benutzer erstellt, die in der App mit ASP.NET Core-Identität gespeichert sind Identity.
+1. Die App wird für einzelne Benutzer erstellt, die mit ASP.NET Core Identity in der App gespeichert sind.
 
 # <a name="net-core-cli"></a>[.NET Core-CLI](#tab/netcore-cli/)
 
@@ -96,7 +97,7 @@ Zulässige Authentifizierungswerte (`{AUTHENTICATION}`) werden in der folgenden 
 | Authentifizierungsmechanismus | Beschreibung |
 | ------------------------ | ----------- |
 | `None` (Standardwert)         | Keine Authentifizierung |
-| `Individual`             | In der App mit ASP.NET Core-Identität gespeicherte Benutzer Identity |
+| `Individual`             | In der App mit ASP.NET Core Identity gespeicherte Benutzer |
 | `IndividualB2C`          | In [Azure AD B2C](xref:security/authentication/azure-ad-b2c) gespeicherte Benutzer |
 | `SingleOrg`              | Organisationsauthentifizierung für einen einzelnen Mandanten |
 | `MultiOrg`               | Organisationsauthentifizierung für mehrere Mandanten |

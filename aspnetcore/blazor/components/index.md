@@ -5,8 +5,9 @@ description: Erfahren Sie, wie Sie Razor-Komponenten erstellen und verwenden, Da
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/14/2020
+ms.date: 08/19/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: a145cfd551650445f9ff35259cbedf71ebb686f0
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6ee767ee76b622e15a1dc5a7fe2f3e05f03dabd0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014593"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628494"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
@@ -265,7 +266,7 @@ Im folgenden Beispiel aus der Beispiel-App legt der `ParentComponent` den Wert d
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
 > [!WARNING]
-> Erstellen Sie keine Komponenten, die in ihre eigenen *Komponentenparameter* schreiben, sondern verwenden Sie stattdessen ein privates Feld. Weitere Informationen finden Sie im Abschnitt [Erstellen Sie keine Komponenten, die in ihre eigenen Parametereigenschaften schreiben](#dont-create-components-that-write-to-their-own-parameter-properties).
+> Erstellen Sie keine Komponenten, die beim Rendern der Komponenteninhalte mit einem <xref:Microsoft.AspNetCore.Components.RenderFragment> in ihre eigenen *Komponentenparameter* schreiben. Verwenden Sie stattdessen ein privates Feld. Weitere Informationen finden Sie im Abschnitt [Überschriebene Parameter mit `RenderFragment`](#overwritten-parameters-with-renderfragment).
 
 ## <a name="child-content"></a>Untergeordneter Inhalt
 
@@ -317,28 +318,20 @@ Im folgenden Beispiel verwendet das erste `<input>`-Element (`id="useIndividualP
 
 ```razor
 <input id="useIndividualParams"
-       maxlength="@Maxlength"
-       placeholder="@Placeholder"
-       required="@Required"
-       size="@Size" />
+       maxlength="@maxlength"
+       placeholder="@placeholder"
+       required="@required"
+       size="@size" />
 
 <input id="useAttributesDict"
        @attributes="InputAttributes" />
 
 @code {
-    [Parameter]
-    public string Maxlength { get; set; } = "10";
+    public string maxlength = "10";
+    public string placeholder = "Input placeholder text";
+    public string required = "required";
+    public string size = "50";
 
-    [Parameter]
-    public string Placeholder { get; set; } = "Input placeholder text";
-
-    [Parameter]
-    public string Required { get; set; } = "required";
-
-    [Parameter]
-    public string Size { get; set; } = "50";
-
-    [Parameter]
     public Dictionary<string, object> InputAttributes { get; set; } =
         new Dictionary<string, object>()
         {
@@ -350,7 +343,7 @@ Im folgenden Beispiel verwendet das erste `<input>`-Element (`id="useIndividualP
 }
 ```
 
-Der Typ des Parameters muss `IEnumerable<KeyValuePair<string, object>>` mit Zeichenfolgenschlüsseln implementieren. Die Verwendung von `IReadOnlyDictionary<string, object>` ist in diesem Szenario auch möglich.
+Der Typ des Parameters muss `IEnumerable<KeyValuePair<string, object>>` oder `IReadOnlyDictionary<string, object>` mit Zeichenfolgenschlüsseln implementieren.
 
 Die gerenderten `<input>`-Elemente sind mit beiden Ansätzen identisch:
 
@@ -433,10 +426,10 @@ Komponentenverweise bieten eine Möglichkeit, auf eine Komponenteninstanz zu ver
 * Definieren Sie ein Feld mit demselben Typ wie die untergeordnete Komponente.
 
 ```razor
-<MyLoginDialog @ref="loginDialog" ... />
+<CustomLoginDialog @ref="loginDialog" ... />
 
 @code {
-    private MyLoginDialog loginDialog;
+    private CustomLoginDialog loginDialog;
 
     private void OnSomething()
     {
@@ -632,7 +625,7 @@ Im Allgemeinen ist es sinnvoll, Werte der folgenden Kategorien für [`@key`][5] 
 
 Stellen Sie sicher, dass die für [`@key`][5] verwendeten Werte nicht kollidieren. Wenn innerhalb desselben übergeordneten Elements kollidierende Werte erkannt werden, löst Blazor eine Ausnahme aus, da alte Elemente oder Komponenten nicht deterministisch neuen Elementen oder Komponenten zugeordnet werden können. Verwenden Sie nur eindeutige Werte wie Objektinstanzen oder Primärschlüsselwerte.
 
-## <a name="dont-create-components-that-write-to-their-own-parameter-properties"></a>Erstellen Sie keine Komponenten, die in ihre eigenen Parametereigenschaften schreiben
+## <a name="overwritten-parameters-with-renderfragment"></a>Überschriebene Parameter mit `RenderFragment`
 
 Parameter werden unter den folgenden Bedingungen überschrieben:
 
@@ -647,17 +640,13 @@ Angenommen, die folgende `Expander`-Komponente:
 * schaltet die Anzeige von untergeordnetem Inhalt mit einem Komponentenparameter um.
 
 ```razor
-<div @onclick="@Toggle" class="card text-white bg-success mb-3">
+<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
-        <div class="panel-heading">
-            <h2>Toggle (<code>Expanded</code> = @Expanded)</h2>
-        </div>
+        <h2 class="card-title">Toggle (<code>Expanded</code> = @Expanded)</h2>
 
         @if (Expanded)
         {
-            <div class="card-text">
-                @ChildContent
-            </div>
+            <p class="card-text">@ChildContent</p>
         }
     </div>
 </div>
@@ -703,17 +692,13 @@ Die folgende überarbeitete `Expander`-Komponente:
 * verwendet das private Feld, um seinen internen Umschaltungszustand beizubehalten.
 
 ```razor
-<div @onclick="@Toggle" class="card text-white bg-success mb-3">
+<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
-        <div class="panel-heading">
-            <h2>Toggle (<code>expanded</code> = @expanded)</h2>
-        </div>
+        <h2 class="card-title">Toggle (<code>expanded</code> = @expanded)</h2>
 
         @if (expanded)
         {
-            <div class="card-text">
-                @ChildContent
-            </div>
+            <p class="card-text">@ChildContent</p>
         }
     </div>
 </div>

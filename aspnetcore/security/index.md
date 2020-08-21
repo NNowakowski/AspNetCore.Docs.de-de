@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,16 +17,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/index
-ms.openlocfilehash: ead5863f0656e182d395fc1e0deaf63ff66034cb
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 0378fd06b5cae5b8911e8a2f41937b28d5444538
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021366"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632862"
 ---
 # <a name="overview-of-aspnet-core-security"></a>Übersicht über die ASP.NET Core-Sicherheit
 
-ASP.NET Core ermöglicht es Entwicklern, die Sicherheit ihrer Apps einfach zu konfigurieren und zu verwalten. ASP.NET Core umfasst Features für die Verwaltung von Authentifizierung, Autorisierung, Datenschutz, HTTPS-Erzwingung, App-Geheimnissen, Schutz vor Anforderungsfälschung und CORS-Verwaltung. Diese Sicherheitsfunktionen ermöglichen es Ihnen, robuste und dennoch sichere ASP.NET Core-Apps zu erstellen.
+ASP.NET Core ermöglicht es Entwicklern, die Sicherheit ihrer Apps einfach zu konfigurieren und zu verwalten. ASP.NET Core umfasst Features für die Verwaltung von Authentifizierung, Autorisierung, Datenschutz, HTTPS-Erzwingung, App-Geheimnissen, Schutz vor XSRF/CSRF (Cross-Site-Request-Forgery, websiteübergreifende Anforderungsfälschung) und CORS-Verwaltung. Diese Sicherheitsfunktionen ermöglichen es Ihnen, robuste und dennoch sichere ASP.NET Core-Apps zu erstellen.
 
 ## <a name="aspnet-core-security-features"></a>ASP.NET Core-Sicherheitsfeatures
 
@@ -41,9 +42,9 @@ Eine weitere Möglichkeit, Authentifizierung zu definieren, besteht darin, sie a
 
 ASP.NET Core und EF enthalten Features, die Ihnen helfen, Ihre Anwendungen zu schützen und Sicherheitsverletzungen zu verhindern. Die folgende Liste von Links verweist auf die Dokumentation, die Techniken zur Vermeidung der häufigsten Sicherheitsrisiken in Web-Apps beschreibt:
 
-* [XSS-Angriffe (Cross-Site Scripting)](xref:security/cross-site-scripting)
+* [Angriffe durch Cross-Site-Scripting (XSS)](xref:security/cross-site-scripting)
 * [Angriffe durch Einschleusung von SQL-Befehlen](/ef/core/querying/raw-sql)
-* [Websiteübergreifende Anforderungsfälschung (CSRF)](xref:security/anti-request-forgery)
+* [Angriffe durch XSRF/CSRF (Cross-Site Request Forgery, websiteübergreifende Anforderungsfälschung)](xref:security/anti-request-forgery)
 * [Offene Weiterleitungsangriffe](xref:security/preventing-open-redirects)
 
 Es gibt weitere Sicherheitsrisiken, die Sie kennen sollten. Weitere Informationen finden Sie in den Artikeln im Abschnitt **Security and Identity** (Sicherheit und Identität) im Inhaltsverzeichnis.
